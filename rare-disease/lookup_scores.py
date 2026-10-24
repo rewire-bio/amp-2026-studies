@@ -13,6 +13,8 @@ Sources (GRCh38):
   gpnmsa    GPN-MSA all-SNV table (Hugging Face songlab/gpn-msa-hg38-scores) by remote tabix; score is -LLR
   spliceai_run  SpliceAI 1.3.1 run on the study's indels by run_spliceai.sh (max of the four delta scores)
   gpnstar   GPN-Star vertebrate and mammal models (songlab/gpn-star-scores Parquet) by remote DuckDB; -llr_calibrated
+  avi       AlphaGenome Variant Impact score, static all-SNV table (avi_scores_snvs_tabix.zip, 88.5 GB, unpacked
+            into data/avi/) by local tabix; raw_score. SNVs only
 
 Outputs data/scores_<source>.tsv keyed by chrom, pos, ref, alt (chr-prefixed). Score tables are not committed.
 """
@@ -34,6 +36,7 @@ REUSE: set = set()  # variants already looked up for the SNV study (--reuse)
 REVEL_ZIP = HERE.parents[1] / "evo2-cloud-operations/data/raw/current-predictors/revel-v1.3_all_chromosomes.zip"
 AM = DATA / "am/AlphaMissense_hg38.tsv.gz"
 GPN_MSA = "https://huggingface.co/datasets/songlab/gpn-msa-hg38-scores/resolve/main/scores.tsv.bgz"
+AVI = DATA / "avi/alphagenome_variant_impact_score_snvs.tsv.gz"
 GPN_STAR = "hf://datasets/songlab/gpn-star-scores/data/gpn-star-hg38-{model}-200m/llr/llr_{chrom}.parquet"
 SEVERITY = {c: i for i, c in enumerate(["STOP_GAINED", "STOP_LOST", "CANONICAL_SPLICE", "NON_SYNONYMOUS", "SPLICE_SITE",
                                         "SYNONYMOUS", "5PRIME_UTR", "3PRIME_UTR", "NONCODING_CHANGE", "INTRONIC",
@@ -194,6 +197,21 @@ def gpn_star(wanted: set) -> None:
         write(name, [name], rows)
 
 
+def avi(wanted: set) -> None:
+    snvs = {k for k in wanted if len(k[2]) == len(k[3]) == 1}
+    regions = DATA / "kgp/avi_regions.tsv"
+    regions.write_text("".join(f"{c}\t{p}\t{p}\n" for c, p in sorted({(c, p) for c, p, _, _ in snvs})))
+    r = subprocess.run(["tabix", "-R", str(regions), str(AVI)], capture_output=True, text=True, check=True)
+    rows = {}
+    for line in r.stdout.splitlines():
+        f = line.split("\t")
+        key = (f[0], int(f[1]), f[2], f[3])
+        if key in snvs:
+            rows[key] = [f[4], f[5]]
+    print(f"  AVI: {len(rows)}/{len(snvs)} SNVs found")
+    write("avi", ["avi", "avi_phred"], rows)
+
+
 def spliceai_run(wanted: set) -> None:
     rows = {}
     with (DATA / "spliceai/indels.out.vcf").open() as h:
@@ -228,7 +246,7 @@ def main() -> None:
     which = a.sources
     for name in which:
         {"cadd": cadd, "revel": revel, "am": alphamissense, "gpnmsa": gpn_msa, "gpnstar": gpn_star,
-         "spliceai_run": spliceai_run}[name](wanted)
+         "spliceai_run": spliceai_run, "avi": avi}[name](wanted)
 
 
 if __name__ == "__main__":

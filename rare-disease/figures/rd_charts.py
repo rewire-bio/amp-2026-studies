@@ -73,7 +73,7 @@ def combined(r: dict, c: dict, path: Path) -> None:
     ks = [("top_1", "Top 1"), ("top_5", "Top 5"), ("top_10", "Top 10")]
     fig, ax = plt.subplots(figsize=(13, 5.2))
     width = 0.84 / len(names)
-    alphas = [1.0, 0.55, 0.75, 0.9, 1.0]
+    alphas = [0.4, 0.55, 0.7, 1.0]
     fm_i = 0
     for j, (n, colour) in enumerate(names):
         alpha = 1.0
