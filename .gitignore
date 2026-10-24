@@ -1,0 +1,20 @@
+# Downloaded public data and licensed score tables stay local
+rare-disease/data/
+rare-disease/evo2/data*/
+brca1-case-ranking/avi_*.tsv
+brca1-case-ranking/brca1_hg38.tsv
+rare-disease/figures/out/
+# Run secrets and raw pod output
+rare-disease/evo2/run*/.ssh-key*
+rare-disease/evo2/run*/.known_hosts
+rare-disease/evo2/run*/ref_scores.tsv
+rare-disease/evo2/run*/var_scores.tsv
+rare-disease/evo2/run*/score.log
+# Nextflow
+evo2-pipeline/resources/
+evo2-pipeline/results/
+evo2-pipeline/work/
+evo2-pipeline/.nextflow*
+evo2-pipeline/.hf-cache/
+__pycache__/
+.DS_Store
