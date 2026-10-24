@@ -1,0 +1,102 @@
+{
+  "snv": {
+    "training_chromosomes": {
+      "cases": 43,
+      "median_variants_per_case": 75.0,
+      "top_1": {
+        "CADD v1.7": 0.4419,
+        "SpliceAI": 0.5116,
+        "REVEL": 0.1163,
+        "AlphaMissense": 0.1395,
+        "GPN-MSA": 0.2791,
+        "GPN-Star-V": 0.4419,
+        "GPN-Star-M": 0.4419,
+        "AlphaGenome AVI": 0.6512
+      },
+      "top_5": {
+        "CADD v1.7": 0.6512,
+        "SpliceAI": 0.6512,
+        "REVEL": 0.2093,
+        "AlphaMissense": 0.186,
+        "GPN-MSA": 0.6047,
+        "GPN-Star-V": 0.7209,
+        "GPN-Star-M": 0.6744,
+        "AlphaGenome AVI": 0.9767
+      }
+    },
+    "other_chromosomes": {
+      "cases": 157,
+      "median_variants_per_case": 163.0,
+      "top_1": {
+        "CADD v1.7": 0.2994,
+        "SpliceAI": 0.4204,
+        "REVEL": 0.2229,
+        "AlphaMissense": 0.2102,
+        "GPN-MSA": 0.2293,
+        "GPN-Star-V": 0.3376,
+        "GPN-Star-M": 0.3121,
+        "AlphaGenome AVI": 0.5478
+      },
+      "top_5": {
+        "CADD v1.7": 0.5732,
+        "SpliceAI": 0.5605,
+        "REVEL": 0.3057,
+        "AlphaMissense": 0.3121,
+        "GPN-MSA": 0.6051,
+        "GPN-Star-V": 0.6115,
+        "GPN-Star-M": 0.5732,
+        "AlphaGenome AVI": 0.9108
+      }
+    }
+  },
+  "replication": {
+    "training_chromosomes": {
+      "cases": 113,
+      "median_variants_per_case": 63.0,
+      "top_1": {
+        "CADD v1.7": 0.4867,
+        "SpliceAI": 0.4248,
+        "REVEL": 0.2655,
+        "AlphaMissense": 0.2566,
+        "GPN-MSA": 0.3894,
+        "GPN-Star-V": 0.531,
+        "GPN-Star-M": 0.4336,
+        "AlphaGenome AVI": 0.6814
+      },
+      "top_5": {
+        "CADD v1.7": 0.7699,
+        "SpliceAI": 0.5044,
+        "REVEL": 0.3186,
+        "AlphaMissense": 0.3097,
+        "GPN-MSA": 0.6726,
+        "GPN-Star-V": 0.7611,
+        "GPN-Star-M": 0.7257,
+        "AlphaGenome AVI": 0.9381
+      }
+    },
+    "other_chromosomes": {
+      "cases": 387,
+      "median_variants_per_case": 149.0,
+      "top_1": {
+        "CADD v1.7": 0.3075,
+        "SpliceAI": 0.4315,
+        "REVEL": 0.1628,
+        "AlphaMissense": 0.2041,
+        "GPN-MSA": 0.2661,
+        "GPN-Star-V": 0.4083,
+        "GPN-Star-M": 0.3437,
+        "AlphaGenome AVI": 0.5711
+      },
+      "top_5": {
+        "CADD v1.7": 0.5891,
+        "SpliceAI": 0.5788,
+        "REVEL": 0.2817,
+        "AlphaMissense": 0.261,
+        "GPN-MSA": 0.5891,
+        "GPN-Star-V": 0.6873,
+        "GPN-Star-M": 0.6382,
+        "AlphaGenome AVI": 0.8811
+      }
+    }
+  }
+}

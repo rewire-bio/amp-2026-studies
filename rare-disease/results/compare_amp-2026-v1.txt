@@ -1,0 +1,10 @@
+Changes in rare-disease/results since amp-2026-v1
+results.json: new scores ['AlphaGenome AVI']; 162 intervals changed; 5 point estimates changed
+  all / scores / Lookups + Evo 2 / top_1: 0.625 -> 0.63
+  all / added_to_lookups / Lookups + Evo 2 / top_1: 0.03 -> 0.035
+  missense / scores / Lookups + Evo 2 / median_competitors: 1.0 -> 0.5
+  missense / scores / Lookups + Evo 2 / top_1: 0.4833 -> 0.5
+  missense / added_to_lookups / Lookups + Evo 2 / top_1: 0.05 -> 0.0667
+results_indel.json: new scores none; 0 intervals changed; 0 point estimates changed
+results_cancer.json: new scores ['AlphaGenome AVI']; 104 intervals changed; 0 point estimates changed
+results_replication.json: new scores ['AlphaGenome AVI']; 218 intervals changed; 0 point estimates changed

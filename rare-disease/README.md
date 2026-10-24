@@ -13,8 +13,15 @@ docstring; `case_benchmark.py` has the full design.
 | Cancer predisposition, panel 245 | see result | `case_benchmark.py --study cancer` | `results/results_cancer.json` |
 | Replication of the SNV study on new cases and backgrounds | 500 | `case_benchmark.py --study replication` | `results/results_replication.json`, [`REPLICATION.md`](REPLICATION.md) |
 
-Scores: CADD v1.7, SpliceAI, REVEL, AlphaMissense (lookups), GPN-MSA, GPN-Star vertebrate and mammal (tables),
-and Evo 2 7B scored by us (`evo2/`).
+Scores: CADD v1.7, SpliceAI, REVEL, AlphaMissense (lookups), GPN-MSA, GPN-Star vertebrate and mammal, AlphaGenome
+AVI (tables), and Evo 2 7B scored by us (`evo2/`).
+
+AVI comes from the static all-SNV table (`avi_scores_snvs_tabix.zip`, 88.5 GB, from the AlphaGenome Atlas downloads
+page), unpacked so that `data/avi/` holds `alphagenome_variant_impact_score_snvs.tsv.gz` and its `.tbi` (a symlink
+to an external disk is fine). It covers every SNV: 13,345 of 13,345 variants in the 200 cases, 11,708 of 11,708 in
+the replication, and 847 of 847 SNVs in the cancer cases. The table has no indels, so 30 of the 140 cancer
+diagnostic variants (all indels) have no AVI score and rank last for it. `avi_heldout.py` checks that AVI's lead
+does not come from its training chromosomes (see [`REPLICATION.md`](REPLICATION.md)).
 
 ## Rerunning
 
@@ -23,7 +30,7 @@ From this folder, in order (downloads are large; see each script):
 ```sh
 mkdir -p data && cd data && bash ../prepare_data.sh       # panel, MANE, ClinVar, 1000 Genomes
 python3 ../build_cases.py [snv|indel|cancer|replication]
-python3 ../lookup_scores.py [--study indel]
+python3 ../lookup_scores.py [--study indel]          # add avi with the table in data/avi/
 python3 ../evo2/make_windows.py && bash ../evo2/launch.sh   # optional: Evo 2 on one H100, about USD 20
 cd .. && uv run --with pandas --with numpy --with scikit-learn python case_benchmark.py [--study ...]
 uv run --with matplotlib python figures/rd_charts.py [--study ...]   # chart SVGs into figures/out/
@@ -34,9 +41,13 @@ code hash). The raw per-window scores and SSH material are not committed.
 
 ## Reproducibility check (24 October 2026)
 
-Rerunning `case_benchmark.py` on the local inputs reproduces `results_indel.json`, `results_cancer.json` and
-`results_replication.json` byte for byte. For `results.json`, every row reproduces except "Lookups + Evo 2",
-which comes out at top 1 63.0% (52.5 to 73.0) against the committed 62.5% (52.0 to 72.5), and +3.5 points
-added to the lookups against the committed +3.0. The Evo 2 score files and the code are unchanged since the
-committed run, and scikit-learn 1.7.2 to 1.9.1 give the same rerun value, so the cause is not yet known. The
-committed file, which the slides cite, is kept.
+Rerunning `case_benchmark.py` on the local inputs reproduced `results_indel.json`, `results_cancer.json` and
+`results_replication.json` byte for byte. For `results.json`, every row reproduced except "Lookups + Evo 2", which
+came out at top 1 63.0% against the committed 62.5%, and +3.5 points added to the
+lookups against +3.0. The Evo 2 score files and the code were unchanged, and scikit-learn 1.7.2 to 1.9.1 give the
+same rerun value; the cause is not known.
+
+Adding AVI the same day changed the order of the bootstrap draws, so every 95% interval moved slightly (typically
+by 0.5 points or less). No point estimate changed except the "Lookups + Evo 2" rows above
+(`compare_results.py amp-2026-v1` lists every change, in `results/compare_amp-2026-v1.txt`). The result files now
+committed are the AVI rerun.
