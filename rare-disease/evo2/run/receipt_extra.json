@@ -1,0 +1,23 @@
+{
+  "started_utc": "2026-10-16T23:41:18.782850+00:00",
+  "gpu_name": "NVIDIA H100 80GB HBM3",
+  "status": "completed",
+  "applied": {
+    "variant": "default",
+    "use_fp8_input_projections": true,
+    "use_flash_attn": true,
+    "parameter_dtypes": [
+      "torch.bfloat16",
+      "torch.float32"
+    ],
+    "tf32_matmul_allowed": false
+  },
+  "load_s": 20.486,
+  "reference_windows": 198,
+  "variant_windows": 198,
+  "windows_scored_this_run": 396,
+  "scoring_s": 304.0,
+  "windows_per_s": 1.3027,
+  "peak_memory_gib": 16.83,
+  "finished_utc": "2026-10-16T23:46:43.320641+00:00"
+}

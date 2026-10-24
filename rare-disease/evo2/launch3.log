@@ -1,0 +1,5 @@
+13:00:29 [RD-H100] Pod o80rq85n7q19cg created (NVIDIA H100 80GB HBM3)
+13:06:52 [RD-H100] Pod at 87.120.211.204:13960, 3.99 USD/h
+tar: Ignoring unknown extended header keyword 'LIBARCHIVE.xattr.com.apple.provenance'
+completed
+13:40:45 [RD-H100] Deleting pod o80rq85n7q19cg

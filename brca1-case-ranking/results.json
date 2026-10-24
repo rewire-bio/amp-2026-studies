@@ -1,0 +1,1406 @@
+{
+  "seed": 20261016,
+  "replicates_per_diagnostic_variant": 10,
+  "bootstrap": 1000,
+  "variants": 3893,
+  "lof_variants": 823,
+  "coverage": {
+    "CADD v1.7": 3893,
+    "SpliceAI": 3893,
+    "REVEL": 2144,
+    "Evo 2 7B": 3893,
+    "CADD + SpliceAI": 3893,
+    "CADD + Evo 2": 3893,
+    "CADD + SpliceAI + Evo 2": 3893,
+    "Average percentile CADD + SpliceAI": 3893,
+    "Average percentile CADD + SpliceAI + Evo 2": 3893,
+    "Type-aware CADD + SpliceAI": 3893,
+    "Type-aware CADD + SpliceAI + Evo 2": 3893
+  },
+  "cases": {
+    "k20": {
+      "all": {
+        "cases": 8230,
+        "scores": {
+          "CADD v1.7": {
+            "ranked_first": 0.491,
+            "ranked_first_ci95": [
+              0.4525,
+              0.53
+            ],
+            "in_top_5": 0.796,
+            "in_top_5_ci95": [
+              0.7648,
+              0.8285
+            ],
+            "median_competitors": 1.0
+          },
+          "SpliceAI": {
+            "ranked_first": 0.3198,
+            "ranked_first_ci95": [
+              0.2792,
+              0.3611
+            ],
+            "in_top_5": 0.5196,
+            "in_top_5_ci95": [
+              0.4794,
+              0.5617
+            ],
+            "median_competitors": 4.0
+          },
+          "REVEL": {
+            "ranked_first": 0.2741,
+            "ranked_first_ci95": [
+              0.2377,
+              0.3118
+            ],
+            "in_top_5": 0.4896,
+            "in_top_5_ci95": [
+              0.4403,
+              0.5352
+            ],
+            "median_competitors": 5.0
+          },
+          "Evo 2 7B": {
+            "ranked_first": 0.4142,
+            "ranked_first_ci95": [
+              0.3802,
+              0.4484
+            ],
+            "in_top_5": 0.7957,
+            "in_top_5_ci95": [
+              0.7633,
+              0.8242
+            ],
+            "median_competitors": 1.0
+          },
+          "CADD + SpliceAI": {
+            "ranked_first": 0.5098,
+            "ranked_first_ci95": [
+              0.4744,
+              0.5464
+            ],
+            "in_top_5": 0.8872,
+            "in_top_5_ci95": [
+              0.8652,
+              0.9083
+            ],
+            "median_competitors": 0.0
+          },
+          "CADD + Evo 2": {
+            "ranked_first": 0.5141,
+            "ranked_first_ci95": [
+              0.4786,
+              0.5492
+            ],
+            "in_top_5": 0.8535,
+            "in_top_5_ci95": [
+              0.8269,
+              0.8811
+            ],
+            "median_competitors": 0.0
+          },
+          "CADD + SpliceAI + Evo 2": {
+            "ranked_first": 0.5434,
+            "ranked_first_ci95": [
+              0.5083,
+              0.5793
+            ],
+            "in_top_5": 0.9016,
+            "in_top_5_ci95": [
+              0.8799,
+              0.9216
+            ],
+            "median_competitors": 0.0
+          },
+          "Average percentile CADD + SpliceAI": {
+            "ranked_first": 0.3769,
+            "ranked_first_ci95": [
+              0.3386,
+              0.4154
+            ],
+            "in_top_5": 0.7458,
+            "in_top_5_ci95": [
+              0.7173,
+              0.7753
+            ],
+            "median_competitors": 1.0
+          },
+          "Average percentile CADD + SpliceAI + Evo 2": {
+            "ranked_first": 0.4276,
+            "ranked_first_ci95": [
+              0.3896,
+              0.4647
+            ],
+            "in_top_5": 0.8652,
+            "in_top_5_ci95": [
+              0.842,
+              0.8847
+            ],
+            "median_competitors": 1.0
+          },
+          "Type-aware CADD + SpliceAI": {
+            "ranked_first": 0.5409,
+            "ranked_first_ci95": [
+              0.5047,
+              0.577
+            ],
+            "in_top_5": 0.8931,
+            "in_top_5_ci95": [
+              0.8727,
+              0.9147
+            ],
+            "median_competitors": 0.0
+          },
+          "Type-aware CADD + SpliceAI + Evo 2": {
+            "ranked_first": 0.5671,
+            "ranked_first_ci95": [
+              0.5341,
+              0.6003
+            ],
+            "in_top_5": 0.9023,
+            "in_top_5_ci95": [
+              0.8812,
+              0.9217
+            ],
+            "median_competitors": 0.0
+          }
+        },
+        "paired": {
+          "CADD + Evo 2 vs CADD v1.7": {
+            "ranked_first": {
+              "difference": 0.0231,
+              "ci95": [
+                -0.0056,
+                0.0499
+              ]
+            },
+            "in_top_5": {
+              "difference": 0.0575,
+              "ci95": [
+                0.0351,
+                0.0798
+              ]
+            }
+          },
+          "CADD + SpliceAI + Evo 2 vs CADD + SpliceAI": {
+            "ranked_first": {
+              "difference": 0.0335,
+              "ci95": [
+                0.0136,
+                0.0511
+              ]
+            },
+            "in_top_5": {
+              "difference": 0.0143,
+              "ci95": [
+                0.0048,
+                0.024
+              ]
+            }
+          },
+          "CADD + SpliceAI + Evo 2 vs CADD v1.7": {
+            "ranked_first": {
+              "difference": 0.0524,
+              "ci95": [
+                0.0203,
+                0.0815
+              ]
+            },
+            "in_top_5": {
+              "difference": 0.1056,
+              "ci95": [
+                0.0774,
+                0.1363
+              ]
+            }
+          },
+          "Type-aware CADD + SpliceAI + Evo 2 vs Type-aware CADD + SpliceAI": {
+            "ranked_first": {
+              "difference": 0.0261,
+              "ci95": [
+                0.011,
+                0.0417
+              ]
+            },
+            "in_top_5": {
+              "difference": 0.0092,
+              "ci95": [
+                0.0023,
+                0.0174
+              ]
+            }
+          },
+          "Average percentile CADD + SpliceAI + Evo 2 vs Average percentile CADD + SpliceAI": {
+            "ranked_first": {
+              "difference": 0.0507,
+              "ci95": [
+                0.0349,
+                0.0658
+              ]
+            },
+            "in_top_5": {
+              "difference": 0.1194,
+              "ci95": [
+                0.0969,
+                0.1403
+              ]
+            }
+          }
+        }
+      },
+      "coding": {
+        "cases": 5840,
+        "scores": {
+          "CADD v1.7": {
+            "ranked_first": 0.501,
+            "ranked_first_ci95": [
+              0.4602,
+              0.5404
+            ],
+            "in_top_5": 0.8824,
+            "in_top_5_ci95": [
+              0.8535,
+              0.9046
+            ],
+            "median_competitors": 0.0
+          },
+          "SpliceAI": {
+            "ranked_first": 0.1122,
+            "ranked_first_ci95": [
+              0.0881,
+              0.141
+            ],
+            "in_top_5": 0.3341,
+            "in_top_5_ci95": [
+              0.293,
+              0.3822
+            ],
+            "median_competitors": 9.0
+          },
+          "REVEL": {
+            "ranked_first": 0.3863,
+            "ranked_first_ci95": [
+              0.3432,
+              0.4302
+            ],
+            "in_top_5": 0.6892,
+            "in_top_5_ci95": [
+              0.6442,
+              0.7304
+            ],
+            "median_competitors": 1.0
+          },
+          "Evo 2 7B": {
+            "ranked_first": 0.3848,
+            "ranked_first_ci95": [
+              0.3516,
+              0.4239
+            ],
+            "in_top_5": 0.7896,
+            "in_top_5_ci95": [
+              0.7561,
+              0.8238
+            ],
+            "median_competitors": 1.0
+          },
+          "CADD + SpliceAI": {
+            "ranked_first": 0.4236,
+            "ranked_first_ci95": [
+              0.3886,
+              0.4621
+            ],
+            "in_top_5": 0.8788,
+            "in_top_5_ci95": [
+              0.8541,
+              0.9014
+            ],
+            "median_competitors": 1.0
+          },
+          "CADD + Evo 2": {
+            "ranked_first": 0.5211,
+            "ranked_first_ci95": [
+              0.4879,
+              0.563
+            ],
+            "in_top_5": 0.8974,
+            "in_top_5_ci95": [
+              0.8752,
+              0.9212
+            ],
+            "median_competitors": 0.0
+          },
+          "CADD + SpliceAI + Evo 2": {
+            "ranked_first": 0.4692,
+            "ranked_first_ci95": [
+              0.4305,
+              0.5065
+            ],
+            "in_top_5": 0.8943,
+            "in_top_5_ci95": [
+              0.8717,
+              0.9157
+            ],
+            "median_competitors": 1.0
+          },
+          "Average percentile CADD + SpliceAI": {
+            "ranked_first": 0.2861,
+            "ranked_first_ci95": [
+              0.2507,
+              0.3237
+            ],
+            "in_top_5": 0.6685,
+            "in_top_5_ci95": [
+              0.6314,
+              0.7037
+            ],
+            "median_competitors": 2.0
+          },
+          "Average percentile CADD + SpliceAI + Evo 2": {
+            "ranked_first": 0.3404,
+            "ranked_first_ci95": [
+              0.3059,
+              0.3781
+            ],
+            "in_top_5": 0.8312,
+            "in_top_5_ci95": [
+              0.8036,
+              0.8569
+            ],
+            "median_competitors": 1.0
+          },
+          "Type-aware CADD + SpliceAI": {
+            "ranked_first": 0.4507,
+            "ranked_first_ci95": [
+              0.4123,
+              0.4858
+            ],
+            "in_top_5": 0.8779,
+            "in_top_5_ci95": [
+              0.8524,
+              0.901
+            ],
+            "median_competitors": 1.0
+          },
+          "Type-aware CADD + SpliceAI + Evo 2": {
+            "ranked_first": 0.4884,
+            "ranked_first_ci95": [
+              0.4477,
+              0.5235
+            ],
+            "in_top_5": 0.8885,
+            "in_top_5_ci95": [
+              0.8617,
+              0.9136
+            ],
+            "median_competitors": 1.0
+          }
+        },
+        "paired": {
+          "CADD + Evo 2 vs CADD v1.7": {
+            "ranked_first": {
+              "difference": 0.02,
+              "ci95": [
+                -0.0119,
+                0.0525
+              ]
+            },
+            "in_top_5": {
+              "difference": 0.0151,
+              "ci95": [
+                0.0007,
+                0.029
+              ]
+            }
+          },
+          "CADD + SpliceAI + Evo 2 vs CADD + SpliceAI": {
+            "ranked_first": {
+              "difference": 0.0455,
+              "ci95": [
+                0.0233,
+                0.0651
+              ]
+            },
+            "in_top_5": {
+              "difference": 0.0156,
+              "ci95": [
+                0.0047,
+                0.0274
+              ]
+            }
+          },
+          "CADD + SpliceAI + Evo 2 vs CADD v1.7": {
+            "ranked_first": {
+              "difference": -0.0318,
+              "ci95": [
+                -0.0612,
+                -0.003
+              ]
+            },
+            "in_top_5": {
+              "difference": 0.012,
+              "ci95": [
+                -0.0018,
+                0.0257
+              ]
+            }
+          },
+          "Type-aware CADD + SpliceAI + Evo 2 vs Type-aware CADD + SpliceAI": {
+            "ranked_first": {
+              "difference": 0.0377,
+              "ci95": [
+                0.0171,
+                0.0582
+              ]
+            },
+            "in_top_5": {
+              "difference": 0.0106,
+              "ci95": [
+                0.0005,
+                0.021
+              ]
+            }
+          },
+          "Average percentile CADD + SpliceAI + Evo 2 vs Average percentile CADD + SpliceAI": {
+            "ranked_first": {
+              "difference": 0.0543,
+              "ci95": [
+                0.0386,
+                0.0691
+              ]
+            },
+            "in_top_5": {
+              "difference": 0.1627,
+              "ci95": [
+                0.136,
+                0.1921
+              ]
+            }
+          }
+        }
+      },
+      "noncoding": {
+        "cases": 2390,
+        "scores": {
+          "CADD v1.7": {
+            "ranked_first": 0.4665,
+            "ranked_first_ci95": [
+              0.3671,
+              0.5482
+            ],
+            "in_top_5": 0.5849,
+            "in_top_5_ci95": [
+              0.4905,
+              0.6681
+            ],
+            "median_competitors": 1.0
+          },
+          "SpliceAI": {
+            "ranked_first": 0.8272,
+            "ranked_first_ci95": [
+              0.7881,
+              0.8615
+            ],
+            "in_top_5": 0.9728,
+            "in_top_5_ci95": [
+              0.9373,
+              0.9928
+            ],
+            "median_competitors": 0.0
+          },
+          "REVEL": {
+            "ranked_first": 0.0,
+            "ranked_first_ci95": [
+              0.0,
+              0.0
+            ],
+            "in_top_5": 0.0017,
+            "in_top_5_ci95": [
+              0.0004,
+              0.0035
+            ],
+            "median_competitors": 11.0
+          },
+          "Evo 2 7B": {
+            "ranked_first": 0.4862,
+            "ranked_first_ci95": [
+              0.41,
+              0.5586
+            ],
+            "in_top_5": 0.8109,
+            "in_top_5_ci95": [
+              0.7436,
+              0.8649
+            ],
+            "median_competitors": 1.0
+          },
+          "CADD + SpliceAI": {
+            "ranked_first": 0.7205,
+            "ranked_first_ci95": [
+              0.6541,
+              0.7787
+            ],
+            "in_top_5": 0.9079,
+            "in_top_5_ci95": [
+              0.8542,
+              0.947
+            ],
+            "median_competitors": 0.0
+          },
+          "CADD + Evo 2": {
+            "ranked_first": 0.4971,
+            "ranked_first_ci95": [
+              0.419,
+              0.5728
+            ],
+            "in_top_5": 0.746,
+            "in_top_5_ci95": [
+              0.6686,
+              0.8133
+            ],
+            "median_competitors": 1.0
+          },
+          "CADD + SpliceAI + Evo 2": {
+            "ranked_first": 0.7247,
+            "ranked_first_ci95": [
+              0.6623,
+              0.7791
+            ],
+            "in_top_5": 0.9192,
+            "in_top_5_ci95": [
+              0.8711,
+              0.958
+            ],
+            "median_competitors": 0.0
+          },
+          "Average percentile CADD + SpliceAI": {
+            "ranked_first": 0.5987,
+            "ranked_first_ci95": [
+              0.5113,
+              0.6784
+            ],
+            "in_top_5": 0.9347,
+            "in_top_5_ci95": [
+              0.9034,
+              0.9615
+            ],
+            "median_competitors": 0.0
+          },
+          "Average percentile CADD + SpliceAI + Evo 2": {
+            "ranked_first": 0.6406,
+            "ranked_first_ci95": [
+              0.5722,
+              0.7054
+            ],
+            "in_top_5": 0.9485,
+            "in_top_5_ci95": [
+              0.914,
+              0.9744
+            ],
+            "median_competitors": 0.0
+          },
+          "Type-aware CADD + SpliceAI": {
+            "ranked_first": 0.7615,
+            "ranked_first_ci95": [
+              0.7082,
+              0.8121
+            ],
+            "in_top_5": 0.9301,
+            "in_top_5_ci95": [
+              0.8911,
+              0.9651
+            ],
+            "median_competitors": 0.0
+          },
+          "Type-aware CADD + SpliceAI + Evo 2": {
+            "ranked_first": 0.7594,
+            "ranked_first_ci95": [
+              0.7017,
+              0.8085
+            ],
+            "in_top_5": 0.936,
+            "in_top_5_ci95": [
+              0.8946,
+              0.9713
+            ],
+            "median_competitors": 0.0
+          }
+        },
+        "paired": {
+          "CADD + Evo 2 vs CADD v1.7": {
+            "ranked_first": {
+              "difference": 0.0305,
+              "ci95": [
+                -0.0272,
+                0.0862
+              ]
+            },
+            "in_top_5": {
+              "difference": 0.1611,
+              "ci95": [
+                0.1025,
+                0.2247
+              ]
+            }
+          },
+          "CADD + SpliceAI + Evo 2 vs CADD + SpliceAI": {
+            "ranked_first": {
+              "difference": 0.0042,
+              "ci95": [
+                -0.0248,
+                0.0348
+              ]
+            },
+            "in_top_5": {
+              "difference": 0.0113,
+              "ci95": [
+                -0.0028,
+                0.0269
+              ]
+            }
+          },
+          "CADD + SpliceAI + Evo 2 vs CADD v1.7": {
+            "ranked_first": {
+              "difference": 0.2582,
+              "ci95": [
+                0.1946,
+                0.3268
+              ]
+            },
+            "in_top_5": {
+              "difference": 0.3343,
+              "ci95": [
+                0.248,
+                0.4204
+              ]
+            }
+          },
+          "Type-aware CADD + SpliceAI + Evo 2 vs Type-aware CADD + SpliceAI": {
+            "ranked_first": {
+              "difference": -0.0021,
+              "ci95": [
+                -0.0165,
+                0.0128
+              ]
+            },
+            "in_top_5": {
+              "difference": 0.0059,
+              "ci95": [
+                0.0004,
+                0.0134
+              ]
+            }
+          },
+          "Average percentile CADD + SpliceAI + Evo 2 vs Average percentile CADD + SpliceAI": {
+            "ranked_first": {
+              "difference": 0.0418,
+              "ci95": [
+                0.0035,
+                0.0814
+              ]
+            },
+            "in_top_5": {
+              "difference": 0.0138,
+              "ci95": [
+                -0.0053,
+                0.0332
+              ]
+            }
+          }
+        }
+      }
+    },
+    "k100": {
+      "all": {
+        "cases": 8230,
+        "scores": {
+          "CADD v1.7": {
+            "ranked_first": 0.3022,
+            "ranked_first_ci95": [
+              0.2686,
+              0.3365
+            ],
+            "in_top_5": 0.5491,
+            "in_top_5_ci95": [
+              0.5059,
+              0.5929
+            ],
+            "median_competitors": 3.0
+          },
+          "SpliceAI": {
+            "ranked_first": 0.1718,
+            "ranked_first_ci95": [
+              0.1423,
+              0.2039
+            ],
+            "in_top_5": 0.3719,
+            "in_top_5_ci95": [
+              0.3243,
+              0.4181
+            ],
+            "median_competitors": 21.0
+          },
+          "REVEL": {
+            "ranked_first": 0.1369,
+            "ranked_first_ci95": [
+              0.1093,
+              0.1642
+            ],
+            "in_top_5": 0.3036,
+            "in_top_5_ci95": [
+              0.2663,
+              0.3471
+            ],
+            "median_competitors": 24.0
+          },
+          "Evo 2 7B": {
+            "ranked_first": 0.1808,
+            "ranked_first_ci95": [
+              0.1504,
+              0.2093
+            ],
+            "in_top_5": 0.4813,
+            "in_top_5_ci95": [
+              0.441,
+              0.5256
+            ],
+            "median_competitors": 5.0
+          },
+          "CADD + SpliceAI": {
+            "ranked_first": 0.277,
+            "ranked_first_ci95": [
+              0.244,
+              0.3116
+            ],
+            "in_top_5": 0.5735,
+            "in_top_5_ci95": [
+              0.5371,
+              0.6133
+            ],
+            "median_competitors": 3.0
+          },
+          "CADD + Evo 2": {
+            "ranked_first": 0.2755,
+            "ranked_first_ci95": [
+              0.2446,
+              0.3101
+            ],
+            "in_top_5": 0.5906,
+            "in_top_5_ci95": [
+              0.5525,
+              0.633
+            ],
+            "median_competitors": 3.0
+          },
+          "CADD + SpliceAI + Evo 2": {
+            "ranked_first": 0.2977,
+            "ranked_first_ci95": [
+              0.267,
+              0.3306
+            ],
+            "in_top_5": 0.6213,
+            "in_top_5_ci95": [
+              0.5832,
+              0.6594
+            ],
+            "median_competitors": 2.0
+          },
+          "Average percentile CADD + SpliceAI": {
+            "ranked_first": 0.2152,
+            "ranked_first_ci95": [
+              0.1787,
+              0.2529
+            ],
+            "in_top_5": 0.4102,
+            "in_top_5_ci95": [
+              0.366,
+              0.4551
+            ],
+            "median_competitors": 7.0
+          },
+          "Average percentile CADD + SpliceAI + Evo 2": {
+            "ranked_first": 0.2187,
+            "ranked_first_ci95": [
+              0.184,
+              0.2536
+            ],
+            "in_top_5": 0.4701,
+            "in_top_5_ci95": [
+              0.4259,
+              0.5142
+            ],
+            "median_competitors": 5.0
+          },
+          "Type-aware CADD + SpliceAI": {
+            "ranked_first": 0.3055,
+            "ranked_first_ci95": [
+              0.2753,
+              0.337
+            ],
+            "in_top_5": 0.6197,
+            "in_top_5_ci95": [
+              0.5823,
+              0.6569
+            ],
+            "median_competitors": 2.0
+          },
+          "Type-aware CADD + SpliceAI + Evo 2": {
+            "ranked_first": 0.3132,
+            "ranked_first_ci95": [
+              0.2808,
+              0.345
+            ],
+            "in_top_5": 0.6504,
+            "in_top_5_ci95": [
+              0.612,
+              0.6905
+            ],
+            "median_competitors": 2.0
+          }
+        },
+        "paired": {
+          "CADD + Evo 2 vs CADD v1.7": {
+            "ranked_first": {
+              "difference": -0.0267,
+              "ci95": [
+                -0.057,
+                0.0041
+              ]
+            },
+            "in_top_5": {
+              "difference": 0.0416,
+              "ci95": [
+                0.0089,
+                0.0753
+              ]
+            }
+          },
+          "CADD + SpliceAI + Evo 2 vs CADD + SpliceAI": {
+            "ranked_first": {
+              "difference": 0.0207,
+              "ci95": [
+                0.0047,
+                0.0363
+              ]
+            },
+            "in_top_5": {
+              "difference": 0.0478,
+              "ci95": [
+                0.0282,
+                0.0708
+              ]
+            }
+          },
+          "CADD + SpliceAI + Evo 2 vs CADD v1.7": {
+            "ranked_first": {
+              "difference": -0.0045,
+              "ci95": [
+                -0.029,
+                0.0217
+              ]
+            },
+            "in_top_5": {
+              "difference": 0.0722,
+              "ci95": [
+                0.0373,
+                0.1106
+              ]
+            }
+          },
+          "Type-aware CADD + SpliceAI + Evo 2 vs Type-aware CADD + SpliceAI": {
+            "ranked_first": {
+              "difference": 0.0078,
+              "ci95": [
+                -0.0062,
+                0.0212
+              ]
+            },
+            "in_top_5": {
+              "difference": 0.0307,
+              "ci95": [
+                0.0106,
+                0.0519
+              ]
+            }
+          },
+          "Average percentile CADD + SpliceAI + Evo 2 vs Average percentile CADD + SpliceAI": {
+            "ranked_first": {
+              "difference": 0.0035,
+              "ci95": [
+                -0.0161,
+                0.0221
+              ]
+            },
+            "in_top_5": {
+              "difference": 0.0599,
+              "ci95": [
+                0.039,
+                0.0787
+              ]
+            }
+          }
+        }
+      },
+      "coding": {
+        "cases": 5840,
+        "scores": {
+          "CADD v1.7": {
+            "ranked_first": 0.3082,
+            "ranked_first_ci95": [
+              0.2669,
+              0.344
+            ],
+            "in_top_5": 0.5649,
+            "in_top_5_ci95": [
+              0.5166,
+              0.6092
+            ],
+            "median_competitors": 3.0
+          },
+          "SpliceAI": {
+            "ranked_first": 0.0259,
+            "ranked_first_ci95": [
+              0.0163,
+              0.0376
+            ],
+            "in_top_5": 0.1341,
+            "in_top_5_ci95": [
+              0.1048,
+              0.1688
+            ],
+            "median_competitors": 45.0
+          },
+          "REVEL": {
+            "ranked_first": 0.193,
+            "ranked_first_ci95": [
+              0.1567,
+              0.2297
+            ],
+            "in_top_5": 0.4279,
+            "in_top_5_ci95": [
+              0.3819,
+              0.4738
+            ],
+            "median_competitors": 7.0
+          },
+          "Evo 2 7B": {
+            "ranked_first": 0.1551,
+            "ranked_first_ci95": [
+              0.1279,
+              0.1821
+            ],
+            "in_top_5": 0.4497,
+            "in_top_5_ci95": [
+              0.4012,
+              0.4928
+            ],
+            "median_competitors": 6.0
+          },
+          "CADD + SpliceAI": {
+            "ranked_first": 0.1935,
+            "ranked_first_ci95": [
+              0.1678,
+              0.2212
+            ],
+            "in_top_5": 0.4812,
+            "in_top_5_ci95": [
+              0.441,
+              0.5236
+            ],
+            "median_competitors": 5.0
+          },
+          "CADD + Evo 2": {
+            "ranked_first": 0.2861,
+            "ranked_first_ci95": [
+              0.2498,
+              0.3274
+            ],
+            "in_top_5": 0.5904,
+            "in_top_5_ci95": [
+              0.5473,
+              0.6372
+            ],
+            "median_competitors": 3.0
+          },
+          "CADD + SpliceAI + Evo 2": {
+            "ranked_first": 0.2247,
+            "ranked_first_ci95": [
+              0.1932,
+              0.2554
+            ],
+            "in_top_5": 0.5447,
+            "in_top_5_ci95": [
+              0.5014,
+              0.5906
+            ],
+            "median_competitors": 4.0
+          },
+          "Average percentile CADD + SpliceAI": {
+            "ranked_first": 0.1147,
+            "ranked_first_ci95": [
+              0.0904,
+              0.1389
+            ],
+            "in_top_5": 0.3342,
+            "in_top_5_ci95": [
+              0.2924,
+              0.3796
+            ],
+            "median_competitors": 12.0
+          },
+          "Average percentile CADD + SpliceAI + Evo 2": {
+            "ranked_first": 0.1433,
+            "ranked_first_ci95": [
+              0.1149,
+              0.1717
+            ],
+            "in_top_5": 0.3772,
+            "in_top_5_ci95": [
+              0.329,
+              0.425
+            ],
+            "median_competitors": 8.0
+          },
+          "Type-aware CADD + SpliceAI": {
+            "ranked_first": 0.2334,
+            "ranked_first_ci95": [
+              0.2008,
+              0.2671
+            ],
+            "in_top_5": 0.5132,
+            "in_top_5_ci95": [
+              0.4689,
+              0.5606
+            ],
+            "median_competitors": 4.0
+          },
+          "Type-aware CADD + SpliceAI + Evo 2": {
+            "ranked_first": 0.2495,
+            "ranked_first_ci95": [
+              0.2182,
+              0.2842
+            ],
+            "in_top_5": 0.5608,
+            "in_top_5_ci95": [
+              0.5199,
+              0.6056
+            ],
+            "median_competitors": 3.0
+          }
+        },
+        "paired": {
+          "CADD + Evo 2 vs CADD v1.7": {
+            "ranked_first": {
+              "difference": -0.0221,
+              "ci95": [
+                -0.0525,
+                0.0083
+              ]
+            },
+            "in_top_5": {
+              "difference": 0.0255,
+              "ci95": [
+                -0.0127,
+                0.0677
+              ]
+            }
+          },
+          "CADD + SpliceAI + Evo 2 vs CADD + SpliceAI": {
+            "ranked_first": {
+              "difference": 0.0312,
+              "ci95": [
+                0.0166,
+                0.0455
+              ]
+            },
+            "in_top_5": {
+              "difference": 0.0635,
+              "ci95": [
+                0.0333,
+                0.0902
+              ]
+            }
+          },
+          "CADD + SpliceAI + Evo 2 vs CADD v1.7": {
+            "ranked_first": {
+              "difference": -0.0836,
+              "ci95": [
+                -0.1098,
+                -0.0611
+              ]
+            },
+            "in_top_5": {
+              "difference": -0.0202,
+              "ci95": [
+                -0.0583,
+                0.0172
+              ]
+            }
+          },
+          "Type-aware CADD + SpliceAI + Evo 2 vs Type-aware CADD + SpliceAI": {
+            "ranked_first": {
+              "difference": 0.0161,
+              "ci95": [
+                0.0005,
+                0.031
+              ]
+            },
+            "in_top_5": {
+              "difference": 0.0476,
+              "ci95": [
+                0.0197,
+                0.077
+              ]
+            }
+          },
+          "Average percentile CADD + SpliceAI + Evo 2 vs Average percentile CADD + SpliceAI": {
+            "ranked_first": {
+              "difference": 0.0286,
+              "ci95": [
+                0.0144,
+                0.0422
+              ]
+            },
+            "in_top_5": {
+              "difference": 0.043,
+              "ci95": [
+                0.022,
+                0.0634
+              ]
+            }
+          }
+        }
+      },
+      "noncoding": {
+        "cases": 2390,
+        "scores": {
+          "CADD v1.7": {
+            "ranked_first": 0.2874,
+            "ranked_first_ci95": [
+              0.2169,
+              0.3528
+            ],
+            "in_top_5": 0.5105,
+            "in_top_5_ci95": [
+              0.4072,
+              0.6012
+            ],
+            "median_competitors": 3.0
+          },
+          "SpliceAI": {
+            "ranked_first": 0.5285,
+            "ranked_first_ci95": [
+              0.475,
+              0.5779
+            ],
+            "in_top_5": 0.9531,
+            "in_top_5_ci95": [
+              0.9148,
+              0.981
+            ],
+            "median_competitors": 0.0
+          },
+          "REVEL": {
+            "ranked_first": 0.0,
+            "ranked_first_ci95": [
+              0.0,
+              0.0
+            ],
+            "in_top_5": 0.0,
+            "in_top_5_ci95": [
+              0.0,
+              0.0
+            ],
+            "median_competitors": 55.0
+          },
+          "Evo 2 7B": {
+            "ranked_first": 0.2435,
+            "ranked_first_ci95": [
+              0.1792,
+              0.3146
+            ],
+            "in_top_5": 0.5586,
+            "in_top_5_ci95": [
+              0.4667,
+              0.646
+            ],
+            "median_competitors": 3.0
+          },
+          "CADD + SpliceAI": {
+            "ranked_first": 0.4812,
+            "ranked_first_ci95": [
+              0.4128,
+              0.5516
+            ],
+            "in_top_5": 0.7992,
+            "in_top_5_ci95": [
+              0.7333,
+              0.8643
+            ],
+            "median_competitors": 1.0
+          },
+          "CADD + Evo 2": {
+            "ranked_first": 0.2494,
+            "ranked_first_ci95": [
+              0.1856,
+              0.3125
+            ],
+            "in_top_5": 0.5912,
+            "in_top_5_ci95": [
+              0.5081,
+              0.6784
+            ],
+            "median_competitors": 3.0
+          },
+          "CADD + SpliceAI + Evo 2": {
+            "ranked_first": 0.4762,
+            "ranked_first_ci95": [
+              0.4097,
+              0.5387
+            ],
+            "in_top_5": 0.8084,
+            "in_top_5_ci95": [
+              0.7423,
+              0.8648
+            ],
+            "median_competitors": 1.0
+          },
+          "Average percentile CADD + SpliceAI": {
+            "ranked_first": 0.4607,
+            "ranked_first_ci95": [
+              0.3715,
+              0.5432
+            ],
+            "in_top_5": 0.5958,
+            "in_top_5_ci95": [
+              0.4978,
+              0.6835
+            ],
+            "median_competitors": 1.0
+          },
+          "Average percentile CADD + SpliceAI + Evo 2": {
+            "ranked_first": 0.4029,
+            "ranked_first_ci95": [
+              0.3261,
+              0.4747
+            ],
+            "in_top_5": 0.6971,
+            "in_top_5_ci95": [
+              0.625,
+              0.7671
+            ],
+            "median_competitors": 1.0
+          },
+          "Type-aware CADD + SpliceAI": {
+            "ranked_first": 0.4816,
+            "ranked_first_ci95": [
+              0.4161,
+              0.5376
+            ],
+            "in_top_5": 0.8799,
+            "in_top_5_ci95": [
+              0.8238,
+              0.9288
+            ],
+            "median_competitors": 1.0
+          },
+          "Type-aware CADD + SpliceAI + Evo 2": {
+            "ranked_first": 0.469,
+            "ranked_first_ci95": [
+              0.4104,
+              0.5273
+            ],
+            "in_top_5": 0.8695,
+            "in_top_5_ci95": [
+              0.8073,
+              0.9174
+            ],
+            "median_competitors": 1.0
+          }
+        },
+        "paired": {
+          "CADD + Evo 2 vs CADD v1.7": {
+            "ranked_first": {
+              "difference": -0.0381,
+              "ci95": [
+                -0.108,
+                0.0395
+              ]
+            },
+            "in_top_5": {
+              "difference": 0.0808,
+              "ci95": [
+                0.027,
+                0.1396
+              ]
+            }
+          },
+          "CADD + SpliceAI + Evo 2 vs CADD + SpliceAI": {
+            "ranked_first": {
+              "difference": -0.005,
+              "ci95": [
+                -0.0407,
+                0.0354
+              ]
+            },
+            "in_top_5": {
+              "difference": 0.0092,
+              "ci95": [
+                -0.0285,
+                0.0572
+              ]
+            }
+          },
+          "CADD + SpliceAI + Evo 2 vs CADD v1.7": {
+            "ranked_first": {
+              "difference": 0.1887,
+              "ci95": [
+                0.1383,
+                0.2398
+              ]
+            },
+            "in_top_5": {
+              "difference": 0.2979,
+              "ci95": [
+                0.2211,
+                0.3804
+              ]
+            }
+          },
+          "Type-aware CADD + SpliceAI + Evo 2 vs Type-aware CADD + SpliceAI": {
+            "ranked_first": {
+              "difference": -0.0126,
+              "ci95": [
+                -0.0371,
+                0.0138
+              ]
+            },
+            "in_top_5": {
+              "difference": -0.0105,
+              "ci95": [
+                -0.0198,
+                -0.0018
+              ]
+            }
+          },
+          "Average percentile CADD + SpliceAI + Evo 2 vs Average percentile CADD + SpliceAI": {
+            "ranked_first": {
+              "difference": -0.0577,
+              "ci95": [
+                -0.1125,
+                -0.0081
+              ]
+            },
+            "in_top_5": {
+              "difference": 0.1013,
+              "ci95": [
+                0.0558,
+                0.1494
+              ]
+            }
+          }
+        }
+      }
+    }
+  }
+}
