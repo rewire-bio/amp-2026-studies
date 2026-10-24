@@ -29,6 +29,8 @@ FM = ["GPN-MSA", "GPN-Star-V", "GPN-Star-M", "AlphaGenome AVI"]
 LABELS = {"canonical_splice": "Canonical splice", "missense": "Missense", "nonsense": "Nonsense",
           "noncoding_or_synonymous": "Synonymous, UTR\nor intronic", "frameshift": "Frameshift",
           "inframe": "In-frame", "noncoding": "UTR or intronic"}
+# The cancer study's "noncoding" group also takes synonymous SNVs (build_cases.py); the indel study's does not.
+CANCER_LABELS = LABELS | {"noncoding": "Synonymous, UTR\nor intronic"}
 
 
 def best(scores: dict, names: list[str], covered: dict) -> str | None:
@@ -36,7 +38,7 @@ def best(scores: dict, names: list[str], covered: dict) -> str | None:
     return max(names, key=lambda n: (scores[n]["top_5"], scores[n]["top_1"])) if names else None
 
 
-def by_type(r: dict, c: dict, path: Path, run_label: str) -> None:
+def by_type(r: dict, c: dict, path: Path, run_label: str, labels: dict = LABELS) -> None:
     groups = [g for g in r["strata"] if g != "all"]
     fig, axes = plt.subplots(1, len(groups), figsize=(3.9 * len(groups), 5.4), sharey=True)
     for ax, key in zip(axes, groups):
@@ -54,7 +56,7 @@ def by_type(r: dict, c: dict, path: Path, run_label: str) -> None:
             ax.bar(i, v * 100, color=colour, width=0.66)
             ax.text(i, v * 100 + 2, f"{v * 100:.0f}%", ha="center", va="bottom", fontsize=14, color=c["dark"])
         ax.set_xticks(range(len(bars)), [b[0] for b in bars], fontsize=10.5)
-        ax.set_title(f"{LABELS.get(key, key)} ({r['strata'][key]['cases']})", fontsize=15, color=c["dark"], pad=10)
+        ax.set_title(f"{labels.get(key, key)} ({r['strata'][key]['cases']})", fontsize=15, color=c["dark"], pad=10)
         ax.set_ylim(0, 112)
         ax.spines[["top", "right"]].set_visible(False)
     axes[0].set_ylabel("Diagnostic variant in top 5 (%)")
@@ -107,7 +109,8 @@ def main() -> None:
                          "figure.facecolor": c["surface"], "axes.facecolor": c["surface"]})
     r = json.loads((RESULTS / ("results.json" if a.study == "snv" else f"results_{a.study}.json")).read_text())
     prefix = "rd" if a.study == "snv" else f"rd_{a.study}"
-    by_type(r, c, OUT / f"{prefix}_by_type{c['suffix']}.png", "run" if a.study == "indel" else "indels" if a.study == "cancer" else "")
+    by_type(r, c, OUT / f"{prefix}_by_type{c['suffix']}.png", "run" if a.study == "indel" else "indels" if a.study == "cancer" else "",
+            CANCER_LABELS if a.study == "cancer" else LABELS)
     combined(r, c, OUT / f"{prefix}_combined{c['suffix']}.png")
     print(f"wrote {prefix}_by_type{c['suffix']}.png, {prefix}_combined{c['suffix']}.png")
 
