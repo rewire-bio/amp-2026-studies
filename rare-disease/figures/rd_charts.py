@@ -30,6 +30,8 @@ LABELS = {"canonical_splice": "Canonical splice", "missense": "Missense", "nonse
           "noncoding_or_synonymous": "Synonymous, UTR\nor intronic", "frameshift": "Frameshift",
           "inframe": "In-frame", "noncoding": "UTR or intronic"}
 # The cancer study's "noncoding" group also takes synonymous SNVs (build_cases.py); the indel study's does not.
+# Tool names under the bars, wrapped to fit
+SHORT = {"AlphaGenome AVI": "AVI", "AlphaMissense": "Alpha-\nMissense", "SpliceAI, run": "SpliceAI\n(run)"}
 CANCER_LABELS = LABELS | {"noncoding": "Synonymous, UTR\nor intronic"}
 
 
@@ -40,7 +42,7 @@ def best(scores: dict, names: list[str], covered: dict) -> str | None:
 
 def by_type(r: dict, c: dict, path: Path, run_label: str, labels: dict = LABELS) -> None:
     groups = [g for g in r["strata"] if g != "all"]
-    fig, axes = plt.subplots(1, len(groups), figsize=(3.9 * len(groups), 5.4), sharey=True)
+    fig, axes = plt.subplots(1, len(groups), figsize=(3.9 * len(groups), 5.6), sharey=True)
     for ax, key in zip(axes, groups):
         s = r["strata"][key]["scores"]
         bars = []
@@ -49,18 +51,21 @@ def by_type(r: dict, c: dict, path: Path, run_label: str, labels: dict = LABELS)
             if b:
                 ran = run_label and (run_label == "run" or key in ("frameshift", "inframe"))
                 name = f"{b}, run" if b == "SpliceAI" and ran else b
-                bars.append((f"{label}\n({name})", s[b]["top_5"], colour))
+                bars.append((SHORT.get(name, name), s[b]["top_5"], colour))
         if "Evo 2 7B" in s:
-            bars.append(("Evo 2 7B\n(we ran it)", s["Evo 2 7B"]["top_5"], c["evo"]))
+            bars.append(("Evo 2 7B", s["Evo 2 7B"]["top_5"], c["evo"]))
         for i, (_, v, colour) in enumerate(bars):
             ax.bar(i, v * 100, color=colour, width=0.66)
-            ax.text(i, v * 100 + 2, f"{v * 100:.0f}%", ha="center", va="bottom", fontsize=14, color=c["dark"])
-        ax.set_xticks(range(len(bars)), [b[0] for b in bars], fontsize=10.5)
-        ax.set_title(f"{labels.get(key, key)} ({r['strata'][key]['cases']})", fontsize=15, color=c["dark"], pad=10)
+            ax.text(i, v * 100 + 2, f"{v * 100:.0f}%", ha="center", va="bottom", fontsize=19, color=c["dark"])
+        ax.set_xticks(range(len(bars)), [b[0] for b in bars], fontsize=15)
+        ax.set_title(f"{labels.get(key, key)} ({r['strata'][key]['cases']})", fontsize=20, color=c["dark"], pad=12)
         ax.set_ylim(0, 112)
         ax.spines[["top", "right"]].set_visible(False)
     axes[0].set_ylabel("Diagnostic variant in top 5 (%)")
-    fig.tight_layout()
+    handles = [plt.Rectangle((0, 0), 1, 1, color=c[k]) for k in ("grey", "fm", "evo")]
+    fig.legend(handles, ["Best lookup", "Best foundation-model table", "Evo 2 7B (we ran it)"], loc="lower center",
+               ncol=3, frameon=False, fontsize=18, bbox_to_anchor=(0.5, 0))
+    fig.tight_layout(rect=(0, 0.09, 1, 1))
     fig.savefig(path, dpi=150)
     plt.close(fig)
 
@@ -73,7 +78,7 @@ def combined(r: dict, c: dict, path: Path) -> None:
     if "Lookups + Evo 2" in s:
         names.append(("Lookups + Evo 2", c["evo"]))
     ks = [("top_1", "Top 1"), ("top_5", "Top 5"), ("top_10", "Top 10")]
-    fig, ax = plt.subplots(figsize=(13, 5.2))
+    fig, ax = plt.subplots(figsize=(14, 5.2))
     width = 0.84 / len(names)
     alphas = [0.4, 0.55, 0.7, 1.0]
     fm_i = 0
@@ -87,12 +92,12 @@ def combined(r: dict, c: dict, path: Path) -> None:
             x = i + (j - (len(names) - 1) / 2) * width
             ax.bar(x, v, width=width * 0.9, color=colour, alpha=alpha, label=n.replace("Lookups + ", "+ ") if i == 0 else None)
             ax.errorbar(x, v, yerr=[[v - lo], [hi - v]], color="#45505F", capsize=2, lw=1)
-            ax.text(x, hi + 1.5, f"{v:.0f}", ha="center", va="bottom", fontsize=10.5, color=c["dark"])
-    ax.set_xticks(range(len(ks)), [k[1] for k in ks], fontsize=16)
+            ax.text(x, hi + 1.5, f"{v:.0f}", ha="center", va="bottom", fontsize=15, color=c["dark"])
+    ax.set_xticks(range(len(ks)), [k[1] for k in ks], fontsize=21)
     ax.set_ylabel(f"Cases, % (n = {r['strata']['all']['cases']})")
     ax.set_ylim(0, 115)
     ax.spines[["top", "right"]].set_visible(False)
-    ax.legend(frameon=False, ncol=len(names), loc="upper left", fontsize=11.5)
+    ax.legend(frameon=False, ncol=len(names), loc="lower left", bbox_to_anchor=(0, 1.0), fontsize=15, handlelength=1.2, columnspacing=1.2)
     fig.tight_layout()
     fig.savefig(path, dpi=150)
     plt.close(fig)
@@ -104,7 +109,7 @@ def main() -> None:
     p.add_argument("--brand", default="rewire", choices=BRANDS)
     a = p.parse_args()
     c = BRANDS[a.brand]
-    plt.rcParams.update({"font.family": c["font"], "font.size": 15, "axes.edgecolor": "#C9CED4",
+    plt.rcParams.update({"font.family": c["font"], "font.size": 18, "axes.edgecolor": "#C9CED4",
                          "axes.labelcolor": c["dark"], "xtick.color": c["dark"], "ytick.color": c["dark"],
                          "figure.facecolor": c["surface"], "axes.facecolor": c["surface"]})
     r = json.loads((RESULTS / ("results.json" if a.study == "snv" else f"results_{a.study}.json")).read_text())
