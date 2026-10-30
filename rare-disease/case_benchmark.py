@@ -22,7 +22,7 @@ Replication (--study replication, 500 new SNV cases in data/replication/): the c
 on the new cases alone, and also locked: fitted once on all 200 SNV cases and applied unchanged to the new cases.
 Evo 2 was not run on the new cases, so it is left out of both.
 
-Frequency filter (--gnomad-max-af, from gnomad_af.py): drop every variant whose gnomAD v4.1 genome AF (or, with
+Frequency filter (--gnomad-max-af, from gnomad_af.py): drop every variant whose gnomAD genome AF (v3.1.2 genomes, the same genomes as v4.1; or, with
 --grpmax, AF_grpmax) is at or above the threshold, as a diagnostic pipeline would before ranking, and drop the cases
 whose diagnostic variant is itself removed. The locked replication models are then fitted on the filtered 200 cases.
 
