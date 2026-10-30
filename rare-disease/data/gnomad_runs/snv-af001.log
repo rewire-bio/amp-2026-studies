@@ -1,0 +1,111 @@
+PP3 on missense: {"AlphaMissense": {"diagnostic": {"n": 60, "supporting": 0.7833, "moderate": 0.65, "strong": 0.3333}, "background": {"n": 4712, "supporting": 0.0569, "moderate": 0.0297, "strong": 0.0059}}, "REVEL": {"diagnostic": {"n": 60, "supporting": 0.8833, "moderate": 0.7167, "strong": 0.2833}, "background": {"n": 4712, "supporting": 0.0662, "moderate": 0.0263, "strong": 0.0008}}}
+
+all (200 cases)
+  CADD v1.7              top1 0.32  top5 0.62  top10 0.76 [0.6899, 0.815]  median competitors 2
+  SpliceAI               top1 0.42  top5 0.56  top10 0.62 [0.555, 0.69]  median competitors 1
+  REVEL                  top1 0.21  top5 0.29  top10 0.32 [0.26, 0.375]  median competitors 83
+  AlphaMissense          top1 0.20  top5 0.27  top10 0.28 [0.225, 0.34]  median competitors 85
+  GPN-MSA                top1 0.26  top5 0.58  top10 0.73 [0.6699, 0.7851]  median competitors 3
+  GPN-Star-V             top1 0.36  top5 0.66  top10 0.76 [0.7, 0.81]  median competitors 2
+  GPN-Star-M             top1 0.38  top5 0.64  top10 0.76 [0.69, 0.815]  median competitors 2
+  AlphaGenome AVI        top1 0.57  top5 0.93  top10 0.95 [0.925, 0.9801]  median competitors 0
+  Evo 2 7B               top1 0.24  top5 0.55  top10 0.71 [0.65, 0.785]  median competitors 4
+  Lookups combined       top1 0.65  top5 0.94  top10 0.97 [0.945, 0.99]  median competitors 0
+  Lookups + GPN-MSA      top1 0.67  top5 0.94  top10 0.96 [0.935, 0.985]  median competitors 0
+  Lookups + GPN-Star-V   top1 0.69  top5 0.94  top10 0.96 [0.9399, 0.985]  median competitors 0
+  Lookups + GPN-Star-M   top1 0.68  top5 0.94  top10 0.96 [0.94, 0.985]  median competitors 0
+  Lookups + AlphaGenome AVI top1 0.72  top5 0.95  top10 0.96 [0.935, 0.99]  median competitors 0
+  Lookups + Evo 2        top1 0.66  top5 0.94  top10 0.97 [0.945, 0.995]  median competitors 0
+  Lookups + GPN-MSA minus lookups: top1 +0.020 [-0.03, 0.0701]  top5 +0.005 [-0.01, 0.02]  top10 -0.010 [-0.03, 0.005]
+  Lookups + GPN-Star-V minus lookups: top1 +0.040 [-0.035, 0.115]  top5 -0.005 [-0.025, 0.01]  top10 -0.005 [-0.025, 0.01]
+  Lookups + GPN-Star-M minus lookups: top1 +0.030 [-0.02, 0.075]  top5 +0.000 [-0.02, 0.02]  top10 -0.005 [-0.02, 0.01]
+  Lookups + AlphaGenome AVI minus lookups: top1 +0.080 [0.005, 0.16]  top5 +0.010 [-0.0051, 0.03]  top10 -0.005 [-0.02, 0.01]
+  Lookups + Evo 2 minus lookups: top1 +0.015 [-0.035, 0.07]  top5 +0.000 [-0.015, 0.015]  top10 +0.005 [-0.025, 0.03]
+
+canonical_splice (40 cases)
+  CADD v1.7              top1 0.55  top5 0.97  top10 1.00 [1.0, 1.0]  median competitors 0
+  SpliceAI               top1 0.93  top5 0.97  top10 0.97 [0.9091, 1.0]  median competitors 0
+  REVEL                  top1 0.03  top5 0.03  top10 0.03 [0.0, 0.1]  median competitors 112
+  AlphaMissense          top1 0.00  top5 0.00  top10 0.00 [0.0, 0.0]  median competitors 112
+  GPN-MSA                top1 0.50  top5 0.82  top10 0.90 [0.8, 0.9773]  median competitors 0
+  GPN-Star-V             top1 0.75  top5 0.93  top10 0.95 [0.878, 1.0]  median competitors 0
+  GPN-Star-M             top1 0.70  top5 0.90  top10 1.00 [1.0, 1.0]  median competitors 0
+  AlphaGenome AVI        top1 0.75  top5 0.97  top10 1.00 [1.0, 1.0]  median competitors 0
+  Evo 2 7B               top1 0.42  top5 0.68  top10 0.78 [0.6665, 0.8974]  median competitors 1
+  Lookups combined       top1 0.88  top5 0.95  top10 0.97 [0.9167, 1.0]  median competitors 0
+  Lookups + GPN-MSA      top1 0.88  top5 0.97  top10 0.97 [0.9167, 1.0]  median competitors 0
+  Lookups + GPN-Star-V   top1 0.88  top5 0.95  top10 0.97 [0.9167, 1.0]  median competitors 0
+  Lookups + GPN-Star-M   top1 0.85  top5 0.97  top10 0.97 [0.9166, 1.0]  median competitors 0
+  Lookups + AlphaGenome AVI top1 0.80  top5 0.97  top10 0.97 [0.9166, 1.0]  median competitors 0
+  Lookups + Evo 2        top1 0.80  top5 0.97  top10 1.00 [1.0, 1.0]  median competitors 0
+  Lookups + GPN-MSA minus lookups: top1 +0.000 [-0.075, 0.075]  top5 +0.025 [0.0, 0.0769]  top10 +0.000 [0.0, 0.0]
+  Lookups + GPN-Star-V minus lookups: top1 +0.000 [-0.075, 0.075]  top5 +0.000 [0.0, 0.0]  top10 +0.000 [0.0, 0.0]
+  Lookups + GPN-Star-M minus lookups: top1 -0.025 [-0.0811, 0.0]  top5 +0.025 [0.0, 0.0811]  top10 +0.000 [0.0, 0.0]
+  Lookups + AlphaGenome AVI minus lookups: top1 -0.075 [-0.2001, 0.0488]  top5 +0.025 [0.0, 0.0769]  top10 +0.000 [0.0, 0.0]
+  Lookups + Evo 2 minus lookups: top1 -0.075 [-0.175, 0.0]  top5 +0.025 [0.0, 0.0769]  top10 +0.025 [0.0, 0.0811]
+
+missense (60 cases)
+  CADD v1.7              top1 0.20  top5 0.78  top10 0.97 [0.918, 1.0]  median competitors 2
+  SpliceAI               top1 0.00  top5 0.05  top10 0.15 [0.0701, 0.2389]  median competitors 52
+  REVEL                  top1 0.70  top5 0.93  top10 1.00 [1.0, 1.0]  median competitors 0
+  AlphaMissense          top1 0.65  top5 0.90  top10 0.95 [0.8852, 1.0]  median competitors 0
+  GPN-MSA                top1 0.28  top5 0.82  top10 0.92 [0.8197, 0.9839]  median competitors 1
+  GPN-Star-V             top1 0.40  top5 0.80  top10 0.92 [0.8275, 0.9831]  median competitors 1
+  GPN-Star-M             top1 0.38  top5 0.73  top10 0.90 [0.7966, 0.9697]  median competitors 1
+  AlphaGenome AVI        top1 0.47  top5 0.93  top10 0.95 [0.8955, 1.0]  median competitors 1
+  Evo 2 7B               top1 0.10  top5 0.48  top10 0.73 [0.614, 0.8364]  median competitors 5
+  Lookups combined       top1 0.48  top5 0.97  top10 0.98 [0.9464, 1.0]  median competitors 1
+  Lookups + GPN-MSA      top1 0.53  top5 0.95  top10 0.98 [0.9454, 1.0]  median competitors 0
+  Lookups + GPN-Star-V   top1 0.57  top5 0.97  top10 0.98 [0.9474, 1.0]  median competitors 0
+  Lookups + GPN-Star-M   top1 0.53  top5 0.97  top10 0.98 [0.9454, 1.0]  median competitors 0
+  Lookups + AlphaGenome AVI top1 0.62  top5 0.97  top10 1.00 [1.0, 1.0]  median competitors 0
+  Lookups + Evo 2        top1 0.57  top5 0.97  top10 1.00 [1.0, 1.0]  median competitors 0
+  Lookups + GPN-MSA minus lookups: top1 +0.050 [-0.0172, 0.1207]  top5 -0.017 [-0.0567, 0.0]  top10 +0.000 [0.0, 0.0]
+  Lookups + GPN-Star-V minus lookups: top1 +0.083 [-0.0167, 0.1897]  top5 +0.000 [0.0, 0.0]  top10 +0.000 [0.0, 0.0]
+  Lookups + GPN-Star-M minus lookups: top1 +0.050 [-0.0185, 0.125]  top5 +0.000 [0.0, 0.0]  top10 +0.000 [0.0, 0.0]
+  Lookups + AlphaGenome AVI minus lookups: top1 +0.133 [0.0333, 0.2414]  top5 +0.000 [0.0, 0.0]  top10 +0.017 [0.0, 0.0536]
+  Lookups + Evo 2 minus lookups: top1 +0.083 [-0.0147, 0.1819]  top5 +0.000 [0.0, 0.0]  top10 +0.017 [0.0, 0.0526]
+
+noncoding_or_synonymous (70 cases)
+  CADD v1.7              top1 0.03  top5 0.13  top10 0.33 [0.2083, 0.4559]  median competitors 16
+  SpliceAI               top1 0.66  top5 0.91  top10 0.96 [0.9014, 1.0]  median competitors 0
+  REVEL                  top1 0.00  top5 0.00  top10 0.00 [0.0, 0.0]  median competitors 134
+  AlphaMissense          top1 0.00  top5 0.00  top10 0.00 [0.0, 0.0]  median competitors 134
+  GPN-MSA                top1 0.11  top5 0.26  top10 0.46 [0.3544, 0.5574]  median competitors 13
+  GPN-Star-V             top1 0.11  top5 0.33  top10 0.46 [0.338, 0.5672]  median competitors 10
+  GPN-Star-M             top1 0.13  top5 0.36  top10 0.46 [0.3125, 0.5972]  median competitors 12
+  AlphaGenome AVI        top1 0.41  top5 0.87  top10 0.93 [0.8656, 0.9853]  median competitors 1
+  Evo 2 7B               top1 0.26  top5 0.50  top10 0.64 [0.5139, 0.7693]  median competitors 4
+  Lookups combined       top1 0.63  top5 0.89  top10 0.94 [0.8824, 0.9861]  median competitors 0
+  Lookups + GPN-MSA      top1 0.63  top5 0.90  top10 0.91 [0.8524, 0.9722]  median competitors 0
+  Lookups + GPN-Star-V   top1 0.67  top5 0.87  top10 0.93 [0.8674, 0.9836]  median competitors 0
+  Lookups + GPN-Star-M   top1 0.69  top5 0.87  top10 0.93 [0.8709, 0.9851]  median competitors 0
+  Lookups + AlphaGenome AVI top1 0.77  top5 0.91  top10 0.93 [0.8696, 0.9844]  median competitors 0
+  Lookups + Evo 2        top1 0.66  top5 0.87  top10 0.93 [0.8592, 0.9855]  median competitors 0
+  Lookups + GPN-MSA minus lookups: top1 +0.000 [-0.0794, 0.077]  top5 +0.014 [0.0, 0.0448]  top10 -0.029 [-0.087, 0.0164]
+  Lookups + GPN-Star-V minus lookups: top1 +0.043 [-0.058, 0.141]  top5 -0.014 [-0.065, 0.034]  top10 -0.014 [-0.0645, 0.0303]
+  Lookups + GPN-Star-M minus lookups: top1 +0.057 [-0.0406, 0.1471]  top5 -0.014 [-0.0676, 0.0312]  top10 -0.014 [-0.0695, 0.0308]
+  Lookups + AlphaGenome AVI minus lookups: top1 +0.143 [0.0286, 0.2656]  top5 +0.029 [0.0, 0.0758]  top10 -0.014 [-0.0448, 0.0]
+  Lookups + Evo 2 minus lookups: top1 +0.029 [-0.0423, 0.0968]  top5 -0.014 [-0.0455, 0.0]  top10 -0.014 [-0.0857, 0.0441]
+
+nonsense (30 cases)
+  CADD v1.7              top1 0.90  top5 1.00  top10 1.00 [1.0, 1.0]  median competitors 0
+  SpliceAI               top1 0.07  top5 0.23  top10 0.33 [0.1667, 0.5172]  median competitors 17
+  REVEL                  top1 0.00  top5 0.03  top10 0.07 [0.0, 0.1786]  median competitors 118
+  AlphaMissense          top1 0.00  top5 0.00  top10 0.00 [0.0, 0.0]  median competitors 122
+  GPN-MSA                top1 0.20  top5 0.57  top10 0.77 [0.6296, 0.8966]  median competitors 4
+  GPN-Star-V             top1 0.37  top5 0.77  top10 0.87 [0.7419, 0.9688]  median competitors 1
+  GPN-Star-M             top1 0.53  top5 0.77  top10 0.83 [0.6897, 0.963]  median competitors 0
+  AlphaGenome AVI        top1 0.93  top5 0.97  top10 0.97 [0.9, 1.0]  median competitors 0
+  Evo 2 7B               top1 0.27  top5 0.60  top10 0.77 [0.6128, 0.9032]  median competitors 2
+  Lookups combined       top1 0.70  top5 1.00  top10 1.00 [1.0, 1.0]  median competitors 0
+  Lookups + GPN-MSA      top1 0.73  top5 1.00  top10 1.00 [1.0, 1.0]  median competitors 0
+  Lookups + GPN-Star-V   top1 0.70  top5 1.00  top10 1.00 [1.0, 1.0]  median competitors 0
+  Lookups + GPN-Star-M   top1 0.70  top5 1.00  top10 1.00 [1.0, 1.0]  median competitors 0
+  Lookups + AlphaGenome AVI top1 0.73  top5 0.97  top10 0.97 [0.9, 1.0]  median competitors 0
+  Lookups + Evo 2        top1 0.67  top5 1.00  top10 1.00 [1.0, 1.0]  median competitors 0
+  Lookups + GPN-MSA minus lookups: top1 +0.033 [-0.0714, 0.1667]  top5 +0.000 [0.0, 0.0]  top10 +0.000 [0.0, 0.0]
+  Lookups + GPN-Star-V minus lookups: top1 +0.000 [-0.0969, 0.1]  top5 +0.000 [0.0, 0.0]  top10 +0.000 [0.0, 0.0]
+  Lookups + GPN-Star-M minus lookups: top1 +0.000 [-0.1, 0.1]  top5 +0.000 [0.0, 0.0]  top10 +0.000 [0.0, 0.0]
+  Lookups + AlphaGenome AVI minus lookups: top1 +0.033 [-0.0714, 0.1613]  top5 -0.033 [-0.0968, 0.0]  top10 -0.033 [-0.0968, 0.0]
+  Lookups + Evo 2 minus lookups: top1 -0.033 [-0.1111, 0.0]  top5 +0.000 [0.0, 0.0]  top10 +0.000 [0.0, 0.0]

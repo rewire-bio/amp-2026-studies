@@ -1,0 +1,30 @@
+Downloading duckdb (16.8MiB)
+ Downloading duckdb
+Installed 1 package in 2ms
+11708 case variants
+2699 reused from the SNV study, 9009 to look up
+  chr13: 158/158
+  chr10: 309/309
+  chr14: 280/280
+  chr11: 487/487
+  chr15: 384/384
+  chr18: 169/169
+  chr1: 806/806
+  chr12: 559/559
+  chr16: 578/578
+  chr21: 159/159
+  chr20: 193/193
+  chr19: 531/531
+  chr17: 528/528
+  chr4: 257/257
+  chr22: 258/258
+  chr3: 475/475
+  chr5: 402/402
+  chr6: 316/316
+  chr2: 703/703
+  chr7: 389/389
+  chr9: 346/346
+  chr8: 295/295
+  chrX: 427/427
+  CADD snv: 9009/9009 found
+cadd: 11708 variants scored, wrote scores_cadd.tsv

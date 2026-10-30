@@ -1,0 +1,29 @@
+13345 case variants
+am: 2233 variants scored, wrote scores_am.tsv
+13345 case variants
+revel: 2595 variants scored, wrote scores_revel.tsv
+13345 case variants
+  chr13: 207/207
+  chr10: 403/403
+  chr14: 433/433
+  chr12: 679/679
+  chr16: 737/737
+  chr18: 282/282
+  chr11: 683/683
+  chr17: 715/715
+  chr15: 606/606
+  chr21: 210/210
+  chr1: 1184/1184
+  chr20: 307/307
+  chr22: 387/387
+  chr4: 446/446
+  chr5: 604/604
+  chr6: 560/560
+  chr3: 673/673
+  chr7: 629/629
+  chr19: 800/800
+  chr9: 545/545
+  chr8: 489/489
+  chr2: 1214/1214
+  chrX: 552/552
+cadd: 13345 variants scored, wrote scores_cadd.tsv

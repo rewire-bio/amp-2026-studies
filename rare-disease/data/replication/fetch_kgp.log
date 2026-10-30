@@ -1,0 +1,50 @@
+[W::bcf_hdr_check_sanity] AC should be declared as Number=A
+[W::bcf_hdr_check_sanity] AC should be declared as Number=A
+[W::bcf_hdr_check_sanity] AC should be declared as Number=A
+[W::bcf_hdr_check_sanity] AC should be declared as Number=A
+[W::bcf_hdr_check_sanity] AC should be declared as Number=A
+[W::bcf_hdr_check_sanity] AC should be declared as Number=A
+[W::bcf_hdr_check_sanity] AC should be declared as Number=A
+[W::bcf_hdr_check_sanity] AC should be declared as Number=A
+chr8 done
+[W::bcf_hdr_check_sanity] AC should be declared as Number=A
+chr4 done
+[W::bcf_hdr_check_sanity] AC should be declared as Number=A
+chr7 done
+chr6 done
+[W::bcf_hdr_check_sanity] AC should be declared as Number=A
+[W::bcf_hdr_check_sanity] AC should be declared as Number=A
+chr5 done
+[W::bcf_hdr_check_sanity] AC should be declared as Number=A
+chr1 done
+chr3 done
+[W::bcf_hdr_check_sanity] AC should be declared as Number=A
+[W::bcf_hdr_check_sanity] AC should be declared as Number=A
+chr15 done
+[W::bcf_hdr_check_sanity] AC should be declared as Number=A
+chr10 done
+[W::bcf_hdr_check_sanity] AC should be declared as Number=A
+chr13 done
+chr9 done
+chr11 done
+[W::bcf_hdr_check_sanity] AC should be declared as Number=A
+[W::bcf_hdr_check_sanity] AC should be declared as Number=A
+[W::bcf_hdr_check_sanity] AC should be declared as Number=A
+chr12 done
+[W::bcf_hdr_check_sanity] AC should be declared as Number=A
+chr14 done
+[W::bcf_hdr_check_sanity] AC should be declared as Number=A
+chr20 done
+chr16 done
+chr18 done
+chr21 done
+chr22 done
+[W::bcf_hdr_check_sanity] AC should be declared as Number=A
+chr17 done
+chr19 done
+chr2 done
+xargs: ../fetch_kgp.sh: terminated with signal 15; aborting
+[E::bgzf_read_block] Failed to read BGZF block data at offset 1906575 expected 65293 bytes; hread returned 59487
+[E::bgzf_read] Read block operation failed with error 4 after 83 of 439 bytes
+Error: BCF read error
+[E::bcf_sr_destroy1] Error on closing 6U@žŽù8Ï«

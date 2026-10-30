@@ -1,5 +1,11 @@
-# Downloaded public data and licensed score tables stay local
-rare-disease/data/
+# Bulk downloads stay local (each is re-downloaded by the script that reads it); the case files, per-case scores
+# and run logs derived from them are committed
+rare-disease/data/avi
+rare-disease/data/am
+rare-disease/data/clinvar.vcf.gz
+rare-disease/data/clinvar_snv_panel.tsv
+rare-disease/data/**/*.tbi
+rare-disease/data/**/*.csi
 rare-disease/evo2/data*/
 brca1-case-ranking/avi_*.tsv
 brca1-case-ranking/brca1_hg38.tsv

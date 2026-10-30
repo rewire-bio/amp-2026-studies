@@ -1,0 +1,29 @@
+Downloading duckdb (16.8MiB)
+ Downloading duckdb
+Installed 1 package in 1ms
+11708 case variants
+2699 reused from the SNV study, 9009 to look up
+  chr10: 309
+  chr12: 559
+  chr13: 158
+  chr11: 487
+  chr14: 280
+  chr16: 578
+  chr1: 806
+  chr18: 169
+  chr15: 384
+  chr17: 528
+  chr19: 531
+  chr20: 193
+  chr21: 159
+  chr22: 258
+  chr4: 257
+  chr2: 703
+  chr3: 475
+  chr5: 402
+  chr6: 316
+  chr7: 389
+  chr9: 346
+  chr8: 295
+  chrX: 427
+gpnmsa: 11708 variants scored, wrote scores_gpnmsa.tsv

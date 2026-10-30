@@ -1,0 +1,7 @@
+Downloading duckdb (16.8MiB)
+ Downloading duckdb
+Installed 1 package in 1ms
+11708 case variants
+2699 reused from the SNV study, 9009 to look up
+gpnstar_v: 11708 variants scored, wrote scores_gpnstar_v.tsv
+gpnstar_m: 11708 variants scored, wrote scores_gpnstar_m.tsv
