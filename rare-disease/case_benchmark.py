@@ -22,6 +22,10 @@ Replication (--study replication, 500 new SNV cases in data/replication/): the c
 on the new cases alone, and also locked: fitted once on all 200 SNV cases and applied unchanged to the new cases.
 Evo 2 was not run on the new cases, so it is left out of both.
 
+Frequency filter (--gnomad-max-af, from gnomad_af.py): drop every variant whose gnomAD v4.1 genome AF (or, with
+--grpmax, AF_grpmax) is at or above the threshold, as a diagnostic pipeline would before ranking, and drop the cases
+whose diagnostic variant is itself removed. The locked replication models are then fitted on the filtered 200 cases.
+
   python rare-disease/case_benchmark.py [--study snv|indel|cancer|replication]   # writes results[_<study>].json
 """
 from __future__ import annotations
@@ -126,6 +130,19 @@ def features(cases: pd.DataFrame, names: list[str]) -> pd.DataFrame:
     return out
 
 
+def gnomad_filter(cases: pd.DataFrame, max_af: float | None, grpmax: bool) -> pd.DataFrame:
+    """Drop variants at or above max_af in gnomAD, then the cases that lost their diagnostic variant."""
+    if max_af is None:
+        return cases
+    col = "gnomad_af_grpmax" if grpmax else "gnomad_af"
+    af = cases[KEY].merge(pd.read_csv(DATA / "gnomad_af.tsv", sep="\t"), on=KEY, how="left")[col]
+    if af.isna().any():
+        raise SystemExit(f"{int(af.isna().sum())} variants have no gnomad_af.tsv row; rerun gnomad_af.py")
+    kept = cases[(af < max_af).to_numpy()]
+    solved = kept.loc[kept["diagnostic"] == 1, "case"]
+    return kept[kept["case"].isin(solved)].reset_index(drop=True)
+
+
 def classifier():
     from sklearn.linear_model import LogisticRegression
     from sklearn.pipeline import make_pipeline
@@ -215,9 +232,13 @@ def pp3(cases: pd.DataFrame) -> dict:
 def main() -> None:
     p = argparse.ArgumentParser()
     p.add_argument("--study", default="snv")
+    p.add_argument("--gnomad-max-af", type=float)
+    p.add_argument("--grpmax", action="store_true")
     a = p.parse_args()
     data = DATA if a.study == "snv" else DATA / a.study
     cases, singles = load(data, evo2=a.study != "replication")
+    before = (cases["case"].nunique(), len(cases))
+    cases = gnomad_filter(cases, a.gnomad_max_af, a.grpmax)
     if a.study == "indel":
         # Rank each diagnostic indel among the background indels in the same genome.
         cases = cases[~cases["is_snv"]].reset_index(drop=True)
@@ -231,7 +252,7 @@ def main() -> None:
     scores = singles + list(combos)
     fixed = {}
     if a.study == "replication":
-        train, _ = load(DATA, evo2=False)
+        train = gnomad_filter(load(DATA, evo2=False)[0], a.gnomad_max_af, a.grpmax)
         fixed = {f"{name} (locked)": cols for name, cols in combos.items()}
         for name, cols in fixed.items():
             cases[name] = locked(train, cases, cols)
@@ -245,6 +266,10 @@ def main() -> None:
               "coverage_all_variants": {s: int(cases[s].notna().sum()) for s in singles},
               "coverage_diagnostic": {s: int(diag[s].notna().sum()) for s in singles},
               "pp3_missense": pp3(cases), "strata": {}}
+    if a.gnomad_max_af is not None:
+        result["gnomad_filter"] = {"field": "AF_grpmax" if a.grpmax else "AF", "max_af": a.gnomad_max_af,
+                                   "cases_before": before[0], "variants_before": before[1],
+                                   "variants_after": len(cases)}
     for name, ids in strata.items():
         result["strata"][name] = {"cases": len(ids),
                                   "scores": {s: summarise(comp[s].loc[ids], diag.loc[ids, "sample"], rng) for s in scores},
@@ -254,7 +279,10 @@ def main() -> None:
             base = "Lookups combined (locked)"
             result["strata"][name]["added_to_locked_lookups"] = {
                 c: paired(comp[c].loc[ids], comp[base], diag.loc[ids, "sample"], rng) for c in fixed if c != base}
-    out = HERE / "results" / ("results.json" if a.study == "snv" else f"results_{a.study}.json")
+    suffix = "" if a.study == "snv" else f"_{a.study}"
+    if a.gnomad_max_af is not None:
+        suffix += f"_gnomad{a.gnomad_max_af:g}" + ("_grpmax" if a.grpmax else "")
+    out = HERE / "results" / f"results{suffix}.json"
     out.write_text(json.dumps(result, indent=2) + "\n")
     print("PP3 on missense:", json.dumps(result["pp3_missense"]))
     for name, s in result["strata"].items():

@@ -12,6 +12,7 @@ docstring; `case_benchmark.py` has the full design.
 | Indels up to 50 bp, same panel | see result | `case_benchmark.py --study indel` | `results/results_indel.json` |
 | Cancer predisposition, panel 245 | see result | `case_benchmark.py --study cancer` | `results/results_cancer.json` |
 | Replication of the SNV study on new cases and backgrounds | 500 | `case_benchmark.py --study replication` | `results/results_replication.json`, [`REPLICATION.md`](REPLICATION.md) |
+| Any of the above with a gnomAD frequency filter on every variant | as above | `case_benchmark.py [--study ...] --gnomad-max-af 0.001 [--grpmax]` | `results/results[_<study>]_gnomad<af>[_grpmax].json`, [`REPLICATION.md`](REPLICATION.md) |
 
 Scores: CADD v1.7, SpliceAI, REVEL, AlphaMissense (lookups), GPN-MSA, GPN-Star vertebrate and mammal, AlphaGenome
 AVI (tables), and Evo 2 7B scored by us (`evo2/`).
@@ -31,6 +32,7 @@ From this folder, in order (downloads are large; see each script):
 mkdir -p data && cd data && bash ../prepare_data.sh       # panel, MANE, ClinVar, 1000 Genomes
 python3 ../build_cases.py [snv|indel|cancer|replication]
 python3 ../lookup_scores.py [--study indel]          # add avi with the table in data/avi/
+python3 ../gnomad_af.py                              # gnomAD AFs from MyVariant.info, for --gnomad-max-af
 python3 ../evo2/make_windows.py && bash ../evo2/launch.sh   # optional: Evo 2 on one H100, about USD 20
 cd .. && uv run --with pandas --with numpy --with scikit-learn python case_benchmark.py [--study ...]
 uv run --with matplotlib python figures/rd_charts.py [--study ...]   # chart SVGs into figures/out/

@@ -108,3 +108,53 @@ single-score ranking within each set of chromosomes (`results/avi_heldout.json`)
 puts the diagnostic variant in the top 5 in 91% of 157 original cases (GPN-Star-V 61%, SpliceAI 56%) and 88% of
 387 new cases (GPN-Star-V 69%, SpliceAI 58%). AVI's lead does not depend on the training chromosomes. Within the
 training chromosomes every score does better, because the backgrounds are smaller (median 75 and 63 variants).
+
+## gnomAD frequency filter (added 30 October 2026)
+
+The case backgrounds are rare in 1000 Genomes (AF below 1%) but were not filtered on gnomAD, which a diagnostic
+pipeline does before ranking. AVI is trained to separate gnomAD-rare from gnomAD-common variants, so an unfiltered
+background could favour it. `gnomad_af.py` looks up each variant's gnomAD genome AF and a grpmax AF (our maximum over
+the afr, amr, eas, mid, nfe and sas groups) from MyVariant.info's `gnomad_genome` field (gnomAD v3.1.2 genomes, the
+same genomes as gnomAD v4.1; spot checks match the v4.1 VCF exactly). Found in gnomAD: 97.2% of SNVs; for indels,
+99.0% of background and 30% of diagnostic indels. A variant that is not found is kept, so a missed match can only
+make the filter weaker. `case_benchmark.py --gnomad-max-af <af> [--grpmax]` drops variants at or above the
+threshold and refits every model on what is left. The main filter is AF below 0.1%, the one the AlphaGenome Atlas
+preprint uses for its rare-disease test.
+
+AF below 0.1% removes about 60% of each background (median 235 to 124 variants for the 200 cases, 209 to 121 for
+the 500) and no diagnostic variant. Top 5, single scores and the lookups combined:
+
+| Cases | AVI | GPN-Star-V | CADD | SpliceAI | Evo 2 | Lookups combined |
+|---|---|---|---|---|---|---|
+| 200, unfiltered | 87% | 57.5% | 51.5% | 54.5% | 43% | 92% |
+| 200, AF < 0.1% | 92.5% | 65.5% | 62.5% | 56.5% | 54.5% | 94% |
+| 500, unfiltered | 82.8% | 63.8% | 55.8% | 53.6% | | 92.6% |
+| 500, AF < 0.1% | 89.0% | 72.8% | 66.8% | 58.2% | | 96.0% |
+
+Gain at top 1 from adding a score to the lookups (points, 95% interval):
+
+| Added | 200, unfiltered | 200, AF < 0.1% | 500 locked, unfiltered | 500 locked, AF < 0.1% |
+|---|---|---|---|---|
+| AVI | +7.5 [-0.5, +15.5] | +8.0 [+0.5, +16.0] | +6.2 [+0.0, +13.0] | +7.4 [+1.2, +14.2] |
+| GPN-MSA | +6.0 [+2.0, +10.5] | +2.0 [-3.0, +7.0] | +1.2 [-3.0, +5.8] | +1.2 [-3.6, +6.0] |
+| GPN-Star-V | +4.0 [-1.5, +11.0] | +4.0 [-3.5, +11.5] | +3.0 [-1.2, +8.0] | +3.4 [-1.4, +8.6] |
+| Evo 2 | +3.5 [-1.5, +9.0] | +1.5 [-3.5, +7.0] | | |
+
+AVI's lead survives the filter and its added gain is, if anything, firmer: the locked interval on the 500 cases no
+longer reaches zero. GPN-MSA's gain on the original 200 cases falls from +6 to +2 with the filter, so part of it came
+from common background variants that a pipeline would have removed.
+
+Indels (120 cases, AF < 0.1%, median 37 to 15 background indels): adding Evo 2 to the lookups gains +8.3 [+0.9,
++16.3] at top 1 (unfiltered +15.8 [+5.0, +26.8]), from a baseline of 71.7% (unfiltered 61.7%). By type the gain is
+now frameshift +17.5 [+2.4, +33.3], in-frame +10.0 [-3.3, +24.1], UTR or intronic 0.0 [-13.6, +15.8] and canonical
+splice 0.0; unfiltered it was mostly in-frame and non-coding. With 20 to 40 cases per type, which type the gain
+comes from is not settled.
+
+Inherited cancer panel (140 cases, AF < 0.1%, median 17 to 9 variants): the lookups combined reach 87.9% top 1 and
+99.3% top 5; no added score gains more than 3 points at top 1 (AVI +2.9 [0.0, +8.6], Evo 2 +2.9 [0.0, +7.7]).
+
+A stricter filter, grpmax AF below 0.1%, leaves a median of 49 (200 cases) and 34 (500 cases) background variants
+and drops the cases whose diagnostic variant is itself above it (case180 DNAJC12; case176 WARS1, case288 PAH,
+case448 DPYS). The lookups combined then reach 70% and 79% top 1, and no added score has a gain whose interval
+excludes zero on the 500 cases (AVI locked +0.8 [-3.4, +6.0]). AF below 1% changes little (AVI locked +5.2 [-0.6,
++11.4]). Results: `results/results[_<study>]_gnomad<af>[_grpmax].json`.
