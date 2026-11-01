@@ -3,7 +3,7 @@
 The code, data and results behind Tim Richardson's AMP 2026 talk, "Scoring variants with genomic foundation models"
 (14 November 2026). The slides, narration and companion document are in
 [rewire-bio/amp-2026-slides](https://github.com/rewire-bio/amp-2026-slides). Every number the talk reports from our
-own work comes from a file in this repository, and the companion cites it at a tag (currently `amp-2026-v3`).
+own work comes from a file in this repository, and the companion cites it at a tag (currently `amp-2026-v4`).
 
 New to this work? Start with the [visual guide](https://rewire-bio.github.io/amp-2026-studies/) (also in
 [`GUIDE.md`](GUIDE.md)): what each study asks and why, the ideas behind it, and a reading list.
@@ -126,9 +126,7 @@ shell scripts need `bcftools`, `tabix` and `curl`. An Evo 2 run needs a Runpod A
 | `amp-2026-v1` | First release: rare-disease benchmark, BRCA1 case ranking, Evo 2 pipeline |
 | `amp-2026-v2` | AlphaGenome AVI added to the rare-disease benchmark, with the held-out chromosome check |
 | `amp-2026-v3` | gnomAD frequency-filtered reruns of every case study |
-
-Since `amp-2026-v3`: the case data, per-case scores, run logs and the EVEE chart script were committed, and the
-documentation was rewritten. No code or result changed.
+| `amp-2026-v4` | The strict grpmax filter now matches gnomAD's genome grpmax (Middle Eastern group left out) and its two runs were redone; charts redrawn with the same series in every panel, with step images; the case data, per-case scores, run logs and the EVEE chart script committed; documentation rewritten |
 
 The code came from the private `rewire-bio/amp-2026-decks` at commit `9a7f2e1`. `rare-disease/` came from that
 repository's `v9`, `brca1-case-ranking/` from `v4` and `v9`, and `evo2-pipeline/` from `v3`. Paths were updated;
