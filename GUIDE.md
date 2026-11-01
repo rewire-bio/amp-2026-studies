@@ -85,9 +85,17 @@ Sources: CADD (Kircher 2014; Schubach 2024), SpliceAI (Jaganathan 2019), REVEL (
 (Brixi 2026). The 0.7 s per variant is our own H100 run: 2.9 windows per second, two windows per variant
 ([`rare-disease/evo2/README.md`](rare-disease/evo2/README.md)).
 
+A **score table** is a file of precomputed scores. The developers run their model once on every possible variant
+(for SNVs, about 9 billion across the genome; for missense tools, every possible amino-acid change) and publish the
+results. A lab then looks each variant up by position and allele: milliseconds per variant, no GPU, and the same
+answer every time. This is how labs already use the established scores: CADD publishes scores for every possible
+SNV (Schubach 2024), and REVEL and AlphaMissense for every possible missense change (Ioannidis 2016; Cheng 2023).
+In our studies SpliceAI also came from a table, the precomputed SpliceAI scores in CADD's annotations; for indels we ran SpliceAI ourselves.
+
 A **foundation model** is trained on DNA sequence, and for AlphaGenome on measured molecular data, rather than on
-disease labels, and is then used for many tasks. Some publish genome-wide **score tables** (GPN-MSA, GPN-Star, AVI),
-so a lab can look them up like CADD. AVI is not a pure foundation-model score: it combines AlphaGenome's predicted
+disease labels, and is then used for many tasks. Some foundation-model developers publish the same kind of
+genome-wide table (GPN-MSA, GPN-Star, AVI), so a lab can use them exactly like CADD. AVI is not a pure
+foundation-model score: it combines AlphaGenome's predicted
 effects with AlphaMissense, conservation and consequence, using a model trained on gnomAD rarity (Cheng 2026). Evo 2
 has no genome-wide table. EVEE publishes scores built on Evo 2, but only for the about 4.25 million variants already
 in ClinVar (Pearce 2026), so it cannot score most of a patient's rare variants. For those, a lab has to run Evo 2
