@@ -48,6 +48,7 @@ flowchart LR
 | [`brca1-case-ranking/`](brca1-case-ranking/) | On BRCA1 saturation genome editing labels, does Evo 2 put the loss-of-function variant near the top of a simulated case? | backup `bench-*` |
 | [`evo2-pipeline/`](evo2-pipeline/) | What it takes to add an Evo 2 score to a lab's pipeline, as a working Nextflow pipeline | `pipeline-overview`, backup `code-*` |
 | [`evee/`](evee/) | EVEE's published figure data redrawn as two charts | `evee-confounding`, `evee-results` |
+| [`gpu-drift/`](gpu-drift/) | What a flipped call is, from the recorded H100 and L40S BRCA1 runs in evo2-cloud-operations | `gpu-drift` |
 
 The rare-disease benchmark is the main study. Start with [`rare-disease/README.md`](rare-disease/README.md), then
 [`rare-disease/REPLICATION.md`](rare-disease/REPLICATION.md) for the follow-up checks.

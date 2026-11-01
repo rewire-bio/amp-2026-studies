@@ -28,3 +28,4 @@ evo2-pipeline/.nextflow*
 evo2-pipeline/.hf-cache/
 __pycache__/
 .DS_Store
+gpu-drift/out/
