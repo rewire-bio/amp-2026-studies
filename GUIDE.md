@@ -55,13 +55,13 @@ flowchart LR
 
 ```mermaid
 flowchart TB
-    subgraph est["Established scores (trained on labels or features)"]
+    subgraph est["Established scores"]
         cadd["CADD<br/>many annotations,<br/>simulated vs observed variants"]
         splice["SpliceAI<br/>predicts splicing<br/>from sequence"]
         revel["REVEL<br/>ensemble of missense tools"]
         am["AlphaMissense<br/>protein structure model,<br/>missense only"]
     end
-    subgraph fm["Genomic foundation models (trained on DNA itself)"]
+    subgraph fm["Genomic foundation models"]
         gpn["GPN-MSA, GPN-Star<br/>DNA language models<br/>over many species"]
         avi["AlphaGenome AVI<br/>predicted molecular effects,<br/>combined into one score"]
         evo["Evo 2<br/>DNA language model,<br/>9.3 trillion bases"]
@@ -87,11 +87,11 @@ passed a consequence filter.
 
 ```mermaid
 flowchart LR
-    subgraph v["Variant-level test (most papers)"]
+    subgraph v["Variant-level test"]
         direction TB
         a["Thousands of variants<br/>pathogenic vs benign"] --> au["AUROC"]
     end
-    subgraph c["Case-level test (these studies)"]
+    subgraph c["Case-level test"]
         direction TB
         b["One patient's ~235 rare variants<br/>1 is the diagnosis"] --> rk["Rank of the diagnosis"] --> tk["Top 1 / top 5 / top 10<br/>across many cases"]
     end

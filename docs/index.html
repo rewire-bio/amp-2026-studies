@@ -105,13 +105,13 @@ footer { border-top: 1px solid var(--line); color: var(--muted); font-size: 14px
     n --&gt; u2[&quot;Evidence for&lt;br/&gt;classification (PP3)&quot;]</pre>
 <h3 id="22-two-kinds-of-score-and-two-ways-to-get-one">2.2 Two kinds of score, and two ways to get one</h3>
 <pre class="mermaid">flowchart TB
-    subgraph est[&quot;Established scores (trained on labels or features)&quot;]
+    subgraph est[&quot;Established scores&quot;]
         cadd[&quot;CADD&lt;br/&gt;many annotations,&lt;br/&gt;simulated vs observed variants&quot;]
         splice[&quot;SpliceAI&lt;br/&gt;predicts splicing&lt;br/&gt;from sequence&quot;]
         revel[&quot;REVEL&lt;br/&gt;ensemble of missense tools&quot;]
         am[&quot;AlphaMissense&lt;br/&gt;protein structure model,&lt;br/&gt;missense only&quot;]
     end
-    subgraph fm[&quot;Genomic foundation models (trained on DNA itself)&quot;]
+    subgraph fm[&quot;Genomic foundation models&quot;]
         gpn[&quot;GPN-MSA, GPN-Star&lt;br/&gt;DNA language models&lt;br/&gt;over many species&quot;]
         avi[&quot;AlphaGenome AVI&lt;br/&gt;predicted molecular effects,&lt;br/&gt;combined into one score&quot;]
         evo[&quot;Evo 2&lt;br/&gt;DNA language model,&lt;br/&gt;9.3 trillion bases&quot;]
@@ -126,11 +126,11 @@ footer { border-top: 1px solid var(--line); color: var(--muted); font-size: 14px
 <h3 id="23-why-rank-cases-not-variants">2.3 Why rank cases, not variants</h3>
 <p>Most papers report how well a score separates pathogenic from benign variants across a whole dataset (AUROC). A lab asks something different: within one patient, is the diagnosis near the top? A score can look good on AUROC by learning that nonsense variants tend to be pathogenic, yet not help inside a case where the candidates already passed a consequence filter.</p>
 <pre class="mermaid">flowchart LR
-    subgraph v[&quot;Variant-level test (most papers)&quot;]
+    subgraph v[&quot;Variant-level test&quot;]
         direction TB
         a[&quot;Thousands of variants&lt;br/&gt;pathogenic vs benign&quot;] --&gt; au[&quot;AUROC&quot;]
     end
-    subgraph c[&quot;Case-level test (these studies)&quot;]
+    subgraph c[&quot;Case-level test&quot;]
         direction TB
         b[&quot;One patient&#39;s ~235 rare variants&lt;br/&gt;1 is the diagnosis&quot;] --&gt; rk[&quot;Rank of the diagnosis&quot;] --&gt; tk[&quot;Top 1 / top 5 / top 10&lt;br/&gt;across many cases&quot;]
     end
@@ -376,9 +376,12 @@ footer { border-top: 1px solid var(--line); color: var(--muted); font-size: 14px
 <footer>Tim Richardson · Built from <a href="https://github.com/rewire-bio/amp-2026-studies/blob/main/GUIDE.md">GUIDE.md</a> · Code under the MIT licence</footer>
 <script src="https://cdn.jsdelivr.net/npm/mermaid@11.4.1/dist/mermaid.min.js"></script>
 <script>
+  // Draw after the web font has loaded, so labels are measured in the font they are shown in.
   const dark = window.matchMedia("(prefers-color-scheme: dark)").matches;
-  mermaid.initialize({ startOnLoad: true, theme: dark ? "dark" : "default", securityLevel: "strict",
-    fontFamily: "Inter, system-ui, sans-serif", flowchart: { htmlLabels: true, curve: "basis" } });
+  mermaid.initialize({ startOnLoad: false, theme: dark ? "dark" : "default", securityLevel: "strict",
+    fontFamily: "Inter, system-ui, sans-serif",
+    flowchart: { htmlLabels: true, curve: "basis", wrappingWidth: 260, subGraphTitleMargin: { top: 8, bottom: 16 } } });
+  document.fonts.ready.then(() => mermaid.run());
 </script>
 </body>
 </html>

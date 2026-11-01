@@ -88,9 +88,12 @@ BODY
 <footer>Tim Richardson · Built from <a href="REPO/blob/main/GUIDE.md">GUIDE.md</a> · Code under the MIT licence</footer>
 <script src="https://cdn.jsdelivr.net/npm/mermaid@11.4.1/dist/mermaid.min.js"></script>
 <script>
+  // Draw after the web font has loaded, so labels are measured in the font they are shown in.
   const dark = window.matchMedia("(prefers-color-scheme: dark)").matches;
-  mermaid.initialize({ startOnLoad: true, theme: dark ? "dark" : "default", securityLevel: "strict",
-    fontFamily: "Inter, system-ui, sans-serif", flowchart: { htmlLabels: true, curve: "basis" } });
+  mermaid.initialize({ startOnLoad: false, theme: dark ? "dark" : "default", securityLevel: "strict",
+    fontFamily: "Inter, system-ui, sans-serif",
+    flowchart: { htmlLabels: true, curve: "basis", wrappingWidth: 260, subGraphTitleMargin: { top: 8, bottom: 16 } } });
+  document.fonts.ready.then(() => mermaid.run());
 </script>
 </body>
 </html>
