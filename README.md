@@ -2,7 +2,7 @@
 
 Code and results behind Tim Richardson's AMP 2026 talk, "Genomic foundation models in the diagnostic lab"
 (14 November 2026). The talk itself (slides, narration, companion) is in
-[rewire-bio/amp-2026-gfm-talk](https://github.com/rewire-bio/amp-2026-gfm-talk).
+[rewire-bio/amp-2026-slides](https://github.com/rewire-bio/amp-2026-slides).
 
 All inputs are public. Downloaded data, licensed score tables and run secrets are not committed (see `.gitignore`).
 
