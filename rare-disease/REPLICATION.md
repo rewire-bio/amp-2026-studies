@@ -1,11 +1,32 @@
-# Replication: does GPN-MSA's top-1 gain hold on new cases?
+# Follow-up checks on the case benchmark
+
+Three checks on the first results in [`README.md`](README.md), in the order they were run:
+
+1. [Replication](#replication-does-gpn-msas-top-1-gain-hold-on-new-cases) (23 October 2026): do the gains hold on
+   500 new cases with new background people?
+2. [AlphaGenome AVI](#alphagenome-avi-added-24-october-2026) (24 October 2026): AVI added, and checked on the
+   chromosomes it was not trained on.
+3. [gnomAD frequency filter](#gnomad-frequency-filter-added-30-october-2026) (30 October 2026): do the results hold
+   when common variants are removed first, as a diagnostic pipeline would?
+
+```mermaid
+flowchart LR
+    first["First results<br/>200 SNV cases"] --> rep["500 new cases<br/>models locked and refitted"]
+    rep --> gpn["GPN-MSA +6<br/>does not replicate"]
+    rep --> avi["AVI added<br/>+6.2 locked"]
+    avi --> held["Held-out chromosomes<br/>lead unchanged"]
+    avi --> filt["gnomAD AF below 0.1%<br/>+7.4 locked, interval above 0"]
+    filt --> strict["grpmax AF below 0.1%<br/>short lists, no detectable gain"]
+```
+
+## Replication: does GPN-MSA's top-1 gain hold on new cases?
 
 Raised in review of the talk (issue 19 in the private decks repo). The original 200-case SNV benchmark (`results.json`) put the diagnostic variant at top 1 in 59.5% of
 cases with the four lookups combined (CADD v1.7, SpliceAI, REVEL, AlphaMissense, plus consequence class) and 65.5%
 with GPN-MSA added: +6.0 points, 95% CI +2.0 to +10.5. Top 5 and top 10 did not change. This is a test of that
 result on 500 new cases.
 
-## Method
+### Method
 
 - **Diagnostic variants.** 500 ClinVar 2-star P/LP SNVs in the same 1,512-gene intellectual-disability panel,
   none at a position used as a diagnostic in the original 200. Same consequence mix scaled to 500: 150 missense,
@@ -40,7 +61,7 @@ result on 500 new cases.
 this copy reproduces every lookup and GPN row of `results.json` exactly (scikit-learn 1.9.1); the Evo 2 rows
 differ by one case.
 
-## Results (500 cases, % with the diagnostic variant at or above rank k)
+### Results (500 cases, % with the diagnostic variant at or above rank k)
 
 Locked models, fitted on the original 200 cases:
 
@@ -75,7 +96,7 @@ One more observation. For missense diagnostics, the combined model is worse at t
 (replication CV: 35% against 67%; original: 43% against 58%). The combined model is not the best ranker
 available at top 1, so some of what an added score "gains" there may be making up for that.
 
-## Conclusion
+### Conclusion
 
 The +6 point top-1 gain from adding GPN-MSA attenuates to the point of not replicating. On 500 new cases with new
 backgrounds, +6.0 [+2.0, +10.5] becomes +1.2 [-3.0, +5.8] with the model locked from the original fit and +2.4

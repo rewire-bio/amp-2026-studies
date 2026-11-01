@@ -1,29 +1,118 @@
 # AMP 2026 studies
 
-Code and results behind Tim Richardson's AMP 2026 talk, "Genomic foundation models in the diagnostic lab"
-(14 November 2026). The talk itself (slides, narration, companion) is in
-[rewire-bio/amp-2026-slides](https://github.com/rewire-bio/amp-2026-slides).
+The code, data and results behind Tim Richardson's AMP 2026 talk, "Scoring variants with genomic foundation models"
+(14 November 2026). The slides, narration and companion document are in
+[rewire-bio/amp-2026-slides](https://github.com/rewire-bio/amp-2026-slides). Every number the talk reports from our
+own work comes from a file in this repository, and the companion cites it at a tag (currently `amp-2026-v3`).
 
-All inputs are public. Downloaded data, licensed score tables and run secrets are not committed (see `.gitignore`).
+## What is here
 
-| Folder | Question | Used on slides |
+```mermaid
+flowchart LR
+    subgraph inputs["Public inputs (downloaded, not committed)"]
+        kgp["1000 Genomes<br/>high-coverage genotypes"]
+        clinvar["ClinVar P/LP<br/>2+ stars"]
+        panel["PanelApp panels<br/>+ MANE exons"]
+        tables["Score tables: CADD, SpliceAI,<br/>REVEL, AlphaMissense, GPN-MSA,<br/>GPN-Star, AlphaGenome AVI"]
+        gnomad["gnomAD genome AFs<br/>(MyVariant.info)"]
+        evee_data["EVEE figure data<br/>(goodfire-ai/evee-manuscript)"]
+        ops["evo2-cloud-operations:<br/>BRCA1 assay labels, Evo 2 image"]
+    end
+
+    subgraph studies["This repository"]
+        rd["rare-disease/<br/>case benchmark"]
+        evo2["rare-disease/evo2/<br/>Evo 2 7B on one H100"]
+        brca1["brca1-case-ranking/"]
+        pipe["evo2-pipeline/<br/>Nextflow"]
+        evee["evee/<br/>charts"]
+    end
+
+    slides["amp-2026-slides<br/>slides and companion"]
+
+    kgp & clinvar & panel & tables & gnomad --> rd
+    ops --> evo2 --> rd
+    ops --> brca1
+    ops --> pipe
+    evee_data --> evee
+    rd & brca1 & pipe & evee --> slides
+```
+
+| Folder | Question | Slides |
 |---|---|---|
-| [`rare-disease/`](rare-disease/) | In a case built from a real 1000 Genomes background plus one ClinVar P/LP variant, where does each score rank the diagnostic variant? SNVs, indels, cancer predisposition, and a 500-case replication | `rd-design`, `rd-results`, `rd-combine`, `rd-indels`, `rd-limits`, `cancer-germline`, `cancer-pp3`, `matrix` |
-| [`rare-disease/evo2/`](rare-disease/evo2/) | Evo 2 7B zero-shot scores for every case variant, on one Runpod H100, with receipts | `rd-combine`, `scale-cost`, `worked-score` |
-| [`brca1-case-ranking/`](brca1-case-ranking/) | On BRCA1 saturation genome editing labels, does Evo 2 put the loss-of-function variant near the top of a simulated case? | backup `bench-*` slides |
-| [`evee/`](evee/) | EVEE's published figure data redrawn as two slide charts: pathogenic share by consequence in ClinVar, and AUROC within each consequence | `evee-confounding`, `evee-results` |
-| [`evo2-pipeline/`](evo2-pipeline/) | A Nextflow pipeline that adds an Evo 2 score to a case's variants next to CADD and SpliceAI, and ranks the case | `pipeline-overview`, backup `code-*` slides |
+| [`rare-disease/`](rare-disease/) | Put one known disease-causing variant among a real person's rare variants. Where does each score rank it? SNVs, indels, inherited cancer, a 500-case replication, and checks for training-data leakage and frequency filtering | `rd-design`, `rd-results`, `rd-combine`, `rd-indels`, `rd-limits`, `cancer-germline`, `cancer-pp3`, `matrix`, `takeaways` |
+| [`rare-disease/evo2/`](rare-disease/evo2/) | Evo 2 7B zero-shot scores for every case variant, on one rented H100, with receipts | `rd-combine`, `scale-cost`, `worked-score` |
+| [`brca1-case-ranking/`](brca1-case-ranking/) | On BRCA1 saturation genome editing labels, does Evo 2 put the loss-of-function variant near the top of a simulated case? | backup `bench-*` |
+| [`evo2-pipeline/`](evo2-pipeline/) | What it takes to add an Evo 2 score to a lab's pipeline, as a working Nextflow pipeline | `pipeline-overview`, backup `code-*` |
+| [`evee/`](evee/) | EVEE's published figure data redrawn as two charts | `evee-confounding`, `evee-results` |
 
-Related public repos: [evo2-cloud-operations](https://github.com/rewire-bio/evo2-cloud-operations) (the pinned
-Evo 2 scoring image and the BRCA1 study data) and
-[goodfire-ai/evee-manuscript](https://github.com/goodfire-ai/evee-manuscript) (EVEE figure data).
+The rare-disease benchmark is the main study. Start with [`rare-disease/README.md`](rare-disease/README.md), then
+[`rare-disease/REPLICATION.md`](rare-disease/REPLICATION.md) for the follow-up checks.
 
-The scripts expect sibling checkouts of `evo2-cloud-operations` and `evo2-size-by-use-case` next to this repo for
-the REVEL table and the hg38 FASTA.
+## Main findings
 
-## Provenance
+From [`rare-disease/`](rare-disease/). Each case has one diagnostic variant among a median of 235 rare variants
+(209 in the 500 new cases). Each figure is the share of cases with the diagnostic variant ranked first, or in the
+top 5.
 
-Moved from the private `rewire-bio/amp-2026-decks` at commit `9a7f2e1`: `rare-disease/` from `v9/rare_disease`,
-`v9/evo2` and `v9/figures/rd_charts.py`; `brca1-case-ranking/` from `v4/benchmark` and `v9/benchmark`;
-`evo2-pipeline/` from `v3/pipeline`. Paths were updated; the code is otherwise unchanged. The talk's companion
-document cites files here at tag `amp-2026-v1`.
+| | 200 cases, top 1 | 200 cases, top 5 | 500 new cases, top 1 | 500 new cases, top 5 |
+|---|---|---|---|---|
+| Best established score alone (SpliceAI; CADD for top 5 on the 500) | 39.5% | 54.5% | 40.2% | 55.8% |
+| AlphaGenome AVI alone | 49.0% | 87.0% | 53.2% | 82.8% |
+| Established lookups combined (CADD, SpliceAI, REVEL, AlphaMissense, consequence) | 59.5% | 92.0% | 61.0% (locked) | 91.0% (locked) |
+| Lookups + AVI | 67.0% | 93.5% | 67.2% (locked) | 93.8% (locked) |
+
+- **The lookups labs already use, combined, do most of the work.** No foundation-model table beats them on its own.
+- **AlphaGenome AVI is the one table whose added gain holds on new cases:** +6.2 points at top 1 with the model
+  locked (95% interval 0.0 to +13.0), and +7.4 (+1.2 to +14.2) after a gnomAD 0.1% frequency filter. The gain does
+  not come from AVI's training chromosomes.
+- **GPN-MSA's +6 point gain on the first 200 cases did not replicate** (+1.2 locked, interval −3.0 to +5.8).
+- **Indels:** adding Evo 2 to the lookups gains +15.8 points at top 1 (+5.0 to +26.8), and +8.3 (+0.9 to +16.3)
+  after the frequency filter. Which indel type the gain comes from is not settled.
+- **With a strict frequency filter** (grpmax AF below 0.1%), lists shrink to a median of 34 to 49 variants, the
+  lookups alone rank the diagnostic variant first in 70 to 79% of cases, and no table adds a detectable gain on the
+  500 cases.
+
+"Locked" means the model was fitted on the first 200 cases and applied unchanged to the 500 new ones. The full
+tables and caveats are in the study READMEs.
+
+## Data and licences
+
+| What | Committed? | Why |
+|---|---|---|
+| Code, results, run logs, Evo 2 scores and receipts | Yes | Our work |
+| Case definitions, region files, gnomAD frequencies | Yes | Built from public data |
+| Per-case score tables (`rare-disease/data/**/scores_*.tsv`) | Yes, while the repository is private | CADD, REVEL and AlphaMissense are free for non-commercial use; AVI is under the AlphaGenome terms. **Check redistribution before making the repository public** |
+| Bulk downloads (AVI table 82 GB, AlphaMissense, full ClinVar, index files) | No | Too large; the scripts download them again |
+| BRCA1 assay labels and score extracts | No | Read from a sibling `evo2-cloud-operations` checkout |
+| Run secrets (SSH keys, API keys) | No | Never committed |
+
+## Setup
+
+Clone next to this repository:
+
+```
+blog/
+  amp-2026-studies/          this repository
+  amp-2026-slides/           the talk (reads results from here)
+  evo2-cloud-operations/     Evo 2 image, BRCA1 study data, REVEL table
+  evo2-size-by-use-case/     hg38 FASTA
+  evee-manuscript/           EVEE figure data (evee/ only)
+```
+
+The Python scripts run with [uv](https://docs.astral.sh/uv/); each script's docstring gives its exact command. The
+shell scripts need `bcftools`, `tabix` and `curl`. An Evo 2 run needs a Runpod API key and costs about USD 10 to 20.
+
+## Versions
+
+| Tag | What changed |
+|---|---|
+| `amp-2026-v1` | First release: rare-disease benchmark, BRCA1 case ranking, Evo 2 pipeline |
+| `amp-2026-v2` | AlphaGenome AVI added to the rare-disease benchmark, with the held-out chromosome check |
+| `amp-2026-v3` | gnomAD frequency-filtered reruns of every case study |
+
+Since `amp-2026-v3`: the case data, per-case scores, run logs and the EVEE chart script were committed, and the
+documentation was rewritten. No code or result changed.
+
+The code came from the private `rewire-bio/amp-2026-decks` at commit `9a7f2e1`. `rare-disease/` came from that
+repository's `v9`, `brca1-case-ranking/` from `v4` and `v9`, and `evo2-pipeline/` from `v3`. Paths were updated;
+the code was otherwise unchanged.

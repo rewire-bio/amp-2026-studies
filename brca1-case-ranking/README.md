@@ -1,6 +1,19 @@
-# Case-level ranking benchmark
+# BRCA1 case ranking
 
-Does an Evo 2 7B zero-shot score help put the diagnostic variant near the top of a case's candidate list?
+Does an Evo 2 7B zero-shot score help put the diagnostic variant near the top of a case's candidate list? This was
+the talk's first case-level test, on one gene with lab assay labels. The rare-disease benchmark in
+[`../rare-disease/`](../rare-disease/) replaced it with real backgrounds and ClinVar diagnoses; this study is on the
+backup `bench-*` slides.
+
+```mermaid
+flowchart LR
+    sge["BRCA1 saturation genome editing<br/>3,893 SNVs (Findlay 2018)"] --> lof["823 loss of function<br/>(each one a diagnostic variant)"]
+    sge --> func["3,070 functional<br/>or intermediate"]
+    lof --> case["Simulated case:<br/>1 LOF + K = 100 others<br/>at other positions<br/>(10 cases per LOF variant)"]
+    func --> case
+    case --> rank["Rank by CADD, SpliceAI, REVEL,<br/>Evo 2, and combinations"]
+    rank --> out["Share ranked first,<br/>share in top 5"]
+```
 
 ## Design
 
@@ -17,11 +30,17 @@ Does an Evo 2 7B zero-shot score help put the diagnostic variant near the top of
   position. "Type-aware" models let each score carry a different weight for coding and noncoding variants.
 - **Uncertainty.** 95% intervals from 1,000 resamples of diagnostic variants grouped by position.
 
-## Versions
+## Files
 
-The code and `results.json` here are the v4 version: the v3 benchmark plus a naive average-of-percentiles
-combination (the "baseline" slide). The tables below are from v3; v4's numbers differ from them in the third
-significant figure of some intervals, because the extra combination changes the random draws; point estimates are unchanged.
+| File | What it does |
+|---|---|
+| `case_ranking.py` | The benchmark; writes `results.json` |
+| `results.json` | Every result: coverage, and per score and model the share ranked first and in the top 5, with intervals, for K = 100 and K = 20 |
+| `liftover_brca1.py`, `fetch_avi.py` | Lift the variants to hg38 and fetch AlphaGenome AVI scores for them (below) |
+
+`results.json` also includes a naive average-of-percentiles combination, shown on the backup "baseline" slide.
+Adding it changed the random draws, so some intervals in `results.json` differ from the tables below in the third
+significant figure. No point estimate changed.
 
 ## AlphaGenome AVI scores
 
