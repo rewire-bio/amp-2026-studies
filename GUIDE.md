@@ -76,7 +76,9 @@ flowchart TB
 
 A **foundation model** learns from raw DNA sequence without disease labels and is then used for many tasks. Some
 publish genome-wide **score tables** (GPN-MSA, GPN-Star, AVI), so a lab can look them up like CADD. Evo 2 has no
-table, so a lab has to run it, which raises cost and reproducibility questions.
+genome-wide table. EVEE publishes scores built on Evo 2, but only for the 4.2 million variants already in ClinVar,
+so it cannot score most of a patient's rare variants. For those, a lab has to run Evo 2 itself, which raises cost
+and reproducibility questions.
 
 ### 2.3 Why rank cases, not variants
 
@@ -213,7 +215,7 @@ own rare-disease test), Grimm 2015 (circularity).
 
 ### 4.2 Evo 2 on the case variants
 
-> **Question.** What does it take to score every case variant with a model that has no table, and does its score
+> **Question.** What does it take to score every case variant with a model that has no genome-wide table, and does its score
 > help?
 >
 > **Why.** Evo 2 is the best-known DNA foundation model, and a lab could only use it by running it.

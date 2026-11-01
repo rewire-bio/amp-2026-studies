@@ -122,7 +122,7 @@ footer { border-top: 1px solid var(--line); color: var(--muted); font-size: 14px
     evo --&gt; run[&quot;Run it yourself:&lt;br/&gt;GPU, about 0.7 s per variant&quot;]
     style fm fill:#fde2ef,stroke:#df007d
     style est fill:#e3eefa,stroke:#005eb8</pre>
-<p>A <strong>foundation model</strong> learns from raw DNA sequence without disease labels and is then used for many tasks. Some publish genome-wide <strong>score tables</strong> (GPN-MSA, GPN-Star, AVI), so a lab can look them up like CADD. Evo 2 has no table, so a lab has to run it, which raises cost and reproducibility questions.</p>
+<p>A <strong>foundation model</strong> learns from raw DNA sequence without disease labels and is then used for many tasks. Some publish genome-wide <strong>score tables</strong> (GPN-MSA, GPN-Star, AVI), so a lab can look them up like CADD. Evo 2 has no genome-wide table. EVEE publishes scores built on Evo 2, but only for the 4.2 million variants already in ClinVar, so it cannot score most of a patient's rare variants. For those, a lab has to run Evo 2 itself, which raises cost and reproducibility questions.</p>
 <h3 id="23-why-rank-cases-not-variants">2.3 Why rank cases, not variants</h3>
 <p>Most papers report how well a score separates pathogenic from benign variants across a whole dataset (AUROC). A lab asks something different: within one patient, is the diagnosis near the top? A score can look good on AUROC by learning that nonsense variants tend to be pathogenic, yet not help inside a case where the candidates already passed a consequence filter.</p>
 <pre class="mermaid">flowchart LR
@@ -201,7 +201,7 @@ footer { border-top: 1px solid var(--line); color: var(--muted); font-size: 14px
 <p><strong>Read first:</strong> Richards 2015 (how labs classify variants), Pejaver 2022 (score thresholds as evidence), Martin 2019 (PanelApp), Byrska-Bishop 2022 (the 1000 Genomes backgrounds), Cheng 2026 (the AlphaGenome Atlas preprint and its own rare-disease test), Grimm 2015 (circularity).</p>
 <h3 id="42-evo-2-on-the-case-variants">4.2 Evo 2 on the case variants</h3>
 <blockquote>
-<p><strong>Question.</strong> What does it take to score every case variant with a model that has no table, and does its score help?</p>
+<p><strong>Question.</strong> What does it take to score every case variant with a model that has no genome-wide table, and does its score help?</p>
 <p><strong>Why.</strong> Evo 2 is the best-known DNA foundation model, and a lab could only use it by running it.</p>
 <p><strong>Folder.</strong> <a href="https://github.com/rewire-bio/amp-2026-studies/tree/main/rare-disease/evo2/"><code>rare-disease/evo2/</code></a></p>
 </blockquote>
