@@ -5,6 +5,9 @@ The code, data and results behind Tim Richardson's AMP 2026 talk, "Scoring varia
 [rewire-bio/amp-2026-slides](https://github.com/rewire-bio/amp-2026-slides). Every number the talk reports from our
 own work comes from a file in this repository, and the companion cites it at a tag (currently `amp-2026-v3`).
 
+New to this work? Start with [`GUIDE.md`](GUIDE.md): a visual explainer of what each study asks and why, the
+ideas behind it, and a reading list.
+
 ## What is here
 
 ```mermaid
