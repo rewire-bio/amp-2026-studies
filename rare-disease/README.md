@@ -93,7 +93,7 @@ These are the first results. [`REPLICATION.md`](REPLICATION.md) tests them in th
 2. **Against AVI's training data.** AVI's lead is the same on the chromosomes it was not trained on.
 3. **With a gnomAD frequency filter, as a pipeline would apply.** AVI's gain holds (+7.4 locked, interval above
    zero). GPN-MSA's falls to +2, and Evo 2's indel gain halves to +8.3. A stricter filter leaves short lists, where
-   the lookups alone put the diagnostic variant first in 70 to 79% of cases.
+   the lookups alone put the diagnostic variant first in 74 to 80% of cases.
 
 ## Limits
 

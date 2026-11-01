@@ -214,7 +214,7 @@ xychart-beta
     title "AVI added to the lookups: gain at top 1 (points)"
     x-axis ["A", "B", "C", "D", "E"]
     y-axis "Gain (points)" 0 --> 10
-    bar [7.5, 6.2, 8.0, 7.4, 0.8]
+    bar [7.5, 6.2, 8.0, 7.4, 0.2]
 ```
 
 A: the first 200 cases. B: 500 new cases, model locked. C: 200 cases with a gnomAD AF filter below 0.1%. D: 500 new
@@ -227,8 +227,8 @@ Sources: A, [`results.json`](rare-disease/results/results.json); B,
 [`results_replication_gnomad0.001_grpmax.json`](rare-disease/results/results_replication_gnomad0.001_grpmax.json).
 
 The 95% intervals run 5 to 8 points either side of each bar, so read the bars together. The gain holds on new cases and with a pipeline's
-frequency filter. Under a strict filter, lists shrink to a median of 34 to 49 variants. The lookups alone then rank
-the diagnosis first in 70 to 79% of cases, which leaves little room for any score to add.
+frequency filter. Under a strict filter, lists shrink to a median of 35 to 51 variants. The lookups alone then rank
+the diagnosis first in 74 to 80% of cases, which leaves little room for any score to add.
 
 **Findings in one line each** (all from [`rare-disease/results/`](rare-disease/results/)):
 
@@ -464,7 +464,7 @@ flowchart LR
 | Lookups combined | Logistic regression on CADD, SpliceAI, REVEL, AlphaMissense and consequence class |
 | Locked | A model fitted on the first 200 cases and applied unchanged to the 500 new ones |
 | Bootstrap interval | A 95% range from resampling the background people 1,000 times |
-| AF, grpmax AF | Allele frequency in gnomAD. gnomAD's grpmax is the highest frequency among its large, non-bottlenecked ancestry groups. Our filter takes the highest of afr, amr, eas, mid, nfe and sas, which for genomes adds mid to gnomAD's set |
+| AF, grpmax AF | Allele frequency in gnomAD. grpmax is the highest frequency among the large, non-bottlenecked ancestry groups (for genomes: afr, amr, eas, nfe, sas) |
 | Zero-shot | Using a model's own likelihoods as a score, without training on labels |
 | Log-likelihood delta | How much less likely the model finds the variant sequence than the reference |
 | SGE | Saturation genome editing: nearly every possible SNV in a region made in cells and its effect measured (Findlay 2018) |

@@ -50,7 +50,7 @@ Evo 2 scores are not here; they are in [`../evo2/run/`](../evo2/run/) and [`../e
 | `clinvar_plp_panel.vcf.gz`, `clinvar_indel_panel.tsv` | `prepare_data.sh` | ClinVar records in the regions (fileDate 2026-10-11) |
 | `clinvar_plp2.tsv`, `clinvar_indel_plp2.tsv` | `clinvar_plp.py` | ClinVar P/LP with 2+ review stars, one row per allele, most severe consequence: the pools diagnostic variants are drawn from |
 | `all_samples.txt`, `samples50.txt` | `prepare_data.sh` | All 3,202 1000 Genomes high-coverage samples; the 50 drawn as backgrounds (seed 20261016) |
-| `gnomad_af.tsv` | `gnomad_af.py` | For every variant in every study: `gnomad_found`, `gnomad_af` and `gnomad_af_grpmax` (highest of afr, amr, eas, mid, nfe, sas), from gnomAD v3.1.2 genomes via MyVariant.info |
+| `gnomad_af.tsv` | `gnomad_af.py` | For every variant in every study: `gnomad_found`, `gnomad_af` and `gnomad_af_grpmax` (highest of afr, amr, eas, nfe, sas, as gnomAD's genome grpmax), from gnomAD v3.1.2 genomes via MyVariant.info |
 | `cases_run1.tsv`, `case_variants_run1.tsv` | `build_cases.py` | An earlier build of the 200 SNV cases: the same 50 people, different diagnostic variants. Evo 2 run 1 scored these variants, so they are kept to trace `evo2/run/scores.tsv`; the extra variants of the final build are in `evo2/run/scores_extra.tsv` |
 
 ## kgp/

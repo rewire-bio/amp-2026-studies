@@ -72,8 +72,8 @@ top 5.
 - **GPN-MSA's +6 point gain on the first 200 cases did not replicate** (+1.2 locked, interval −3.0 to +5.8).
 - **Indels:** adding Evo 2 to the lookups gains +15.8 points at top 1 (+5.0 to +26.8), and +8.3 (+0.9 to +16.3)
   after the frequency filter. Which indel type the gain comes from is not settled.
-- **With a strict frequency filter** (grpmax AF below 0.1%), lists shrink to a median of 34 to 49 variants, the
-  lookups alone rank the diagnostic variant first in 70 to 79% of cases, and no table adds a detectable gain on the
+- **With a strict frequency filter** (grpmax AF below 0.1%), lists shrink to a median of 35 to 51 variants, the
+  lookups alone rank the diagnostic variant first in 74 to 80% of cases, and no table adds a detectable gain on the
   500 cases.
 
 "Locked" means the model was fitted on the first 200 cases and applied unchanged to the 500 new ones. The full

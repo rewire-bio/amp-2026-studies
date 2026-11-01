@@ -3,13 +3,17 @@
 A diagnostic pipeline removes variants that are common in gnomAD before it ranks anything. The case backgrounds are
 rare in 1000 Genomes (AF below 1%) but were never filtered on gnomAD, and AlphaGenome AVI is trained to tell
 gnomAD-rare from gnomAD-common variants. This script records each variant's gnomAD genome AF and its grpmax AF (the
-highest of the non-bottlenecked genetic ancestry groups: afr, amr, eas, mid, nfe, sas) so that
+highest of the groups gnomAD uses for genome grpmax: afr, amr, eas, nfe, sas) so that
 case_benchmark.py --gnomad-max-af can drop what a pipeline would drop. 1000 Genomes samples are part of gnomAD, so
 nearly every background variant is found; a variant that is not found gets AF 0 and is kept.
 
 Frequencies come from MyVariant.info's gnomad_genome field (gnomAD v3.1.2 genomes, the same 76,215 genomes as
 gnomAD v4.1 genomes; spot checks match the v4.1 VCF AF exactly), queried in batches of 1,000 by HGVS id. Indels use
 VCF-style (left-aligned) positions.
+
+gnomAD's genome grpmax leaves out the bottlenecked groups (ami, asj, fin), "remaining", and, for genomes only, the
+small Middle Eastern group (mid): https://gnomad.broadinstitute.org/help/grpmax. Versions before 1 Nov 2026 included
+mid here, which made the grpmax filter slightly stricter than gnomAD's.
 
   python rare-disease/gnomad_af.py      # writes data/gnomad_af.tsv
 """
@@ -28,7 +32,7 @@ DATA = HERE / "data"
 URL = "https://myvariant.info/v1/variant?assembly=hg38&fields=gnomad_genome.af"
 KEY = ["chrom", "pos", "ref", "alt"]
 STUDIES = ["", "replication", "cancer", "indel"]
-GROUPS = ["afr", "amr", "eas", "mid", "nfe", "sas"]
+GROUPS = ["afr", "amr", "eas", "nfe", "sas"]
 
 
 def hgvs(chrom: str, pos: int, ref: str, alt: str) -> str:

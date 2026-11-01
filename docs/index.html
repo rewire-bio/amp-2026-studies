@@ -190,10 +190,10 @@ footer { border-top: 1px solid var(--line); color: var(--muted); font-size: 14px
     title &quot;AVI added to the lookups: gain at top 1 (points)&quot;
     x-axis [&quot;A&quot;, &quot;B&quot;, &quot;C&quot;, &quot;D&quot;, &quot;E&quot;]
     y-axis &quot;Gain (points)&quot; 0 --&gt; 10
-    bar [7.5, 6.2, 8.0, 7.4, 0.8]</pre>
+    bar [7.5, 6.2, 8.0, 7.4, 0.2]</pre>
 <p>A: the first 200 cases. B: 500 new cases, model locked. C: 200 cases with a gnomAD AF filter below 0.1%. D: 500 new cases, locked, with that filter. E: 500 new cases, locked, with the strict grpmax filter below 0.1%.</p>
 <p>Sources: A, <a href="https://github.com/rewire-bio/amp-2026-studies/blob/main/rare-disease/results/results.json"><code>results.json</code></a>; B, <a href="https://github.com/rewire-bio/amp-2026-studies/blob/main/rare-disease/results/results_replication.json"><code>results_replication.json</code></a>; C, <a href="https://github.com/rewire-bio/amp-2026-studies/blob/main/rare-disease/results/results_gnomad0.001.json"><code>results_gnomad0.001.json</code></a>; D, <a href="https://github.com/rewire-bio/amp-2026-studies/blob/main/rare-disease/results/results_replication_gnomad0.001.json"><code>results_replication_gnomad0.001.json</code></a>; E, <a href="https://github.com/rewire-bio/amp-2026-studies/blob/main/rare-disease/results/results_replication_gnomad0.001_grpmax.json"><code>results_replication_gnomad0.001_grpmax.json</code></a>.</p>
-<p>The 95% intervals run 5 to 8 points either side of each bar, so read the bars together. The gain holds on new cases and with a pipeline's frequency filter. Under a strict filter, lists shrink to a median of 34 to 49 variants. The lookups alone then rank the diagnosis first in 70 to 79% of cases, which leaves little room for any score to add.</p>
+<p>The 95% intervals run 5 to 8 points either side of each bar, so read the bars together. The gain holds on new cases and with a pipeline's frequency filter. Under a strict filter, lists shrink to a median of 35 to 51 variants. The lookups alone then rank the diagnosis first in 74 to 80% of cases, which leaves little room for any score to add.</p>
 <p><strong>Findings in one line each</strong> (all from <a href="https://github.com/rewire-bio/amp-2026-studies/tree/main/rare-disease/results/"><code>rare-disease/results/</code></a>):</p>
 <ul>
 <li>The established lookups, combined, do most of the work.</li>
@@ -356,7 +356,7 @@ footer { border-top: 1px solid var(--line); color: var(--muted); font-size: 14px
 </tr>
 <tr>
 <td>AF, grpmax AF</td>
-<td>Allele frequency in gnomAD. gnomAD's grpmax is the highest frequency among its large, non-bottlenecked ancestry groups. Our filter takes the highest of afr, amr, eas, mid, nfe and sas, which for genomes adds mid to gnomAD's set</td>
+<td>Allele frequency in gnomAD. grpmax is the highest frequency among the large, non-bottlenecked ancestry groups (for genomes: afr, amr, eas, nfe, sas)</td>
 </tr>
 <tr>
 <td>Zero-shot</td>
