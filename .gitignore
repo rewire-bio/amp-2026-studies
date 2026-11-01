@@ -10,6 +10,7 @@ rare-disease/evo2/data*/
 brca1-case-ranking/avi_*.tsv
 brca1-case-ranking/brca1_hg38.tsv
 rare-disease/figures/out/
+evee/out/
 # Run secrets and raw pod output
 rare-disease/evo2/run*/.ssh-key*
 rare-disease/evo2/run*/.known_hosts

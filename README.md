@@ -11,6 +11,7 @@ All inputs are public. Downloaded data, licensed score tables and run secrets ar
 | [`rare-disease/`](rare-disease/) | In a case built from a real 1000 Genomes background plus one ClinVar P/LP variant, where does each score rank the diagnostic variant? SNVs, indels, cancer predisposition, and a 500-case replication | `rd-design`, `rd-results`, `rd-combine`, `rd-indels`, `rd-limits`, `cancer-germline`, `cancer-pp3`, `matrix` |
 | [`rare-disease/evo2/`](rare-disease/evo2/) | Evo 2 7B zero-shot scores for every case variant, on one Runpod H100, with receipts | `rd-combine`, `scale-cost`, `worked-score` |
 | [`brca1-case-ranking/`](brca1-case-ranking/) | On BRCA1 saturation genome editing labels, does Evo 2 put the loss-of-function variant near the top of a simulated case? | backup `bench-*` slides |
+| [`evee/`](evee/) | EVEE's published figure data redrawn as two slide charts: pathogenic share by consequence in ClinVar, and AUROC within each consequence | `evee-confounding`, `evee-results` |
 | [`evo2-pipeline/`](evo2-pipeline/) | A Nextflow pipeline that adds an Evo 2 score to a case's variants next to CADD and SpliceAI, and ranks the case | `pipeline-overview`, backup `code-*` slides |
 
 Related public repos: [evo2-cloud-operations](https://github.com/rewire-bio/evo2-cloud-operations) (the pinned
