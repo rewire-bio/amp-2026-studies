@@ -43,11 +43,16 @@ up the list, compared with the scores labs already use?**
 
 ## 2. Primer: the ideas the studies rest on
 
-### 2.1 A variant score
+### 2.1 What a variant score is
 
-A variant effect predictor gives each variant a number: higher means more likely to damage a gene. Labs use these
-numbers as one line of evidence in ACMG/AMP classification, the PP3 and BP4 codes (Richards 2015; Pejaver 2022),
-and to sort candidates (Smedley 2015).
+A variant score is a number a computer program gives each variant. A higher number means the variant is more likely
+to damage a gene. Labs use these numbers in two ways:
+
+1. **To sort a patient's candidate list**, so the most likely culprits are read first (Smedley 2015).
+2. **As evidence when classifying a variant.** In the ACMG/AMP rules, a damaging prediction counts as code PP3 and a
+   harmless one as BP4 (Richards 2015; Pejaver 2022).
+
+Our studies test the first use: sorting.
 
 ```mermaid
 flowchart LR
@@ -57,7 +62,7 @@ flowchart LR
     n --> u2["Evidence for<br/>classification (PP3)"]
 ```
 
-### 2.2 Two kinds of score, and two ways to get one
+### 2.2 The scores we compare, and how a lab gets them
 
 ```mermaid
 flowchart TB
@@ -82,33 +87,42 @@ flowchart TB
 
 Sources: CADD (Kircher 2014; Schubach 2024), SpliceAI (Jaganathan 2019), REVEL (Ioannidis 2016), AlphaMissense
 (Cheng 2023), GPN-MSA (Benegas 2025), GPN-Star (Ye 2026), AlphaGenome and AVI (Avsec 2026; Cheng 2026), Evo 2
-(Brixi 2026). The 0.7 s per variant is our own H100 run: 2.9 windows per second, two windows per variant
+(Brixi 2026). The 0.7 s per variant is from our own H100 run: 2.9 windows per second, two windows per variant
 ([`rare-disease/evo2/README.md`](rare-disease/evo2/README.md)).
 
-A **score table** is a file of precomputed scores. The developers run their model once on every possible variant
-(for SNVs, about 9 billion across the genome; for missense tools, every possible amino-acid change) and publish the
-results. A lab then looks each variant up by position and allele: milliseconds per variant, no GPU, and the same
-answer every time. This is how labs already use the established scores: CADD publishes scores for every possible
-SNV (Schubach 2024), and REVEL and AlphaMissense for every possible missense change (Ioannidis 2016; Cheng 2023).
-In our studies SpliceAI also came from a table, the precomputed SpliceAI scores in CADD's annotations; for indels we ran SpliceAI ourselves.
+**Most scores come as a table.** The developers run their model once on every possible variant and publish the
+results as a file. For SNVs that is about 9 billion rows. A lab then looks each variant up by its position and
+allele. This takes milliseconds, needs no GPU, and gives the same answer every time. Labs already use the
+established scores this way: CADD publishes a score for every possible SNV (Schubach 2024), and REVEL and
+AlphaMissense for every possible missense change (Ioannidis 2016; Cheng 2023). In our studies, SpliceAI also came
+from a table (the SpliceAI scores in CADD's annotations); for indels we ran SpliceAI ourselves.
 
-A **foundation model** is trained on DNA sequence, and for AlphaGenome on measured molecular data, rather than on
-disease labels, and is then used for many tasks. Some foundation-model developers publish the same kind of
-genome-wide table (GPN-MSA, GPN-Star, AVI), so a lab can use them exactly like CADD. AVI is not a pure
-foundation-model score: it combines AlphaGenome's predicted
-effects with AlphaMissense, conservation and consequence, using a model trained on gnomAD rarity (Cheng 2026). Evo 2
-has no genome-wide table. EVEE publishes scores built on Evo 2, but only for the about 4.25 million variants already
-in ClinVar (Pearce 2026), so it cannot score most of a patient's rare variants. For those, a lab has to run Evo 2
-itself, which raises cost and reproducibility questions.
+**A foundation model** is a large model trained on DNA sequence (and, for AlphaGenome, on lab measurements of
+molecular activity), not on lists of disease variants. Three of the ones we test publish a genome-wide table, so a
+lab can use them exactly like CADD: GPN-MSA, GPN-Star and AlphaGenome AVI.
 
-### 2.3 Why rank cases, not variants
+AVI is not a pure foundation-model score. It combines AlphaGenome's predictions with AlphaMissense, conservation and
+the variant's consequence, using a model trained to tell rare from common variants in gnomAD (Cheng 2026).
 
-Most papers report how well a score separates pathogenic from benign variants across a whole dataset (AUROC). A lab
-asks something different: within one patient, is the diagnosis near the top? A score can look good on AUROC by
-learning that nonsense variants tend to be pathogenic, yet not help inside a case where the candidates already
-passed a consequence filter. In ClinVar, 98% of nonsense SNVs are pathogenic and 0.1% of synonymous ones
-(Pearce 2026). Benchmarks can also be inflated by training-data overlap (Grimm 2015) and by differences between
-genes (Lu 2026).
+**Evo 2 has no genome-wide table.** EVEE publishes scores built on Evo 2, but only for the about 4.25 million
+variants already in ClinVar (Pearce 2026). Most of a patient's rare variants are not in ClinVar. To score those, a
+lab has to run Evo 2 itself on a GPU, which costs money and, as we found, can give slightly different answers on
+different GPUs.
+
+### 2.3 Why we test whole cases, not single variants
+
+Most papers test a score on a big list of variants already labelled pathogenic or benign, and report one number for
+how well it separates them (the AUROC). That is not the lab's question. The lab's question is: **for this patient,
+is the variant that causes the disease near the top of the list?**
+
+The two can disagree. In ClinVar, 98% of nonsense variants are pathogenic and 0.1% of synonymous ones (Pearce 2026).
+So a score can get a high AUROC just by recognising the type of variant. That does not help a lab whose list already
+contains many variants of the same types. Variant-level tests can also look better than they are when the score was
+trained on the same variants (Grimm 2015), or because some genes have far more pathogenic variants than others
+(Lu 2026).
+
+So we build cases instead. Each case is one person's list of rare variants with one known disease-causing variant
+added. We sort the list by a score and record where the disease-causing variant lands.
 
 ```mermaid
 flowchart LR
@@ -120,42 +134,70 @@ flowchart LR
         direction TB
         b["One patient's ~235 rare variants<br/>1 is the diagnosis"] --> rk["Rank of the diagnosis"] --> tk["Top 1 / top 5 / top 10<br/>across many cases"]
     end
-    v -.->|"can mislead because<br/>consequence alone<br/>predicts labels"| c
+    v -.->|"can mislead because<br/>variant type alone<br/>predicts labels"| c
 ```
 
-**Top k** is the share of cases in which the diagnostic variant is in the first k positions. Top 1 asks whether the
-score finds the answer outright; top 5 asks whether the answer lands on the first screen.
+We report the result as **top 1** and **top 5**: the share of cases in which the disease-causing variant was ranked
+first, or among the first five. Top 1 means the score found the answer outright. Top 5 means the answer was on the
+first screen a scientist reads.
 
-### 2.4 Combining scores, and "what does it add?"
+### 2.4 Combining scores: what does a new score add?
 
-No lab uses one score alone. The studies fit a simple model (logistic regression) on the established scores plus
-the variant's consequence class: "lookups combined". Then they add one foundation-model score and measure the
-change. That change, not the score on its own, is the result that matters to a lab.
+A lab never sorts by one score alone. It looks at several together: CADD, SpliceAI for splicing, REVEL or
+AlphaMissense for missense changes, and the type of variant. So the useful question is not "how good is the new
+score?" but **"does it help on top of the scores a lab already has?"**
+
+To answer that, several scores have to be turned into one sort order. We use logistic regression, a standard
+statistical model. It looks at cases where we know the answer and learns how much weight to give each score. For
+example, it can learn to trust SpliceAI for intronic variants and REVEL for missense ones.
+
+We build two versions and compare them on the same cases:
+
+1. **Lookups combined.** CADD, SpliceAI, REVEL, AlphaMissense and the variant type. This stands in for what a lab
+   has today.
+2. **Lookups plus one new score.** The same, plus one foundation-model score.
+
+The difference between them is what the new score adds. On the 200 SNV cases, for example, the lookups combined
+rank the disease-causing variant first in 59.5% of cases; adding AVI raises that to 67.0%, a gain of 7.5 points.
 
 ```mermaid
 flowchart LR
-    l["Lookups combined<br/>CADD + SpliceAI + REVEL<br/>+ AlphaMissense + consequence"] --> b["Baseline<br/>top 1 = 59.5%"]
-    l2["Lookups combined<br/>+ one new score"] --> n["New<br/>top 1 = 67.0%"]
-    b & n --> g["Gain = +7.5 points<br/>with a 95% interval"]
+    l["Lookups combined<br/>CADD + SpliceAI + REVEL<br/>+ AlphaMissense + variant type"] --> b["Ranked first<br/>in 59.5% of cases"]
+    l2["Lookups combined<br/>+ AVI"] --> n["Ranked first<br/>in 67.0% of cases"]
+    b & n --> g["AVI adds 7.5 points<br/>(95% interval -0.5 to +15.5)"]
 ```
 
-The model is fitted with cross-validation grouped by person, so no case is scored by a model that saw it. Intervals
-come from resampling the background people (a bootstrap). Numbers: 200 SNV cases,
-[`rare-disease/results/results.json`](rare-disease/results/results.json); method in
+Two safeguards keep this honest:
+
+- **The model never ranks a case it learned from.** The cases come from 50 people. We learn the weights on the
+  cases of four fifths of them and rank the cases of the remaining fifth, then rotate until every case has been
+  ranked (cross-validation).
+- **Every gain has a 95% interval.** We resample the 50 people 1,000 times and recompute the gain each time (a
+  bootstrap). If the interval includes zero, we cannot be sure the new score helps.
+
+Numbers: [`rare-disease/results/results.json`](rare-disease/results/results.json); method:
 [`rare-disease/README.md`](rare-disease/README.md).
 
-### 2.5 Four ways a benchmark can fool you, and the check for each
+### 2.5 Four ways this kind of test can mislead, and how we checked each
 
 ```mermaid
 flowchart TB
     t1["Circularity:<br/>the score was trained on the<br/>same labels it is tested on"] --> c1["Name it as a limit;<br/>test AVI on chromosomes<br/>it was not trained on"]
     t2["Easy backgrounds:<br/>common variants a pipeline<br/>would have removed"] --> c2["Rerun with a gnomAD<br/>frequency filter"]
-    t3["Winner's curse:<br/>the best of several scores<br/>on 200 cases looks too good"] --> c3["Replicate on 500 new cases<br/>with the model locked"]
+    t3["Luck:<br/>the best of several scores<br/>on 200 cases looks too good"] --> c3["Test again on 500 new cases<br/>without refitting the model"]
     t4["Weak baseline:<br/>a new score 'helps' a<br/>combination that was poor"] --> c4["Compare with all<br/>established scores<br/>combined, fitted the same way"]
 ```
 
-Circularity: Grimm 2015. AVI's training chromosomes: Cheng 2026; our held-out check in
-[`rare-disease/REPLICATION.md`](rare-disease/REPLICATION.md). Frequency filtering: Whiffin 2017.
+1. **Circularity.** If a score was trained on the same variants it is tested on, it will look too good (Grimm 2015).
+   AVI's developers trained it on some chromosomes and not others (Cheng 2026), so we checked its ranking on the
+   chromosomes it never saw ([`rare-disease/REPLICATION.md`](rare-disease/REPLICATION.md)).
+2. **Easy backgrounds.** Our backgrounds are rare in 1000 Genomes, but a real pipeline also removes anything common
+   in gnomAD (Whiffin 2017). Leaving those in could make the task too easy for some scores, so we reran with a gnomAD
+   frequency filter.
+3. **Luck.** Test five scores on 200 cases and one will look best partly by chance. So we froze the fitted model
+   ("locked") and tested it on 500 new cases from 50 different people.
+4. **Weak baseline.** A new score can look useful only because the comparison was poor. So the baseline is all the
+   established scores combined by the same method, not one score on its own.
 
 ## 3. How the studies led to each other
 
@@ -215,7 +257,7 @@ AlphaMissense score only missense variants, so they miss every other diagnosis. 
 score; the established lookups combined are better still. Source:
 [`rare-disease/results/results.json`](rare-disease/results/results.json), `strata.all.scores`.
 
-What adding AlphaGenome AVI to the lookups gains at top 1, as the checks got stricter:
+How much adding AVI to the lookups helps at top 1, as the tests got stricter:
 
 ```mermaid
 xychart-beta
@@ -225,18 +267,18 @@ xychart-beta
     bar [7.5, 6.2, 8.0, 7.4, 0.2]
 ```
 
-A: the first 200 cases. B: 500 new cases, model locked. C: 200 cases with a gnomAD AF filter below 0.1%. D: 500 new
-cases, locked, with that filter. E: 500 new cases, locked, with the strict grpmax filter below 0.1%.
+| Bar | Cases | Frequency filter | Source |
+|---|---|---|---|
+| A | The first 200 | None | [`results.json`](rare-disease/results/results.json) |
+| B | 500 new, model locked | None | [`results_replication.json`](rare-disease/results/results_replication.json) |
+| C | The first 200 | gnomAD AF below 0.1% | [`results_gnomad0.001.json`](rare-disease/results/results_gnomad0.001.json) |
+| D | 500 new, model locked | gnomAD AF below 0.1% | [`results_replication_gnomad0.001.json`](rare-disease/results/results_replication_gnomad0.001.json) |
+| E | 500 new, model locked | Strict: grpmax AF below 0.1% | [`results_replication_gnomad0.001_grpmax.json`](rare-disease/results/results_replication_gnomad0.001_grpmax.json) |
 
-Sources: A, [`results.json`](rare-disease/results/results.json); B,
-[`results_replication.json`](rare-disease/results/results_replication.json); C,
-[`results_gnomad0.001.json`](rare-disease/results/results_gnomad0.001.json); D,
-[`results_replication_gnomad0.001.json`](rare-disease/results/results_replication_gnomad0.001.json); E,
-[`results_replication_gnomad0.001_grpmax.json`](rare-disease/results/results_replication_gnomad0.001_grpmax.json).
-
-The 95% intervals run 5 to 8 points either side of each bar, so read the bars together. The gain holds on new cases and with a pipeline's
-frequency filter. Under a strict filter, lists shrink to a median of 35 to 51 variants. The lookups alone then rank
-the diagnosis first in 74 to 80% of cases, which leaves little room for any score to add.
+Each bar is uncertain by 5 to 8 points either way, so read them as a group. The gain of about 6 to 8 points survives
+new cases and a normal frequency filter. Under the strict filter it disappears. That filter shrinks each list to a
+median of 35 to 51 variants, and the lookups alone already rank the disease-causing variant first in 74 to 80% of
+cases, so there is little left for any new score to improve.
 
 **Findings in one line each** (all from [`rare-disease/results/`](rare-disease/results/)):
 
