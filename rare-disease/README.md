@@ -158,7 +158,8 @@ uv run --with pandas --with numpy --with scikit-learn python case_benchmark.py [
 uv run --with matplotlib python figures/rd_charts.py [--study indel] [--brand gel]
 ```
 
-The committed `data/` already holds the cases and per-case scores, so `case_benchmark.py` runs without any download.
+The committed `data/` holds the cases and most per-case scores. CADD and REVEL are not redistributed, so run
+`lookup_scores.py cadd` and `lookup_scores.py revel` for each study first; then `case_benchmark.py` needs nothing else.
 
 ## Reproducibility
 

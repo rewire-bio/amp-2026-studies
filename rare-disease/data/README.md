@@ -1,7 +1,8 @@
 # Rare-disease data
 
 Every input and intermediate file of the case benchmark. With these files committed, `case_benchmark.py` reruns
-without downloading anything. All files are tab-separated with a header row, on GRCh38, with chr-prefixed
+after one step: `lookup_scores.py cadd` and `lookup_scores.py revel` (and the same with `--study indel`, `cancer`
+and `replication`), because the CADD and REVEL licences do not allow redistribution. All files are tab-separated with a header row, on GRCh38, with chr-prefixed
 chromosomes, unless noted.
 
 ## Layout
@@ -29,8 +30,8 @@ Score files and their columns:
 
 | File | Columns | Notes |
 |---|---|---|
-| `scores_cadd.tsv` | `cadd_phred`, `cadd_consequence`, `gene`, `spliceai_max` | CADD v1.7 inclAnno; SpliceAI is the largest of its four delta scores |
-| `scores_revel.tsv` | `revel` | REVEL v1.3, highest over transcripts; missense only |
+| `scores_cadd.tsv` | `cadd_phred`, `cadd_consequence`, `gene`, `spliceai_max` | CADD v1.7 inclAnno; SpliceAI is the largest of its four delta scores. Not committed (licence): run `lookup_scores.py cadd` |
+| `scores_revel.tsv` | `revel` | REVEL v1.3, highest over transcripts; missense only. Not committed (licence): run `lookup_scores.py revel` |
 | `scores_am.tsv` | `alphamissense` | AlphaMissense, highest over transcripts; missense only |
 | `scores_gpnmsa.tsv` | `gpn_msa` | GPN-MSA, sign flipped so higher means more damaging |
 | `scores_gpnstar_v.tsv`, `scores_gpnstar_m.tsv` | `gpnstar_v`, `gpnstar_m` | GPN-Star vertebrate and mammal, calibrated, sign flipped |
@@ -90,4 +91,5 @@ Downloaded by the scripts when needed, and listed in `.gitignore`:
 - `am/`: the AlphaMissense hg38 table, 640 MB;
 - `clinvar.vcf.gz`: the full ClinVar VCF, 200 MB;
 - `clinvar_snv_panel.tsv`: 167 MB, over GitHub's file size limit, rebuilt by `prepare_data.sh`;
-- `*.tbi`, `*.csi`: tabix indexes of remote files.
+- `*.tbi`, `*.csi`: tabix indexes of remote files;
+- `scores_cadd.tsv`, `scores_revel.tsv` in every study: licensed for non-commercial use, not for redistribution.

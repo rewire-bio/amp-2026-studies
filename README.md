@@ -5,8 +5,9 @@ The code, data and results behind Tim Richardson's AMP 2026 talk, "Scoring varia
 [rewire-bio/amp-2026-slides](https://github.com/rewire-bio/amp-2026-slides). Every number the talk reports from our
 own work comes from a file in this repository, and the companion cites it at a tag (currently `amp-2026-v3`).
 
-New to this work? Start with [`GUIDE.md`](GUIDE.md): a visual explainer of what each study asks and why, the
-ideas behind it, and a reading list.
+New to this work? Start with the [visual guide](https://rewire-bio.github.io/amp-2026-studies/) (also in
+[`GUIDE.md`](GUIDE.md)): what each study asks and why, the ideas behind it, and a reading list.
+`python3 docs/build_site.py` rebuilds the page from `GUIDE.md`.
 
 ## What is here
 
@@ -84,10 +85,23 @@ tables and caveats are in the study READMEs.
 |---|---|---|
 | Code, results, run logs, Evo 2 scores and receipts | Yes | Our work |
 | Case definitions, region files, gnomAD frequencies | Yes | Built from public data |
-| Per-case score tables (`rare-disease/data/**/scores_*.tsv`) | Yes, while the repository is private | CADD, REVEL and AlphaMissense are free for non-commercial use; AVI is under the AlphaGenome terms. **Check redistribution before making the repository public** |
+| Per-case AlphaGenome AVI, AlphaMissense, GPN-MSA and GPN-Star scores | Yes | Their licences allow redistribution (below) |
+| Per-case CADD and REVEL scores | No | Free for non-commercial use but not licensed for redistribution. `lookup_scores.py cadd` and `revel` fetch them; CADD needs no download (remote tabix) |
 | Bulk downloads (AVI table 82 GB, AlphaMissense, full ClinVar, index files) | No | Too large; the scripts download them again |
 | BRCA1 assay labels and score extracts | No | Read from a sibling `evo2-cloud-operations` checkout |
 | Run secrets (SSH keys, API keys) | No | Never committed |
+
+The code is under the [MIT licence](LICENSE). Data from others keeps its own licence:
+
+| Data | Licence | Source |
+|---|---|---|
+| AlphaGenome AVI scores | AlphaGenome Atlas static AVI download, permissive use (commercial and non-commercial); research only, not for clinical decisions | Cheng et al. 2026, AlphaGenome Atlas |
+| AlphaMissense scores | CC BY 4.0 (Zenodo 10813168) | Cheng et al. 2023, *Science* |
+| GPN-MSA, GPN-Star scores | MIT; Apache 2.0 | Song Lab, UC Berkeley (Hugging Face) |
+| ClinVar, MANE | Public domain (NCBI) | NCBI |
+| 1000 Genomes genotypes | Open access (IGSR) | Byrska-Bishop et al. 2022 |
+| gnomAD frequencies | Open access | gnomAD, via MyVariant.info |
+| PanelApp panels 285 and 245 | PanelApp terms of use | Genomics England PanelApp |
 
 ## Setup
 

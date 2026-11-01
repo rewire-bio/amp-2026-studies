@@ -6,6 +6,9 @@ rare-disease/data/clinvar.vcf.gz
 rare-disease/data/clinvar_snv_panel.tsv
 rare-disease/data/**/*.tbi
 rare-disease/data/**/*.csi
+# CADD and REVEL are free for non-commercial use but not for redistribution: lookup_scores.py fetches them
+rare-disease/data/**/scores_cadd.tsv
+rare-disease/data/**/scores_revel.tsv
 rare-disease/evo2/data*/
 brca1-case-ranking/avi_*.tsv
 brca1-case-ranking/brca1_hg38.tsv
