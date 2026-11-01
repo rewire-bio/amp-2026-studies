@@ -4,7 +4,8 @@
       --evee ../evee-manuscript/artifacts [--brand gel]
 
 Writes evee_confounding[_gel].svg and evee_results[_gel].svg into evee/out/, drawn for a 1234 x 460 px slot. Copy
-them into the evee-confounding and evee-results slide folders of amp-2026-slides.
+them into the evee-confounding and evee-results slide folders of amp-2026-slides. --steps also writes
+evee_results_step1 and _step2, with only the first one and three consequence rows filled in, for the stepped slides.
 EVEE data: github.com/goodfire-ai/evee-manuscript, artifacts/*.feather (read only).
 """
 import argparse
@@ -70,7 +71,7 @@ def confounding(evee: Path, c: dict):
     save(fig, c, "evee_confounding")
 
 
-def results(evee: Path, c: dict):
+def results(evee: Path, c: dict, show: int = 6, name: str = "evee_results"):
     d = pd.read_feather(evee / "deconf_benchmark.feather")
     rows = ["Missense", "Synonymous", "Intronic", "Splice Donor", "Splice Acceptor", "Nonsense"]
     series = [("Covpool probe", "EVEE probe", c["evee"], "o", 150),
@@ -86,7 +87,7 @@ def results(evee: Path, c: dict):
         sub = d[d.method == method].set_index("consequence")
         xs, ys = [], []
         for r, row in enumerate(rows):
-            if row in sub.index and sub.loc[row, "n_valid"] >= 100:
+            if r < show and row in sub.index and sub.loc[row, "n_valid"] >= 100:
                 xs.append(sub.loc[row, "auroc"])
                 ys.append(r + (i - 2) * 0.13)
         ax.scatter(xs, ys, s=size, marker=marker, color=colour, edgecolor=c["surface"], linewidth=1.2, zorder=3)
@@ -101,13 +102,14 @@ def results(evee: Path, c: dict):
     ax.legend(handles=handles, loc="upper center", bbox_to_anchor=(0.45, -0.17), frameon=False, fontsize=13,
               ncol=5, handletextpad=0.3, columnspacing=1.6)
     fig.tight_layout()
-    save(fig, c, "evee_results")
+    save(fig, c, name)
 
 
 def main():
     p = argparse.ArgumentParser()
     p.add_argument("--evee", type=Path, required=True)
     p.add_argument("--brand", default="rewire", choices=BRANDS)
+    p.add_argument("--steps", action="store_true")
     a = p.parse_args()
     c = BRANDS[a.brand]
     plt.rcParams.update({"font.family": "Arial", "font.size": 14, "text.color": c["ink"],
@@ -115,6 +117,8 @@ def main():
                          "axes.facecolor": c["surface"], "svg.fonttype": "none"})
     confounding(a.evee, c)
     results(a.evee, c)
+    for k, show in enumerate([1, 3] if a.steps else [], 1):
+        results(a.evee, c, show, f"evee_results_step{k}")
 
 
 if __name__ == "__main__":
