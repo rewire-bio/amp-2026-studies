@@ -71,6 +71,7 @@ footer { border-top: 1px solid var(--line); color: var(--muted); font-size: 14px
 <main>
 <h1 id="guide-to-the-studies">Guide to the studies</h1>
 <p>A visual way into this repository. What each study asks, why it was worth asking, how it works, what it found, and what to read first. The READMEs in each folder have the full method and every number; this page is the map.</p>
+<p>Every claim has a source. Published work is cited by first author and year, with the full reference and DOI in the <a href="#5-reading-list-in-order">reading list</a>. Our own numbers link to the results file they come from.</p>
 <p>Contents:</p>
 <ol type="1">
 <li><a href="#1-the-question-in-one-picture">The question in one picture</a></li>
@@ -81,10 +82,10 @@ footer { border-top: 1px solid var(--line); color: var(--muted); font-size: 14px
 <li><a href="#6-glossary">Glossary</a></li>
 </ol>
 <h2 id="1-the-question-in-one-picture">1. The question in one picture</h2>
-<p>A rare disease genome has millions of variants. A diagnostic pipeline filters them to a few hundred candidates, then a scientist reviews them in order. Scores decide that order. Genomic foundation models promise better scores. Do they put the diagnosis nearer the top?</p>
+<p>A genome differs from the reference at 4 to 5 million sites (1000 Genomes 2015). A diagnostic pipeline filters them by gene panel, frequency and consequence to a short list of candidates, then a scientist reviews them in order (Smedley 2015; Whiffin 2017). Scores decide that order. In our test cases the list has a median of 235 rare variants (<a href="https://github.com/rewire-bio/amp-2026-studies/blob/main/rare-disease/results/results.json"><code>rare-disease/results/results.json</code></a>). Genomic foundation models promise better scores. Do they put the diagnosis nearer the top?</p>
 <pre class="mermaid">flowchart LR
-    g[&quot;Patient genome&lt;br/&gt;~5 million variants&quot;] --&gt; f[&quot;Pipeline filters&lt;br/&gt;panel genes, rare,&lt;br/&gt;protein or splice effect&quot;]
-    f --&gt; c[&quot;Candidate list&lt;br/&gt;~100 to 300 variants&quot;]
+    g[&quot;Patient genome&lt;br/&gt;4 to 5 million variants&quot;] --&gt; f[&quot;Pipeline filters&lt;br/&gt;panel genes, rare,&lt;br/&gt;protein or splice effect&quot;]
+    f --&gt; c[&quot;Candidate list&lt;br/&gt;a few hundred variants&quot;]
     c --&gt; s[&quot;Sort by scores&quot;]
     s --&gt; r[&quot;Scientist reviews&lt;br/&gt;from the top&quot;]
     r --&gt; d[&quot;Diagnosis&lt;br/&gt;(if it is near the top)&quot;]
@@ -97,7 +98,7 @@ footer { border-top: 1px solid var(--line); color: var(--muted); font-size: 14px
 <p>Every study here is a version of one test: <strong>does adding a foundation-model score move the diagnostic variant up the list, compared with the scores labs already use?</strong></p>
 <h2 id="2-primer-the-ideas-the-studies-rest-on">2. Primer: the ideas the studies rest on</h2>
 <h3 id="21-a-variant-score">2.1 A variant score</h3>
-<p>A variant effect predictor gives each variant a number: higher means more likely to damage a gene. Labs use these numbers as one line of evidence in ACMG/AMP classification (PP3 and BP4) and to sort candidates.</p>
+<p>A variant effect predictor gives each variant a number: higher means more likely to damage a gene. Labs use these numbers as one line of evidence in ACMG/AMP classification, the PP3 and BP4 codes (Richards 2015; Pejaver 2022), and to sort candidates (Smedley 2015).</p>
 <pre class="mermaid">flowchart LR
     v[&quot;A variant, for example&lt;br/&gt;a BRCA1 SNV&quot;] --&gt; p[&quot;Predictor&quot;]
     p --&gt; n[&quot;A number:&lt;br/&gt;higher = more damaging&quot;]
@@ -109,12 +110,12 @@ footer { border-top: 1px solid var(--line); color: var(--muted); font-size: 14px
         cadd[&quot;CADD&lt;br/&gt;many annotations,&lt;br/&gt;simulated vs observed variants&quot;]
         splice[&quot;SpliceAI&lt;br/&gt;predicts splicing&lt;br/&gt;from sequence&quot;]
         revel[&quot;REVEL&lt;br/&gt;ensemble of missense tools&quot;]
-        am[&quot;AlphaMissense&lt;br/&gt;protein structure model,&lt;br/&gt;missense only&quot;]
+        am[&quot;AlphaMissense&lt;br/&gt;built on AlphaFold,&lt;br/&gt;missense only&quot;]
     end
     subgraph fm[&quot;Genomic foundation models&quot;]
         gpn[&quot;GPN-MSA, GPN-Star&lt;br/&gt;DNA language models&lt;br/&gt;over many species&quot;]
-        avi[&quot;AlphaGenome AVI&lt;br/&gt;predicted molecular effects,&lt;br/&gt;combined into one score&quot;]
-        evo[&quot;Evo 2&lt;br/&gt;DNA language model,&lt;br/&gt;9.3 trillion bases&quot;]
+        avi[&quot;AlphaGenome AVI&lt;br/&gt;AlphaGenome effects plus&lt;br/&gt;AlphaMissense, conservation,&lt;br/&gt;consequence: one score&quot;]
+        evo[&quot;Evo 2 7B&lt;br/&gt;DNA language model,&lt;br/&gt;2.4 trillion bases&quot;]
     end
     est --&gt; look[&quot;Lookup: precomputed table,&lt;br/&gt;milliseconds per variant&quot;]
     gpn --&gt; look
@@ -122,9 +123,10 @@ footer { border-top: 1px solid var(--line); color: var(--muted); font-size: 14px
     evo --&gt; run[&quot;Run it yourself:&lt;br/&gt;GPU, about 0.7 s per variant&quot;]
     style fm fill:#fde2ef,stroke:#df007d
     style est fill:#e3eefa,stroke:#005eb8</pre>
-<p>A <strong>foundation model</strong> learns from raw DNA sequence without disease labels and is then used for many tasks. Some publish genome-wide <strong>score tables</strong> (GPN-MSA, GPN-Star, AVI), so a lab can look them up like CADD. Evo 2 has no genome-wide table. EVEE publishes scores built on Evo 2, but only for the 4.2 million variants already in ClinVar, so it cannot score most of a patient's rare variants. For those, a lab has to run Evo 2 itself, which raises cost and reproducibility questions.</p>
+<p>Sources: CADD (Kircher 2014; Schubach 2024), SpliceAI (Jaganathan 2019), REVEL (Ioannidis 2016), AlphaMissense (Cheng 2023), GPN-MSA (Benegas 2025), GPN-Star (Ye 2026), AlphaGenome and AVI (Avsec 2026; Cheng 2026), Evo 2 (Brixi 2026). The 0.7 s per variant is our own H100 run: 2.9 windows per second, two windows per variant (<a href="https://github.com/rewire-bio/amp-2026-studies/blob/main/rare-disease/evo2/README.md"><code>rare-disease/evo2/README.md</code></a>).</p>
+<p>A <strong>foundation model</strong> is trained on DNA sequence, and for AlphaGenome on measured molecular data, rather than on disease labels, and is then used for many tasks. Some publish genome-wide <strong>score tables</strong> (GPN-MSA, GPN-Star, AVI), so a lab can look them up like CADD. AVI is not a pure foundation-model score: it combines AlphaGenome's predicted effects with AlphaMissense, conservation and consequence, using a model trained on gnomAD rarity (Cheng 2026). Evo 2 has no genome-wide table. EVEE publishes scores built on Evo 2, but only for the about 4.25 million variants already in ClinVar (Pearce 2026), so it cannot score most of a patient's rare variants. For those, a lab has to run Evo 2 itself, which raises cost and reproducibility questions.</p>
 <h3 id="23-why-rank-cases-not-variants">2.3 Why rank cases, not variants</h3>
-<p>Most papers report how well a score separates pathogenic from benign variants across a whole dataset (AUROC). A lab asks something different: within one patient, is the diagnosis near the top? A score can look good on AUROC by learning that nonsense variants tend to be pathogenic, yet not help inside a case where the candidates already passed a consequence filter.</p>
+<p>Most papers report how well a score separates pathogenic from benign variants across a whole dataset (AUROC). A lab asks something different: within one patient, is the diagnosis near the top? A score can look good on AUROC by learning that nonsense variants tend to be pathogenic, yet not help inside a case where the candidates already passed a consequence filter. In ClinVar, 98% of nonsense SNVs are pathogenic and 0.1% of synonymous ones (Pearce 2026). Benchmarks can also be inflated by training-data overlap (Grimm 2015) and by differences between genes (Lu 2026).</p>
 <pre class="mermaid">flowchart LR
     subgraph v[&quot;Variant-level test&quot;]
         direction TB
@@ -142,13 +144,14 @@ footer { border-top: 1px solid var(--line); color: var(--muted); font-size: 14px
     l[&quot;Lookups combined&lt;br/&gt;CADD + SpliceAI + REVEL&lt;br/&gt;+ AlphaMissense + consequence&quot;] --&gt; b[&quot;Baseline&lt;br/&gt;top 1 = 59.5%&quot;]
     l2[&quot;Lookups combined&lt;br/&gt;+ one new score&quot;] --&gt; n[&quot;New&lt;br/&gt;top 1 = 67.0%&quot;]
     b &amp; n --&gt; g[&quot;Gain = +7.5 points&lt;br/&gt;with a 95% interval&quot;]</pre>
-<p>The model is fitted with cross-validation grouped by person, so no case is scored by a model that saw it. Intervals come from resampling the background people (a bootstrap).</p>
+<p>The model is fitted with cross-validation grouped by person, so no case is scored by a model that saw it. Intervals come from resampling the background people (a bootstrap). Numbers: 200 SNV cases, <a href="https://github.com/rewire-bio/amp-2026-studies/blob/main/rare-disease/results/results.json"><code>rare-disease/results/results.json</code></a>; method in <a href="https://github.com/rewire-bio/amp-2026-studies/blob/main/rare-disease/README.md"><code>rare-disease/README.md</code></a>.</p>
 <h3 id="25-four-ways-a-benchmark-can-fool-you-and-the-check-for-each">2.5 Four ways a benchmark can fool you, and the check for each</h3>
 <pre class="mermaid">flowchart TB
     t1[&quot;Circularity:&lt;br/&gt;the score was trained on the&lt;br/&gt;same labels it is tested on&quot;] --&gt; c1[&quot;Name it as a limit;&lt;br/&gt;test AVI on chromosomes&lt;br/&gt;it was not trained on&quot;]
     t2[&quot;Easy backgrounds:&lt;br/&gt;common variants a pipeline&lt;br/&gt;would have removed&quot;] --&gt; c2[&quot;Rerun with a gnomAD&lt;br/&gt;frequency filter&quot;]
     t3[&quot;Winner&#39;s curse:&lt;br/&gt;the best of several scores&lt;br/&gt;on 200 cases looks too good&quot;] --&gt; c3[&quot;Replicate on 500 new cases&lt;br/&gt;with the model locked&quot;]
-    t4[&quot;Weak baseline:&lt;br/&gt;a new score &#39;helps&#39; a&lt;br/&gt;combination that was poor&quot;] --&gt; c4[&quot;Compare with the best&lt;br/&gt;existing score per type&quot;]</pre>
+    t4[&quot;Weak baseline:&lt;br/&gt;a new score &#39;helps&#39; a&lt;br/&gt;combination that was poor&quot;] --&gt; c4[&quot;Compare with all&lt;br/&gt;established scores&lt;br/&gt;combined, fitted the same way&quot;]</pre>
+<p>Circularity: Grimm 2015. AVI's training chromosomes: Cheng 2026; our held-out check in <a href="https://github.com/rewire-bio/amp-2026-studies/blob/main/rare-disease/REPLICATION.md"><code>rare-disease/REPLICATION.md</code></a>. Frequency filtering: Whiffin 2017.</p>
 <h2 id="3-how-the-studies-led-to-each-other">3. How the studies led to each other</h2>
 <pre class="mermaid">flowchart TB
     q[&quot;Question: do genomic foundation models&lt;br/&gt;help rank a case&#39;s candidates?&quot;]
@@ -174,14 +177,14 @@ footer { border-top: 1px solid var(--line); color: var(--muted); font-size: 14px
     rare &amp; dx --&gt; case[&quot;Case&quot;]
     case --&gt; scores[&quot;9 scores and&lt;br/&gt;combined models&quot;]
     scores --&gt; rank[&quot;Rank of the diagnosis&quot;]</pre>
-<p>Four studies share this design: 200 SNV cases, 120 indel cases, 140 inherited cancer cases, and a 500-case replication with 50 new people.</p>
+<p>Four studies share this design: 200 SNV cases, 120 indel cases, 140 inherited cancer cases, and a 500-case replication with 50 new people (<a href="https://github.com/rewire-bio/amp-2026-studies/blob/main/rare-disease/README.md"><code>rare-disease/README.md</code></a>). Backgrounds come from 1000 Genomes (Byrska-Bishop 2022), genes from PanelApp (Martin 2019) on MANE transcripts (Morales 2022), and diagnoses from ClinVar (Landrum 2018).</p>
 <p>Each single score on its own, 200 SNV cases, share of cases with the diagnosis in the top 5:</p>
 <pre class="mermaid">xychart-beta
     title &quot;Top 5, single scores, 200 SNV cases (%)&quot;
     x-axis [&quot;REVEL&quot;, &quot;AM&quot;, &quot;Evo 2&quot;, &quot;GPN-MSA&quot;, &quot;CADD&quot;, &quot;SpliceAI&quot;, &quot;GPN-Star&quot;, &quot;AVI&quot;, &quot;Lookups&quot;]
     y-axis &quot;Cases with diagnosis in top 5 (%)&quot; 0 --&gt; 100
     bar [27, 26.5, 43, 48.5, 51.5, 54.5, 57.5, 87, 92]</pre>
-<p>AM is AlphaMissense, GPN-Star the vertebrate model, and Lookups the established scores combined. REVEL and AlphaMissense score only missense variants, so they miss every other diagnosis. AVI is the best single score; the established lookups combined are better still.</p>
+<p>AM is AlphaMissense, GPN-Star the vertebrate model, and Lookups the established scores combined. REVEL and AlphaMissense score only missense variants, so they miss every other diagnosis. AVI is the best single score; the established lookups combined are better still. Source: <a href="https://github.com/rewire-bio/amp-2026-studies/blob/main/rare-disease/results/results.json"><code>rare-disease/results/results.json</code></a>, <code>strata.all.scores</code>.</p>
 <p>What adding AlphaGenome AVI to the lookups gains at top 1, as the checks got stricter:</p>
 <pre class="mermaid">xychart-beta
     title &quot;AVI added to the lookups: gain at top 1 (points)&quot;
@@ -189,8 +192,9 @@ footer { border-top: 1px solid var(--line); color: var(--muted); font-size: 14px
     y-axis &quot;Gain (points)&quot; 0 --&gt; 10
     bar [7.5, 6.2, 8.0, 7.4, 0.8]</pre>
 <p>A: the first 200 cases. B: 500 new cases, model locked. C: 200 cases with a gnomAD AF filter below 0.1%. D: 500 new cases, locked, with that filter. E: 500 new cases, locked, with the strict grpmax filter below 0.1%.</p>
-<p>The 95% intervals are about ±7 points, so read the bars together. The gain holds on new cases and with a pipeline's frequency filter. Under a strict filter, lists shrink to a median of 34 to 49 variants. The lookups alone then rank the diagnosis first in 70 to 79% of cases, which leaves little room for any score to add.</p>
-<p><strong>Findings in one line each:</strong></p>
+<p>Sources: A, <a href="https://github.com/rewire-bio/amp-2026-studies/blob/main/rare-disease/results/results.json"><code>results.json</code></a>; B, <a href="https://github.com/rewire-bio/amp-2026-studies/blob/main/rare-disease/results/results_replication.json"><code>results_replication.json</code></a>; C, <a href="https://github.com/rewire-bio/amp-2026-studies/blob/main/rare-disease/results/results_gnomad0.001.json"><code>results_gnomad0.001.json</code></a>; D, <a href="https://github.com/rewire-bio/amp-2026-studies/blob/main/rare-disease/results/results_replication_gnomad0.001.json"><code>results_replication_gnomad0.001.json</code></a>; E, <a href="https://github.com/rewire-bio/amp-2026-studies/blob/main/rare-disease/results/results_replication_gnomad0.001_grpmax.json"><code>results_replication_gnomad0.001_grpmax.json</code></a>.</p>
+<p>The 95% intervals run 5 to 8 points either side of each bar, so read the bars together. The gain holds on new cases and with a pipeline's frequency filter. Under a strict filter, lists shrink to a median of 34 to 49 variants. The lookups alone then rank the diagnosis first in 70 to 79% of cases, which leaves little room for any score to add.</p>
+<p><strong>Findings in one line each</strong> (all from <a href="https://github.com/rewire-bio/amp-2026-studies/tree/main/rare-disease/results/"><code>rare-disease/results/</code></a>):</p>
 <ul>
 <li>The established lookups, combined, do most of the work.</li>
 <li>AVI is the one foundation-model table whose gain holds on new cases.</li>
@@ -202,7 +206,7 @@ footer { border-top: 1px solid var(--line); color: var(--muted); font-size: 14px
 <h3 id="42-evo-2-on-the-case-variants">4.2 Evo 2 on the case variants</h3>
 <blockquote>
 <p><strong>Question.</strong> What does it take to score every case variant with a model that has no genome-wide table, and does its score help?</p>
-<p><strong>Why.</strong> Evo 2 is the best-known DNA foundation model, and a lab could only use it by running it.</p>
+<p><strong>Why.</strong> Evo 2 is the largest openly released DNA foundation model (Brixi 2026), and a lab could only use it on a patient's variants by running it.</p>
 <p><strong>Folder.</strong> <a href="https://github.com/rewire-bio/amp-2026-studies/tree/main/rare-disease/evo2/"><code>rare-disease/evo2/</code></a></p>
 </blockquote>
 <pre class="mermaid">flowchart LR
@@ -211,17 +215,17 @@ footer { border-top: 1px solid var(--line); color: var(--muted); font-size: 14px
     h --&gt; d[&quot;Score = change in&lt;br/&gt;mean log-likelihood&quot;]
     d --&gt; b[&quot;Into the case benchmark&lt;br/&gt;as &#39;Evo 2 7B&#39;&quot;]
     h --&gt; rc[&quot;Receipts: GPU, image digest,&lt;br/&gt;timings, cost&quot;]</pre>
-<p>Two runs took about 3.5 hours of pod time and cost about USD 14. Throughput was 2.9 windows per second. On SNVs, Evo 2 alone was among the weaker scores (43% top 5). On indels, where few tables exist, it was the strongest single score (92.5% top 5) and added the largest gain to the lookups.</p>
-<p><strong>Read first:</strong> Brixi 2026 (Evo 2), Arc Institute's BRCA1 zero-shot notebook (the scoring method followed here).</p>
+<p>Two runs took about 3.5 hours of pod time and cost about USD 14. Throughput was 2.9 windows per second (<a href="https://github.com/rewire-bio/amp-2026-studies/blob/main/rare-disease/evo2/README.md"><code>rare-disease/evo2/README.md</code></a>). On SNVs, Evo 2 alone was among the weaker scores (43% top 5, <a href="https://github.com/rewire-bio/amp-2026-studies/blob/main/rare-disease/results/results.json"><code>results.json</code></a>). On indels, where few tables exist, it was the strongest single score (92.5% top 5) and added the largest gain to the lookups (<a href="https://github.com/rewire-bio/amp-2026-studies/blob/main/rare-disease/results/results_indel.json"><code>results_indel.json</code></a>).</p>
+<p><strong>Read first:</strong> Brixi 2026 (Evo 2), Arc Institute's <a href="https://github.com/ArcInstitute/evo2/blob/main/notebooks/brca1/brca1_zero_shot_vep.ipynb">BRCA1 zero-shot notebook</a> (the scoring method followed here).</p>
 <h3 id="43-brca1-case-ranking">4.3 BRCA1 case ranking</h3>
 <blockquote>
 <p><strong>Question.</strong> On one gene with lab-measured function, does Evo 2 put the loss-of-function variant near the top of a simulated case?</p>
-<p><strong>Why.</strong> It was the first case-level test. Saturation genome editing gives a functional label for almost every possible SNV in the tested BRCA1 exons, so it does not depend on ClinVar.</p>
+<p><strong>Why.</strong> It was the first case-level test. Saturation genome editing gives a functional label for 96.5% of possible SNVs in 13 BRCA1 exons (Findlay 2018), so it does not depend on ClinVar.</p>
 <p><strong>Folder.</strong> <a href="https://github.com/rewire-bio/amp-2026-studies/tree/main/brca1-case-ranking/"><code>brca1-case-ranking/</code></a></p>
 </blockquote>
 <pre class="mermaid">flowchart LR
     s[&quot;3,893 BRCA1 SNVs&lt;br/&gt;with assay labels&quot;] --&gt; l[&quot;823 loss of function&quot;]
-    s --&gt; f[&quot;3,070 functional&quot;]
+    s --&gt; f[&quot;3,070 functional&lt;br/&gt;or intermediate&quot;]
     l --&gt; c[&quot;Case: 1 LOF&lt;br/&gt;+ 100 functional&quot;]
     f --&gt; c
     c --&gt; r[&quot;Rank: CADD, SpliceAI,&lt;br/&gt;REVEL, Evo 2, combinations&quot;]</pre>
@@ -230,7 +234,7 @@ footer { border-top: 1px solid var(--line); color: var(--muted); font-size: 14px
     x-axis [&quot;REVEL&quot;, &quot;SpliceAI&quot;, &quot;Evo 2&quot;, &quot;CADD&quot;, &quot;C+S&quot;, &quot;C+S+Evo 2&quot;]
     y-axis &quot;Cases (%)&quot; 0 --&gt; 100
     bar [30.4, 37.2, 48.1, 54.9, 62.0, 65.0]</pre>
-<p>C+S is the type-aware CADD + SpliceAI combination. Evo 2 adds about 3 points to it, but against the best existing score for each variant type no gain is detected. The study also showed that how scores are combined matters as much as which scores are combined. That lesson shaped the rare-disease design.</p>
+<p>C+S is the type-aware CADD + SpliceAI combination. Evo 2 adds about 3 points to it, but against the best existing score for each variant type no gain is detected. The study also showed that how scores are combined matters as much as which scores are combined. That lesson shaped the rare-disease design. Source: <a href="https://github.com/rewire-bio/amp-2026-studies/blob/main/brca1-case-ranking/README.md"><code>brca1-case-ranking/README.md</code></a> and <a href="https://github.com/rewire-bio/amp-2026-studies/blob/main/brca1-case-ranking/results.json"><code>results.json</code></a>.</p>
 <p><strong>Read first:</strong> Findlay 2018 (BRCA1 saturation genome editing).</p>
 <h3 id="44-evo-2-pipeline">4.4 Evo 2 pipeline</h3>
 <blockquote>
@@ -241,15 +245,16 @@ footer { border-top: 1px solid var(--line); color: var(--muted); font-size: 14px
 <pre class="mermaid">flowchart LR
     vcf[&quot;Case VCF&quot;] --&gt; n[&quot;Normalise&quot;] --&gt; a[&quot;Add CADD,&lt;br/&gt;SpliceAI&quot;] --&gt; w[&quot;Windows&quot;] --&gt; s[&quot;Evo 2&lt;br/&gt;(GPU or replay)&quot;] --&gt; r[&quot;Rank the case&quot;]</pre>
 <p>It is a Nextflow pipeline with two profiles. <code>replay</code> runs on a laptop with recorded H100 scores and has been run end to end. <code>gpu</code> uses the same scoring code but has not been run end to end through Nextflow. The GPU, cost and reproducibility findings shown in the talk, including scores that drift between GPU types, come from the separate <a href="https://github.com/rewire-bio/evo2-cloud-operations">evo2-cloud-operations</a> study.</p>
-<p><strong>Read first:</strong> Di Tommaso 2017 (Nextflow), the cuBLAS reproducibility notes (why GPU results can differ).</p>
+<p>Source: <a href="https://github.com/rewire-bio/amp-2026-studies/blob/main/evo2-pipeline/README.md"><code>evo2-pipeline/README.md</code></a>.</p>
+<p><strong>Read first:</strong> Di Tommaso 2017 (Nextflow), NVIDIA's <a href="https://docs.nvidia.com/cuda/cublas/index.html#results-reproducibility">cuBLAS results reproducibility notes</a> (why GPU results can differ between GPU types).</p>
 <h3 id="45-evee-charts">4.5 EVEE charts</h3>
 <blockquote>
 <p><strong>Question.</strong> None of our own. This folder redraws two figures from Goodfire's EVEE preprint for the slides.</p>
-<p><strong>Why they matter here.</strong> They show the trap from section 2.3. In ClinVar, a variant's consequence alone predicts much of its label, so variant-level benchmarks reward scores that learn consequence. Within each consequence the scores separate much less well.</p>
+<p><strong>Why they matter here.</strong> They show the trap from section 2.3. In ClinVar, a variant's consequence alone predicts much of its label, so variant-level benchmarks reward scores that learn consequence. Within each consequence, AUROCs are lower (for CADD v1.7, 0.99 overall against about 0.79 to 0.95 within a consequence) and the gaps between methods change (Pearce 2026; data from <a href="https://github.com/goodfire-ai/evee-manuscript">goodfire-ai/evee-manuscript</a>).</p>
 <p><strong>Folder.</strong> <a href="https://github.com/rewire-bio/amp-2026-studies/tree/main/evee/"><code>evee/</code></a></p>
 </blockquote>
 <pre class="mermaid">flowchart LR
-    cv[&quot;ClinVar SNVs&lt;br/&gt;834,000&quot;] --&gt; con[&quot;By consequence:&lt;br/&gt;nonsense 98% pathogenic,&lt;br/&gt;synonymous 0.1%&quot;]
+    cv[&quot;ClinVar SNVs&lt;br/&gt;about 834,000&quot;] --&gt; con[&quot;By consequence:&lt;br/&gt;nonsense 98% pathogenic,&lt;br/&gt;synonymous 0.1%&quot;]
     con --&gt; trap[&quot;A score can win on AUROC&lt;br/&gt;by learning consequence&quot;]
     trap --&gt; fix[&quot;EVEE: compare within&lt;br/&gt;each consequence&quot;]</pre>
 <p><strong>Read first:</strong> Pearce 2026 (EVEE).</p>
@@ -259,29 +264,31 @@ footer { border-top: 1px solid var(--line); color: var(--muted); font-size: 14px
     A[&quot;1. How labs classify&lt;br/&gt;Richards 2015&lt;br/&gt;Pejaver 2022&quot;] --&gt; B[&quot;2. The inputs&lt;br/&gt;PanelApp, ClinVar,&lt;br/&gt;1000 Genomes, gnomAD&quot;]
     B --&gt; C[&quot;3. Established scores&lt;br/&gt;CADD, SpliceAI,&lt;br/&gt;REVEL, AlphaMissense&quot;]
     C --&gt; D[&quot;4. Foundation models&lt;br/&gt;GPN-MSA, GPN-Star,&lt;br/&gt;AlphaGenome, Evo 2&quot;]
-    D --&gt; E[&quot;5. Evaluation traps&lt;br/&gt;Grimm 2015, EVEE,&lt;br/&gt;Lu 2025&quot;]</pre>
+    D --&gt; E[&quot;5. Evaluation traps&lt;br/&gt;Grimm 2015, EVEE,&lt;br/&gt;Lu 2026&quot;]</pre>
 <p><strong>1. How labs classify variants</strong></p>
 <ul>
 <li><strong>Richards S et al. (2015).</strong> Standards and guidelines for the interpretation of sequence variants (ACMG/AMP). <em>Genetics in Medicine</em> 17:405-424. <a href="https://doi.org/10.1038/gim.2015.30">doi:10.1038/gim.2015.30</a></li>
 <li><strong>Pejaver V et al. (2022).</strong> Calibration of computational tools for missense variant pathogenicity classification and ClinGen recommendations for PP3/BP4 criteria. <em>AJHG</em> 109:2163-2177. <a href="https://doi.org/10.1016/j.ajhg.2022.10.013">doi:10.1016/j.ajhg.2022.10.013</a></li>
-<li>Walker LC et al. (2023). Using the ACMG/AMP framework to capture evidence related to predicted and observed impact on splicing. <em>AJHG</em> 110:1046-1067. <a href="https://doi.org/10.1016/j.ajhg.2023.06.002">doi:10.1016/j.ajhg.2023.06.002</a></li>
-<li>Bergquist T et al. (2025). Calibration of additional computational tools expands ClinGen recommendation options for variant classification. <em>Genetics in Medicine</em> 27:101402. <a href="https://doi.org/10.1016/j.gim.2025.101402">doi:10.1016/j.gim.2025.101402</a></li>
+<li>Walker LC et al. (2023). Using the ACMG/AMP framework to capture evidence related to predicted and observed impact on splicing: recommendations from the ClinGen SVI Splicing Subgroup. <em>AJHG</em> 110:1046-1067. <a href="https://doi.org/10.1016/j.ajhg.2023.06.002">doi:10.1016/j.ajhg.2023.06.002</a></li>
+<li>Bergquist T et al. (2025). Calibration of additional computational tools expands ClinGen recommendation options for variant classification with PP3/BP4 criteria. <em>Genetics in Medicine</em> 27:101402. <a href="https://doi.org/10.1016/j.gim.2025.101402">doi:10.1016/j.gim.2025.101402</a></li>
 <li>Smedley D et al. (2015). Next-generation diagnostics and disease-gene discovery with the Exomiser. <em>Nature Protocols</em> 10:2004-2015. <a href="https://doi.org/10.1038/nprot.2015.124">doi:10.1038/nprot.2015.124</a>. How a real pipeline ranks candidates.</li>
 </ul>
 <p><strong>2. The inputs the cases are built from</strong></p>
 <ul>
 <li><strong>Martin AR et al. (2019).</strong> PanelApp crowdsources expert knowledge to establish consensus diagnostic gene panels. <em>Nature Genetics</em> 51:1560-1565. <a href="https://doi.org/10.1038/s41588-019-0528-2">doi:10.1038/s41588-019-0528-2</a></li>
-<li>Byrska-Bishop M et al. (2022). High-coverage whole-genome sequencing of the expanded 1000 Genomes Project cohort. <em>Cell</em> 185:3426-3440. <a href="https://doi.org/10.1016/j.cell.2022.08.004">doi:10.1016/j.cell.2022.08.004</a></li>
-<li>Landrum MJ et al. (2018). ClinVar: improving access to variant interpretations and supporting evidence. <em>Nucleic Acids Research</em> 46:D1062-D1067. <a href="https://doi.org/10.1093/nar/gkx1153">doi:10.1093/nar/gkx1153</a></li>
-<li>Chen S et al. (2024). A genomic mutational constraint map using variation in 76,156 human genomes (gnomAD). <em>Nature</em> 625:92-100. <a href="https://doi.org/10.1038/s41586-023-06045-0">doi:10.1038/s41586-023-06045-0</a></li>
+<li>1000 Genomes Project Consortium (2015). A global reference for human genetic variation. <em>Nature</em> 526:68-74. <a href="https://doi.org/10.1038/nature15393">doi:10.1038/nature15393</a>. Source of "4 to 5 million variants per genome".</li>
+<li>Byrska-Bishop M et al. (2022). High-coverage whole-genome sequencing of the expanded 1000 Genomes Project cohort including 602 trios. <em>Cell</em> 185:3426-3440.e19. <a href="https://doi.org/10.1016/j.cell.2022.08.004">doi:10.1016/j.cell.2022.08.004</a></li>
+<li>Landrum MJ et al. (2018). ClinVar: improving access to variant interpretations and supporting evidence. <em>Nucleic Acids Research</em> 46:D1062-D1067. <a href="https://doi.org/10.1093/nar/gkx1153">doi:10.1093/nar/gkx1153</a>. Review stars: <a href="https://www.ncbi.nlm.nih.gov/clinvar/docs/review_status/">ClinVar review status</a>.</li>
+<li>Chen S et al. (2024). A genomic mutational constraint map using variation in 76,156 human genomes (gnomAD). <em>Nature</em> 625:92-100. <a href="https://doi.org/10.1038/s41586-023-06045-0">doi:10.1038/s41586-023-06045-0</a>. The grpmax definition: <a href="https://gnomad.broadinstitute.org/help/grpmax">gnomAD help</a>.</li>
 <li>Whiffin N et al. (2017). Using high-resolution variant frequencies to empower clinical genome interpretation. <em>Genetics in Medicine</em> 19:1151-1158. <a href="https://doi.org/10.1038/gim.2017.26">doi:10.1038/gim.2017.26</a>. Why pipelines filter on frequency first.</li>
+<li>Findlay GM et al. (2018). Accurate classification of BRCA1 variants with saturation genome editing. <em>Nature</em> 562:217-222. <a href="https://doi.org/10.1038/s41586-018-0461-z">doi:10.1038/s41586-018-0461-z</a>. The BRCA1 assay labels.</li>
 <li>Morales J et al. (2022). A joint NCBI and EMBL-EBI transcript set for clinical genomics and research (MANE). <em>Nature</em> 604:310-315. <a href="https://doi.org/10.1038/s41586-022-04558-8">doi:10.1038/s41586-022-04558-8</a></li>
 </ul>
 <p><strong>3. Established scores</strong></p>
 <ul>
 <li>Kircher M et al. (2014). A general framework for estimating the relative pathogenicity of human genetic variants (CADD). <em>Nature Genetics</em> 46:310-315. <a href="https://doi.org/10.1038/ng.2892">doi:10.1038/ng.2892</a></li>
-<li><strong>Schubach M et al. (2024).</strong> CADD v1.7. <em>Nucleic Acids Research</em> 52:D1143-D1154. <a href="https://doi.org/10.1093/nar/gkad989">doi:10.1093/nar/gkad989</a></li>
-<li><strong>Jaganathan K et al. (2019).</strong> Predicting splicing from primary sequence with deep learning (SpliceAI). <em>Cell</em> 176:535-548. <a href="https://doi.org/10.1016/j.cell.2018.12.015">doi:10.1016/j.cell.2018.12.015</a></li>
+<li><strong>Schubach M et al. (2024).</strong> CADD v1.7: using protein language models, regulatory CNNs and other nucleotide-level scores to improve genome-wide variant predictions. <em>Nucleic Acids Research</em> 52:D1143-D1154. <a href="https://doi.org/10.1093/nar/gkad989">doi:10.1093/nar/gkad989</a></li>
+<li><strong>Jaganathan K et al. (2019).</strong> Predicting splicing from primary sequence with deep learning (SpliceAI). <em>Cell</em> 176:535-548.e24. <a href="https://doi.org/10.1016/j.cell.2018.12.015">doi:10.1016/j.cell.2018.12.015</a></li>
 <li>Ioannidis NM et al. (2016). REVEL: an ensemble method for predicting the pathogenicity of rare missense variants. <em>AJHG</em> 99:877-885. <a href="https://doi.org/10.1016/j.ajhg.2016.08.016">doi:10.1016/j.ajhg.2016.08.016</a></li>
 <li><strong>Cheng J et al. (2023).</strong> Accurate proteome-wide missense variant effect prediction with AlphaMissense. <em>Science</em> 381:eadg7492. <a href="https://doi.org/10.1126/science.adg7492">doi:10.1126/science.adg7492</a></li>
 </ul>
@@ -290,15 +297,14 @@ footer { border-top: 1px solid var(--line); color: var(--muted); font-size: 14px
 <li><strong>Benegas G et al. (2025).</strong> A DNA language model based on multispecies alignment predicts the effects of genome-wide variants (GPN-MSA). <em>Nature Biotechnology</em> 43:1960-1965. <a href="https://doi.org/10.1038/s41587-024-02511-w">doi:10.1038/s41587-024-02511-w</a></li>
 <li>Ye C et al. (2026). Predicting genome-wide functional constraints with GPN-Star. <em>Nature</em>. <a href="https://doi.org/10.1038/s41586-026-11005-5">doi:10.1038/s41586-026-11005-5</a></li>
 <li><strong>Avsec Ž et al. (2026).</strong> Advancing regulatory variant effect prediction with AlphaGenome. <em>Nature</em> 649:1206-1218. <a href="https://doi.org/10.1038/s41586-025-10014-0">doi:10.1038/s41586-025-10014-0</a></li>
-<li><strong>Cheng J et al. (2026).</strong> AlphaGenome Atlas: in silico mutagenesis of the entire human genome. <em>medRxiv</em>. <a href="https://doi.org/10.64898/2026.09.16.26363192">doi:10.64898/2026.09.16.26363192</a>. The source of the AVI table, its training chromosomes and the 0.1% frequency filter used here.</li>
+<li><strong>Cheng J et al. (2026).</strong> AlphaGenome Atlas: in silico mutagenesis of the entire human genome improves prioritization and interpretation of non-coding variants. <em>medRxiv</em>. <a href="https://doi.org/10.64898/2026.09.16.26363192">doi:10.64898/2026.09.16.26363192</a>. The source of the AVI table, its training chromosomes and the 0.1% frequency filter used here.</li>
 <li><strong>Brixi G et al. (2026).</strong> Genome modelling and design across all domains of life with Evo 2. <em>Nature</em> 652:1349-1361. <a href="https://doi.org/10.1038/s41586-026-10176-5">doi:10.1038/s41586-026-10176-5</a></li>
-<li>Findlay GM et al. (2018). Accurate classification of BRCA1 variants with saturation genome editing. <em>Nature</em> 562:217-222. <a href="https://doi.org/10.1038/s41586-018-0461-z">doi:10.1038/s41586-018-0461-z</a></li>
 </ul>
 <p><strong>5. Evaluation traps</strong></p>
 <ul>
 <li><strong>Grimm DG et al. (2015).</strong> The evaluation of tools used to predict the impact of missense variants is hindered by two types of circularity. <em>Human Mutation</em> 36:513-523. <a href="https://doi.org/10.1002/humu.22768">doi:10.1002/humu.22768</a></li>
 <li><strong>Pearce MT et al. (2026).</strong> Interpretable variant effect prediction from genomic foundation model representations (EVEE). <em>bioRxiv</em>. <a href="https://doi.org/10.64898/2026.04.10.717844">doi:10.64898/2026.04.10.717844</a></li>
-<li>Lu B et al. (2025). Genomic heterogeneity inflates the performance of variant pathogenicity predictions. <em>bioRxiv</em>. <a href="https://doi.org/10.1101/2025.09.05.674459">doi:10.1101/2025.09.05.674459</a></li>
+<li>Lu B et al. (2026). Genomic heterogeneity inflates the performance of variant pathogenicity predictions. <em>Nature Communications</em>, online 30 October 2026. <a href="https://doi.org/10.1038/s41467-026-78623-5">doi:10.1038/s41467-026-78623-5</a>. Preprint: <a href="https://doi.org/10.1101/2025.09.05.674459">doi:10.1101/2025.09.05.674459</a></li>
 <li>Kong SW et al. (2025). Discordance between a deep learning model and clinical-grade variant pathogenicity classification in a rare disease cohort. <em>npj Genomic Medicine</em> 10:17. <a href="https://doi.org/10.1038/s41525-025-00480-w">doi:10.1038/s41525-025-00480-w</a></li>
 <li>Curtis D (2025). Assessment of ability of a DNA language model to predict pathogenicity of rare coding variants. <em>Journal of Human Genetics</em> 70:603-607. <a href="https://doi.org/10.1038/s10038-025-01385-3">doi:10.1038/s10038-025-01385-3</a></li>
 <li>Di Tommaso P et al. (2017). Nextflow enables reproducible computational workflows. <em>Nature Biotechnology</em> 35:316-319. <a href="https://doi.org/10.1038/nbt.3820">doi:10.1038/nbt.3820</a></li>
@@ -314,7 +320,7 @@ footer { border-top: 1px solid var(--line); color: var(--muted); font-size: 14px
 <tbody>
 <tr>
 <td>ACMG/AMP</td>
-<td>The standard framework for classifying variants as pathogenic, benign or uncertain</td>
+<td>The standard framework for classifying variants into five classes: pathogenic, likely pathogenic, uncertain significance, likely benign, benign (Richards 2015)</td>
 </tr>
 <tr>
 <td>PP3, BP4</td>
@@ -326,7 +332,7 @@ footer { border-top: 1px solid var(--line); color: var(--muted); font-size: 14px
 </tr>
 <tr>
 <td>ClinVar review stars</td>
-<td>How well supported a ClinVar classification is; 2+ stars means multiple submitters agree or an expert panel</td>
+<td>How well supported a ClinVar classification is. 2 stars: two or more submitters with criteria and no conflict; 3: expert panel; 4: practice guideline</td>
 </tr>
 <tr>
 <td>Background</td>
@@ -350,7 +356,7 @@ footer { border-top: 1px solid var(--line); color: var(--muted); font-size: 14px
 </tr>
 <tr>
 <td>AF, grpmax AF</td>
-<td>Allele frequency in gnomAD; grpmax is the highest frequency in any one ancestry group</td>
+<td>Allele frequency in gnomAD. gnomAD's grpmax is the highest frequency among its large, non-bottlenecked ancestry groups. Our filter takes the highest of afr, amr, eas, mid, nfe and sas, which for genomes adds mid to gnomAD's set</td>
 </tr>
 <tr>
 <td>Zero-shot</td>
@@ -362,7 +368,7 @@ footer { border-top: 1px solid var(--line); color: var(--muted); font-size: 14px
 </tr>
 <tr>
 <td>SGE</td>
-<td>Saturation genome editing: every possible SNV in a region made in cells and its effect measured</td>
+<td>Saturation genome editing: nearly every possible SNV in a region made in cells and its effect measured (Findlay 2018)</td>
 </tr>
 <tr>
 <td>AUROC</td>
