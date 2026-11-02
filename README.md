@@ -25,6 +25,7 @@ flowchart LR
 
     subgraph studies["This repository"]
         rd["rare-disease/<br/>case benchmark"]
+        rd2["rare-disease-v2/<br/>second run (planned)"]
         evo2["rare-disease/evo2/<br/>Evo 2 7B on one H100"]
         brca1["brca1-case-ranking/"]
         pipe["evo2-pipeline/<br/>Nextflow"]
@@ -38,6 +39,7 @@ flowchart LR
     ops --> brca1
     ops --> pipe
     evee_data --> evee
+    rd -.-> rd2
     rd & brca1 & pipe & evee --> slides
 ```
 
@@ -49,6 +51,7 @@ flowchart LR
 | [`evo2-pipeline/`](evo2-pipeline/) | What it takes to add an Evo 2 score to a lab's pipeline, as a working Nextflow pipeline | `pipeline-overview`, backup `code-*` |
 | [`evee/`](evee/) | EVEE's published figure data redrawn as two charts | `evee-confounding`, `evee-results` |
 | [`gpu-drift/`](gpu-drift/) | What a flipped call is, from the recorded H100 and L40S BRCA1 runs in evo2-cloud-operations | `gpu-drift` |
+| [`rare-disease-v2/`](rare-disease-v2/) | Second run of the rare-disease case tests, intellectual disability panel only, with gnomAD frequencies that leave out the 1000 Genomes samples and a grpmax filter built in. Protocol written, not yet run | will replace the `rd-*` numbers once tagged |
 
 The rare-disease benchmark is the main study. Start with [`rare-disease/README.md`](rare-disease/README.md), then
 [`rare-disease/REPLICATION.md`](rare-disease/REPLICATION.md) for the follow-up checks.
@@ -80,6 +83,13 @@ top 5.
 "Locked" means the model was fitted on the first 200 cases and applied unchanged to the 500 new ones. The full
 tables and caveats are in the study READMEs.
 
+**A second run is planned.** The 1000 Genomes background people are themselves in gnomAD, so every background
+variant has a gnomAD frequency while most diagnostic variants have none. That makes frequency, and scores that learned
+it such as AVI, look stronger than they would on a real patient
+([issue #1](https://github.com/rewire-bio/amp-2026-studies/issues/1)). [`rare-disease-v2/`](rare-disease-v2/) holds
+the proposal, protocol and work plan for a rerun that fixes this
+([issue #2](https://github.com/rewire-bio/amp-2026-studies/issues/2)).
+
 ## Data and licences
 
 | What | Committed? | Why |
@@ -98,6 +108,7 @@ The code is under the [MIT licence](LICENSE). Data from others keeps its own lic
 |---|---|---|
 | AlphaGenome AVI scores | AlphaGenome Atlas static AVI download, permissive use (commercial and non-commercial); research only, not for clinical decisions | Cheng et al. 2026, AlphaGenome Atlas |
 | AlphaMissense scores | CC BY 4.0 (Zenodo 10813168) | Cheng et al. 2023, *Science* |
+| EVEE per-variant scores (planned, `rare-disease-v2/`) | CC BY 4.0 (Zenodo 19701997) | Pearce et al. 2026 |
 | GPN-MSA, GPN-Star scores | MIT; Apache 2.0 | Song Lab, UC Berkeley (Hugging Face) |
 | ClinVar, MANE | Public domain (NCBI) | NCBI |
 | 1000 Genomes genotypes | Open access (IGSR) | Byrska-Bishop et al. 2022 |
@@ -128,6 +139,7 @@ shell scripts need `bcftools`, `tabix` and `curl`. An Evo 2 run needs a Runpod A
 | `amp-2026-v2` | AlphaGenome AVI added to the rare-disease benchmark, with the held-out chromosome check |
 | `amp-2026-v3` | gnomAD frequency-filtered reruns of every case study |
 | `amp-2026-v4` | The strict grpmax filter now matches gnomAD's genome grpmax (Middle Eastern group left out) and its two runs were redone; charts redrawn with the same series in every panel, with step images; the case data, per-case scores, run logs and the EVEE chart script committed; documentation rewritten |
+| (planned) `rd-v2-protocol` | `rare-disease-v2/` protocol, code and frozen case files, tagged before the 500 replication cases are built |
 
 The code came from the private `rewire-bio/amp-2026-decks` at commit `9a7f2e1`. `rare-disease/` came from that
 repository's `v9`, `brca1-case-ranking/` from `v4` and `v9`, and `evo2-pipeline/` from `v3`. Paths were updated;

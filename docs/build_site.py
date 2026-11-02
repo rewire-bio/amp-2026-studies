@@ -110,7 +110,8 @@ def main() -> None:
                   lambda m: f'href="{REPO}/{"tree" if m.group(1).endswith("/") else "blob"}/main/{m.group(1)}"', body)
     toc = "".join(f'<a href="#{i}">{re.sub("<[^>]+>", "", t)}</a>'
                   for i, t in re.findall(r'<h2 id="([^"]+)">(.*?)</h2>', body))
-    page = TEMPLATE.replace("BODY", body).replace("TOC", toc).replace("REPO", REPO)
+    # Body last, so placeholder names inside the guide's text (PROTOCOL.md contains "TOC") are left alone.
+    page = TEMPLATE.replace("TOC", toc).replace("REPO", REPO).replace("BODY", body)
     (ROOT / "docs" / "index.html").write_text(page)
     print(f"wrote docs/index.html ({len(page):,} bytes)")
 

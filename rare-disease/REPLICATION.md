@@ -185,3 +185,10 @@ Eastern), which gnomAD leaves out of genome grpmax. Dropping mid changed the grp
 (all now kept) and returned case288 PAH. Before the fix the figures were a median of 49 and 34, lookups 70% and 79%,
 and AVI +7.5 [+0.5, +15.3] on the 200 and locked +0.8 [-3.4, +6.0] on the 500. The conclusion did not change. AF below 1% changes little (AVI locked +5.2 [-0.6,
 +11.4]). Results: `results/results[_<study>]_gnomad<af>[_grpmax].json`.
+
+Limit found later (1 November 2026): the background people are in gnomAD, so every background variant left after
+this filter has a gnomAD frequency, while most diagnostic variants have none. A real patient's private variants are
+absent from gnomAD and would stay in the list. The filtered lists here are therefore easier than a real patient's,
+and the lookups' 74 to 80% top 1 under grpmax may be too high
+([issue #1](https://github.com/rewire-bio/amp-2026-studies/issues/1)). The second run in
+[`../rare-disease-v2/`](../rare-disease-v2/) uses frequencies without the 1000 Genomes samples.

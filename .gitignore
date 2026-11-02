@@ -29,3 +29,10 @@ evo2-pipeline/.hf-cache/
 __pycache__/
 .DS_Store
 gpu-drift/out/
+# rare-disease-v2: same rules as rare-disease, plus the local EVEE table
+rare-disease-v2/data/**/scores_cadd.tsv
+rare-disease-v2/data/**/scores_revel.tsv
+rare-disease-v2/data/**/*.tbi
+rare-disease-v2/data/**/*.csi
+rare-disease-v2/data/evee/
+rare-disease-v2/figures/out/

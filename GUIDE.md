@@ -193,7 +193,11 @@ flowchart TB
    chromosomes it never saw ([`rare-disease/REPLICATION.md`](rare-disease/REPLICATION.md)).
 2. **Easy backgrounds.** Our backgrounds are rare in 1000 Genomes, but a real pipeline also removes anything common
    in gnomAD (Whiffin 2017). Leaving those in could make the task too easy for some scores, so we reran with a gnomAD
-   frequency filter.
+   frequency filter. A later review found a second problem the filter does not fix: the 1000 Genomes people are
+   themselves in gnomAD, so every background variant has a gnomAD frequency while most diagnostic variants have none.
+   A real patient's private variants are not in gnomAD. The second run in
+   [`rare-disease-v2/`](rare-disease-v2/) removes the 1000 Genomes samples from the frequencies
+   ([issue #1](https://github.com/rewire-bio/amp-2026-studies/issues/1)).
 3. **Luck.** Test five scores on 200 cases and one will look best partly by chance. So we froze the fitted model
    ("locked") and tested it on 500 new cases from 50 different people.
 4. **Weak baseline.** A new score can look useful only because the comparison was poor. So the baseline is all the
@@ -211,6 +215,7 @@ flowchart TB
     rep --> avi["AlphaGenome AVI added<br/>gain holds on new cases"]
     avi --> held["Held-out chromosomes<br/>AVI lead unchanged"]
     avi --> gn["gnomAD frequency filter<br/>AVI gain holds; indel gain halves"]
+    gn --> v2["Second run (planned)<br/>backgrounds out of gnomAD,<br/>grpmax filter built in"]
     ev["EVEE charts<br/>why variant-level AUROC misleads"] -.-> rd
     style rd fill:#fde2ef,stroke:#df007d
 ```
@@ -399,6 +404,28 @@ flowchart LR
 ```
 
 **Read first:** Pearce 2026 (EVEE).
+
+### 4.6 Rare-disease case tests, second run (planned)
+
+> **Question.** The same as 4.1, on the intellectual disability panel only: with the frequencies a real patient's
+> pipeline would see, does adding AlphaGenome AVI to the lookups still help on new cases?
+>
+> **Why.** Review of the first run found that the 1000 Genomes background people are in gnomAD, so "not in gnomAD"
+> alone picks out the diagnostic variant in about three quarters of cases
+> ([issue #1](https://github.com/rewire-bio/amp-2026-studies/issues/1)). It also found that the realistic grpmax
+> filter was only a side check, and that the combined model loses to the matching single tool within each variant
+> type ([issue #2](https://github.com/rewire-bio/amp-2026-studies/issues/2)).
+>
+> **Folder.** [`rare-disease-v2/`](rare-disease-v2/): [proposal](rare-disease-v2/PROPOSAL.md),
+> [protocol](rare-disease-v2/PROTOCOL.md) and [work plan](rare-disease-v2/PLAN.md).
+
+What changes: gnomAD frequencies without the 1000 Genomes samples; a grpmax filter below 0.1% built into the cases;
+one consequence annotation throughout; a rule-based baseline (each variant scored by the tool for its type) next to
+the combined lookups; shared bootstrap resamples, so adding a score never moves another interval. The scores are the
+four lookups and AVI, with GPN-MSA, GPN-Star and EVEE as secondary scores. Evo 2 is left out and can be added later on
+the frozen indel cases. The inherited cancer panel is dropped.
+
+Status: protocol written, not yet run. Until it is tagged, the numbers in 4.1 are the first run's.
 
 ## 5. Reading list, in order
 

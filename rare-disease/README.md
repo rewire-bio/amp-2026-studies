@@ -97,6 +97,12 @@ These are the first results. [`REPLICATION.md`](REPLICATION.md) tests them in th
 
 ## Limits
 
+- The background people are in gnomAD (1000 Genomes is part of it), so every background variant has a gnomAD
+  frequency while most diagnostic variants have none. A real patient's private variants are absent from gnomAD and
+  compete with the diagnostic one, so frequency, and scores that learned it such as AVI, look stronger here than in
+  practice. This also makes the gnomAD-filtered lists easier than a real patient's
+  ([issue #1](https://github.com/rewire-bio/amp-2026-studies/issues/1)). The second run in
+  [`../rare-disease-v2/`](../rare-disease-v2/) is designed to fix this.
 - The diagnostic variant is inserted, not observed. Real cases have phenotype, inheritance and segregation to work
   with.
 - ClinVar labels overlap with what some scores were trained on, which favours those scores on the diagnostic
