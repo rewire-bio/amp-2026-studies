@@ -1,0 +1,928 @@
+{
+  "study": "replication",
+  "analysis": "heldout",
+  "filter": {
+    "max_af": 0.001,
+    "background_frequency": "grpmax",
+    "diagnostic_frequency": "grpmax",
+    "inheritance_filter": true,
+    "cases_before": 500,
+    "variants_before": 80870,
+    "cases_lost_diagnostic": 0,
+    "variants_after_frequency": 20580,
+    "unrecognised_moi_values_kept": [],
+    "rows_without_gene": 0,
+    "variants_after_inheritance": 11856,
+    "background_indels_in_inheritance_count": 1381,
+    "variants_after_dropping_other_type": 10475,
+    "description": "background grpmax below 0.001, diagnostics full gnomAD grpmax below 0.001; background inheritance filter; background indels dropped after filtering"
+  },
+  "load_notes": {
+    "case_variants_without_mane_cadd_row": 0,
+    "diagnostic_class_differs_from_cases_tsv": 0
+  },
+  "cases": 500,
+  "people": 50,
+  "median_variants_per_case": 19.0,
+  "coverage": {
+    "CADD": {
+      "variants": 10475,
+      "diagnostics": 500
+    },
+    "SpliceAI": {
+      "variants": 8729,
+      "diagnostics": 484
+    },
+    "REVEL": {
+      "variants": 2090,
+      "diagnostics": 168
+    },
+    "AlphaMissense": {
+      "variants": 1885,
+      "diagnostics": 143
+    },
+    "AVI": {
+      "variants": 10475,
+      "diagnostics": 500
+    },
+    "GPN-MSA": {
+      "variants": 10475,
+      "diagnostics": 500
+    },
+    "GPN-Star-V": {
+      "variants": 10475,
+      "diagnostics": 500
+    },
+    "GPN-Star-M": {
+      "variants": 10475,
+      "diagnostics": 500
+    }
+  },
+  "scores_without_coverage": [],
+  "dropped_scores": [],
+  "model_classes": {
+    "training_diagnostics_per_class": {
+      "canonical_splice": 40,
+      "intronic": 38,
+      "missense": 60,
+      "nonsense": 30,
+      "splice_region": 23,
+      "synonymous": 6,
+      "utr": 3
+    },
+    "merged_into_other": [
+      "synonymous",
+      "utr"
+    ],
+    "model_classes": [
+      "canonical_splice",
+      "intronic",
+      "missense",
+      "nonsense",
+      "other",
+      "splice_region"
+    ],
+    "training_set": "the 200 SNV cases"
+  },
+  "fits": "cross-validated (5-fold by person); locked: fitted on the 200 SNV cases under the main filters (grpmax below 0.1%, inheritance filter)",
+  "intervals": "1000 resamples of people per stratum, seed sha256('replication/heldout/<stratum>')",
+  "package_versions": {
+    "python": "3.12.14",
+    "numpy": "2.5.4",
+    "pandas": "3.1.0",
+    "scikit-learn": "1.9.1",
+    "scipy": "1.18.1",
+    "joblib": "1.6.0",
+    "threadpoolctl": "3.7.0"
+  },
+  "heldout": {
+    "training_chromosomes": {
+      "cases": 124,
+      "median_variants_per_case": 5.0,
+      "scores": {
+        "CADD": {
+          "median_competitors": 0.0,
+          "top_1": 0.8145,
+          "top_1_ci95": [
+            0.7385,
+            0.8828
+          ],
+          "top_5": 0.9919,
+          "top_5_ci95": [
+            0.9741,
+            1.0
+          ],
+          "top_10": 1.0,
+          "top_10_ci95": [
+            1.0,
+            1.0
+          ]
+        },
+        "SpliceAI": {
+          "median_competitors": 0.0,
+          "top_1": 0.6855,
+          "top_1_ci95": [
+            0.6148,
+            0.7611
+          ],
+          "top_5": 0.9032,
+          "top_5_ci95": [
+            0.8461,
+            0.955
+          ],
+          "top_10": 0.9919,
+          "top_10_ci95": [
+            0.9735,
+            1.0
+          ]
+        },
+        "REVEL": {
+          "median_competitors": 3.0,
+          "top_1": 0.2742,
+          "top_1_ci95": [
+            0.2,
+            0.3583
+          ],
+          "top_5": 0.6452,
+          "top_5_ci95": [
+            0.5372,
+            0.7576
+          ],
+          "top_10": 0.8952,
+          "top_10_ci95": [
+            0.8151,
+            0.9627
+          ]
+        },
+        "AlphaMissense": {
+          "median_competitors": 3.0,
+          "top_1": 0.2419,
+          "top_1_ci95": [
+            0.1667,
+            0.3241
+          ],
+          "top_5": 0.621,
+          "top_5_ci95": [
+            0.5086,
+            0.7388
+          ],
+          "top_10": 0.8871,
+          "top_10_ci95": [
+            0.8056,
+            0.9549
+          ]
+        },
+        "AVI": {
+          "median_competitors": 0.0,
+          "top_1": 0.9032,
+          "top_1_ci95": [
+            0.8195,
+            0.9702
+          ],
+          "top_5": 1.0,
+          "top_5_ci95": [
+            1.0,
+            1.0
+          ],
+          "top_10": 1.0,
+          "top_10_ci95": [
+            1.0,
+            1.0
+          ]
+        },
+        "GPN-MSA": {
+          "median_competitors": 0.0,
+          "top_1": 0.7016,
+          "top_1_ci95": [
+            0.6101,
+            0.8038
+          ],
+          "top_5": 0.9516,
+          "top_5_ci95": [
+            0.9107,
+            0.9844
+          ],
+          "top_10": 1.0,
+          "top_10_ci95": [
+            1.0,
+            1.0
+          ]
+        },
+        "GPN-Star-V": {
+          "median_competitors": 0.0,
+          "top_1": 0.75,
+          "top_1_ci95": [
+            0.6535,
+            0.8348
+          ],
+          "top_5": 0.9677,
+          "top_5_ci95": [
+            0.935,
+            0.9923
+          ],
+          "top_10": 1.0,
+          "top_10_ci95": [
+            1.0,
+            1.0
+          ]
+        },
+        "GPN-Star-M": {
+          "median_competitors": 0.0,
+          "top_1": 0.7097,
+          "top_1_ci95": [
+            0.6031,
+            0.8034
+          ],
+          "top_5": 0.9758,
+          "top_5_ci95": [
+            0.9462,
+            1.0
+          ],
+          "top_10": 1.0,
+          "top_10_ci95": [
+            1.0,
+            1.0
+          ]
+        },
+        "Rule-based": {
+          "median_competitors": 0.0,
+          "top_1": 0.9516,
+          "top_1_ci95": [
+            0.914,
+            0.9832
+          ],
+          "top_5": 1.0,
+          "top_5_ci95": [
+            1.0,
+            1.0
+          ],
+          "top_10": 1.0,
+          "top_10_ci95": [
+            1.0,
+            1.0
+          ]
+        },
+        "Rule + AVI": {
+          "median_competitors": 0.0,
+          "top_1": 0.9597,
+          "top_1_ci95": [
+            0.9217,
+            0.9915
+          ],
+          "top_5": 1.0,
+          "top_5_ci95": [
+            1.0,
+            1.0
+          ],
+          "top_10": 1.0,
+          "top_10_ci95": [
+            1.0,
+            1.0
+          ]
+        },
+        "Lookups combined": {
+          "median_competitors": 0.0,
+          "top_1": 0.9516,
+          "top_1_ci95": [
+            0.9138,
+            0.9836
+          ],
+          "top_5": 1.0,
+          "top_5_ci95": [
+            1.0,
+            1.0
+          ],
+          "top_10": 1.0,
+          "top_10_ci95": [
+            1.0,
+            1.0
+          ]
+        },
+        "Lookups + AVI": {
+          "median_competitors": 0.0,
+          "top_1": 0.9516,
+          "top_1_ci95": [
+            0.9138,
+            0.9836
+          ],
+          "top_5": 1.0,
+          "top_5_ci95": [
+            1.0,
+            1.0
+          ],
+          "top_10": 1.0,
+          "top_10_ci95": [
+            1.0,
+            1.0
+          ]
+        },
+        "Lookups + GPN-MSA": {
+          "median_competitors": 0.0,
+          "top_1": 0.9435,
+          "top_1_ci95": [
+            0.9016,
+            0.978
+          ],
+          "top_5": 1.0,
+          "top_5_ci95": [
+            1.0,
+            1.0
+          ],
+          "top_10": 1.0,
+          "top_10_ci95": [
+            1.0,
+            1.0
+          ]
+        },
+        "Lookups + GPN-Star-V": {
+          "median_competitors": 0.0,
+          "top_1": 0.9435,
+          "top_1_ci95": [
+            0.9016,
+            0.978
+          ],
+          "top_5": 0.9919,
+          "top_5_ci95": [
+            0.9735,
+            1.0
+          ],
+          "top_10": 1.0,
+          "top_10_ci95": [
+            1.0,
+            1.0
+          ]
+        },
+        "Lookups + GPN-Star-M": {
+          "median_competitors": 0.0,
+          "top_1": 0.9435,
+          "top_1_ci95": [
+            0.9016,
+            0.978
+          ],
+          "top_5": 1.0,
+          "top_5_ci95": [
+            1.0,
+            1.0
+          ],
+          "top_10": 1.0,
+          "top_10_ci95": [
+            1.0,
+            1.0
+          ]
+        },
+        "Lookups combined (locked)": {
+          "median_competitors": 0.0,
+          "top_1": 0.9355,
+          "top_1_ci95": [
+            0.8809,
+            0.9818
+          ],
+          "top_5": 0.9758,
+          "top_5_ci95": [
+            0.9322,
+            1.0
+          ],
+          "top_10": 1.0,
+          "top_10_ci95": [
+            1.0,
+            1.0
+          ]
+        },
+        "Lookups + AVI (locked)": {
+          "median_competitors": 0.0,
+          "top_1": 0.9516,
+          "top_1_ci95": [
+            0.9016,
+            0.9921
+          ],
+          "top_5": 0.9758,
+          "top_5_ci95": [
+            0.9355,
+            1.0
+          ],
+          "top_10": 1.0,
+          "top_10_ci95": [
+            1.0,
+            1.0
+          ]
+        },
+        "Lookups + GPN-MSA (locked)": {
+          "median_competitors": 0.0,
+          "top_1": 0.9435,
+          "top_1_ci95": [
+            0.8906,
+            0.9841
+          ],
+          "top_5": 0.9758,
+          "top_5_ci95": [
+            0.9355,
+            1.0
+          ],
+          "top_10": 1.0,
+          "top_10_ci95": [
+            1.0,
+            1.0
+          ]
+        },
+        "Lookups + GPN-Star-V (locked)": {
+          "median_competitors": 0.0,
+          "top_1": 0.9355,
+          "top_1_ci95": [
+            0.8696,
+            0.9841
+          ],
+          "top_5": 0.9677,
+          "top_5_ci95": [
+            0.9237,
+            1.0
+          ],
+          "top_10": 1.0,
+          "top_10_ci95": [
+            1.0,
+            1.0
+          ]
+        },
+        "Lookups + GPN-Star-M (locked)": {
+          "median_competitors": 0.0,
+          "top_1": 0.9435,
+          "top_1_ci95": [
+            0.8906,
+            0.9841
+          ],
+          "top_5": 0.9677,
+          "top_5_ci95": [
+            0.9237,
+            1.0
+          ],
+          "top_10": 1.0,
+          "top_10_ci95": [
+            1.0,
+            1.0
+          ]
+        }
+      },
+      "contrasts": {
+        "Lookups + AVI (locked) minus Lookups combined (locked)": {
+          "role": "primary",
+          "top_1": 0.0161,
+          "top_1_ci95": [
+            0.0,
+            0.0417
+          ],
+          "top_5": 0.0,
+          "top_5_ci95": [
+            -0.0236,
+            0.0238
+          ],
+          "top_10": 0.0,
+          "top_10_ci95": [
+            0.0,
+            0.0
+          ]
+        },
+        "Rule + AVI minus Rule-based": {
+          "role": "key secondary",
+          "top_1": 0.0081,
+          "top_1_ci95": [
+            -0.0259,
+            0.0458
+          ],
+          "top_5": 0.0,
+          "top_5_ci95": [
+            0.0,
+            0.0
+          ],
+          "top_10": 0.0,
+          "top_10_ci95": [
+            0.0,
+            0.0
+          ]
+        }
+      }
+    },
+    "other_chromosomes": {
+      "cases": 376,
+      "median_variants_per_case": 13.0,
+      "scores": {
+        "CADD": {
+          "median_competitors": 0.0,
+          "top_1": 0.6436,
+          "top_1_ci95": [
+            0.559,
+            0.7281
+          ],
+          "top_5": 0.9362,
+          "top_5_ci95": [
+            0.9018,
+            0.9681
+          ],
+          "top_10": 0.9787,
+          "top_10_ci95": [
+            0.957,
+            0.9947
+          ]
+        },
+        "SpliceAI": {
+          "median_competitors": 0.0,
+          "top_1": 0.5798,
+          "top_1_ci95": [
+            0.5225,
+            0.6352
+          ],
+          "top_5": 0.734,
+          "top_5_ci95": [
+            0.6883,
+            0.7821
+          ],
+          "top_10": 0.8324,
+          "top_10_ci95": [
+            0.7865,
+            0.8831
+          ]
+        },
+        "REVEL": {
+          "median_competitors": 8.0,
+          "top_1": 0.3165,
+          "top_1_ci95": [
+            0.2696,
+            0.3617
+          ],
+          "top_5": 0.4149,
+          "top_5_ci95": [
+            0.3524,
+            0.4847
+          ],
+          "top_10": 0.5824,
+          "top_10_ci95": [
+            0.4881,
+            0.6758
+          ]
+        },
+        "AlphaMissense": {
+          "median_competitors": 8.0,
+          "top_1": 0.2633,
+          "top_1_ci95": [
+            0.2168,
+            0.3099
+          ],
+          "top_5": 0.3697,
+          "top_5_ci95": [
+            0.3013,
+            0.4427
+          ],
+          "top_10": 0.5532,
+          "top_10_ci95": [
+            0.4548,
+            0.654
+          ]
+        },
+        "AVI": {
+          "median_competitors": 0.0,
+          "top_1": 0.8617,
+          "top_1_ci95": [
+            0.8059,
+            0.9123
+          ],
+          "top_5": 0.9947,
+          "top_5_ci95": [
+            0.9867,
+            1.0
+          ],
+          "top_10": 1.0,
+          "top_10_ci95": [
+            1.0,
+            1.0
+          ]
+        },
+        "GPN-MSA": {
+          "median_competitors": 0.0,
+          "top_1": 0.5346,
+          "top_1_ci95": [
+            0.4568,
+            0.6185
+          ],
+          "top_5": 0.891,
+          "top_5_ci95": [
+            0.8512,
+            0.933
+          ],
+          "top_10": 0.9628,
+          "top_10_ci95": [
+            0.9321,
+            0.9866
+          ]
+        },
+        "GPN-Star-V": {
+          "median_competitors": 0.0,
+          "top_1": 0.641,
+          "top_1_ci95": [
+            0.5626,
+            0.7226
+          ],
+          "top_5": 0.9069,
+          "top_5_ci95": [
+            0.8591,
+            0.9506
+          ],
+          "top_10": 0.9654,
+          "top_10_ci95": [
+            0.9405,
+            0.9866
+          ]
+        },
+        "GPN-Star-M": {
+          "median_competitors": 0.0,
+          "top_1": 0.6144,
+          "top_1_ci95": [
+            0.5432,
+            0.6953
+          ],
+          "top_5": 0.9122,
+          "top_5_ci95": [
+            0.8753,
+            0.9471
+          ],
+          "top_10": 0.9814,
+          "top_10_ci95": [
+            0.963,
+            0.9948
+          ]
+        },
+        "Rule-based": {
+          "median_competitors": 0.0,
+          "top_1": 0.883,
+          "top_1_ci95": [
+            0.8427,
+            0.9203
+          ],
+          "top_5": 0.9761,
+          "top_5_ci95": [
+            0.9619,
+            0.9893
+          ],
+          "top_10": 0.9867,
+          "top_10_ci95": [
+            0.9733,
+            0.9973
+          ]
+        },
+        "Rule + AVI": {
+          "median_competitors": 0.0,
+          "top_1": 0.9069,
+          "top_1_ci95": [
+            0.8679,
+            0.9388
+          ],
+          "top_5": 0.9787,
+          "top_5_ci95": [
+            0.9649,
+            0.9896
+          ],
+          "top_10": 0.9894,
+          "top_10_ci95": [
+            0.9781,
+            0.9974
+          ]
+        },
+        "Lookups combined": {
+          "median_competitors": 0.0,
+          "top_1": 0.9309,
+          "top_1_ci95": [
+            0.891,
+            0.965
+          ],
+          "top_5": 0.9947,
+          "top_5_ci95": [
+            0.9865,
+            1.0
+          ],
+          "top_10": 1.0,
+          "top_10_ci95": [
+            1.0,
+            1.0
+          ]
+        },
+        "Lookups + AVI": {
+          "median_competitors": 0.0,
+          "top_1": 0.9441,
+          "top_1_ci95": [
+            0.9059,
+            0.9755
+          ],
+          "top_5": 0.9973,
+          "top_5_ci95": [
+            0.9919,
+            1.0
+          ],
+          "top_10": 1.0,
+          "top_10_ci95": [
+            1.0,
+            1.0
+          ]
+        },
+        "Lookups + GPN-MSA": {
+          "median_competitors": 0.0,
+          "top_1": 0.9388,
+          "top_1_ci95": [
+            0.9011,
+            0.9684
+          ],
+          "top_5": 0.9894,
+          "top_5_ci95": [
+            0.9786,
+            0.9974
+          ],
+          "top_10": 1.0,
+          "top_10_ci95": [
+            1.0,
+            1.0
+          ]
+        },
+        "Lookups + GPN-Star-V": {
+          "median_competitors": 0.0,
+          "top_1": 0.9415,
+          "top_1_ci95": [
+            0.9033,
+            0.973
+          ],
+          "top_5": 0.992,
+          "top_5_ci95": [
+            0.9816,
+            1.0
+          ],
+          "top_10": 0.9973,
+          "top_10_ci95": [
+            0.9918,
+            1.0
+          ]
+        },
+        "Lookups + GPN-Star-M": {
+          "median_competitors": 0.0,
+          "top_1": 0.9335,
+          "top_1_ci95": [
+            0.893,
+            0.9681
+          ],
+          "top_5": 0.9947,
+          "top_5_ci95": [
+            0.9864,
+            1.0
+          ],
+          "top_10": 1.0,
+          "top_10_ci95": [
+            1.0,
+            1.0
+          ]
+        },
+        "Lookups combined (locked)": {
+          "median_competitors": 0.0,
+          "top_1": 0.9122,
+          "top_1_ci95": [
+            0.8813,
+            0.9412
+          ],
+          "top_5": 0.984,
+          "top_5_ci95": [
+            0.9716,
+            0.9947
+          ],
+          "top_10": 0.992,
+          "top_10_ci95": [
+            0.9816,
+            1.0
+          ]
+        },
+        "Lookups + AVI (locked)": {
+          "median_competitors": 0.0,
+          "top_1": 0.9335,
+          "top_1_ci95": [
+            0.9062,
+            0.9596
+          ],
+          "top_5": 0.9894,
+          "top_5_ci95": [
+            0.9786,
+            0.9974
+          ],
+          "top_10": 0.9947,
+          "top_10_ci95": [
+            0.9866,
+            1.0
+          ]
+        },
+        "Lookups + GPN-MSA (locked)": {
+          "median_competitors": 0.0,
+          "top_1": 0.9096,
+          "top_1_ci95": [
+            0.8733,
+            0.9426
+          ],
+          "top_5": 0.9814,
+          "top_5_ci95": [
+            0.9681,
+            0.9922
+          ],
+          "top_10": 0.9947,
+          "top_10_ci95": [
+            0.9867,
+            1.0
+          ]
+        },
+        "Lookups + GPN-Star-V (locked)": {
+          "median_competitors": 0.0,
+          "top_1": 0.9176,
+          "top_1_ci95": [
+            0.8839,
+            0.9478
+          ],
+          "top_5": 0.9867,
+          "top_5_ci95": [
+            0.9753,
+            0.9973
+          ],
+          "top_10": 0.992,
+          "top_10_ci95": [
+            0.9817,
+            1.0
+          ]
+        },
+        "Lookups + GPN-Star-M (locked)": {
+          "median_competitors": 0.0,
+          "top_1": 0.9122,
+          "top_1_ci95": [
+            0.8753,
+            0.9464
+          ],
+          "top_5": 0.9814,
+          "top_5_ci95": [
+            0.9683,
+            0.9923
+          ],
+          "top_10": 0.9947,
+          "top_10_ci95": [
+            0.9867,
+            1.0
+          ]
+        }
+      },
+      "contrasts": {
+        "Lookups + AVI (locked) minus Lookups combined (locked)": {
+          "role": "primary",
+          "top_1": 0.0213,
+          "top_1_ci95": [
+            -0.0028,
+            0.0456
+          ],
+          "top_5": 0.0053,
+          "top_5_ci95": [
+            -0.0053,
+            0.0161
+          ],
+          "top_10": 0.0027,
+          "top_10_ci95": [
+            -0.0055,
+            0.0112
+          ]
+        },
+        "Rule + AVI minus Rule-based": {
+          "role": "key secondary",
+          "top_1": 0.0239,
+          "top_1_ci95": [
+            0.0053,
+            0.0472
+          ],
+          "top_5": 0.0027,
+          "top_5_ci95": [
+            0.0,
+            0.0081
+          ],
+          "top_10": 0.0027,
+          "top_10_ci95": [
+            0.0,
+            0.0082
+          ]
+        }
+      }
+    },
+    "difference": {
+      "primary": {
+        "contrast": "Lookups + AVI (locked) minus Lookups combined (locked)",
+        "top_1_training_minus_other": -0.0051,
+        "top_1_ci95": [
+          -0.0366,
+          0.031
+        ],
+        "possibly_inflated_by_training_overlap": false
+      },
+      "key secondary": {
+        "contrast": "Rule + AVI minus Rule-based",
+        "top_1_training_minus_other": -0.0159,
+        "top_1_ci95": [
+          -0.0563,
+          0.0253
+        ]
+      }
+    },
+    "note": "Each split's resamples are the same draws of people (seed label '<study>/heldout/splits'), so the difference between splits is paired by person."
+  }
+}

@@ -1,0 +1,7123 @@
+{
+  "study": "replication",
+  "analysis": "bg1pct",
+  "filter": {
+    "max_af": 0.01,
+    "background_frequency": "grpmax",
+    "diagnostic_frequency": "grpmax",
+    "inheritance_filter": true,
+    "cases_before": 500,
+    "variants_before": 80870,
+    "cases_lost_diagnostic": 0,
+    "variants_after_frequency": 80870,
+    "unrecognised_moi_values_kept": [],
+    "rows_without_gene": 0,
+    "variants_after_inheritance": 49512,
+    "background_indels_in_inheritance_count": 7191,
+    "variants_after_dropping_other_type": 42321,
+    "description": "background grpmax below 0.01, diagnostics full gnomAD grpmax below 0.01; background inheritance filter; background indels dropped after filtering"
+  },
+  "load_notes": {
+    "case_variants_without_mane_cadd_row": 0,
+    "diagnostic_class_differs_from_cases_tsv": 0
+  },
+  "cases": 500,
+  "people": 50,
+  "median_variants_per_case": 69.5,
+  "coverage": {
+    "CADD": {
+      "variants": 42321,
+      "diagnostics": 500
+    },
+    "SpliceAI": {
+      "variants": 35564,
+      "diagnostics": 484
+    },
+    "REVEL": {
+      "variants": 7017,
+      "diagnostics": 168
+    },
+    "AlphaMissense": {
+      "variants": 5982,
+      "diagnostics": 143
+    },
+    "AVI": {
+      "variants": 42321,
+      "diagnostics": 500
+    },
+    "GPN-MSA": {
+      "variants": 42321,
+      "diagnostics": 500
+    },
+    "GPN-Star-V": {
+      "variants": 42321,
+      "diagnostics": 500
+    },
+    "GPN-Star-M": {
+      "variants": 42321,
+      "diagnostics": 500
+    }
+  },
+  "scores_without_coverage": [],
+  "dropped_scores": [],
+  "model_classes": {
+    "training_diagnostics_per_class": {
+      "canonical_splice": 40,
+      "intronic": 38,
+      "missense": 60,
+      "nonsense": 30,
+      "splice_region": 23,
+      "synonymous": 6,
+      "utr": 3
+    },
+    "merged_into_other": [
+      "synonymous",
+      "utr"
+    ],
+    "model_classes": [
+      "canonical_splice",
+      "intronic",
+      "missense",
+      "nonsense",
+      "other",
+      "splice_region"
+    ],
+    "training_set": "the 200 SNV cases"
+  },
+  "fits": "cross-validated (5-fold by person); locked: fitted on the 200 SNV cases under the bg1pct filters (grpmax below 1%, inheritance filter)",
+  "intervals": "1000 resamples of people per stratum, seed sha256('replication/bg1pct/<stratum>')",
+  "package_versions": {
+    "python": "3.12.14",
+    "numpy": "2.5.4",
+    "pandas": "3.1.0",
+    "scikit-learn": "1.9.1",
+    "scipy": "1.18.1",
+    "joblib": "1.6.0",
+    "threadpoolctl": "3.7.0"
+  },
+  "rule_ties": {
+    "Rule-based": 0.004,
+    "Rule + AVI": 0.0
+  },
+  "strata": {
+    "all": {
+      "cases": 500,
+      "people": 50,
+      "small": false,
+      "scores": {
+        "CADD": {
+          "median_competitors": 1.0,
+          "top_1": 0.442,
+          "top_1_ci95": [
+            0.382,
+            0.508
+          ],
+          "top_5": 0.768,
+          "top_5_ci95": [
+            0.718,
+            0.816
+          ],
+          "top_10": 0.88,
+          "top_10_ci95": [
+            0.8419,
+            0.9161
+          ]
+        },
+        "SpliceAI": {
+          "median_competitors": 1.0,
+          "top_1": 0.496,
+          "top_1_ci95": [
+            0.45,
+            0.546
+          ],
+          "top_5": 0.632,
+          "top_5_ci95": [
+            0.592,
+            0.676
+          ],
+          "top_10": 0.66,
+          "top_10_ci95": [
+            0.622,
+            0.7
+          ]
+        },
+        "REVEL": {
+          "median_competitors": 57.0,
+          "top_1": 0.256,
+          "top_1_ci95": [
+            0.218,
+            0.294
+          ],
+          "top_5": 0.314,
+          "top_5_ci95": [
+            0.274,
+            0.35
+          ],
+          "top_10": 0.324,
+          "top_10_ci95": [
+            0.284,
+            0.36
+          ]
+        },
+        "AlphaMissense": {
+          "median_competitors": 61.0,
+          "top_1": 0.222,
+          "top_1_ci95": [
+            0.19,
+            0.256
+          ],
+          "top_5": 0.276,
+          "top_5_ci95": [
+            0.238,
+            0.31
+          ],
+          "top_10": 0.286,
+          "top_10_ci95": [
+            0.246,
+            0.322
+          ]
+        },
+        "AVI": {
+          "median_competitors": 0.0,
+          "top_1": 0.714,
+          "top_1_ci95": [
+            0.652,
+            0.7741
+          ],
+          "top_5": 0.926,
+          "top_5_ci95": [
+            0.9,
+            0.95
+          ],
+          "top_10": 0.964,
+          "top_10_ci95": [
+            0.946,
+            0.98
+          ]
+        },
+        "GPN-MSA": {
+          "median_competitors": 2.0,
+          "top_1": 0.36,
+          "top_1_ci95": [
+            0.294,
+            0.424
+          ],
+          "top_5": 0.666,
+          "top_5_ci95": [
+            0.618,
+            0.712
+          ],
+          "top_10": 0.788,
+          "top_10_ci95": [
+            0.75,
+            0.826
+          ]
+        },
+        "GPN-Star-V": {
+          "median_competitors": 1.0,
+          "top_1": 0.478,
+          "top_1_ci95": [
+            0.4199,
+            0.54
+          ],
+          "top_5": 0.714,
+          "top_5_ci95": [
+            0.664,
+            0.766
+          ],
+          "top_10": 0.846,
+          "top_10_ci95": [
+            0.808,
+            0.882
+          ]
+        },
+        "GPN-Star-M": {
+          "median_competitors": 1.0,
+          "top_1": 0.402,
+          "top_1_ci95": [
+            0.338,
+            0.466
+          ],
+          "top_5": 0.702,
+          "top_5_ci95": [
+            0.652,
+            0.756
+          ],
+          "top_10": 0.832,
+          "top_10_ci95": [
+            0.788,
+            0.876
+          ]
+        },
+        "Rule-based": {
+          "median_competitors": 0.0,
+          "top_1": 0.748,
+          "top_1_ci95": [
+            0.68,
+            0.81
+          ],
+          "top_5": 0.938,
+          "top_5_ci95": [
+            0.916,
+            0.958
+          ],
+          "top_10": 0.97,
+          "top_10_ci95": [
+            0.956,
+            0.984
+          ]
+        },
+        "Rule + AVI": {
+          "median_competitors": 0.0,
+          "top_1": 0.8,
+          "top_1_ci95": [
+            0.738,
+            0.854
+          ],
+          "top_5": 0.944,
+          "top_5_ci95": [
+            0.924,
+            0.964
+          ],
+          "top_10": 0.97,
+          "top_10_ci95": [
+            0.956,
+            0.984
+          ]
+        },
+        "Lookups combined": {
+          "median_competitors": 0.0,
+          "top_1": 0.824,
+          "top_1_ci95": [
+            0.76,
+            0.878
+          ],
+          "top_5": 0.962,
+          "top_5_ci95": [
+            0.942,
+            0.98
+          ],
+          "top_10": 0.976,
+          "top_10_ci95": [
+            0.964,
+            0.988
+          ]
+        },
+        "Lookups + AVI": {
+          "median_competitors": 0.0,
+          "top_1": 0.838,
+          "top_1_ci95": [
+            0.776,
+            0.89
+          ],
+          "top_5": 0.972,
+          "top_5_ci95": [
+            0.96,
+            0.984
+          ],
+          "top_10": 0.98,
+          "top_10_ci95": [
+            0.968,
+            0.99
+          ]
+        },
+        "Lookups + GPN-MSA": {
+          "median_competitors": 0.0,
+          "top_1": 0.836,
+          "top_1_ci95": [
+            0.778,
+            0.884
+          ],
+          "top_5": 0.966,
+          "top_5_ci95": [
+            0.946,
+            0.982
+          ],
+          "top_10": 0.974,
+          "top_10_ci95": [
+            0.962,
+            0.986
+          ]
+        },
+        "Lookups + GPN-Star-V": {
+          "median_competitors": 0.0,
+          "top_1": 0.834,
+          "top_1_ci95": [
+            0.7759,
+            0.8821
+          ],
+          "top_5": 0.964,
+          "top_5_ci95": [
+            0.948,
+            0.98
+          ],
+          "top_10": 0.978,
+          "top_10_ci95": [
+            0.966,
+            0.99
+          ]
+        },
+        "Lookups + GPN-Star-M": {
+          "median_competitors": 0.0,
+          "top_1": 0.816,
+          "top_1_ci95": [
+            0.754,
+            0.87
+          ],
+          "top_5": 0.966,
+          "top_5_ci95": [
+            0.95,
+            0.982
+          ],
+          "top_10": 0.982,
+          "top_10_ci95": [
+            0.972,
+            0.992
+          ]
+        },
+        "Lookups combined (locked)": {
+          "median_competitors": 0.0,
+          "top_1": 0.82,
+          "top_1_ci95": [
+            0.764,
+            0.872
+          ],
+          "top_5": 0.94,
+          "top_5_ci95": [
+            0.916,
+            0.962
+          ],
+          "top_10": 0.956,
+          "top_10_ci95": [
+            0.936,
+            0.976
+          ]
+        },
+        "Lookups + AVI (locked)": {
+          "median_competitors": 0.0,
+          "top_1": 0.808,
+          "top_1_ci95": [
+            0.74,
+            0.864
+          ],
+          "top_5": 0.958,
+          "top_5_ci95": [
+            0.936,
+            0.98
+          ],
+          "top_10": 0.97,
+          "top_10_ci95": [
+            0.948,
+            0.988
+          ]
+        },
+        "Lookups + GPN-MSA (locked)": {
+          "median_competitors": 0.0,
+          "top_1": 0.824,
+          "top_1_ci95": [
+            0.776,
+            0.872
+          ],
+          "top_5": 0.938,
+          "top_5_ci95": [
+            0.914,
+            0.96
+          ],
+          "top_10": 0.958,
+          "top_10_ci95": [
+            0.936,
+            0.978
+          ]
+        },
+        "Lookups + GPN-Star-V (locked)": {
+          "median_competitors": 0.0,
+          "top_1": 0.824,
+          "top_1_ci95": [
+            0.774,
+            0.87
+          ],
+          "top_5": 0.944,
+          "top_5_ci95": [
+            0.92,
+            0.964
+          ],
+          "top_10": 0.962,
+          "top_10_ci95": [
+            0.942,
+            0.98
+          ]
+        },
+        "Lookups + GPN-Star-M (locked)": {
+          "median_competitors": 0.0,
+          "top_1": 0.842,
+          "top_1_ci95": [
+            0.792,
+            0.89
+          ],
+          "top_5": 0.948,
+          "top_5_ci95": [
+            0.926,
+            0.97
+          ],
+          "top_10": 0.96,
+          "top_10_ci95": [
+            0.938,
+            0.98
+          ]
+        }
+      },
+      "rule_ties": {
+        "Rule-based": 0.004,
+        "Rule + AVI": 0.0
+      },
+      "contrasts": {
+        "Lookups + AVI minus Lookups combined": {
+          "role": "primary contrast, cross-validated (descriptive)",
+          "top_1": 0.014,
+          "top_1_ci95": [
+            -0.02,
+            0.046
+          ],
+          "top_5": 0.01,
+          "top_5_ci95": [
+            0.0,
+            0.022
+          ],
+          "top_10": 0.004,
+          "top_10_ci95": [
+            0.0,
+            0.01
+          ],
+          "confirmatory": false
+        },
+        "Lookups combined minus Rule-based": {
+          "role": "descriptive",
+          "top_1": 0.076,
+          "top_1_ci95": [
+            0.02,
+            0.136
+          ],
+          "top_5": 0.024,
+          "top_5_ci95": [
+            0.008,
+            0.04
+          ],
+          "top_10": 0.006,
+          "top_10_ci95": [
+            -0.006,
+            0.018
+          ]
+        },
+        "Lookups + AVI minus Rule-based": {
+          "role": "descriptive",
+          "top_1": 0.09,
+          "top_1_ci95": [
+            0.026,
+            0.15
+          ],
+          "top_5": 0.034,
+          "top_5_ci95": [
+            0.018,
+            0.048
+          ],
+          "top_10": 0.01,
+          "top_10_ci95": [
+            -0.004,
+            0.022
+          ]
+        },
+        "Lookups + GPN-MSA minus Lookups combined": {
+          "role": "secondary, cross-validated (descriptive)",
+          "top_1": 0.012,
+          "top_1_ci95": [
+            -0.004,
+            0.032
+          ],
+          "top_1_ci98.33": [
+            -0.008,
+            0.036
+          ],
+          "top_5": 0.004,
+          "top_5_ci95": [
+            0.0,
+            0.01
+          ],
+          "top_5_ci98.33": [
+            0.0,
+            0.012
+          ],
+          "top_10": -0.002,
+          "top_10_ci95": [
+            -0.006,
+            0.0
+          ],
+          "top_10_ci98.33": [
+            -0.008,
+            0.0
+          ]
+        },
+        "Lookups + GPN-Star-V minus Lookups combined": {
+          "role": "secondary, cross-validated (descriptive)",
+          "top_1": 0.01,
+          "top_1_ci95": [
+            -0.006,
+            0.03
+          ],
+          "top_1_ci98.33": [
+            -0.008,
+            0.036
+          ],
+          "top_5": 0.002,
+          "top_5_ci95": [
+            -0.006,
+            0.008
+          ],
+          "top_5_ci98.33": [
+            -0.006,
+            0.01
+          ],
+          "top_10": 0.002,
+          "top_10_ci95": [
+            -0.004,
+            0.008
+          ],
+          "top_10_ci98.33": [
+            -0.006,
+            0.0113
+          ]
+        },
+        "Lookups + GPN-Star-M minus Lookups combined": {
+          "role": "secondary, cross-validated (descriptive)",
+          "top_1": -0.008,
+          "top_1_ci95": [
+            -0.03,
+            0.018
+          ],
+          "top_1_ci98.33": [
+            -0.0353,
+            0.022
+          ],
+          "top_5": 0.004,
+          "top_5_ci95": [
+            0.0,
+            0.01
+          ],
+          "top_5_ci98.33": [
+            0.0,
+            0.012
+          ],
+          "top_10": 0.006,
+          "top_10_ci95": [
+            0.0,
+            0.012
+          ],
+          "top_10_ci98.33": [
+            0.0,
+            0.0153
+          ]
+        },
+        "Lookups + AVI (locked) minus Lookups combined (locked)": {
+          "role": "primary",
+          "top_1": -0.012,
+          "top_1_ci95": [
+            -0.066,
+            0.032
+          ],
+          "top_5": 0.018,
+          "top_5_ci95": [
+            0.002,
+            0.034
+          ],
+          "top_10": 0.014,
+          "top_10_ci95": [
+            0.002,
+            0.026
+          ],
+          "confirmatory": true,
+          "verdict": "Inconclusive"
+        },
+        "Lookups combined (locked) minus Rule-based": {
+          "role": "descriptive",
+          "top_1": 0.072,
+          "top_1_ci95": [
+            0.034,
+            0.114
+          ],
+          "top_5": 0.002,
+          "top_5_ci95": [
+            -0.016,
+            0.02
+          ],
+          "top_10": -0.014,
+          "top_10_ci95": [
+            -0.032,
+            0.002
+          ]
+        },
+        "Lookups + AVI (locked) minus Rule-based": {
+          "role": "descriptive",
+          "top_1": 0.06,
+          "top_1_ci95": [
+            -0.01,
+            0.13
+          ],
+          "top_5": 0.02,
+          "top_5_ci95": [
+            0.0,
+            0.036
+          ],
+          "top_10": 0.0,
+          "top_10_ci95": [
+            -0.018,
+            0.016
+          ]
+        },
+        "Lookups + GPN-MSA (locked) minus Lookups combined (locked)": {
+          "role": "secondary, Bonferroni-adjusted",
+          "top_1": 0.004,
+          "top_1_ci95": [
+            -0.018,
+            0.028
+          ],
+          "top_1_ci98.33": [
+            -0.024,
+            0.036
+          ],
+          "top_5": -0.002,
+          "top_5_ci95": [
+            -0.012,
+            0.006
+          ],
+          "top_5_ci98.33": [
+            -0.014,
+            0.006
+          ],
+          "top_10": 0.002,
+          "top_10_ci95": [
+            -0.004,
+            0.008
+          ],
+          "top_10_ci98.33": [
+            -0.006,
+            0.01
+          ]
+        },
+        "Lookups + GPN-Star-V (locked) minus Lookups combined (locked)": {
+          "role": "secondary, Bonferroni-adjusted",
+          "top_1": 0.004,
+          "top_1_ci95": [
+            -0.022,
+            0.034
+          ],
+          "top_1_ci98.33": [
+            -0.03,
+            0.038
+          ],
+          "top_5": 0.004,
+          "top_5_ci95": [
+            -0.006,
+            0.014
+          ],
+          "top_5_ci98.33": [
+            -0.008,
+            0.016
+          ],
+          "top_10": 0.006,
+          "top_10_ci95": [
+            -0.002,
+            0.014
+          ],
+          "top_10_ci98.33": [
+            -0.004,
+            0.0193
+          ]
+        },
+        "Lookups + GPN-Star-M (locked) minus Lookups combined (locked)": {
+          "role": "secondary, Bonferroni-adjusted",
+          "top_1": 0.022,
+          "top_1_ci95": [
+            0.002,
+            0.044
+          ],
+          "top_1_ci98.33": [
+            -0.002,
+            0.0513
+          ],
+          "top_5": 0.008,
+          "top_5_ci95": [
+            -0.002,
+            0.02
+          ],
+          "top_5_ci98.33": [
+            -0.0053,
+            0.022
+          ],
+          "top_10": 0.004,
+          "top_10_ci95": [
+            -0.004,
+            0.012
+          ],
+          "top_10_ci98.33": [
+            -0.004,
+            0.014
+          ]
+        },
+        "Rule + AVI minus Rule-based": {
+          "role": "key secondary",
+          "top_1": 0.052,
+          "top_1_ci95": [
+            0.014,
+            0.096
+          ],
+          "top_5": 0.006,
+          "top_5_ci95": [
+            -0.002,
+            0.016
+          ],
+          "top_10": 0.0,
+          "top_10_ci95": [
+            -0.01,
+            0.008
+          ]
+        }
+      },
+      "seed_label": "replication/bg1pct/all"
+    },
+    "canonical_splice": {
+      "cases": 100,
+      "people": 44,
+      "small": false,
+      "scores": {
+        "CADD": {
+          "median_competitors": 0.0,
+          "top_1": 0.76,
+          "top_1_ci95": [
+            0.6442,
+            0.8587
+          ],
+          "top_5": 0.99,
+          "top_5_ci95": [
+            0.9681,
+            1.0
+          ],
+          "top_10": 1.0,
+          "top_10_ci95": [
+            1.0,
+            1.0
+          ]
+        },
+        "SpliceAI": {
+          "median_competitors": 0.0,
+          "top_1": 0.95,
+          "top_1_ci95": [
+            0.8969,
+            0.9903
+          ],
+          "top_5": 0.98,
+          "top_5_ci95": [
+            0.9375,
+            1.0
+          ],
+          "top_10": 0.98,
+          "top_10_ci95": [
+            0.9375,
+            1.0
+          ]
+        },
+        "REVEL": {
+          "median_competitors": 67.0,
+          "top_1": 0.0,
+          "top_1_ci95": [
+            0.0,
+            0.0
+          ],
+          "top_5": 0.01,
+          "top_5_ci95": [
+            0.0,
+            0.0333
+          ],
+          "top_10": 0.01,
+          "top_10_ci95": [
+            0.0,
+            0.0333
+          ]
+        },
+        "AlphaMissense": {
+          "median_competitors": 67.0,
+          "top_1": 0.0,
+          "top_1_ci95": [
+            0.0,
+            0.0
+          ],
+          "top_5": 0.0,
+          "top_5_ci95": [
+            0.0,
+            0.0
+          ],
+          "top_10": 0.0,
+          "top_10_ci95": [
+            0.0,
+            0.0
+          ]
+        },
+        "AVI": {
+          "median_competitors": 0.0,
+          "top_1": 0.93,
+          "top_1_ci95": [
+            0.8706,
+            0.981
+          ],
+          "top_5": 1.0,
+          "top_5_ci95": [
+            1.0,
+            1.0
+          ],
+          "top_10": 1.0,
+          "top_10_ci95": [
+            1.0,
+            1.0
+          ]
+        },
+        "GPN-MSA": {
+          "median_competitors": 0.0,
+          "top_1": 0.61,
+          "top_1_ci95": [
+            0.4857,
+            0.7342
+          ],
+          "top_5": 0.9,
+          "top_5_ci95": [
+            0.8317,
+            0.9515
+          ],
+          "top_10": 0.96,
+          "top_10_ci95": [
+            0.9196,
+            0.9909
+          ]
+        },
+        "GPN-Star-V": {
+          "median_competitors": 0.0,
+          "top_1": 0.74,
+          "top_1_ci95": [
+            0.6355,
+            0.8403
+          ],
+          "top_5": 0.94,
+          "top_5_ci95": [
+            0.8969,
+            0.9794
+          ],
+          "top_10": 0.98,
+          "top_10_ci95": [
+            0.9491,
+            1.0
+          ]
+        },
+        "GPN-Star-M": {
+          "median_competitors": 0.0,
+          "top_1": 0.72,
+          "top_1_ci95": [
+            0.6344,
+            0.8041
+          ],
+          "top_5": 0.93,
+          "top_5_ci95": [
+            0.88,
+            0.9773
+          ],
+          "top_10": 0.97,
+          "top_10_ci95": [
+            0.9358,
+            1.0
+          ]
+        },
+        "Rule-based": {
+          "median_competitors": 0.0,
+          "top_1": 0.97,
+          "top_1_ci95": [
+            0.9158,
+            1.0
+          ],
+          "top_5": 1.0,
+          "top_5_ci95": [
+            1.0,
+            1.0
+          ],
+          "top_10": 1.0,
+          "top_10_ci95": [
+            1.0,
+            1.0
+          ]
+        },
+        "Rule + AVI": {
+          "median_competitors": 0.0,
+          "top_1": 0.97,
+          "top_1_ci95": [
+            0.9195,
+            1.0
+          ],
+          "top_5": 1.0,
+          "top_5_ci95": [
+            1.0,
+            1.0
+          ],
+          "top_10": 1.0,
+          "top_10_ci95": [
+            1.0,
+            1.0
+          ]
+        },
+        "Lookups combined": {
+          "median_competitors": 0.0,
+          "top_1": 0.88,
+          "top_1_ci95": [
+            0.78,
+            0.9623
+          ],
+          "top_5": 1.0,
+          "top_5_ci95": [
+            1.0,
+            1.0
+          ],
+          "top_10": 1.0,
+          "top_10_ci95": [
+            1.0,
+            1.0
+          ]
+        },
+        "Lookups + AVI": {
+          "median_competitors": 0.0,
+          "top_1": 0.88,
+          "top_1_ci95": [
+            0.7849,
+            0.9588
+          ],
+          "top_5": 1.0,
+          "top_5_ci95": [
+            1.0,
+            1.0
+          ],
+          "top_10": 1.0,
+          "top_10_ci95": [
+            1.0,
+            1.0
+          ]
+        },
+        "Lookups + GPN-MSA": {
+          "median_competitors": 0.0,
+          "top_1": 0.92,
+          "top_1_ci95": [
+            0.8462,
+            0.981
+          ],
+          "top_5": 1.0,
+          "top_5_ci95": [
+            1.0,
+            1.0
+          ],
+          "top_10": 1.0,
+          "top_10_ci95": [
+            1.0,
+            1.0
+          ]
+        },
+        "Lookups + GPN-Star-V": {
+          "median_competitors": 0.0,
+          "top_1": 0.89,
+          "top_1_ci95": [
+            0.7865,
+            0.97
+          ],
+          "top_5": 1.0,
+          "top_5_ci95": [
+            1.0,
+            1.0
+          ],
+          "top_10": 1.0,
+          "top_10_ci95": [
+            1.0,
+            1.0
+          ]
+        },
+        "Lookups + GPN-Star-M": {
+          "median_competitors": 0.0,
+          "top_1": 0.87,
+          "top_1_ci95": [
+            0.7699,
+            0.9533
+          ],
+          "top_5": 1.0,
+          "top_5_ci95": [
+            1.0,
+            1.0
+          ],
+          "top_10": 1.0,
+          "top_10_ci95": [
+            1.0,
+            1.0
+          ]
+        },
+        "Lookups combined (locked)": {
+          "median_competitors": 0.0,
+          "top_1": 0.91,
+          "top_1_ci95": [
+            0.8491,
+            0.9615
+          ],
+          "top_5": 1.0,
+          "top_5_ci95": [
+            1.0,
+            1.0
+          ],
+          "top_10": 1.0,
+          "top_10_ci95": [
+            1.0,
+            1.0
+          ]
+        },
+        "Lookups + AVI (locked)": {
+          "median_competitors": 0.0,
+          "top_1": 0.84,
+          "top_1_ci95": [
+            0.7423,
+            0.9186
+          ],
+          "top_5": 1.0,
+          "top_5_ci95": [
+            1.0,
+            1.0
+          ],
+          "top_10": 1.0,
+          "top_10_ci95": [
+            1.0,
+            1.0
+          ]
+        },
+        "Lookups + GPN-MSA (locked)": {
+          "median_competitors": 0.0,
+          "top_1": 0.94,
+          "top_1_ci95": [
+            0.8929,
+            0.9794
+          ],
+          "top_5": 1.0,
+          "top_5_ci95": [
+            1.0,
+            1.0
+          ],
+          "top_10": 1.0,
+          "top_10_ci95": [
+            1.0,
+            1.0
+          ]
+        },
+        "Lookups + GPN-Star-V (locked)": {
+          "median_competitors": 0.0,
+          "top_1": 0.92,
+          "top_1_ci95": [
+            0.86,
+            0.9712
+          ],
+          "top_5": 0.99,
+          "top_5_ci95": [
+            0.9687,
+            1.0
+          ],
+          "top_10": 1.0,
+          "top_10_ci95": [
+            1.0,
+            1.0
+          ]
+        },
+        "Lookups + GPN-Star-M (locked)": {
+          "median_competitors": 0.0,
+          "top_1": 0.95,
+          "top_1_ci95": [
+            0.9029,
+            0.9894
+          ],
+          "top_5": 1.0,
+          "top_5_ci95": [
+            1.0,
+            1.0
+          ],
+          "top_10": 1.0,
+          "top_10_ci95": [
+            1.0,
+            1.0
+          ]
+        }
+      },
+      "rule_ties": {
+        "Rule-based": 0.0,
+        "Rule + AVI": 0.0
+      },
+      "contrasts": {
+        "Lookups + AVI minus Lookups combined": {
+          "role": "primary contrast, cross-validated (descriptive)",
+          "top_1": 0.0,
+          "top_1_ci95": [
+            -0.0874,
+            0.0883
+          ],
+          "top_5": 0.0,
+          "top_5_ci95": [
+            0.0,
+            0.0
+          ],
+          "top_10": 0.0,
+          "top_10_ci95": [
+            0.0,
+            0.0
+          ],
+          "confirmatory": false
+        },
+        "Lookups combined minus Rule-based": {
+          "role": "descriptive",
+          "top_1": -0.09,
+          "top_1_ci95": [
+            -0.1882,
+            -0.019
+          ],
+          "top_5": 0.0,
+          "top_5_ci95": [
+            0.0,
+            0.0
+          ],
+          "top_10": 0.0,
+          "top_10_ci95": [
+            0.0,
+            0.0
+          ]
+        },
+        "Lookups + AVI minus Rule-based": {
+          "role": "descriptive",
+          "top_1": -0.09,
+          "top_1_ci95": [
+            -0.1818,
+            -0.0206
+          ],
+          "top_5": 0.0,
+          "top_5_ci95": [
+            0.0,
+            0.0
+          ],
+          "top_10": 0.0,
+          "top_10_ci95": [
+            0.0,
+            0.0
+          ]
+        },
+        "Lookups + GPN-MSA minus Lookups combined": {
+          "role": "secondary, cross-validated (descriptive)",
+          "top_1": 0.04,
+          "top_1_ci95": [
+            0.0,
+            0.0943
+          ],
+          "top_1_ci98.33": [
+            0.0,
+            0.1079
+          ],
+          "top_5": 0.0,
+          "top_5_ci95": [
+            0.0,
+            0.0
+          ],
+          "top_5_ci98.33": [
+            0.0,
+            0.0
+          ],
+          "top_10": 0.0,
+          "top_10_ci95": [
+            0.0,
+            0.0
+          ],
+          "top_10_ci98.33": [
+            0.0,
+            0.0
+          ]
+        },
+        "Lookups + GPN-Star-V minus Lookups combined": {
+          "role": "secondary, cross-validated (descriptive)",
+          "top_1": 0.01,
+          "top_1_ci95": [
+            -0.0337,
+            0.0606
+          ],
+          "top_1_ci98.33": [
+            -0.0476,
+            0.0657
+          ],
+          "top_5": 0.0,
+          "top_5_ci95": [
+            0.0,
+            0.0
+          ],
+          "top_5_ci98.33": [
+            0.0,
+            0.0
+          ],
+          "top_10": 0.0,
+          "top_10_ci95": [
+            0.0,
+            0.0
+          ],
+          "top_10_ci98.33": [
+            0.0,
+            0.0
+          ]
+        },
+        "Lookups + GPN-Star-M minus Lookups combined": {
+          "role": "secondary, cross-validated (descriptive)",
+          "top_1": -0.01,
+          "top_1_ci95": [
+            -0.0516,
+            0.0341
+          ],
+          "top_1_ci98.33": [
+            -0.0654,
+            0.0511
+          ],
+          "top_5": 0.0,
+          "top_5_ci95": [
+            0.0,
+            0.0
+          ],
+          "top_5_ci98.33": [
+            0.0,
+            0.0
+          ],
+          "top_10": 0.0,
+          "top_10_ci95": [
+            0.0,
+            0.0
+          ],
+          "top_10_ci98.33": [
+            0.0,
+            0.0
+          ]
+        },
+        "Lookups + AVI (locked) minus Lookups combined (locked)": {
+          "role": "primary",
+          "top_1": -0.07,
+          "top_1_ci95": [
+            -0.1522,
+            -0.0097
+          ],
+          "top_5": 0.0,
+          "top_5_ci95": [
+            0.0,
+            0.0
+          ],
+          "top_10": 0.0,
+          "top_10_ci95": [
+            0.0,
+            0.0
+          ],
+          "confirmatory": true
+        },
+        "Lookups combined (locked) minus Rule-based": {
+          "role": "descriptive",
+          "top_1": -0.06,
+          "top_1_ci95": [
+            -0.1346,
+            0.0204
+          ],
+          "top_5": 0.0,
+          "top_5_ci95": [
+            0.0,
+            0.0
+          ],
+          "top_10": 0.0,
+          "top_10_ci95": [
+            0.0,
+            0.0
+          ]
+        },
+        "Lookups + AVI (locked) minus Rule-based": {
+          "role": "descriptive",
+          "top_1": -0.13,
+          "top_1_ci95": [
+            -0.2324,
+            -0.0319
+          ],
+          "top_5": 0.0,
+          "top_5_ci95": [
+            0.0,
+            0.0
+          ],
+          "top_10": 0.0,
+          "top_10_ci95": [
+            0.0,
+            0.0
+          ]
+        },
+        "Lookups + GPN-MSA (locked) minus Lookups combined (locked)": {
+          "role": "secondary, Bonferroni-adjusted",
+          "top_1": 0.03,
+          "top_1_ci95": [
+            0.0,
+            0.0777
+          ],
+          "top_1_ci98.33": [
+            0.0,
+            0.0889
+          ],
+          "top_5": 0.0,
+          "top_5_ci95": [
+            0.0,
+            0.0
+          ],
+          "top_5_ci98.33": [
+            0.0,
+            0.0
+          ],
+          "top_10": 0.0,
+          "top_10_ci95": [
+            0.0,
+            0.0
+          ],
+          "top_10_ci98.33": [
+            0.0,
+            0.0
+          ]
+        },
+        "Lookups + GPN-Star-V (locked) minus Lookups combined (locked)": {
+          "role": "secondary, Bonferroni-adjusted",
+          "top_1": 0.01,
+          "top_1_ci95": [
+            -0.0444,
+            0.0583
+          ],
+          "top_1_ci98.33": [
+            -0.0645,
+            0.0675
+          ],
+          "top_5": -0.01,
+          "top_5_ci95": [
+            -0.0313,
+            0.0
+          ],
+          "top_5_ci98.33": [
+            -0.0391,
+            0.0
+          ],
+          "top_10": 0.0,
+          "top_10_ci95": [
+            0.0,
+            0.0
+          ],
+          "top_10_ci98.33": [
+            0.0,
+            0.0
+          ]
+        },
+        "Lookups + GPN-Star-M (locked) minus Lookups combined (locked)": {
+          "role": "secondary, Bonferroni-adjusted",
+          "top_1": 0.04,
+          "top_1_ci95": [
+            0.0,
+            0.0901
+          ],
+          "top_1_ci98.33": [
+            0.0,
+            0.1035
+          ],
+          "top_5": 0.0,
+          "top_5_ci95": [
+            0.0,
+            0.0
+          ],
+          "top_5_ci98.33": [
+            0.0,
+            0.0
+          ],
+          "top_10": 0.0,
+          "top_10_ci95": [
+            0.0,
+            0.0
+          ],
+          "top_10_ci98.33": [
+            0.0,
+            0.0
+          ]
+        },
+        "Rule + AVI minus Rule-based": {
+          "role": "key secondary",
+          "top_1": 0.0,
+          "top_1_ci95": [
+            -0.0316,
+            0.0303
+          ],
+          "top_5": 0.0,
+          "top_5_ci95": [
+            0.0,
+            0.0
+          ],
+          "top_10": 0.0,
+          "top_10_ci95": [
+            0.0,
+            0.0
+          ]
+        }
+      },
+      "seed_label": "replication/bg1pct/canonical_splice"
+    },
+    "missense": {
+      "cases": 150,
+      "people": 48,
+      "small": false,
+      "scores": {
+        "CADD": {
+          "median_competitors": 1.0,
+          "top_1": 0.4,
+          "top_1_ci95": [
+            0.2876,
+            0.5133
+          ],
+          "top_5": 0.9667,
+          "top_5_ci95": [
+            0.9306,
+            0.9934
+          ],
+          "top_10": 0.9867,
+          "top_10_ci95": [
+            0.9662,
+            1.0
+          ]
+        },
+        "SpliceAI": {
+          "median_competitors": 43.0,
+          "top_1": 0.0667,
+          "top_1_ci95": [
+            0.0336,
+            0.1021
+          ],
+          "top_5": 0.2133,
+          "top_5_ci95": [
+            0.1522,
+            0.282
+          ],
+          "top_10": 0.2733,
+          "top_10_ci95": [
+            0.2042,
+            0.349
+          ]
+        },
+        "REVEL": {
+          "median_competitors": 0.0,
+          "top_1": 0.84,
+          "top_1_ci95": [
+            0.7577,
+            0.9137
+          ],
+          "top_5": 0.9667,
+          "top_5_ci95": [
+            0.9329,
+            0.9937
+          ],
+          "top_10": 0.9867,
+          "top_10_ci95": [
+            0.9681,
+            1.0
+          ]
+        },
+        "AlphaMissense": {
+          "median_competitors": 0.0,
+          "top_1": 0.74,
+          "top_1_ci95": [
+            0.6599,
+            0.8182
+          ],
+          "top_5": 0.92,
+          "top_5_ci95": [
+            0.8742,
+            0.9655
+          ],
+          "top_10": 0.9533,
+          "top_10_ci95": [
+            0.9209,
+            0.9863
+          ]
+        },
+        "AVI": {
+          "median_competitors": 0.0,
+          "top_1": 0.6933,
+          "top_1_ci95": [
+            0.589,
+            0.7959
+          ],
+          "top_5": 0.94,
+          "top_5_ci95": [
+            0.9036,
+            0.972
+          ],
+          "top_10": 0.9667,
+          "top_10_ci95": [
+            0.9366,
+            0.9881
+          ]
+        },
+        "GPN-MSA": {
+          "median_competitors": 1.0,
+          "top_1": 0.44,
+          "top_1_ci95": [
+            0.3493,
+            0.5396
+          ],
+          "top_5": 0.8133,
+          "top_5_ci95": [
+            0.74,
+            0.8873
+          ],
+          "top_10": 0.9267,
+          "top_10_ci95": [
+            0.8873,
+            0.9648
+          ]
+        },
+        "GPN-Star-V": {
+          "median_competitors": 0.0,
+          "top_1": 0.5733,
+          "top_1_ci95": [
+            0.4679,
+            0.6812
+          ],
+          "top_5": 0.8667,
+          "top_5_ci95": [
+            0.7933,
+            0.926
+          ],
+          "top_10": 0.9467,
+          "top_10_ci95": [
+            0.906,
+            0.9808
+          ]
+        },
+        "GPN-Star-M": {
+          "median_competitors": 1.0,
+          "top_1": 0.4067,
+          "top_1_ci95": [
+            0.3112,
+            0.5132
+          ],
+          "top_5": 0.8,
+          "top_5_ci95": [
+            0.7297,
+            0.8658
+          ],
+          "top_10": 0.9333,
+          "top_10_ci95": [
+            0.8873,
+            0.9732
+          ]
+        },
+        "Rule-based": {
+          "median_competitors": 0.0,
+          "top_1": 0.7733,
+          "top_1_ci95": [
+            0.6692,
+            0.8677
+          ],
+          "top_5": 0.96,
+          "top_5_ci95": [
+            0.9237,
+            0.9928
+          ],
+          "top_10": 0.9933,
+          "top_10_ci95": [
+            0.9787,
+            1.0
+          ]
+        },
+        "Rule + AVI": {
+          "median_competitors": 0.0,
+          "top_1": 0.7733,
+          "top_1_ci95": [
+            0.6797,
+            0.8599
+          ],
+          "top_5": 0.96,
+          "top_5_ci95": [
+            0.9237,
+            0.9928
+          ],
+          "top_10": 0.9867,
+          "top_10_ci95": [
+            0.9664,
+            1.0
+          ]
+        },
+        "Lookups combined": {
+          "median_competitors": 0.0,
+          "top_1": 0.6933,
+          "top_1_ci95": [
+            0.5786,
+            0.8
+          ],
+          "top_5": 0.9533,
+          "top_5_ci95": [
+            0.9156,
+            0.9858
+          ],
+          "top_10": 0.98,
+          "top_10_ci95": [
+            0.9562,
+            1.0
+          ]
+        },
+        "Lookups + AVI": {
+          "median_competitors": 0.0,
+          "top_1": 0.7,
+          "top_1_ci95": [
+            0.5845,
+            0.8043
+          ],
+          "top_5": 0.9733,
+          "top_5_ci95": [
+            0.9474,
+            0.9935
+          ],
+          "top_10": 0.98,
+          "top_10_ci95": [
+            0.9562,
+            1.0
+          ]
+        },
+        "Lookups + GPN-MSA": {
+          "median_competitors": 0.0,
+          "top_1": 0.7067,
+          "top_1_ci95": [
+            0.6013,
+            0.8
+          ],
+          "top_5": 0.9533,
+          "top_5_ci95": [
+            0.9156,
+            0.9858
+          ],
+          "top_10": 0.98,
+          "top_10_ci95": [
+            0.9562,
+            1.0
+          ]
+        },
+        "Lookups + GPN-Star-V": {
+          "median_competitors": 0.0,
+          "top_1": 0.7133,
+          "top_1_ci95": [
+            0.604,
+            0.8072
+          ],
+          "top_5": 0.96,
+          "top_5_ci95": [
+            0.9291,
+            0.9867
+          ],
+          "top_10": 0.9867,
+          "top_10_ci95": [
+            0.9664,
+            1.0
+          ]
+        },
+        "Lookups + GPN-Star-M": {
+          "median_competitors": 0.0,
+          "top_1": 0.6733,
+          "top_1_ci95": [
+            0.549,
+            0.782
+          ],
+          "top_5": 0.96,
+          "top_5_ci95": [
+            0.9291,
+            0.9867
+          ],
+          "top_10": 0.9867,
+          "top_10_ci95": [
+            0.9664,
+            1.0
+          ]
+        },
+        "Lookups combined (locked)": {
+          "median_competitors": 0.0,
+          "top_1": 0.7467,
+          "top_1_ci95": [
+            0.6477,
+            0.84
+          ],
+          "top_5": 0.94,
+          "top_5_ci95": [
+            0.8968,
+            0.9739
+          ],
+          "top_10": 0.9533,
+          "top_10_ci95": [
+            0.9145,
+            0.9857
+          ]
+        },
+        "Lookups + AVI (locked)": {
+          "median_competitors": 0.0,
+          "top_1": 0.6867,
+          "top_1_ci95": [
+            0.5646,
+            0.8
+          ],
+          "top_5": 0.94,
+          "top_5_ci95": [
+            0.894,
+            0.9787
+          ],
+          "top_10": 0.9533,
+          "top_10_ci95": [
+            0.9145,
+            0.9857
+          ]
+        },
+        "Lookups + GPN-MSA (locked)": {
+          "median_competitors": 0.0,
+          "top_1": 0.7267,
+          "top_1_ci95": [
+            0.628,
+            0.8182
+          ],
+          "top_5": 0.9333,
+          "top_5_ci95": [
+            0.8872,
+            0.9733
+          ],
+          "top_10": 0.9533,
+          "top_10_ci95": [
+            0.9145,
+            0.9857
+          ]
+        },
+        "Lookups + GPN-Star-V (locked)": {
+          "median_competitors": 0.0,
+          "top_1": 0.7467,
+          "top_1_ci95": [
+            0.6524,
+            0.8312
+          ],
+          "top_5": 0.9333,
+          "top_5_ci95": [
+            0.8903,
+            0.9684
+          ],
+          "top_10": 0.9533,
+          "top_10_ci95": [
+            0.9145,
+            0.9857
+          ]
+        },
+        "Lookups + GPN-Star-M (locked)": {
+          "median_competitors": 0.0,
+          "top_1": 0.74,
+          "top_1_ci95": [
+            0.6405,
+            0.8311
+          ],
+          "top_5": 0.9333,
+          "top_5_ci95": [
+            0.8919,
+            0.968
+          ],
+          "top_10": 0.9533,
+          "top_10_ci95": [
+            0.9145,
+            0.9857
+          ]
+        }
+      },
+      "rule_ties": {
+        "Rule-based": 0.0,
+        "Rule + AVI": 0.0
+      },
+      "contrasts": {
+        "Lookups + AVI minus Lookups combined": {
+          "role": "primary contrast, cross-validated (descriptive)",
+          "top_1": 0.0067,
+          "top_1_ci95": [
+            -0.0473,
+            0.0625
+          ],
+          "top_5": 0.02,
+          "top_5_ci95": [
+            0.0,
+            0.0523
+          ],
+          "top_10": 0.0,
+          "top_10_ci95": [
+            0.0,
+            0.0
+          ],
+          "confirmatory": false
+        },
+        "Lookups combined minus Rule-based": {
+          "role": "descriptive",
+          "top_1": -0.08,
+          "top_1_ci95": [
+            -0.1643,
+            -0.007
+          ],
+          "top_5": -0.0067,
+          "top_5_ci95": [
+            -0.0411,
+            0.0188
+          ],
+          "top_10": -0.0133,
+          "top_10_ci95": [
+            -0.0345,
+            0.0
+          ]
+        },
+        "Lookups + AVI minus Rule-based": {
+          "role": "descriptive",
+          "top_1": -0.0733,
+          "top_1_ci95": [
+            -0.1752,
+            0.0068
+          ],
+          "top_5": 0.0133,
+          "top_5_ci95": [
+            0.0,
+            0.0342
+          ],
+          "top_10": -0.0133,
+          "top_10_ci95": [
+            -0.0345,
+            0.0
+          ]
+        },
+        "Lookups + GPN-MSA minus Lookups combined": {
+          "role": "secondary, cross-validated (descriptive)",
+          "top_1": 0.0133,
+          "top_1_ci95": [
+            -0.0181,
+            0.047
+          ],
+          "top_1_ci98.33": [
+            -0.0248,
+            0.0529
+          ],
+          "top_5": 0.0,
+          "top_5_ci95": [
+            0.0,
+            0.0
+          ],
+          "top_5_ci98.33": [
+            0.0,
+            0.0
+          ],
+          "top_10": 0.0,
+          "top_10_ci95": [
+            0.0,
+            0.0
+          ],
+          "top_10_ci98.33": [
+            0.0,
+            0.0
+          ]
+        },
+        "Lookups + GPN-Star-V minus Lookups combined": {
+          "role": "secondary, cross-validated (descriptive)",
+          "top_1": 0.02,
+          "top_1_ci95": [
+            -0.0135,
+            0.0544
+          ],
+          "top_1_ci98.33": [
+            -0.0193,
+            0.0618
+          ],
+          "top_5": 0.0067,
+          "top_5_ci95": [
+            0.0,
+            0.0219
+          ],
+          "top_5_ci98.33": [
+            0.0,
+            0.0263
+          ],
+          "top_10": 0.0067,
+          "top_10_ci95": [
+            0.0,
+            0.0217
+          ],
+          "top_10_ci98.33": [
+            0.0,
+            0.027
+          ]
+        },
+        "Lookups + GPN-Star-M minus Lookups combined": {
+          "role": "secondary, cross-validated (descriptive)",
+          "top_1": -0.02,
+          "top_1_ci95": [
+            -0.0709,
+            0.029
+          ],
+          "top_1_ci98.33": [
+            -0.0819,
+            0.0396
+          ],
+          "top_5": 0.0067,
+          "top_5_ci95": [
+            0.0,
+            0.0219
+          ],
+          "top_5_ci98.33": [
+            0.0,
+            0.0263
+          ],
+          "top_10": 0.0067,
+          "top_10_ci95": [
+            0.0,
+            0.0217
+          ],
+          "top_10_ci98.33": [
+            0.0,
+            0.027
+          ]
+        },
+        "Lookups + AVI (locked) minus Lookups combined (locked)": {
+          "role": "primary",
+          "top_1": -0.06,
+          "top_1_ci95": [
+            -0.1525,
+            0.0071
+          ],
+          "top_5": 0.0,
+          "top_5_ci95": [
+            -0.0331,
+            0.0301
+          ],
+          "top_10": 0.0,
+          "top_10_ci95": [
+            0.0,
+            0.0
+          ],
+          "confirmatory": true
+        },
+        "Lookups combined (locked) minus Rule-based": {
+          "role": "descriptive",
+          "top_1": -0.0267,
+          "top_1_ci95": [
+            -0.0851,
+            0.0282
+          ],
+          "top_5": -0.02,
+          "top_5_ci95": [
+            -0.0576,
+            0.0207
+          ],
+          "top_10": -0.04,
+          "top_10_ci95": [
+            -0.0727,
+            -0.0132
+          ]
+        },
+        "Lookups + AVI (locked) minus Rule-based": {
+          "role": "descriptive",
+          "top_1": -0.0867,
+          "top_1_ci95": [
+            -0.2027,
+            0.0076
+          ],
+          "top_5": -0.02,
+          "top_5_ci95": [
+            -0.0473,
+            0.0067
+          ],
+          "top_10": -0.04,
+          "top_10_ci95": [
+            -0.0727,
+            -0.0132
+          ]
+        },
+        "Lookups + GPN-MSA (locked) minus Lookups combined (locked)": {
+          "role": "secondary, Bonferroni-adjusted",
+          "top_1": -0.02,
+          "top_1_ci95": [
+            -0.0506,
+            0.0066
+          ],
+          "top_1_ci98.33": [
+            -0.0562,
+            0.0132
+          ],
+          "top_5": -0.0067,
+          "top_5_ci95": [
+            -0.0385,
+            0.0201
+          ],
+          "top_5_ci98.33": [
+            -0.0489,
+            0.0271
+          ],
+          "top_10": 0.0,
+          "top_10_ci95": [
+            0.0,
+            0.0
+          ],
+          "top_10_ci98.33": [
+            0.0,
+            0.0
+          ]
+        },
+        "Lookups + GPN-Star-V (locked) minus Lookups combined (locked)": {
+          "role": "secondary, Bonferroni-adjusted",
+          "top_1": 0.0,
+          "top_1_ci95": [
+            -0.0368,
+            0.044
+          ],
+          "top_1_ci98.33": [
+            -0.0463,
+            0.0496
+          ],
+          "top_5": -0.0067,
+          "top_5_ci95": [
+            -0.0265,
+            0.0147
+          ],
+          "top_5_ci98.33": [
+            -0.0324,
+            0.0216
+          ],
+          "top_10": 0.0,
+          "top_10_ci95": [
+            0.0,
+            0.0
+          ],
+          "top_10_ci98.33": [
+            0.0,
+            0.0
+          ]
+        },
+        "Lookups + GPN-Star-M (locked) minus Lookups combined (locked)": {
+          "role": "secondary, Bonferroni-adjusted",
+          "top_1": -0.0067,
+          "top_1_ci95": [
+            -0.0373,
+            0.0203
+          ],
+          "top_1_ci98.33": [
+            -0.0427,
+            0.0267
+          ],
+          "top_5": -0.0067,
+          "top_5_ci95": [
+            -0.0208,
+            0.0
+          ],
+          "top_5_ci98.33": [
+            -0.0263,
+            0.0
+          ],
+          "top_10": 0.0,
+          "top_10_ci95": [
+            0.0,
+            0.0
+          ],
+          "top_10_ci98.33": [
+            0.0,
+            0.0
+          ]
+        },
+        "Rule + AVI minus Rule-based": {
+          "role": "key secondary",
+          "top_1": 0.0,
+          "top_1_ci95": [
+            -0.0318,
+            0.0323
+          ],
+          "top_5": 0.0,
+          "top_5_ci95": [
+            0.0,
+            0.0
+          ],
+          "top_10": -0.0067,
+          "top_10_ci95": [
+            -0.0217,
+            0.0
+          ]
+        }
+      },
+      "seed_label": "replication/bg1pct/missense"
+    },
+    "noncoding": {
+      "cases": 175,
+      "people": 50,
+      "small": false,
+      "scores": {
+        "CADD": {
+          "median_competitors": 6.0,
+          "top_1": 0.0629,
+          "top_1_ci95": [
+            0.0279,
+            0.1027
+          ],
+          "top_5": 0.3714,
+          "top_5_ci95": [
+            0.2758,
+            0.4731
+          ],
+          "top_10": 0.6686,
+          "top_10_ci95": [
+            0.5812,
+            0.7501
+          ]
+        },
+        "SpliceAI": {
+          "median_competitors": 0.0,
+          "top_1": 0.7657,
+          "top_1_ci95": [
+            0.7006,
+            0.8251
+          ],
+          "top_5": 0.9029,
+          "top_5_ci95": [
+            0.8659,
+            0.9401
+          ],
+          "top_10": 0.9086,
+          "top_10_ci95": [
+            0.8693,
+            0.9461
+          ]
+        },
+        "REVEL": {
+          "median_competitors": 69.0,
+          "top_1": 0.0,
+          "top_1_ci95": [
+            0.0,
+            0.0
+          ],
+          "top_5": 0.0286,
+          "top_5_ci95": [
+            0.0065,
+            0.0513
+          ],
+          "top_10": 0.04,
+          "top_10_ci95": [
+            0.0154,
+            0.0676
+          ]
+        },
+        "AlphaMissense": {
+          "median_competitors": 69.0,
+          "top_1": 0.0,
+          "top_1_ci95": [
+            0.0,
+            0.0
+          ],
+          "top_5": 0.0,
+          "top_5_ci95": [
+            0.0,
+            0.0
+          ],
+          "top_10": 0.0,
+          "top_10_ci95": [
+            0.0,
+            0.0
+          ]
+        },
+        "AVI": {
+          "median_competitors": 1.0,
+          "top_1": 0.4971,
+          "top_1_ci95": [
+            0.4034,
+            0.5833
+          ],
+          "top_5": 0.84,
+          "top_5_ci95": [
+            0.7806,
+            0.8941
+          ],
+          "top_10": 0.9257,
+          "top_10_ci95": [
+            0.8864,
+            0.9607
+          ]
+        },
+        "GPN-MSA": {
+          "median_competitors": 8.0,
+          "top_1": 0.16,
+          "top_1_ci95": [
+            0.1047,
+            0.2193
+          ],
+          "top_5": 0.3657,
+          "top_5_ci95": [
+            0.2938,
+            0.4414
+          ],
+          "top_10": 0.5371,
+          "top_10_ci95": [
+            0.4562,
+            0.618
+          ]
+        },
+        "GPN-Star-V": {
+          "median_competitors": 6.0,
+          "top_1": 0.1543,
+          "top_1_ci95": [
+            0.096,
+            0.2223
+          ],
+          "top_5": 0.3771,
+          "top_5_ci95": [
+            0.3016,
+            0.4612
+          ],
+          "top_10": 0.6286,
+          "top_10_ci95": [
+            0.5491,
+            0.7012
+          ]
+        },
+        "GPN-Star-M": {
+          "median_competitors": 6.0,
+          "top_1": 0.1257,
+          "top_1_ci95": [
+            0.0812,
+            0.1775
+          ],
+          "top_5": 0.4,
+          "top_5_ci95": [
+            0.3173,
+            0.4824
+          ],
+          "top_10": 0.6114,
+          "top_10_ci95": [
+            0.5135,
+            0.6962
+          ]
+        },
+        "Rule-based": {
+          "median_competitors": 1.0,
+          "top_1": 0.4914,
+          "top_1_ci95": [
+            0.3716,
+            0.6177
+          ],
+          "top_5": 0.8571,
+          "top_5_ci95": [
+            0.8118,
+            0.9086
+          ],
+          "top_10": 0.92,
+          "top_10_ci95": [
+            0.8807,
+            0.956
+          ]
+        },
+        "Rule + AVI": {
+          "median_competitors": 0.0,
+          "top_1": 0.64,
+          "top_1_ci95": [
+            0.538,
+            0.7325
+          ],
+          "top_5": 0.8743,
+          "top_5_ci95": [
+            0.8263,
+            0.9211
+          ],
+          "top_10": 0.9257,
+          "top_10_ci95": [
+            0.8909,
+            0.9588
+          ]
+        },
+        "Lookups combined": {
+          "median_competitors": 0.0,
+          "top_1": 0.8286,
+          "top_1_ci95": [
+            0.7711,
+            0.8859
+          ],
+          "top_5": 0.9314,
+          "top_5_ci95": [
+            0.8914,
+            0.9682
+          ],
+          "top_10": 0.9486,
+          "top_10_ci95": [
+            0.9185,
+            0.9761
+          ]
+        },
+        "Lookups + AVI": {
+          "median_competitors": 0.0,
+          "top_1": 0.8629,
+          "top_1_ci95": [
+            0.8059,
+            0.9162
+          ],
+          "top_5": 0.9429,
+          "top_5_ci95": [
+            0.9111,
+            0.9708
+          ],
+          "top_10": 0.96,
+          "top_10_ci95": [
+            0.9323,
+            0.983
+          ]
+        },
+        "Lookups + GPN-MSA": {
+          "median_competitors": 0.0,
+          "top_1": 0.8286,
+          "top_1_ci95": [
+            0.7705,
+            0.8831
+          ],
+          "top_5": 0.9429,
+          "top_5_ci95": [
+            0.9126,
+            0.9716
+          ],
+          "top_10": 0.9429,
+          "top_10_ci95": [
+            0.9126,
+            0.9716
+          ]
+        },
+        "Lookups + GPN-Star-V": {
+          "median_competitors": 0.0,
+          "top_1": 0.8343,
+          "top_1_ci95": [
+            0.7784,
+            0.8895
+          ],
+          "top_5": 0.9314,
+          "top_5_ci95": [
+            0.8947,
+            0.9641
+          ],
+          "top_10": 0.9486,
+          "top_10_ci95": [
+            0.92,
+            0.9763
+          ]
+        },
+        "Lookups + GPN-Star-M": {
+          "median_competitors": 0.0,
+          "top_1": 0.8286,
+          "top_1_ci95": [
+            0.7717,
+            0.8807
+          ],
+          "top_5": 0.9371,
+          "top_5_ci95": [
+            0.9021,
+            0.969
+          ],
+          "top_10": 0.96,
+          "top_10_ci95": [
+            0.9325,
+            0.9832
+          ]
+        },
+        "Lookups combined (locked)": {
+          "median_competitors": 0.0,
+          "top_1": 0.7771,
+          "top_1_ci95": [
+            0.7207,
+            0.8374
+          ],
+          "top_5": 0.88,
+          "top_5_ci95": [
+            0.8312,
+            0.9253
+          ],
+          "top_10": 0.9143,
+          "top_10_ci95": [
+            0.8663,
+            0.9591
+          ]
+        },
+        "Lookups + AVI (locked)": {
+          "median_competitors": 0.0,
+          "top_1": 0.84,
+          "top_1_ci95": [
+            0.7844,
+            0.8916
+          ],
+          "top_5": 0.9314,
+          "top_5_ci95": [
+            0.8937,
+            0.9686
+          ],
+          "top_10": 0.9543,
+          "top_10_ci95": [
+            0.9222,
+            0.983
+          ]
+        },
+        "Lookups + GPN-MSA (locked)": {
+          "median_competitors": 0.0,
+          "top_1": 0.7829,
+          "top_1_ci95": [
+            0.72,
+            0.8448
+          ],
+          "top_5": 0.88,
+          "top_5_ci95": [
+            0.8312,
+            0.9253
+          ],
+          "top_10": 0.92,
+          "top_10_ci95": [
+            0.8736,
+            0.9627
+          ]
+        },
+        "Lookups + GPN-Star-V (locked)": {
+          "median_competitors": 0.0,
+          "top_1": 0.7771,
+          "top_1_ci95": [
+            0.7173,
+            0.8409
+          ],
+          "top_5": 0.9029,
+          "top_5_ci95": [
+            0.8523,
+            0.9503
+          ],
+          "top_10": 0.9314,
+          "top_10_ci95": [
+            0.8941,
+            0.9669
+          ]
+        },
+        "Lookups + GPN-Star-M (locked)": {
+          "median_competitors": 0.0,
+          "top_1": 0.8114,
+          "top_1_ci95": [
+            0.75,
+            0.8718
+          ],
+          "top_5": 0.9086,
+          "top_5_ci95": [
+            0.8579,
+            0.9551
+          ],
+          "top_10": 0.9257,
+          "top_10_ci95": [
+            0.8804,
+            0.9663
+          ]
+        }
+      },
+      "rule_ties": {
+        "Rule-based": 0.0114,
+        "Rule + AVI": 0.0
+      },
+      "contrasts": {
+        "Lookups + AVI minus Lookups combined": {
+          "role": "primary contrast, cross-validated (descriptive)",
+          "top_1": 0.0343,
+          "top_1_ci95": [
+            0.0,
+            0.0694
+          ],
+          "top_5": 0.0114,
+          "top_5_ci95": [
+            -0.0113,
+            0.0341
+          ],
+          "top_10": 0.0114,
+          "top_10_ci95": [
+            0.0,
+            0.0301
+          ],
+          "confirmatory": false
+        },
+        "Lookups combined minus Rule-based": {
+          "role": "descriptive",
+          "top_1": 0.3371,
+          "top_1_ci95": [
+            0.2152,
+            0.4503
+          ],
+          "top_5": 0.0743,
+          "top_5_ci95": [
+            0.0395,
+            0.1091
+          ],
+          "top_10": 0.0286,
+          "top_10_ci95": [
+            0.0,
+            0.0595
+          ]
+        },
+        "Lookups + AVI minus Rule-based": {
+          "role": "descriptive",
+          "top_1": 0.3714,
+          "top_1_ci95": [
+            0.2452,
+            0.4857
+          ],
+          "top_5": 0.0857,
+          "top_5_ci95": [
+            0.0457,
+            0.1228
+          ],
+          "top_10": 0.04,
+          "top_10_ci95": [
+            0.0058,
+            0.0765
+          ]
+        },
+        "Lookups + GPN-MSA minus Lookups combined": {
+          "role": "secondary, cross-validated (descriptive)",
+          "top_1": 0.0,
+          "top_1_ci95": [
+            -0.0164,
+            0.017
+          ],
+          "top_1_ci98.33": [
+            -0.0191,
+            0.0223
+          ],
+          "top_5": 0.0114,
+          "top_5_ci95": [
+            0.0,
+            0.0287
+          ],
+          "top_5_ci98.33": [
+            0.0,
+            0.0311
+          ],
+          "top_10": -0.0057,
+          "top_10_ci95": [
+            -0.0182,
+            0.0
+          ],
+          "top_10_ci98.33": [
+            -0.023,
+            0.0
+          ]
+        },
+        "Lookups + GPN-Star-V minus Lookups combined": {
+          "role": "secondary, cross-validated (descriptive)",
+          "top_1": 0.0057,
+          "top_1_ci95": [
+            -0.0119,
+            0.0272
+          ],
+          "top_1_ci98.33": [
+            -0.0181,
+            0.0311
+          ],
+          "top_5": 0.0,
+          "top_5_ci95": [
+            -0.0167,
+            0.0152
+          ],
+          "top_5_ci98.33": [
+            -0.0191,
+            0.0181
+          ],
+          "top_10": 0.0,
+          "top_10_ci95": [
+            -0.0167,
+            0.0168
+          ],
+          "top_10_ci98.33": [
+            -0.0189,
+            0.0215
+          ]
+        },
+        "Lookups + GPN-Star-M minus Lookups combined": {
+          "role": "secondary, cross-validated (descriptive)",
+          "top_1": 0.0,
+          "top_1_ci95": [
+            -0.0321,
+            0.0235
+          ],
+          "top_1_ci98.33": [
+            -0.0394,
+            0.0268
+          ],
+          "top_5": 0.0057,
+          "top_5_ci95": [
+            0.0,
+            0.0182
+          ],
+          "top_5_ci98.33": [
+            0.0,
+            0.023
+          ],
+          "top_10": 0.0114,
+          "top_10_ci95": [
+            0.0,
+            0.0299
+          ],
+          "top_10_ci98.33": [
+            0.0,
+            0.0336
+          ]
+        },
+        "Lookups + AVI (locked) minus Lookups combined (locked)": {
+          "role": "primary",
+          "top_1": 0.0629,
+          "top_1_ci95": [
+            0.0061,
+            0.1194
+          ],
+          "top_5": 0.0514,
+          "top_5_ci95": [
+            0.0211,
+            0.0867
+          ],
+          "top_10": 0.04,
+          "top_10_ci95": [
+            0.0064,
+            0.0756
+          ],
+          "confirmatory": true
+        },
+        "Lookups combined (locked) minus Rule-based": {
+          "role": "descriptive",
+          "top_1": 0.2857,
+          "top_1_ci95": [
+            0.1749,
+            0.3889
+          ],
+          "top_5": 0.0229,
+          "top_5_ci95": [
+            -0.0106,
+            0.0581
+          ],
+          "top_10": -0.0057,
+          "top_10_ci95": [
+            -0.0492,
+            0.0326
+          ]
+        },
+        "Lookups + AVI (locked) minus Rule-based": {
+          "role": "descriptive",
+          "top_1": 0.3486,
+          "top_1_ci95": [
+            0.2202,
+            0.4706
+          ],
+          "top_5": 0.0743,
+          "top_5_ci95": [
+            0.0372,
+            0.1137
+          ],
+          "top_10": 0.0343,
+          "top_10_ci95": [
+            0.0,
+            0.071
+          ]
+        },
+        "Lookups + GPN-MSA (locked) minus Lookups combined (locked)": {
+          "role": "secondary, Bonferroni-adjusted",
+          "top_1": 0.0057,
+          "top_1_ci95": [
+            -0.0291,
+            0.0432
+          ],
+          "top_1_ci98.33": [
+            -0.0348,
+            0.051
+          ],
+          "top_5": 0.0,
+          "top_5_ci95": [
+            0.0,
+            0.0
+          ],
+          "top_5_ci98.33": [
+            0.0,
+            0.0
+          ],
+          "top_10": 0.0057,
+          "top_10_ci95": [
+            -0.0118,
+            0.0262
+          ],
+          "top_10_ci98.33": [
+            -0.0172,
+            0.0329
+          ]
+        },
+        "Lookups + GPN-Star-V (locked) minus Lookups combined (locked)": {
+          "role": "secondary, Bonferroni-adjusted",
+          "top_1": 0.0,
+          "top_1_ci95": [
+            -0.0479,
+            0.0476
+          ],
+          "top_1_ci98.33": [
+            -0.055,
+            0.0538
+          ],
+          "top_5": 0.0229,
+          "top_5_ci95": [
+            0.0054,
+            0.0492
+          ],
+          "top_5_ci98.33": [
+            0.0,
+            0.0542
+          ],
+          "top_10": 0.0171,
+          "top_10_ci95": [
+            -0.0057,
+            0.0424
+          ],
+          "top_10_ci98.33": [
+            -0.0113,
+            0.0496
+          ]
+        },
+        "Lookups + GPN-Star-M (locked) minus Lookups combined (locked)": {
+          "role": "secondary, Bonferroni-adjusted",
+          "top_1": 0.0343,
+          "top_1_ci95": [
+            0.0062,
+            0.0651
+          ],
+          "top_1_ci98.33": [
+            0.0056,
+            0.0698
+          ],
+          "top_5": 0.0286,
+          "top_5_ci95": [
+            0.0,
+            0.0615
+          ],
+          "top_5_ci98.33": [
+            -0.0057,
+            0.0687
+          ],
+          "top_10": 0.0114,
+          "top_10_ci95": [
+            -0.0114,
+            0.0345
+          ],
+          "top_10_ci98.33": [
+            -0.0122,
+            0.0424
+          ]
+        },
+        "Rule + AVI minus Rule-based": {
+          "role": "key secondary",
+          "top_1": 0.1486,
+          "top_1_ci95": [
+            0.044,
+            0.25
+          ],
+          "top_5": 0.0171,
+          "top_5_ci95": [
+            -0.0058,
+            0.0445
+          ],
+          "top_10": 0.0057,
+          "top_10_ci95": [
+            -0.0222,
+            0.0301
+          ]
+        }
+      },
+      "seed_label": "replication/bg1pct/noncoding"
+    },
+    "noncoding: intronic": {
+      "cases": 84,
+      "people": 41,
+      "small": false,
+      "scores": {
+        "CADD": {
+          "median_competitors": 5.0,
+          "top_1": 0.0595,
+          "top_1_ci95": [
+            0.0133,
+            0.1125
+          ],
+          "top_5": 0.4286,
+          "top_5_ci95": [
+            0.3176,
+            0.5513
+          ],
+          "top_10": 0.6786,
+          "top_10_ci95": [
+            0.5631,
+            0.7895
+          ]
+        },
+        "SpliceAI": {
+          "median_competitors": 0.0,
+          "top_1": 0.7976,
+          "top_1_ci95": [
+            0.6823,
+            0.8953
+          ],
+          "top_5": 0.9643,
+          "top_5_ci95": [
+            0.9231,
+            1.0
+          ],
+          "top_10": 0.9643,
+          "top_10_ci95": [
+            0.9231,
+            1.0
+          ]
+        },
+        "REVEL": {
+          "median_competitors": 69.5,
+          "top_1": 0.0,
+          "top_1_ci95": [
+            0.0,
+            0.0
+          ],
+          "top_5": 0.0357,
+          "top_5_ci95": [
+            0.0,
+            0.0769
+          ],
+          "top_10": 0.0357,
+          "top_10_ci95": [
+            0.0,
+            0.0769
+          ]
+        },
+        "AlphaMissense": {
+          "median_competitors": 70.0,
+          "top_1": 0.0,
+          "top_1_ci95": [
+            0.0,
+            0.0
+          ],
+          "top_5": 0.0,
+          "top_5_ci95": [
+            0.0,
+            0.0
+          ],
+          "top_10": 0.0,
+          "top_10_ci95": [
+            0.0,
+            0.0
+          ]
+        },
+        "AVI": {
+          "median_competitors": 0.0,
+          "top_1": 0.5238,
+          "top_1_ci95": [
+            0.4105,
+            0.6395
+          ],
+          "top_5": 0.8929,
+          "top_5_ci95": [
+            0.8191,
+            0.9605
+          ],
+          "top_10": 0.9643,
+          "top_10_ci95": [
+            0.9111,
+            1.0
+          ]
+        },
+        "GPN-MSA": {
+          "median_competitors": 5.0,
+          "top_1": 0.2381,
+          "top_1_ci95": [
+            0.1447,
+            0.3448
+          ],
+          "top_5": 0.4643,
+          "top_5_ci95": [
+            0.369,
+            0.5682
+          ],
+          "top_10": 0.631,
+          "top_10_ci95": [
+            0.5056,
+            0.7408
+          ]
+        },
+        "GPN-Star-V": {
+          "median_competitors": 5.5,
+          "top_1": 0.2143,
+          "top_1_ci95": [
+            0.1176,
+            0.314
+          ],
+          "top_5": 0.4405,
+          "top_5_ci95": [
+            0.3372,
+            0.5488
+          ],
+          "top_10": 0.6905,
+          "top_10_ci95": [
+            0.5832,
+            0.7931
+          ]
+        },
+        "GPN-Star-M": {
+          "median_competitors": 6.0,
+          "top_1": 0.1429,
+          "top_1_ci95": [
+            0.0864,
+            0.2073
+          ],
+          "top_5": 0.4405,
+          "top_5_ci95": [
+            0.3333,
+            0.5455
+          ],
+          "top_10": 0.5952,
+          "top_10_ci95": [
+            0.4699,
+            0.7074
+          ]
+        },
+        "Rule-based": {
+          "median_competitors": 0.0,
+          "top_1": 0.5238,
+          "top_1_ci95": [
+            0.3749,
+            0.6757
+          ],
+          "top_5": 0.9286,
+          "top_5_ci95": [
+            0.8674,
+            0.9767
+          ],
+          "top_10": 0.9643,
+          "top_10_ci95": [
+            0.9231,
+            1.0
+          ]
+        },
+        "Rule + AVI": {
+          "median_competitors": 0.0,
+          "top_1": 0.6548,
+          "top_1_ci95": [
+            0.5301,
+            0.7883
+          ],
+          "top_5": 0.9524,
+          "top_5_ci95": [
+            0.9048,
+            0.9893
+          ],
+          "top_10": 0.9643,
+          "top_10_ci95": [
+            0.9231,
+            1.0
+          ]
+        },
+        "Lookups combined": {
+          "median_competitors": 0.0,
+          "top_1": 0.9048,
+          "top_1_ci95": [
+            0.8421,
+            0.9589
+          ],
+          "top_5": 0.9881,
+          "top_5_ci95": [
+            0.9634,
+            1.0
+          ],
+          "top_10": 0.9881,
+          "top_10_ci95": [
+            0.9634,
+            1.0
+          ]
+        },
+        "Lookups + AVI": {
+          "median_competitors": 0.0,
+          "top_1": 0.9524,
+          "top_1_ci95": [
+            0.8953,
+            1.0
+          ],
+          "top_5": 1.0,
+          "top_5_ci95": [
+            1.0,
+            1.0
+          ],
+          "top_10": 1.0,
+          "top_10_ci95": [
+            1.0,
+            1.0
+          ]
+        },
+        "Lookups + GPN-MSA": {
+          "median_competitors": 0.0,
+          "top_1": 0.9167,
+          "top_1_ci95": [
+            0.8607,
+            0.9667
+          ],
+          "top_5": 0.9881,
+          "top_5_ci95": [
+            0.9634,
+            1.0
+          ],
+          "top_10": 0.9881,
+          "top_10_ci95": [
+            0.9634,
+            1.0
+          ]
+        },
+        "Lookups + GPN-Star-V": {
+          "median_competitors": 0.0,
+          "top_1": 0.9048,
+          "top_1_ci95": [
+            0.8481,
+            0.956
+          ],
+          "top_5": 0.9881,
+          "top_5_ci95": [
+            0.9634,
+            1.0
+          ],
+          "top_10": 0.9881,
+          "top_10_ci95": [
+            0.9634,
+            1.0
+          ]
+        },
+        "Lookups + GPN-Star-M": {
+          "median_competitors": 0.0,
+          "top_1": 0.9048,
+          "top_1_ci95": [
+            0.8481,
+            0.956
+          ],
+          "top_5": 0.9881,
+          "top_5_ci95": [
+            0.9634,
+            1.0
+          ],
+          "top_10": 0.9881,
+          "top_10_ci95": [
+            0.9634,
+            1.0
+          ]
+        },
+        "Lookups combined (locked)": {
+          "median_competitors": 0.0,
+          "top_1": 0.8333,
+          "top_1_ci95": [
+            0.7561,
+            0.9032
+          ],
+          "top_5": 0.9524,
+          "top_5_ci95": [
+            0.9048,
+            0.9882
+          ],
+          "top_10": 0.9643,
+          "top_10_ci95": [
+            0.9231,
+            1.0
+          ]
+        },
+        "Lookups + AVI (locked)": {
+          "median_competitors": 0.0,
+          "top_1": 0.9286,
+          "top_1_ci95": [
+            0.8681,
+            0.9765
+          ],
+          "top_5": 0.9643,
+          "top_5_ci95": [
+            0.9204,
+            1.0
+          ],
+          "top_10": 0.9762,
+          "top_10_ci95": [
+            0.9398,
+            1.0
+          ]
+        },
+        "Lookups + GPN-MSA (locked)": {
+          "median_competitors": 0.0,
+          "top_1": 0.881,
+          "top_1_ci95": [
+            0.8171,
+            0.9405
+          ],
+          "top_5": 0.9524,
+          "top_5_ci95": [
+            0.9048,
+            0.9882
+          ],
+          "top_10": 0.9524,
+          "top_10_ci95": [
+            0.9048,
+            0.9882
+          ]
+        },
+        "Lookups + GPN-Star-V (locked)": {
+          "median_competitors": 0.0,
+          "top_1": 0.881,
+          "top_1_ci95": [
+            0.8072,
+            0.946
+          ],
+          "top_5": 0.9524,
+          "top_5_ci95": [
+            0.9048,
+            0.9882
+          ],
+          "top_10": 0.9524,
+          "top_10_ci95": [
+            0.9048,
+            0.9882
+          ]
+        },
+        "Lookups + GPN-Star-M (locked)": {
+          "median_competitors": 0.0,
+          "top_1": 0.881,
+          "top_1_ci95": [
+            0.806,
+            0.9462
+          ],
+          "top_5": 0.9524,
+          "top_5_ci95": [
+            0.9048,
+            0.9882
+          ],
+          "top_10": 0.9524,
+          "top_10_ci95": [
+            0.9048,
+            0.9882
+          ]
+        }
+      },
+      "rule_ties": {
+        "Rule-based": 0.0119,
+        "Rule + AVI": 0.0
+      },
+      "contrasts": {
+        "Lookups + AVI minus Lookups combined": {
+          "role": "primary contrast, cross-validated (descriptive)",
+          "top_1": 0.0476,
+          "top_1_ci95": [
+            0.0,
+            0.1098
+          ],
+          "top_5": 0.0119,
+          "top_5_ci95": [
+            0.0,
+            0.0366
+          ],
+          "top_10": 0.0119,
+          "top_10_ci95": [
+            0.0,
+            0.0366
+          ],
+          "confirmatory": false
+        },
+        "Lookups combined minus Rule-based": {
+          "role": "descriptive",
+          "top_1": 0.381,
+          "top_1_ci95": [
+            0.241,
+            0.5238
+          ],
+          "top_5": 0.0595,
+          "top_5_ci95": [
+            0.0125,
+            0.1191
+          ],
+          "top_10": 0.0238,
+          "top_10_ci95": [
+            0.0,
+            0.0617
+          ]
+        },
+        "Lookups + AVI minus Rule-based": {
+          "role": "descriptive",
+          "top_1": 0.4286,
+          "top_1_ci95": [
+            0.275,
+            0.5916
+          ],
+          "top_5": 0.0714,
+          "top_5_ci95": [
+            0.0233,
+            0.1326
+          ],
+          "top_10": 0.0357,
+          "top_10_ci95": [
+            0.0,
+            0.0769
+          ]
+        },
+        "Lookups + GPN-MSA minus Lookups combined": {
+          "role": "secondary, cross-validated (descriptive)",
+          "top_1": 0.0119,
+          "top_1_ci95": [
+            0.0,
+            0.0375
+          ],
+          "top_1_ci98.33": [
+            0.0,
+            0.0498
+          ],
+          "top_5": 0.0,
+          "top_5_ci95": [
+            0.0,
+            0.0
+          ],
+          "top_5_ci98.33": [
+            0.0,
+            0.0
+          ],
+          "top_10": 0.0,
+          "top_10_ci95": [
+            0.0,
+            0.0
+          ],
+          "top_10_ci98.33": [
+            0.0,
+            0.0
+          ]
+        },
+        "Lookups + GPN-Star-V minus Lookups combined": {
+          "role": "secondary, cross-validated (descriptive)",
+          "top_1": 0.0,
+          "top_1_ci95": [
+            -0.0357,
+            0.0349
+          ],
+          "top_1_ci98.33": [
+            -0.0463,
+            0.0407
+          ],
+          "top_5": 0.0,
+          "top_5_ci95": [
+            0.0,
+            0.0
+          ],
+          "top_5_ci98.33": [
+            0.0,
+            0.0
+          ],
+          "top_10": 0.0,
+          "top_10_ci95": [
+            0.0,
+            0.0
+          ],
+          "top_10_ci98.33": [
+            0.0,
+            0.0
+          ]
+        },
+        "Lookups + GPN-Star-M minus Lookups combined": {
+          "role": "secondary, cross-validated (descriptive)",
+          "top_1": 0.0,
+          "top_1_ci95": [
+            -0.0357,
+            0.0349
+          ],
+          "top_1_ci98.33": [
+            -0.0463,
+            0.0407
+          ],
+          "top_5": 0.0,
+          "top_5_ci95": [
+            0.0,
+            0.0
+          ],
+          "top_5_ci98.33": [
+            0.0,
+            0.0
+          ],
+          "top_10": 0.0,
+          "top_10_ci95": [
+            0.0,
+            0.0
+          ],
+          "top_10_ci98.33": [
+            0.0,
+            0.0
+          ]
+        },
+        "Lookups + AVI (locked) minus Lookups combined (locked)": {
+          "role": "primary",
+          "top_1": 0.0952,
+          "top_1_ci95": [
+            0.0225,
+            0.175
+          ],
+          "top_5": 0.0119,
+          "top_5_ci95": [
+            0.0,
+            0.0357
+          ],
+          "top_10": 0.0119,
+          "top_10_ci95": [
+            0.0,
+            0.0357
+          ],
+          "confirmatory": true
+        },
+        "Lookups combined (locked) minus Rule-based": {
+          "role": "descriptive",
+          "top_1": 0.3095,
+          "top_1_ci95": [
+            0.1807,
+            0.4359
+          ],
+          "top_5": 0.0238,
+          "top_5_ci95": [
+            -0.0309,
+            0.0854
+          ],
+          "top_10": 0.0,
+          "top_10_ci95": [
+            -0.0465,
+            0.046
+          ]
+        },
+        "Lookups + AVI (locked) minus Rule-based": {
+          "role": "descriptive",
+          "top_1": 0.4048,
+          "top_1_ci95": [
+            0.2532,
+            0.5626
+          ],
+          "top_5": 0.0357,
+          "top_5_ci95": [
+            -0.0118,
+            0.0934
+          ],
+          "top_10": 0.0119,
+          "top_10_ci95": [
+            -0.0253,
+            0.0527
+          ]
+        },
+        "Lookups + GPN-MSA (locked) minus Lookups combined (locked)": {
+          "role": "secondary, Bonferroni-adjusted",
+          "top_1": 0.0476,
+          "top_1_ci95": [
+            -0.0112,
+            0.1071
+          ],
+          "top_1_ci98.33": [
+            -0.0239,
+            0.1222
+          ],
+          "top_5": 0.0,
+          "top_5_ci95": [
+            0.0,
+            0.0
+          ],
+          "top_5_ci98.33": [
+            0.0,
+            0.0
+          ],
+          "top_10": -0.0119,
+          "top_10_ci95": [
+            -0.0366,
+            0.0
+          ],
+          "top_10_ci98.33": [
+            -0.0451,
+            0.0
+          ]
+        },
+        "Lookups + GPN-Star-V (locked) minus Lookups combined (locked)": {
+          "role": "secondary, Bonferroni-adjusted",
+          "top_1": 0.0476,
+          "top_1_ci95": [
+            -0.0313,
+            0.1266
+          ],
+          "top_1_ci98.33": [
+            -0.0394,
+            0.1406
+          ],
+          "top_5": 0.0,
+          "top_5_ci95": [
+            0.0,
+            0.0
+          ],
+          "top_5_ci98.33": [
+            0.0,
+            0.0
+          ],
+          "top_10": -0.0119,
+          "top_10_ci95": [
+            -0.0366,
+            0.0
+          ],
+          "top_10_ci98.33": [
+            -0.0451,
+            0.0
+          ]
+        },
+        "Lookups + GPN-Star-M (locked) minus Lookups combined (locked)": {
+          "role": "secondary, Bonferroni-adjusted",
+          "top_1": 0.0476,
+          "top_1_ci95": [
+            0.0114,
+            0.093
+          ],
+          "top_1_ci98.33": [
+            0.0,
+            0.1052
+          ],
+          "top_5": 0.0,
+          "top_5_ci95": [
+            0.0,
+            0.0
+          ],
+          "top_5_ci98.33": [
+            0.0,
+            0.0
+          ],
+          "top_10": -0.0119,
+          "top_10_ci95": [
+            -0.0366,
+            0.0
+          ],
+          "top_10_ci98.33": [
+            -0.0451,
+            0.0
+          ]
+        },
+        "Rule + AVI minus Rule-based": {
+          "role": "key secondary",
+          "top_1": 0.131,
+          "top_1_ci95": [
+            0.0125,
+            0.2667
+          ],
+          "top_5": 0.0238,
+          "top_5_ci95": [
+            0.0,
+            0.0618
+          ],
+          "top_10": 0.0,
+          "top_10_ci95": [
+            0.0,
+            0.0
+          ]
+        }
+      },
+      "seed_label": "replication/bg1pct/noncoding: intronic"
+    },
+    "noncoding: splice_region": {
+      "cases": 63,
+      "people": 35,
+      "small": false,
+      "scores": {
+        "CADD": {
+          "median_competitors": 6.0,
+          "top_1": 0.0794,
+          "top_1_ci95": [
+            0.0182,
+            0.1476
+          ],
+          "top_5": 0.3333,
+          "top_5_ci95": [
+            0.1846,
+            0.485
+          ],
+          "top_10": 0.746,
+          "top_10_ci95": [
+            0.597,
+            0.8715
+          ]
+        },
+        "SpliceAI": {
+          "median_competitors": 0.0,
+          "top_1": 0.8571,
+          "top_1_ci95": [
+            0.7593,
+            0.9333
+          ],
+          "top_5": 0.9683,
+          "top_5_ci95": [
+            0.9167,
+            1.0
+          ],
+          "top_10": 0.9683,
+          "top_10_ci95": [
+            0.9167,
+            1.0
+          ]
+        },
+        "REVEL": {
+          "median_competitors": 67.0,
+          "top_1": 0.0,
+          "top_1_ci95": [
+            0.0,
+            0.0
+          ],
+          "top_5": 0.0159,
+          "top_5_ci95": [
+            0.0,
+            0.0476
+          ],
+          "top_10": 0.0476,
+          "top_10_ci95": [
+            0.0,
+            0.1034
+          ]
+        },
+        "AlphaMissense": {
+          "median_competitors": 70.0,
+          "top_1": 0.0,
+          "top_1_ci95": [
+            0.0,
+            0.0
+          ],
+          "top_5": 0.0,
+          "top_5_ci95": [
+            0.0,
+            0.0
+          ],
+          "top_10": 0.0,
+          "top_10_ci95": [
+            0.0,
+            0.0
+          ]
+        },
+        "AVI": {
+          "median_competitors": 0.0,
+          "top_1": 0.5714,
+          "top_1_ci95": [
+            0.4193,
+            0.7016
+          ],
+          "top_5": 0.9206,
+          "top_5_ci95": [
+            0.8485,
+            0.9836
+          ],
+          "top_10": 0.9683,
+          "top_10_ci95": [
+            0.9166,
+            1.0
+          ]
+        },
+        "GPN-MSA": {
+          "median_competitors": 11.0,
+          "top_1": 0.0952,
+          "top_1_ci95": [
+            0.0169,
+            0.1905
+          ],
+          "top_5": 0.2698,
+          "top_5_ci95": [
+            0.1579,
+            0.3847
+          ],
+          "top_10": 0.4762,
+          "top_10_ci95": [
+            0.3521,
+            0.6032
+          ]
+        },
+        "GPN-Star-V": {
+          "median_competitors": 6.0,
+          "top_1": 0.1111,
+          "top_1_ci95": [
+            0.0328,
+            0.2034
+          ],
+          "top_5": 0.3175,
+          "top_5_ci95": [
+            0.2031,
+            0.434
+          ],
+          "top_10": 0.6508,
+          "top_10_ci95": [
+            0.5263,
+            0.7778
+          ]
+        },
+        "GPN-Star-M": {
+          "median_competitors": 5.0,
+          "top_1": 0.0794,
+          "top_1_ci95": [
+            0.0159,
+            0.1493
+          ],
+          "top_5": 0.3968,
+          "top_5_ci95": [
+            0.254,
+            0.5455
+          ],
+          "top_10": 0.6825,
+          "top_10_ci95": [
+            0.5333,
+            0.8136
+          ]
+        },
+        "Rule-based": {
+          "median_competitors": 0.0,
+          "top_1": 0.5079,
+          "top_1_ci95": [
+            0.3279,
+            0.678
+          ],
+          "top_5": 0.9048,
+          "top_5_ci95": [
+            0.8333,
+            0.9692
+          ],
+          "top_10": 0.9683,
+          "top_10_ci95": [
+            0.9167,
+            1.0
+          ]
+        },
+        "Rule + AVI": {
+          "median_competitors": 0.0,
+          "top_1": 0.7143,
+          "top_1_ci95": [
+            0.5636,
+            0.8388
+          ],
+          "top_5": 0.9048,
+          "top_5_ci95": [
+            0.8333,
+            0.9692
+          ],
+          "top_10": 0.9524,
+          "top_10_ci95": [
+            0.8871,
+            1.0
+          ]
+        },
+        "Lookups combined": {
+          "median_competitors": 0.0,
+          "top_1": 0.9048,
+          "top_1_ci95": [
+            0.8226,
+            0.9672
+          ],
+          "top_5": 0.9841,
+          "top_5_ci95": [
+            0.9474,
+            1.0
+          ],
+          "top_10": 0.9841,
+          "top_10_ci95": [
+            0.9474,
+            1.0
+          ]
+        },
+        "Lookups + AVI": {
+          "median_competitors": 0.0,
+          "top_1": 0.9206,
+          "top_1_ci95": [
+            0.8525,
+            0.9815
+          ],
+          "top_5": 0.9841,
+          "top_5_ci95": [
+            0.9474,
+            1.0
+          ],
+          "top_10": 0.9841,
+          "top_10_ci95": [
+            0.9474,
+            1.0
+          ]
+        },
+        "Lookups + GPN-MSA": {
+          "median_competitors": 0.0,
+          "top_1": 0.8889,
+          "top_1_ci95": [
+            0.7903,
+            0.9661
+          ],
+          "top_5": 0.9841,
+          "top_5_ci95": [
+            0.9474,
+            1.0
+          ],
+          "top_10": 0.9841,
+          "top_10_ci95": [
+            0.9474,
+            1.0
+          ]
+        },
+        "Lookups + GPN-Star-V": {
+          "median_competitors": 0.0,
+          "top_1": 0.9048,
+          "top_1_ci95": [
+            0.8226,
+            0.9672
+          ],
+          "top_5": 0.9683,
+          "top_5_ci95": [
+            0.9194,
+            1.0
+          ],
+          "top_10": 0.9841,
+          "top_10_ci95": [
+            0.9474,
+            1.0
+          ]
+        },
+        "Lookups + GPN-Star-M": {
+          "median_competitors": 0.0,
+          "top_1": 0.9048,
+          "top_1_ci95": [
+            0.8226,
+            0.9683
+          ],
+          "top_5": 0.9841,
+          "top_5_ci95": [
+            0.9474,
+            1.0
+          ],
+          "top_10": 0.9841,
+          "top_10_ci95": [
+            0.9474,
+            1.0
+          ]
+        },
+        "Lookups combined (locked)": {
+          "median_competitors": 0.0,
+          "top_1": 0.8571,
+          "top_1_ci95": [
+            0.7742,
+            0.9333
+          ],
+          "top_5": 0.9683,
+          "top_5_ci95": [
+            0.918,
+            1.0
+          ],
+          "top_10": 0.9683,
+          "top_10_ci95": [
+            0.918,
+            1.0
+          ]
+        },
+        "Lookups + AVI (locked)": {
+          "median_competitors": 0.0,
+          "top_1": 0.9048,
+          "top_1_ci95": [
+            0.8304,
+            0.9672
+          ],
+          "top_5": 0.9841,
+          "top_5_ci95": [
+            0.9491,
+            1.0
+          ],
+          "top_10": 0.9841,
+          "top_10_ci95": [
+            0.9491,
+            1.0
+          ]
+        },
+        "Lookups + GPN-MSA (locked)": {
+          "median_competitors": 0.0,
+          "top_1": 0.8095,
+          "top_1_ci95": [
+            0.6964,
+            0.9032
+          ],
+          "top_5": 0.9683,
+          "top_5_ci95": [
+            0.918,
+            1.0
+          ],
+          "top_10": 0.9683,
+          "top_10_ci95": [
+            0.918,
+            1.0
+          ]
+        },
+        "Lookups + GPN-Star-V (locked)": {
+          "median_competitors": 0.0,
+          "top_1": 0.7937,
+          "top_1_ci95": [
+            0.6862,
+            0.8871
+          ],
+          "top_5": 0.9683,
+          "top_5_ci95": [
+            0.918,
+            1.0
+          ],
+          "top_10": 0.9683,
+          "top_10_ci95": [
+            0.918,
+            1.0
+          ]
+        },
+        "Lookups + GPN-Star-M (locked)": {
+          "median_competitors": 0.0,
+          "top_1": 0.8889,
+          "top_1_ci95": [
+            0.8065,
+            0.9552
+          ],
+          "top_5": 0.9524,
+          "top_5_ci95": [
+            0.8947,
+            1.0
+          ],
+          "top_10": 0.9683,
+          "top_10_ci95": [
+            0.918,
+            1.0
+          ]
+        }
+      },
+      "rule_ties": {
+        "Rule-based": 0.0,
+        "Rule + AVI": 0.0
+      },
+      "contrasts": {
+        "Lookups + AVI minus Lookups combined": {
+          "role": "primary contrast, cross-validated (descriptive)",
+          "top_1": 0.0159,
+          "top_1_ci95": [
+            -0.0328,
+            0.0769
+          ],
+          "top_5": 0.0,
+          "top_5_ci95": [
+            0.0,
+            0.0
+          ],
+          "top_10": 0.0,
+          "top_10_ci95": [
+            0.0,
+            0.0
+          ],
+          "confirmatory": false
+        },
+        "Lookups combined minus Rule-based": {
+          "role": "descriptive",
+          "top_1": 0.3968,
+          "top_1_ci95": [
+            0.2222,
+            0.5781
+          ],
+          "top_5": 0.0794,
+          "top_5_ci95": [
+            0.0175,
+            0.1493
+          ],
+          "top_10": 0.0159,
+          "top_10_ci95": [
+            -0.0351,
+            0.0714
+          ]
+        },
+        "Lookups + AVI minus Rule-based": {
+          "role": "descriptive",
+          "top_1": 0.4127,
+          "top_1_ci95": [
+            0.2576,
+            0.585
+          ],
+          "top_5": 0.0794,
+          "top_5_ci95": [
+            0.0175,
+            0.1493
+          ],
+          "top_10": 0.0159,
+          "top_10_ci95": [
+            -0.0351,
+            0.0714
+          ]
+        },
+        "Lookups + GPN-MSA minus Lookups combined": {
+          "role": "secondary, cross-validated (descriptive)",
+          "top_1": -0.0159,
+          "top_1_ci95": [
+            -0.0517,
+            0.0
+          ],
+          "top_1_ci98.33": [
+            -0.0642,
+            0.0
+          ],
+          "top_5": 0.0,
+          "top_5_ci95": [
+            0.0,
+            0.0
+          ],
+          "top_5_ci98.33": [
+            0.0,
+            0.0
+          ],
+          "top_10": 0.0,
+          "top_10_ci95": [
+            0.0,
+            0.0
+          ],
+          "top_10_ci98.33": [
+            0.0,
+            0.0
+          ]
+        },
+        "Lookups + GPN-Star-V minus Lookups combined": {
+          "role": "secondary, cross-validated (descriptive)",
+          "top_1": 0.0,
+          "top_1_ci95": [
+            0.0,
+            0.0
+          ],
+          "top_1_ci98.33": [
+            0.0,
+            0.0
+          ],
+          "top_5": -0.0159,
+          "top_5_ci95": [
+            -0.0517,
+            0.0
+          ],
+          "top_5_ci98.33": [
+            -0.0642,
+            0.0
+          ],
+          "top_10": 0.0,
+          "top_10_ci95": [
+            0.0,
+            0.0
+          ],
+          "top_10_ci98.33": [
+            0.0,
+            0.0
+          ]
+        },
+        "Lookups + GPN-Star-M minus Lookups combined": {
+          "role": "secondary, cross-validated (descriptive)",
+          "top_1": 0.0,
+          "top_1_ci95": [
+            -0.0462,
+            0.0484
+          ],
+          "top_1_ci98.33": [
+            -0.0529,
+            0.0612
+          ],
+          "top_5": 0.0,
+          "top_5_ci95": [
+            0.0,
+            0.0
+          ],
+          "top_5_ci98.33": [
+            0.0,
+            0.0
+          ],
+          "top_10": 0.0,
+          "top_10_ci95": [
+            0.0,
+            0.0
+          ],
+          "top_10_ci98.33": [
+            0.0,
+            0.0
+          ]
+        },
+        "Lookups + AVI (locked) minus Lookups combined (locked)": {
+          "role": "primary",
+          "top_1": 0.0476,
+          "top_1_ci95": [
+            -0.0417,
+            0.1429
+          ],
+          "top_5": 0.0159,
+          "top_5_ci95": [
+            -0.0345,
+            0.0747
+          ],
+          "top_10": 0.0159,
+          "top_10_ci95": [
+            -0.0345,
+            0.0747
+          ],
+          "confirmatory": true
+        },
+        "Lookups combined (locked) minus Rule-based": {
+          "role": "descriptive",
+          "top_1": 0.3492,
+          "top_1_ci95": [
+            0.1746,
+            0.5254
+          ],
+          "top_5": 0.0635,
+          "top_5_ci95": [
+            -0.0164,
+            0.1587
+          ],
+          "top_10": 0.0,
+          "top_10_ci95": [
+            -0.0658,
+            0.0667
+          ]
+        },
+        "Lookups + AVI (locked) minus Rule-based": {
+          "role": "descriptive",
+          "top_1": 0.3968,
+          "top_1_ci95": [
+            0.2353,
+            0.5715
+          ],
+          "top_5": 0.0794,
+          "top_5_ci95": [
+            0.0,
+            0.1613
+          ],
+          "top_10": 0.0159,
+          "top_10_ci95": [
+            -0.0345,
+            0.0769
+          ]
+        },
+        "Lookups + GPN-MSA (locked) minus Lookups combined (locked)": {
+          "role": "secondary, Bonferroni-adjusted",
+          "top_1": -0.0476,
+          "top_1_ci95": [
+            -0.1286,
+            0.0189
+          ],
+          "top_1_ci98.33": [
+            -0.151,
+            0.036
+          ],
+          "top_5": 0.0,
+          "top_5_ci95": [
+            0.0,
+            0.0
+          ],
+          "top_5_ci98.33": [
+            0.0,
+            0.0
+          ],
+          "top_10": 0.0,
+          "top_10_ci95": [
+            0.0,
+            0.0
+          ],
+          "top_10_ci98.33": [
+            0.0,
+            0.0
+          ]
+        },
+        "Lookups + GPN-Star-V (locked) minus Lookups combined (locked)": {
+          "role": "secondary, Bonferroni-adjusted",
+          "top_1": -0.0635,
+          "top_1_ci95": [
+            -0.1207,
+            -0.0154
+          ],
+          "top_1_ci98.33": [
+            -0.1309,
+            0.0
+          ],
+          "top_5": 0.0,
+          "top_5_ci95": [
+            0.0,
+            0.0
+          ],
+          "top_5_ci98.33": [
+            0.0,
+            0.0
+          ],
+          "top_10": 0.0,
+          "top_10_ci95": [
+            0.0,
+            0.0
+          ],
+          "top_10_ci98.33": [
+            0.0,
+            0.0
+          ]
+        },
+        "Lookups + GPN-Star-M (locked) minus Lookups combined (locked)": {
+          "role": "secondary, Bonferroni-adjusted",
+          "top_1": 0.0317,
+          "top_1_ci95": [
+            0.0,
+            0.0794
+          ],
+          "top_1_ci98.33": [
+            0.0,
+            0.0934
+          ],
+          "top_5": -0.0159,
+          "top_5_ci95": [
+            -0.0526,
+            0.0
+          ],
+          "top_5_ci98.33": [
+            -0.0667,
+            0.0
+          ],
+          "top_10": 0.0,
+          "top_10_ci95": [
+            0.0,
+            0.0
+          ],
+          "top_10_ci98.33": [
+            0.0,
+            0.0
+          ]
+        },
+        "Rule + AVI minus Rule-based": {
+          "role": "key secondary",
+          "top_1": 0.2063,
+          "top_1_ci95": [
+            0.0666,
+            0.3434
+          ],
+          "top_5": 0.0,
+          "top_5_ci95": [
+            0.0,
+            0.0
+          ],
+          "top_10": -0.0159,
+          "top_10_ci95": [
+            -0.0526,
+            0.0
+          ]
+        }
+      },
+      "seed_label": "replication/bg1pct/noncoding: splice_region"
+    },
+    "noncoding: synonymous": {
+      "cases": 15,
+      "people": 14,
+      "small": true,
+      "scores": {
+        "CADD": {
+          "median_competitors": 8.0,
+          "top_1": 0.0667,
+          "top_1_ci95": [
+            0.0,
+            0.2143
+          ],
+          "top_5": 0.3333,
+          "top_5_ci95": [
+            0.1333,
+            0.5625
+          ],
+          "top_10": 0.5333,
+          "top_10_ci95": [
+            0.2663,
+            0.7652
+          ]
+        },
+        "SpliceAI": {
+          "median_competitors": 0.0,
+          "top_1": 0.8667,
+          "top_1_ci95": [
+            0.6661,
+            1.0
+          ],
+          "top_5": 0.9333,
+          "top_5_ci95": [
+            0.7857,
+            1.0
+          ],
+          "top_10": 0.9333,
+          "top_10_ci95": [
+            0.7857,
+            1.0
+          ]
+        },
+        "REVEL": {
+          "median_competitors": 67.0,
+          "top_1": 0.0,
+          "top_1_ci95": [
+            0.0,
+            0.0
+          ],
+          "top_5": 0.0,
+          "top_5_ci95": [
+            0.0,
+            0.0
+          ],
+          "top_10": 0.0,
+          "top_10_ci95": [
+            0.0,
+            0.0
+          ]
+        },
+        "AlphaMissense": {
+          "median_competitors": 67.0,
+          "top_1": 0.0,
+          "top_1_ci95": [
+            0.0,
+            0.0
+          ],
+          "top_5": 0.0,
+          "top_5_ci95": [
+            0.0,
+            0.0
+          ],
+          "top_10": 0.0,
+          "top_10_ci95": [
+            0.0,
+            0.0
+          ]
+        },
+        "AVI": {
+          "median_competitors": 1.0,
+          "top_1": 0.4667,
+          "top_1_ci95": [
+            0.2143,
+            0.7059
+          ],
+          "top_5": 0.8,
+          "top_5_ci95": [
+            0.5714,
+            1.0
+          ],
+          "top_10": 0.8667,
+          "top_10_ci95": [
+            0.6429,
+            1.0
+          ]
+        },
+        "GPN-MSA": {
+          "median_competitors": 19.0,
+          "top_1": 0.0667,
+          "top_1_ci95": [
+            0.0,
+            0.2143
+          ],
+          "top_5": 0.1333,
+          "top_5_ci95": [
+            0.0,
+            0.3333
+          ],
+          "top_10": 0.1333,
+          "top_10_ci95": [
+            0.0,
+            0.3333
+          ]
+        },
+        "GPN-Star-V": {
+          "median_competitors": 21.0,
+          "top_1": 0.0,
+          "top_1_ci95": [
+            0.0,
+            0.0
+          ],
+          "top_5": 0.1333,
+          "top_5_ci95": [
+            0.0,
+            0.3333
+          ],
+          "top_10": 0.1333,
+          "top_10_ci95": [
+            0.0,
+            0.3333
+          ]
+        },
+        "GPN-Star-M": {
+          "median_competitors": 12.0,
+          "top_1": 0.1333,
+          "top_1_ci95": [
+            0.0,
+            0.3333
+          ],
+          "top_5": 0.2,
+          "top_5_ci95": [
+            0.0,
+            0.4286
+          ],
+          "top_10": 0.4,
+          "top_10_ci95": [
+            0.1429,
+            0.625
+          ]
+        },
+        "Rule-based": {
+          "median_competitors": 0.0,
+          "top_1": 0.6667,
+          "top_1_ci95": [
+            0.4286,
+            0.8667
+          ],
+          "top_5": 0.9333,
+          "top_5_ci95": [
+            0.7857,
+            1.0
+          ],
+          "top_10": 0.9333,
+          "top_10_ci95": [
+            0.7857,
+            1.0
+          ]
+        },
+        "Rule + AVI": {
+          "median_competitors": 0.0,
+          "top_1": 0.8,
+          "top_1_ci95": [
+            0.5714,
+            1.0
+          ],
+          "top_5": 0.9333,
+          "top_5_ci95": [
+            0.7857,
+            1.0
+          ],
+          "top_10": 0.9333,
+          "top_10_ci95": [
+            0.7857,
+            1.0
+          ]
+        },
+        "Lookups combined": {
+          "median_competitors": 0.0,
+          "top_1": 0.7333,
+          "top_1_ci95": [
+            0.4992,
+            0.9375
+          ],
+          "top_5": 0.8667,
+          "top_5_ci95": [
+            0.6429,
+            1.0
+          ],
+          "top_10": 0.9333,
+          "top_10_ci95": [
+            0.7857,
+            1.0
+          ]
+        },
+        "Lookups + AVI": {
+          "median_competitors": 0.0,
+          "top_1": 0.8,
+          "top_1_ci95": [
+            0.5714,
+            1.0
+          ],
+          "top_5": 0.8667,
+          "top_5_ci95": [
+            0.6429,
+            1.0
+          ],
+          "top_10": 1.0,
+          "top_10_ci95": [
+            1.0,
+            1.0
+          ]
+        },
+        "Lookups + GPN-MSA": {
+          "median_competitors": 0.0,
+          "top_1": 0.7333,
+          "top_1_ci95": [
+            0.4992,
+            0.9375
+          ],
+          "top_5": 0.8667,
+          "top_5_ci95": [
+            0.6429,
+            1.0
+          ],
+          "top_10": 0.8667,
+          "top_10_ci95": [
+            0.6429,
+            1.0
+          ]
+        },
+        "Lookups + GPN-Star-V": {
+          "median_competitors": 0.0,
+          "top_1": 0.7333,
+          "top_1_ci95": [
+            0.4992,
+            0.9375
+          ],
+          "top_5": 0.8667,
+          "top_5_ci95": [
+            0.6429,
+            1.0
+          ],
+          "top_10": 0.9333,
+          "top_10_ci95": [
+            0.7857,
+            1.0
+          ]
+        },
+        "Lookups + GPN-Star-M": {
+          "median_competitors": 0.0,
+          "top_1": 0.7333,
+          "top_1_ci95": [
+            0.4992,
+            0.9375
+          ],
+          "top_5": 0.8667,
+          "top_5_ci95": [
+            0.6429,
+            1.0
+          ],
+          "top_10": 1.0,
+          "top_10_ci95": [
+            1.0,
+            1.0
+          ]
+        },
+        "Lookups combined (locked)": {
+          "median_competitors": 0.0,
+          "top_1": 0.8,
+          "top_1_ci95": [
+            0.5714,
+            1.0
+          ],
+          "top_5": 0.8667,
+          "top_5_ci95": [
+            0.6429,
+            1.0
+          ],
+          "top_10": 0.9333,
+          "top_10_ci95": [
+            0.7857,
+            1.0
+          ]
+        },
+        "Lookups + AVI (locked)": {
+          "median_competitors": 0.0,
+          "top_1": 0.8,
+          "top_1_ci95": [
+            0.5714,
+            1.0
+          ],
+          "top_5": 0.9333,
+          "top_5_ci95": [
+            0.7857,
+            1.0
+          ],
+          "top_10": 1.0,
+          "top_10_ci95": [
+            1.0,
+            1.0
+          ]
+        },
+        "Lookups + GPN-MSA (locked)": {
+          "median_competitors": 0.0,
+          "top_1": 0.8,
+          "top_1_ci95": [
+            0.5714,
+            1.0
+          ],
+          "top_5": 0.8667,
+          "top_5_ci95": [
+            0.6429,
+            1.0
+          ],
+          "top_10": 1.0,
+          "top_10_ci95": [
+            1.0,
+            1.0
+          ]
+        },
+        "Lookups + GPN-Star-V (locked)": {
+          "median_competitors": 0.0,
+          "top_1": 0.8,
+          "top_1_ci95": [
+            0.5714,
+            1.0
+          ],
+          "top_5": 0.8667,
+          "top_5_ci95": [
+            0.6429,
+            1.0
+          ],
+          "top_10": 1.0,
+          "top_10_ci95": [
+            1.0,
+            1.0
+          ]
+        },
+        "Lookups + GPN-Star-M (locked)": {
+          "median_competitors": 0.0,
+          "top_1": 0.8,
+          "top_1_ci95": [
+            0.5714,
+            1.0
+          ],
+          "top_5": 0.9333,
+          "top_5_ci95": [
+            0.7857,
+            1.0
+          ],
+          "top_10": 0.9333,
+          "top_10_ci95": [
+            0.7857,
+            1.0
+          ]
+        }
+      },
+      "rule_ties": {
+        "Rule-based": 0.0,
+        "Rule + AVI": 0.0
+      },
+      "contrasts": {
+        "Lookups + AVI minus Lookups combined": {
+          "role": "primary contrast, cross-validated (descriptive)",
+          "top_1": 0.0667,
+          "top_1_ci95": [
+            0.0,
+            0.2143
+          ],
+          "top_5": 0.0,
+          "top_5_ci95": [
+            0.0,
+            0.0
+          ],
+          "top_10": 0.0667,
+          "top_10_ci95": [
+            0.0,
+            0.2143
+          ],
+          "confirmatory": false
+        },
+        "Lookups combined minus Rule-based": {
+          "role": "descriptive",
+          "top_1": 0.0667,
+          "top_1_ci95": [
+            -0.1429,
+            0.2667
+          ],
+          "top_5": -0.0667,
+          "top_5_ci95": [
+            -0.2143,
+            0.0
+          ],
+          "top_10": 0.0,
+          "top_10_ci95": [
+            0.0,
+            0.0
+          ]
+        },
+        "Lookups + AVI minus Rule-based": {
+          "role": "descriptive",
+          "top_1": 0.1333,
+          "top_1_ci95": [
+            0.0,
+            0.2941
+          ],
+          "top_5": -0.0667,
+          "top_5_ci95": [
+            -0.2143,
+            0.0
+          ],
+          "top_10": 0.0667,
+          "top_10_ci95": [
+            0.0,
+            0.2143
+          ]
+        },
+        "Lookups + GPN-MSA minus Lookups combined": {
+          "role": "secondary, cross-validated (descriptive)",
+          "top_1": 0.0,
+          "top_1_ci95": [
+            0.0,
+            0.0
+          ],
+          "top_1_ci98.33": [
+            0.0,
+            0.0
+          ],
+          "top_5": 0.0,
+          "top_5_ci95": [
+            0.0,
+            0.0
+          ],
+          "top_5_ci98.33": [
+            0.0,
+            0.0
+          ],
+          "top_10": -0.0667,
+          "top_10_ci95": [
+            -0.2143,
+            0.0
+          ],
+          "top_10_ci98.33": [
+            -0.2667,
+            0.0
+          ]
+        },
+        "Lookups + GPN-Star-V minus Lookups combined": {
+          "role": "secondary, cross-validated (descriptive)",
+          "top_1": 0.0,
+          "top_1_ci95": [
+            0.0,
+            0.0
+          ],
+          "top_1_ci98.33": [
+            0.0,
+            0.0
+          ],
+          "top_5": 0.0,
+          "top_5_ci95": [
+            0.0,
+            0.0
+          ],
+          "top_5_ci98.33": [
+            0.0,
+            0.0
+          ],
+          "top_10": 0.0,
+          "top_10_ci95": [
+            -0.2,
+            0.2
+          ],
+          "top_10_ci98.33": [
+            -0.2143,
+            0.2143
+          ]
+        },
+        "Lookups + GPN-Star-M minus Lookups combined": {
+          "role": "secondary, cross-validated (descriptive)",
+          "top_1": 0.0,
+          "top_1_ci95": [
+            0.0,
+            0.0
+          ],
+          "top_1_ci98.33": [
+            0.0,
+            0.0
+          ],
+          "top_5": 0.0,
+          "top_5_ci95": [
+            0.0,
+            0.0
+          ],
+          "top_5_ci98.33": [
+            0.0,
+            0.0
+          ],
+          "top_10": 0.0667,
+          "top_10_ci95": [
+            0.0,
+            0.2143
+          ],
+          "top_10_ci98.33": [
+            0.0,
+            0.2667
+          ]
+        },
+        "Lookups + AVI (locked) minus Lookups combined (locked)": {
+          "role": "primary",
+          "top_1": 0.0,
+          "top_1_ci95": [
+            0.0,
+            0.0
+          ],
+          "top_5": 0.0667,
+          "top_5_ci95": [
+            0.0,
+            0.2143
+          ],
+          "top_10": 0.0667,
+          "top_10_ci95": [
+            0.0,
+            0.2143
+          ],
+          "confirmatory": true
+        },
+        "Lookups combined (locked) minus Rule-based": {
+          "role": "descriptive",
+          "top_1": 0.1333,
+          "top_1_ci95": [
+            0.0,
+            0.2941
+          ],
+          "top_5": -0.0667,
+          "top_5_ci95": [
+            -0.2143,
+            0.0
+          ],
+          "top_10": 0.0,
+          "top_10_ci95": [
+            0.0,
+            0.0
+          ]
+        },
+        "Lookups + AVI (locked) minus Rule-based": {
+          "role": "descriptive",
+          "top_1": 0.1333,
+          "top_1_ci95": [
+            0.0,
+            0.2941
+          ],
+          "top_5": 0.0,
+          "top_5_ci95": [
+            0.0,
+            0.0
+          ],
+          "top_10": 0.0667,
+          "top_10_ci95": [
+            0.0,
+            0.2143
+          ]
+        },
+        "Lookups + GPN-MSA (locked) minus Lookups combined (locked)": {
+          "role": "secondary, Bonferroni-adjusted",
+          "top_1": 0.0,
+          "top_1_ci95": [
+            0.0,
+            0.0
+          ],
+          "top_1_ci98.33": [
+            0.0,
+            0.0
+          ],
+          "top_5": 0.0,
+          "top_5_ci95": [
+            0.0,
+            0.0
+          ],
+          "top_5_ci98.33": [
+            0.0,
+            0.0
+          ],
+          "top_10": 0.0667,
+          "top_10_ci95": [
+            0.0,
+            0.2143
+          ],
+          "top_10_ci98.33": [
+            0.0,
+            0.2667
+          ]
+        },
+        "Lookups + GPN-Star-V (locked) minus Lookups combined (locked)": {
+          "role": "secondary, Bonferroni-adjusted",
+          "top_1": 0.0,
+          "top_1_ci95": [
+            0.0,
+            0.0
+          ],
+          "top_1_ci98.33": [
+            0.0,
+            0.0
+          ],
+          "top_5": 0.0,
+          "top_5_ci95": [
+            0.0,
+            0.0
+          ],
+          "top_5_ci98.33": [
+            0.0,
+            0.0
+          ],
+          "top_10": 0.0667,
+          "top_10_ci95": [
+            0.0,
+            0.2143
+          ],
+          "top_10_ci98.33": [
+            0.0,
+            0.2667
+          ]
+        },
+        "Lookups + GPN-Star-M (locked) minus Lookups combined (locked)": {
+          "role": "secondary, Bonferroni-adjusted",
+          "top_1": 0.0,
+          "top_1_ci95": [
+            0.0,
+            0.0
+          ],
+          "top_1_ci98.33": [
+            0.0,
+            0.0
+          ],
+          "top_5": 0.0667,
+          "top_5_ci95": [
+            0.0,
+            0.2143
+          ],
+          "top_5_ci98.33": [
+            0.0,
+            0.2667
+          ],
+          "top_10": 0.0,
+          "top_10_ci95": [
+            -0.2,
+            0.2
+          ],
+          "top_10_ci98.33": [
+            -0.2143,
+            0.2143
+          ]
+        },
+        "Rule + AVI minus Rule-based": {
+          "role": "key secondary",
+          "top_1": 0.1333,
+          "top_1_ci95": [
+            0.0,
+            0.2941
+          ],
+          "top_5": 0.0,
+          "top_5_ci95": [
+            0.0,
+            0.0
+          ],
+          "top_10": 0.0,
+          "top_10_ci95": [
+            0.0,
+            0.0
+          ]
+        }
+      },
+      "seed_label": "replication/bg1pct/noncoding: synonymous"
+    },
+    "noncoding: utr": {
+      "cases": 13,
+      "people": 11,
+      "small": true,
+      "scores": {
+        "CADD": {
+          "median_competitors": 10.0,
+          "top_1": 0.0,
+          "top_1_ci95": [
+            0.0,
+            0.0
+          ],
+          "top_5": 0.2308,
+          "top_5_ci95": [
+            0.0667,
+            0.4615
+          ],
+          "top_10": 0.3846,
+          "top_10_ci95": [
+            0.1429,
+            0.6667
+          ]
+        },
+        "SpliceAI": {
+          "median_competitors": 67.0,
+          "top_1": 0.0,
+          "top_1_ci95": [
+            0.0,
+            0.0
+          ],
+          "top_5": 0.1538,
+          "top_5_ci95": [
+            0.0,
+            0.3571
+          ],
+          "top_10": 0.2308,
+          "top_10_ci95": [
+            0.0,
+            0.4615
+          ]
+        },
+        "REVEL": {
+          "median_competitors": 61.0,
+          "top_1": 0.0,
+          "top_1_ci95": [
+            0.0,
+            0.0
+          ],
+          "top_5": 0.0769,
+          "top_5_ci95": [
+            0.0,
+            0.25
+          ],
+          "top_10": 0.0769,
+          "top_10_ci95": [
+            0.0,
+            0.25
+          ]
+        },
+        "AlphaMissense": {
+          "median_competitors": 67.0,
+          "top_1": 0.0,
+          "top_1_ci95": [
+            0.0,
+            0.0
+          ],
+          "top_5": 0.0,
+          "top_5_ci95": [
+            0.0,
+            0.0
+          ],
+          "top_10": 0.0,
+          "top_10_ci95": [
+            0.0,
+            0.0
+          ]
+        },
+        "AVI": {
+          "median_competitors": 9.0,
+          "top_1": 0.0,
+          "top_1_ci95": [
+            0.0,
+            0.0
+          ],
+          "top_5": 0.1538,
+          "top_5_ci95": [
+            0.0,
+            0.3854
+          ],
+          "top_10": 0.5385,
+          "top_10_ci95": [
+            0.3077,
+            0.7692
+          ]
+        },
+        "GPN-MSA": {
+          "median_competitors": 8.0,
+          "top_1": 0.0769,
+          "top_1_ci95": [
+            0.0,
+            0.25
+          ],
+          "top_5": 0.4615,
+          "top_5_ci95": [
+            0.1875,
+            0.8182
+          ],
+          "top_10": 0.6923,
+          "top_10_ci95": [
+            0.5,
+            0.9167
+          ]
+        },
+        "GPN-Star-V": {
+          "median_competitors": 3.0,
+          "top_1": 0.1538,
+          "top_1_ci95": [
+            0.0,
+            0.4167
+          ],
+          "top_5": 0.5385,
+          "top_5_ci95": [
+            0.2667,
+            0.8182
+          ],
+          "top_10": 0.6923,
+          "top_10_ci95": [
+            0.5,
+            0.9167
+          ]
+        },
+        "GPN-Star-M": {
+          "median_competitors": 6.0,
+          "top_1": 0.2308,
+          "top_1_ci95": [
+            0.0,
+            0.5455
+          ],
+          "top_5": 0.3846,
+          "top_5_ci95": [
+            0.1333,
+            0.7273
+          ],
+          "top_10": 0.6154,
+          "top_10_ci95": [
+            0.3846,
+            0.8333
+          ]
+        },
+        "Rule-based": {
+          "median_competitors": 12.0,
+          "top_1": 0.0,
+          "top_1_ci95": [
+            0.0,
+            0.0
+          ],
+          "top_5": 0.0769,
+          "top_5_ci95": [
+            0.0,
+            0.25
+          ],
+          "top_10": 0.3846,
+          "top_10_ci95": [
+            0.0833,
+            0.6923
+          ]
+        },
+        "Rule + AVI": {
+          "median_competitors": 9.0,
+          "top_1": 0.0,
+          "top_1_ci95": [
+            0.0,
+            0.0
+          ],
+          "top_5": 0.1538,
+          "top_5_ci95": [
+            0.0,
+            0.3854
+          ],
+          "top_10": 0.5385,
+          "top_10_ci95": [
+            0.3077,
+            0.7692
+          ]
+        },
+        "Lookups combined": {
+          "median_competitors": 8.0,
+          "top_1": 0.0769,
+          "top_1_ci95": [
+            0.0,
+            0.2727
+          ],
+          "top_5": 0.3846,
+          "top_5_ci95": [
+            0.1429,
+            0.6667
+          ],
+          "top_10": 0.5385,
+          "top_10_ci95": [
+            0.3077,
+            0.7692
+          ]
+        },
+        "Lookups + AVI": {
+          "median_competitors": 7.0,
+          "top_1": 0.0769,
+          "top_1_ci95": [
+            0.0,
+            0.2727
+          ],
+          "top_5": 0.4615,
+          "top_5_ci95": [
+            0.2308,
+            0.6923
+          ],
+          "top_10": 0.5385,
+          "top_10_ci95": [
+            0.3077,
+            0.7692
+          ]
+        },
+        "Lookups + GPN-MSA": {
+          "median_competitors": 3.0,
+          "top_1": 0.0769,
+          "top_1_ci95": [
+            0.0,
+            0.2727
+          ],
+          "top_5": 0.5385,
+          "top_5_ci95": [
+            0.3077,
+            0.7692
+          ],
+          "top_10": 0.5385,
+          "top_10_ci95": [
+            0.3077,
+            0.7692
+          ]
+        },
+        "Lookups + GPN-Star-V": {
+          "median_competitors": 6.0,
+          "top_1": 0.1538,
+          "top_1_ci95": [
+            0.0,
+            0.4167
+          ],
+          "top_5": 0.4615,
+          "top_5_ci95": [
+            0.2143,
+            0.75
+          ],
+          "top_10": 0.5385,
+          "top_10_ci95": [
+            0.3077,
+            0.7692
+          ]
+        },
+        "Lookups + GPN-Star-M": {
+          "median_competitors": 7.0,
+          "top_1": 0.0769,
+          "top_1_ci95": [
+            0.0,
+            0.2727
+          ],
+          "top_5": 0.4615,
+          "top_5_ci95": [
+            0.2143,
+            0.75
+          ],
+          "top_10": 0.6154,
+          "top_10_ci95": [
+            0.3846,
+            0.8333
+          ]
+        },
+        "Lookups combined (locked)": {
+          "median_competitors": 13.0,
+          "top_1": 0.0,
+          "top_1_ci95": [
+            0.0,
+            0.0
+          ],
+          "top_5": 0.0,
+          "top_5_ci95": [
+            0.0,
+            0.0
+          ],
+          "top_10": 0.3077,
+          "top_10_ci95": [
+            0.0667,
+            0.6364
+          ]
+        },
+        "Lookups + AVI (locked)": {
+          "median_competitors": 6.0,
+          "top_1": 0.0,
+          "top_1_ci95": [
+            0.0,
+            0.0
+          ],
+          "top_5": 0.4615,
+          "top_5_ci95": [
+            0.1875,
+            0.8182
+          ],
+          "top_10": 0.6154,
+          "top_10_ci95": [
+            0.3333,
+            0.9091
+          ]
+        },
+        "Lookups + GPN-MSA (locked)": {
+          "median_competitors": 14.0,
+          "top_1": 0.0,
+          "top_1_ci95": [
+            0.0,
+            0.0
+          ],
+          "top_5": 0.0,
+          "top_5_ci95": [
+            0.0,
+            0.0
+          ],
+          "top_10": 0.3846,
+          "top_10_ci95": [
+            0.125,
+            0.7273
+          ]
+        },
+        "Lookups + GPN-Star-V (locked)": {
+          "median_competitors": 9.0,
+          "top_1": 0.0,
+          "top_1_ci95": [
+            0.0,
+            0.0
+          ],
+          "top_5": 0.3077,
+          "top_5_ci95": [
+            0.0714,
+            0.6364
+          ],
+          "top_10": 0.5385,
+          "top_10_ci95": [
+            0.2663,
+            0.8182
+          ]
+        },
+        "Lookups + GPN-Star-M (locked)": {
+          "median_competitors": 7.0,
+          "top_1": 0.0,
+          "top_1_ci95": [
+            0.0,
+            0.0
+          ],
+          "top_5": 0.3846,
+          "top_5_ci95": [
+            0.125,
+            0.7273
+          ],
+          "top_10": 0.5385,
+          "top_10_ci95": [
+            0.2353,
+            0.8352
+          ]
+        }
+      },
+      "rule_ties": {
+        "Rule-based": 0.0769,
+        "Rule + AVI": 0.0
+      },
+      "contrasts": {
+        "Lookups + AVI minus Lookups combined": {
+          "role": "primary contrast, cross-validated (descriptive)",
+          "top_1": 0.0,
+          "top_1_ci95": [
+            0.0,
+            0.0
+          ],
+          "top_5": 0.0769,
+          "top_5_ci95": [
+            -0.1818,
+            0.3162
+          ],
+          "top_10": 0.0,
+          "top_10_ci95": [
+            0.0,
+            0.0
+          ],
+          "confirmatory": false
+        },
+        "Lookups combined minus Rule-based": {
+          "role": "descriptive",
+          "top_1": 0.0769,
+          "top_1_ci95": [
+            0.0,
+            0.2727
+          ],
+          "top_5": 0.3077,
+          "top_5_ci95": [
+            0.0833,
+            0.5714
+          ],
+          "top_10": 0.1538,
+          "top_10_ci95": [
+            -0.1333,
+            0.4545
+          ]
+        },
+        "Lookups + AVI minus Rule-based": {
+          "role": "descriptive",
+          "top_1": 0.0769,
+          "top_1_ci95": [
+            0.0,
+            0.2727
+          ],
+          "top_5": 0.3846,
+          "top_5_ci95": [
+            0.0,
+            0.6667
+          ],
+          "top_10": 0.1538,
+          "top_10_ci95": [
+            -0.1333,
+            0.4545
+          ]
+        },
+        "Lookups + GPN-MSA minus Lookups combined": {
+          "role": "secondary, cross-validated (descriptive)",
+          "top_1": 0.0,
+          "top_1_ci95": [
+            0.0,
+            0.0
+          ],
+          "top_1_ci98.33": [
+            0.0,
+            0.0
+          ],
+          "top_5": 0.1538,
+          "top_5_ci95": [
+            0.0,
+            0.3571
+          ],
+          "top_5_ci98.33": [
+            0.0,
+            0.3846
+          ],
+          "top_10": 0.0,
+          "top_10_ci95": [
+            0.0,
+            0.0
+          ],
+          "top_10_ci98.33": [
+            0.0,
+            0.0
+          ]
+        },
+        "Lookups + GPN-Star-V minus Lookups combined": {
+          "role": "secondary, cross-validated (descriptive)",
+          "top_1": 0.0769,
+          "top_1_ci95": [
+            0.0,
+            0.25
+          ],
+          "top_1_ci98.33": [
+            0.0,
+            0.3077
+          ],
+          "top_5": 0.0769,
+          "top_5_ci95": [
+            0.0,
+            0.25
+          ],
+          "top_5_ci98.33": [
+            0.0,
+            0.2727
+          ],
+          "top_10": 0.0,
+          "top_10_ci95": [
+            0.0,
+            0.0
+          ],
+          "top_10_ci98.33": [
+            0.0,
+            0.0
+          ]
+        },
+        "Lookups + GPN-Star-M minus Lookups combined": {
+          "role": "secondary, cross-validated (descriptive)",
+          "top_1": 0.0,
+          "top_1_ci95": [
+            0.0,
+            0.0
+          ],
+          "top_1_ci98.33": [
+            0.0,
+            0.0
+          ],
+          "top_5": 0.0769,
+          "top_5_ci95": [
+            0.0,
+            0.25
+          ],
+          "top_5_ci98.33": [
+            0.0,
+            0.2727
+          ],
+          "top_10": 0.0769,
+          "top_10_ci95": [
+            0.0,
+            0.25
+          ],
+          "top_10_ci98.33": [
+            0.0,
+            0.3333
+          ]
+        },
+        "Lookups + AVI (locked) minus Lookups combined (locked)": {
+          "role": "primary",
+          "top_1": 0.0,
+          "top_1_ci95": [
+            0.0,
+            0.0
+          ],
+          "top_5": 0.4615,
+          "top_5_ci95": [
+            0.1875,
+            0.8182
+          ],
+          "top_10": 0.3077,
+          "top_10_ci95": [
+            0.0769,
+            0.5461
+          ],
+          "confirmatory": true
+        },
+        "Lookups combined (locked) minus Rule-based": {
+          "role": "descriptive",
+          "top_1": 0.0,
+          "top_1_ci95": [
+            0.0,
+            0.0
+          ],
+          "top_5": -0.0769,
+          "top_5_ci95": [
+            -0.25,
+            0.0
+          ],
+          "top_10": -0.0769,
+          "top_10_ci95": [
+            -0.4,
+            0.25
+          ]
+        },
+        "Lookups + AVI (locked) minus Rule-based": {
+          "role": "descriptive",
+          "top_1": 0.0,
+          "top_1_ci95": [
+            0.0,
+            0.0
+          ],
+          "top_5": 0.3846,
+          "top_5_ci95": [
+            0.1333,
+            0.7273
+          ],
+          "top_10": 0.2308,
+          "top_10_ci95": [
+            -0.0714,
+            0.5833
+          ]
+        },
+        "Lookups + GPN-MSA (locked) minus Lookups combined (locked)": {
+          "role": "secondary, Bonferroni-adjusted",
+          "top_1": 0.0,
+          "top_1_ci95": [
+            0.0,
+            0.0
+          ],
+          "top_1_ci98.33": [
+            0.0,
+            0.0
+          ],
+          "top_5": 0.0,
+          "top_5_ci95": [
+            0.0,
+            0.0
+          ],
+          "top_5_ci98.33": [
+            0.0,
+            0.0
+          ],
+          "top_10": 0.0769,
+          "top_10_ci95": [
+            0.0,
+            0.25
+          ],
+          "top_10_ci98.33": [
+            0.0,
+            0.3333
+          ]
+        },
+        "Lookups + GPN-Star-V (locked) minus Lookups combined (locked)": {
+          "role": "secondary, Bonferroni-adjusted",
+          "top_1": 0.0,
+          "top_1_ci95": [
+            0.0,
+            0.0
+          ],
+          "top_1_ci98.33": [
+            0.0,
+            0.0
+          ],
+          "top_5": 0.3077,
+          "top_5_ci95": [
+            0.0714,
+            0.6364
+          ],
+          "top_5_ci98.33": [
+            0.0625,
+            0.7273
+          ],
+          "top_10": 0.2308,
+          "top_10_ci95": [
+            0.0,
+            0.4545
+          ],
+          "top_10_ci98.33": [
+            0.0,
+            0.5
+          ]
+        },
+        "Lookups + GPN-Star-M (locked) minus Lookups combined (locked)": {
+          "role": "secondary, Bonferroni-adjusted",
+          "top_1": 0.0,
+          "top_1_ci95": [
+            0.0,
+            0.0
+          ],
+          "top_1_ci98.33": [
+            0.0,
+            0.0
+          ],
+          "top_5": 0.3846,
+          "top_5_ci95": [
+            0.125,
+            0.7273
+          ],
+          "top_5_ci98.33": [
+            0.0769,
+            0.8182
+          ],
+          "top_10": 0.2308,
+          "top_10_ci95": [
+            0.0,
+            0.5
+          ],
+          "top_10_ci98.33": [
+            0.0,
+            0.5833
+          ]
+        },
+        "Rule + AVI minus Rule-based": {
+          "role": "key secondary",
+          "top_1": 0.0,
+          "top_1_ci95": [
+            0.0,
+            0.0
+          ],
+          "top_5": 0.0769,
+          "top_5_ci95": [
+            -0.1669,
+            0.3636
+          ],
+          "top_10": 0.1538,
+          "top_10_ci95": [
+            -0.1333,
+            0.4545
+          ]
+        }
+      },
+      "seed_label": "replication/bg1pct/noncoding: utr"
+    },
+    "nonsense": {
+      "cases": 75,
+      "people": 41,
+      "small": false,
+      "scores": {
+        "CADD": {
+          "median_competitors": 0.0,
+          "top_1": 0.9867,
+          "top_1_ci95": [
+            0.9571,
+            1.0
+          ],
+          "top_5": 1.0,
+          "top_5_ci95": [
+            1.0,
+            1.0
+          ],
+          "top_10": 1.0,
+          "top_10_ci95": [
+            1.0,
+            1.0
+          ]
+        },
+        "SpliceAI": {
+          "median_competitors": 27.0,
+          "top_1": 0.12,
+          "top_1_ci95": [
+            0.0526,
+            0.1857
+          ],
+          "top_5": 0.3733,
+          "top_5_ci95": [
+            0.2716,
+            0.4706
+          ],
+          "top_10": 0.4267,
+          "top_10_ci95": [
+            0.321,
+            0.525
+          ]
+        },
+        "REVEL": {
+          "median_competitors": 67.0,
+          "top_1": 0.0267,
+          "top_1_ci95": [
+            0.0,
+            0.0685
+          ],
+          "top_5": 0.08,
+          "top_5_ci95": [
+            0.0263,
+            0.1507
+          ],
+          "top_10": 0.08,
+          "top_10_ci95": [
+            0.0263,
+            0.1507
+          ]
+        },
+        "AlphaMissense": {
+          "median_competitors": 70.0,
+          "top_1": 0.0,
+          "top_1_ci95": [
+            0.0,
+            0.0
+          ],
+          "top_5": 0.0,
+          "top_5_ci95": [
+            0.0,
+            0.0
+          ],
+          "top_10": 0.0,
+          "top_10_ci95": [
+            0.0,
+            0.0
+          ]
+        },
+        "AVI": {
+          "median_competitors": 0.0,
+          "top_1": 0.9733,
+          "top_1_ci95": [
+            0.9333,
+            1.0
+          ],
+          "top_5": 1.0,
+          "top_5_ci95": [
+            1.0,
+            1.0
+          ],
+          "top_10": 1.0,
+          "top_10_ci95": [
+            1.0,
+            1.0
+          ]
+        },
+        "GPN-MSA": {
+          "median_competitors": 2.0,
+          "top_1": 0.3333,
+          "top_1_ci95": [
+            0.2236,
+            0.4493
+          ],
+          "top_5": 0.76,
+          "top_5_ci95": [
+            0.6666,
+            0.8611
+          ],
+          "top_10": 0.8667,
+          "top_10_ci95": [
+            0.803,
+            0.9333
+          ]
+        },
+        "GPN-Star-V": {
+          "median_competitors": 0.0,
+          "top_1": 0.6933,
+          "top_1_ci95": [
+            0.5857,
+            0.7969
+          ],
+          "top_5": 0.8933,
+          "top_5_ci95": [
+            0.831,
+            0.9583
+          ],
+          "top_10": 0.9733,
+          "top_10_ci95": [
+            0.9333,
+            1.0
+          ]
+        },
+        "GPN-Star-M": {
+          "median_competitors": 0.0,
+          "top_1": 0.6133,
+          "top_1_ci95": [
+            0.4843,
+            0.725
+          ],
+          "top_5": 0.9067,
+          "top_5_ci95": [
+            0.8442,
+            0.9616
+          ],
+          "top_10": 0.96,
+          "top_10_ci95": [
+            0.9104,
+            1.0
+          ]
+        },
+        "Rule-based": {
+          "median_competitors": 0.0,
+          "top_1": 1.0,
+          "top_1_ci95": [
+            1.0,
+            1.0
+          ],
+          "top_5": 1.0,
+          "top_5_ci95": [
+            1.0,
+            1.0
+          ],
+          "top_10": 1.0,
+          "top_10_ci95": [
+            1.0,
+            1.0
+          ]
+        },
+        "Rule + AVI": {
+          "median_competitors": 0.0,
+          "top_1": 1.0,
+          "top_1_ci95": [
+            1.0,
+            1.0
+          ],
+          "top_5": 1.0,
+          "top_5_ci95": [
+            1.0,
+            1.0
+          ],
+          "top_10": 1.0,
+          "top_10_ci95": [
+            1.0,
+            1.0
+          ]
+        },
+        "Lookups combined": {
+          "median_competitors": 0.0,
+          "top_1": 1.0,
+          "top_1_ci95": [
+            1.0,
+            1.0
+          ],
+          "top_5": 1.0,
+          "top_5_ci95": [
+            1.0,
+            1.0
+          ],
+          "top_10": 1.0,
+          "top_10_ci95": [
+            1.0,
+            1.0
+          ]
+        },
+        "Lookups + AVI": {
+          "median_competitors": 0.0,
+          "top_1": 1.0,
+          "top_1_ci95": [
+            1.0,
+            1.0
+          ],
+          "top_5": 1.0,
+          "top_5_ci95": [
+            1.0,
+            1.0
+          ],
+          "top_10": 1.0,
+          "top_10_ci95": [
+            1.0,
+            1.0
+          ]
+        },
+        "Lookups + GPN-MSA": {
+          "median_competitors": 0.0,
+          "top_1": 1.0,
+          "top_1_ci95": [
+            1.0,
+            1.0
+          ],
+          "top_5": 1.0,
+          "top_5_ci95": [
+            1.0,
+            1.0
+          ],
+          "top_10": 1.0,
+          "top_10_ci95": [
+            1.0,
+            1.0
+          ]
+        },
+        "Lookups + GPN-Star-V": {
+          "median_competitors": 0.0,
+          "top_1": 1.0,
+          "top_1_ci95": [
+            1.0,
+            1.0
+          ],
+          "top_5": 1.0,
+          "top_5_ci95": [
+            1.0,
+            1.0
+          ],
+          "top_10": 1.0,
+          "top_10_ci95": [
+            1.0,
+            1.0
+          ]
+        },
+        "Lookups + GPN-Star-M": {
+          "median_competitors": 0.0,
+          "top_1": 1.0,
+          "top_1_ci95": [
+            1.0,
+            1.0
+          ],
+          "top_5": 1.0,
+          "top_5_ci95": [
+            1.0,
+            1.0
+          ],
+          "top_10": 1.0,
+          "top_10_ci95": [
+            1.0,
+            1.0
+          ]
+        },
+        "Lookups combined (locked)": {
+          "median_competitors": 0.0,
+          "top_1": 0.9467,
+          "top_1_ci95": [
+            0.878,
+            1.0
+          ],
+          "top_5": 1.0,
+          "top_5_ci95": [
+            1.0,
+            1.0
+          ],
+          "top_10": 1.0,
+          "top_10_ci95": [
+            1.0,
+            1.0
+          ]
+        },
+        "Lookups + AVI (locked)": {
+          "median_competitors": 0.0,
+          "top_1": 0.9333,
+          "top_1_ci95": [
+            0.8551,
+            1.0
+          ],
+          "top_5": 1.0,
+          "top_5_ci95": [
+            1.0,
+            1.0
+          ],
+          "top_10": 1.0,
+          "top_10_ci95": [
+            1.0,
+            1.0
+          ]
+        },
+        "Lookups + GPN-MSA (locked)": {
+          "median_competitors": 0.0,
+          "top_1": 0.96,
+          "top_1_ci95": [
+            0.8941,
+            1.0
+          ],
+          "top_5": 1.0,
+          "top_5_ci95": [
+            1.0,
+            1.0
+          ],
+          "top_10": 1.0,
+          "top_10_ci95": [
+            1.0,
+            1.0
+          ]
+        },
+        "Lookups + GPN-Star-V (locked)": {
+          "median_competitors": 0.0,
+          "top_1": 0.96,
+          "top_1_ci95": [
+            0.8961,
+            1.0
+          ],
+          "top_5": 1.0,
+          "top_5_ci95": [
+            1.0,
+            1.0
+          ],
+          "top_10": 1.0,
+          "top_10_ci95": [
+            1.0,
+            1.0
+          ]
+        },
+        "Lookups + GPN-Star-M (locked)": {
+          "median_competitors": 0.0,
+          "top_1": 0.9733,
+          "top_1_ci95": [
+            0.9155,
+            1.0
+          ],
+          "top_5": 1.0,
+          "top_5_ci95": [
+            1.0,
+            1.0
+          ],
+          "top_10": 1.0,
+          "top_10_ci95": [
+            1.0,
+            1.0
+          ]
+        }
+      },
+      "rule_ties": {
+        "Rule-based": 0.0,
+        "Rule + AVI": 0.0
+      },
+      "contrasts": {
+        "Lookups + AVI minus Lookups combined": {
+          "role": "primary contrast, cross-validated (descriptive)",
+          "top_1": 0.0,
+          "top_1_ci95": [
+            0.0,
+            0.0
+          ],
+          "top_5": 0.0,
+          "top_5_ci95": [
+            0.0,
+            0.0
+          ],
+          "top_10": 0.0,
+          "top_10_ci95": [
+            0.0,
+            0.0
+          ],
+          "confirmatory": false
+        },
+        "Lookups combined minus Rule-based": {
+          "role": "descriptive",
+          "top_1": 0.0,
+          "top_1_ci95": [
+            0.0,
+            0.0
+          ],
+          "top_5": 0.0,
+          "top_5_ci95": [
+            0.0,
+            0.0
+          ],
+          "top_10": 0.0,
+          "top_10_ci95": [
+            0.0,
+            0.0
+          ]
+        },
+        "Lookups + AVI minus Rule-based": {
+          "role": "descriptive",
+          "top_1": 0.0,
+          "top_1_ci95": [
+            0.0,
+            0.0
+          ],
+          "top_5": 0.0,
+          "top_5_ci95": [
+            0.0,
+            0.0
+          ],
+          "top_10": 0.0,
+          "top_10_ci95": [
+            0.0,
+            0.0
+          ]
+        },
+        "Lookups + GPN-MSA minus Lookups combined": {
+          "role": "secondary, cross-validated (descriptive)",
+          "top_1": 0.0,
+          "top_1_ci95": [
+            0.0,
+            0.0
+          ],
+          "top_1_ci98.33": [
+            0.0,
+            0.0
+          ],
+          "top_5": 0.0,
+          "top_5_ci95": [
+            0.0,
+            0.0
+          ],
+          "top_5_ci98.33": [
+            0.0,
+            0.0
+          ],
+          "top_10": 0.0,
+          "top_10_ci95": [
+            0.0,
+            0.0
+          ],
+          "top_10_ci98.33": [
+            0.0,
+            0.0
+          ]
+        },
+        "Lookups + GPN-Star-V minus Lookups combined": {
+          "role": "secondary, cross-validated (descriptive)",
+          "top_1": 0.0,
+          "top_1_ci95": [
+            0.0,
+            0.0
+          ],
+          "top_1_ci98.33": [
+            0.0,
+            0.0
+          ],
+          "top_5": 0.0,
+          "top_5_ci95": [
+            0.0,
+            0.0
+          ],
+          "top_5_ci98.33": [
+            0.0,
+            0.0
+          ],
+          "top_10": 0.0,
+          "top_10_ci95": [
+            0.0,
+            0.0
+          ],
+          "top_10_ci98.33": [
+            0.0,
+            0.0
+          ]
+        },
+        "Lookups + GPN-Star-M minus Lookups combined": {
+          "role": "secondary, cross-validated (descriptive)",
+          "top_1": 0.0,
+          "top_1_ci95": [
+            0.0,
+            0.0
+          ],
+          "top_1_ci98.33": [
+            0.0,
+            0.0
+          ],
+          "top_5": 0.0,
+          "top_5_ci95": [
+            0.0,
+            0.0
+          ],
+          "top_5_ci98.33": [
+            0.0,
+            0.0
+          ],
+          "top_10": 0.0,
+          "top_10_ci95": [
+            0.0,
+            0.0
+          ],
+          "top_10_ci98.33": [
+            0.0,
+            0.0
+          ]
+        },
+        "Lookups + AVI (locked) minus Lookups combined (locked)": {
+          "role": "primary",
+          "top_1": -0.0133,
+          "top_1_ci95": [
+            -0.0779,
+            0.0395
+          ],
+          "top_5": 0.0,
+          "top_5_ci95": [
+            0.0,
+            0.0
+          ],
+          "top_10": 0.0,
+          "top_10_ci95": [
+            0.0,
+            0.0
+          ],
+          "confirmatory": true
+        },
+        "Lookups combined (locked) minus Rule-based": {
+          "role": "descriptive",
+          "top_1": -0.0533,
+          "top_1_ci95": [
+            -0.122,
+            0.0
+          ],
+          "top_5": 0.0,
+          "top_5_ci95": [
+            0.0,
+            0.0
+          ],
+          "top_10": 0.0,
+          "top_10_ci95": [
+            0.0,
+            0.0
+          ]
+        },
+        "Lookups + AVI (locked) minus Rule-based": {
+          "role": "descriptive",
+          "top_1": -0.0667,
+          "top_1_ci95": [
+            -0.1449,
+            0.0
+          ],
+          "top_5": 0.0,
+          "top_5_ci95": [
+            0.0,
+            0.0
+          ],
+          "top_10": 0.0,
+          "top_10_ci95": [
+            0.0,
+            0.0
+          ]
+        },
+        "Lookups + GPN-MSA (locked) minus Lookups combined (locked)": {
+          "role": "secondary, Bonferroni-adjusted",
+          "top_1": 0.0133,
+          "top_1_ci95": [
+            0.0,
+            0.0441
+          ],
+          "top_1_ci98.33": [
+            0.0,
+            0.0553
+          ],
+          "top_5": 0.0,
+          "top_5_ci95": [
+            0.0,
+            0.0
+          ],
+          "top_5_ci98.33": [
+            0.0,
+            0.0
+          ],
+          "top_10": 0.0,
+          "top_10_ci95": [
+            0.0,
+            0.0
+          ],
+          "top_10_ci98.33": [
+            0.0,
+            0.0
+          ]
+        },
+        "Lookups + GPN-Star-V (locked) minus Lookups combined (locked)": {
+          "role": "secondary, Bonferroni-adjusted",
+          "top_1": 0.0133,
+          "top_1_ci95": [
+            0.0,
+            0.0435
+          ],
+          "top_1_ci98.33": [
+            0.0,
+            0.0524
+          ],
+          "top_5": 0.0,
+          "top_5_ci95": [
+            0.0,
+            0.0
+          ],
+          "top_5_ci98.33": [
+            0.0,
+            0.0
+          ],
+          "top_10": 0.0,
+          "top_10_ci95": [
+            0.0,
+            0.0
+          ],
+          "top_10_ci98.33": [
+            0.0,
+            0.0
+          ]
+        },
+        "Lookups + GPN-Star-M (locked) minus Lookups combined (locked)": {
+          "role": "secondary, Bonferroni-adjusted",
+          "top_1": 0.0267,
+          "top_1_ci95": [
+            0.0,
+            0.069
+          ],
+          "top_1_ci98.33": [
+            0.0,
+            0.0809
+          ],
+          "top_5": 0.0,
+          "top_5_ci95": [
+            0.0,
+            0.0
+          ],
+          "top_5_ci98.33": [
+            0.0,
+            0.0
+          ],
+          "top_10": 0.0,
+          "top_10_ci95": [
+            0.0,
+            0.0
+          ],
+          "top_10_ci98.33": [
+            0.0,
+            0.0
+          ]
+        },
+        "Rule + AVI minus Rule-based": {
+          "role": "key secondary",
+          "top_1": 0.0,
+          "top_1_ci95": [
+            0.0,
+            0.0
+          ],
+          "top_5": 0.0,
+          "top_5_ci95": [
+            0.0,
+            0.0
+          ],
+          "top_10": 0.0,
+          "top_10_ci95": [
+            0.0,
+            0.0
+          ]
+        }
+      },
+      "seed_label": "replication/bg1pct/nonsense"
+    },
+    "gnomad: found": {
+      "cases": 114,
+      "people": 46,
+      "small": false,
+      "scores": {
+        "CADD": {
+          "median_competitors": 1.0,
+          "top_1": 0.3947,
+          "top_1_ci95": [
+            0.2946,
+            0.5
+          ],
+          "top_5": 0.6667,
+          "top_5_ci95": [
+            0.5673,
+            0.75
+          ],
+          "top_10": 0.8421,
+          "top_10_ci95": [
+            0.7653,
+            0.9107
+          ]
+        },
+        "SpliceAI": {
+          "median_competitors": 0.0,
+          "top_1": 0.5088,
+          "top_1_ci95": [
+            0.4179,
+            0.5962
+          ],
+          "top_5": 0.6404,
+          "top_5_ci95": [
+            0.5484,
+            0.7381
+          ],
+          "top_10": 0.6667,
+          "top_10_ci95": [
+            0.5752,
+            0.759
+          ]
+        },
+        "REVEL": {
+          "median_competitors": 59.5,
+          "top_1": 0.2105,
+          "top_1_ci95": [
+            0.1274,
+            0.2833
+          ],
+          "top_5": 0.2456,
+          "top_5_ci95": [
+            0.153,
+            0.3308
+          ],
+          "top_10": 0.2544,
+          "top_10_ci95": [
+            0.1584,
+            0.3446
+          ]
+        },
+        "AlphaMissense": {
+          "median_competitors": 61.0,
+          "top_1": 0.1491,
+          "top_1_ci95": [
+            0.0758,
+            0.2222
+          ],
+          "top_5": 0.2018,
+          "top_5_ci95": [
+            0.1271,
+            0.2689
+          ],
+          "top_10": 0.2193,
+          "top_10_ci95": [
+            0.1386,
+            0.2917
+          ]
+        },
+        "AVI": {
+          "median_competitors": 0.0,
+          "top_1": 0.614,
+          "top_1_ci95": [
+            0.5175,
+            0.7019
+          ],
+          "top_5": 0.8246,
+          "top_5_ci95": [
+            0.7419,
+            0.8972
+          ],
+          "top_10": 0.9123,
+          "top_10_ci95": [
+            0.8595,
+            0.9604
+          ]
+        },
+        "GPN-MSA": {
+          "median_competitors": 5.0,
+          "top_1": 0.2456,
+          "top_1_ci95": [
+            0.1579,
+            0.3361
+          ],
+          "top_5": 0.4912,
+          "top_5_ci95": [
+            0.3877,
+            0.6018
+          ],
+          "top_10": 0.6842,
+          "top_10_ci95": [
+            0.6019,
+            0.7603
+          ]
+        },
+        "GPN-Star-V": {
+          "median_competitors": 2.5,
+          "top_1": 0.3596,
+          "top_1_ci95": [
+            0.2659,
+            0.4569
+          ],
+          "top_5": 0.5789,
+          "top_5_ci95": [
+            0.4752,
+            0.6697
+          ],
+          "top_10": 0.7368,
+          "top_10_ci95": [
+            0.6545,
+            0.8095
+          ]
+        },
+        "GPN-Star-M": {
+          "median_competitors": 3.0,
+          "top_1": 0.2895,
+          "top_1_ci95": [
+            0.2039,
+            0.3797
+          ],
+          "top_5": 0.6053,
+          "top_5_ci95": [
+            0.5148,
+            0.687
+          ],
+          "top_10": 0.7368,
+          "top_10_ci95": [
+            0.6569,
+            0.819
+          ]
+        },
+        "Rule-based": {
+          "median_competitors": 0.0,
+          "top_1": 0.6842,
+          "top_1_ci95": [
+            0.5871,
+            0.7807
+          ],
+          "top_5": 0.9123,
+          "top_5_ci95": [
+            0.8614,
+            0.9558
+          ],
+          "top_10": 0.9474,
+          "top_10_ci95": [
+            0.9052,
+            0.982
+          ]
+        },
+        "Rule + AVI": {
+          "median_competitors": 0.0,
+          "top_1": 0.7719,
+          "top_1_ci95": [
+            0.6842,
+            0.8558
+          ],
+          "top_5": 0.9123,
+          "top_5_ci95": [
+            0.8648,
+            0.9533
+          ],
+          "top_10": 0.9474,
+          "top_10_ci95": [
+            0.9083,
+            0.9818
+          ]
+        },
+        "Lookups combined": {
+          "median_competitors": 0.0,
+          "top_1": 0.7807,
+          "top_1_ci95": [
+            0.6911,
+            0.8644
+          ],
+          "top_5": 0.9211,
+          "top_5_ci95": [
+            0.8636,
+            0.9706
+          ],
+          "top_10": 0.9474,
+          "top_10_ci95": [
+            0.9074,
+            0.9823
+          ]
+        },
+        "Lookups + AVI": {
+          "median_competitors": 0.0,
+          "top_1": 0.7982,
+          "top_1_ci95": [
+            0.7075,
+            0.886
+          ],
+          "top_5": 0.9386,
+          "top_5_ci95": [
+            0.8972,
+            0.975
+          ],
+          "top_10": 0.9561,
+          "top_10_ci95": [
+            0.9167,
+            0.9901
+          ]
+        },
+        "Lookups + GPN-MSA": {
+          "median_competitors": 0.0,
+          "top_1": 0.7719,
+          "top_1_ci95": [
+            0.6747,
+            0.8621
+          ],
+          "top_5": 0.9298,
+          "top_5_ci95": [
+            0.8803,
+            0.9732
+          ],
+          "top_10": 0.9386,
+          "top_10_ci95": [
+            0.8952,
+            0.9746
+          ]
+        },
+        "Lookups + GPN-Star-V": {
+          "median_competitors": 0.0,
+          "top_1": 0.7895,
+          "top_1_ci95": [
+            0.6965,
+            0.8738
+          ],
+          "top_5": 0.9298,
+          "top_5_ci95": [
+            0.8803,
+            0.9732
+          ],
+          "top_10": 0.9474,
+          "top_10_ci95": [
+            0.9098,
+            0.9818
+          ]
+        },
+        "Lookups + GPN-Star-M": {
+          "median_competitors": 0.0,
+          "top_1": 0.7632,
+          "top_1_ci95": [
+            0.6726,
+            0.8421
+          ],
+          "top_5": 0.9298,
+          "top_5_ci95": [
+            0.8803,
+            0.9732
+          ],
+          "top_10": 0.9649,
+          "top_10_ci95": [
+            0.9352,
+            0.9913
+          ]
+        },
+        "Lookups combined (locked)": {
+          "median_competitors": 0.0,
+          "top_1": 0.8158,
+          "top_1_ci95": [
+            0.7477,
+            0.8793
+          ],
+          "top_5": 0.9211,
+          "top_5_ci95": [
+            0.8678,
+            0.9667
+          ],
+          "top_10": 0.9561,
+          "top_10_ci95": [
+            0.9184,
+            0.9901
+          ]
+        },
+        "Lookups + AVI (locked)": {
+          "median_competitors": 0.0,
+          "top_1": 0.7895,
+          "top_1_ci95": [
+            0.7073,
+            0.8718
+          ],
+          "top_5": 0.9386,
+          "top_5_ci95": [
+            0.8957,
+            0.9752
+          ],
+          "top_10": 0.9737,
+          "top_10_ci95": [
+            0.9434,
+            1.0
+          ]
+        },
+        "Lookups + GPN-MSA (locked)": {
+          "median_competitors": 0.0,
+          "top_1": 0.8158,
+          "top_1_ci95": [
+            0.7407,
+            0.8846
+          ],
+          "top_5": 0.9123,
+          "top_5_ci95": [
+            0.8532,
+            0.9596
+          ],
+          "top_10": 0.9474,
+          "top_10_ci95": [
+            0.9083,
+            0.9818
+          ]
+        },
+        "Lookups + GPN-Star-V (locked)": {
+          "median_competitors": 0.0,
+          "top_1": 0.7982,
+          "top_1_ci95": [
+            0.6944,
+            0.8846
+          ],
+          "top_5": 0.9298,
+          "top_5_ci95": [
+            0.875,
+            0.9735
+          ],
+          "top_10": 0.9649,
+          "top_10_ci95": [
+            0.9304,
+            0.9915
+          ]
+        },
+        "Lookups + GPN-Star-M (locked)": {
+          "median_competitors": 0.0,
+          "top_1": 0.8421,
+          "top_1_ci95": [
+            0.7679,
+            0.9091
+          ],
+          "top_5": 0.9298,
+          "top_5_ci95": [
+            0.876,
+            0.9741
+          ],
+          "top_10": 0.9561,
+          "top_10_ci95": [
+            0.92,
+            0.9904
+          ]
+        }
+      },
+      "rule_ties": {
+        "Rule-based": 0.0088,
+        "Rule + AVI": 0.0
+      },
+      "seed_label": "replication/bg1pct/gnomad: found"
+    },
+    "gnomad: absent": {
+      "cases": 386,
+      "people": 50,
+      "small": false,
+      "scores": {
+        "CADD": {
+          "median_competitors": 1.0,
+          "top_1": 0.456,
+          "top_1_ci95": [
+            0.3899,
+            0.5223
+          ],
+          "top_5": 0.7979,
+          "top_5_ci95": [
+            0.7487,
+            0.8468
+          ],
+          "top_10": 0.8912,
+          "top_10_ci95": [
+            0.8518,
+            0.929
+          ]
+        },
+        "SpliceAI": {
+          "median_competitors": 1.0,
+          "top_1": 0.4922,
+          "top_1_ci95": [
+            0.4286,
+            0.5518
+          ],
+          "top_5": 0.6295,
+          "top_5_ci95": [
+            0.5764,
+            0.6791
+          ],
+          "top_10": 0.658,
+          "top_10_ci95": [
+            0.6067,
+            0.7068
+          ]
+        },
+        "REVEL": {
+          "median_competitors": 56.0,
+          "top_1": 0.2694,
+          "top_1_ci95": [
+            0.2319,
+            0.312
+          ],
+          "top_5": 0.3342,
+          "top_5_ci95": [
+            0.293,
+            0.3796
+          ],
+          "top_10": 0.3446,
+          "top_10_ci95": [
+            0.3032,
+            0.3895
+          ]
+        },
+        "AlphaMissense": {
+          "median_competitors": 58.0,
+          "top_1": 0.2435,
+          "top_1_ci95": [
+            0.2047,
+            0.2846
+          ],
+          "top_5": 0.2979,
+          "top_5_ci95": [
+            0.2581,
+            0.3394
+          ],
+          "top_10": 0.3057,
+          "top_10_ci95": [
+            0.266,
+            0.3475
+          ]
+        },
+        "AVI": {
+          "median_competitors": 0.0,
+          "top_1": 0.7435,
+          "top_1_ci95": [
+            0.6762,
+            0.8068
+          ],
+          "top_5": 0.956,
+          "top_5_ci95": [
+            0.9333,
+            0.9763
+          ],
+          "top_10": 0.9793,
+          "top_10_ci95": [
+            0.9637,
+            0.9924
+          ]
+        },
+        "GPN-MSA": {
+          "median_competitors": 1.5,
+          "top_1": 0.3938,
+          "top_1_ci95": [
+            0.3316,
+            0.4617
+          ],
+          "top_5": 0.7176,
+          "top_5_ci95": [
+            0.6784,
+            0.7552
+          ],
+          "top_10": 0.8187,
+          "top_10_ci95": [
+            0.7814,
+            0.8564
+          ]
+        },
+        "GPN-Star-V": {
+          "median_competitors": 0.0,
+          "top_1": 0.513,
+          "top_1_ci95": [
+            0.4516,
+            0.5751
+          ],
+          "top_5": 0.7539,
+          "top_5_ci95": [
+            0.7054,
+            0.8084
+          ],
+          "top_10": 0.8782,
+          "top_10_ci95": [
+            0.8435,
+            0.9135
+          ]
+        },
+        "GPN-Star-M": {
+          "median_competitors": 1.0,
+          "top_1": 0.4352,
+          "top_1_ci95": [
+            0.3622,
+            0.5
+          ],
+          "top_5": 0.7306,
+          "top_5_ci95": [
+            0.6781,
+            0.7849
+          ],
+          "top_10": 0.8601,
+          "top_10_ci95": [
+            0.8191,
+            0.8995
+          ]
+        },
+        "Rule-based": {
+          "median_competitors": 0.0,
+          "top_1": 0.7668,
+          "top_1_ci95": [
+            0.6867,
+            0.8403
+          ],
+          "top_5": 0.9456,
+          "top_5_ci95": [
+            0.9203,
+            0.9708
+          ],
+          "top_10": 0.9767,
+          "top_10_ci95": [
+            0.9615,
+            0.9919
+          ]
+        },
+        "Rule + AVI": {
+          "median_competitors": 0.0,
+          "top_1": 0.8083,
+          "top_1_ci95": [
+            0.7368,
+            0.8718
+          ],
+          "top_5": 0.9534,
+          "top_5_ci95": [
+            0.9297,
+            0.9754
+          ],
+          "top_10": 0.9767,
+          "top_10_ci95": [
+            0.9605,
+            0.9915
+          ]
+        },
+        "Lookups combined": {
+          "median_competitors": 0.0,
+          "top_1": 0.8368,
+          "top_1_ci95": [
+            0.7682,
+            0.8967
+          ],
+          "top_5": 0.9741,
+          "top_5_ci95": [
+            0.9549,
+            0.9896
+          ],
+          "top_10": 0.9845,
+          "top_10_ci95": [
+            0.9728,
+            0.9948
+          ]
+        },
+        "Lookups + AVI": {
+          "median_competitors": 0.0,
+          "top_1": 0.8497,
+          "top_1_ci95": [
+            0.7917,
+            0.9003
+          ],
+          "top_5": 0.9819,
+          "top_5_ci95": [
+            0.969,
+            0.9925
+          ],
+          "top_10": 0.987,
+          "top_10_ci95": [
+            0.9759,
+            0.9973
+          ]
+        },
+        "Lookups + GPN-MSA": {
+          "median_competitors": 0.0,
+          "top_1": 0.8549,
+          "top_1_ci95": [
+            0.7979,
+            0.9082
+          ],
+          "top_5": 0.9767,
+          "top_5_ci95": [
+            0.9595,
+            0.99
+          ],
+          "top_10": 0.9845,
+          "top_10_ci95": [
+            0.9728,
+            0.9948
+          ]
+        },
+        "Lookups + GPN-Star-V": {
+          "median_competitors": 0.0,
+          "top_1": 0.8472,
+          "top_1_ci95": [
+            0.7824,
+            0.9047
+          ],
+          "top_5": 0.9741,
+          "top_5_ci95": [
+            0.956,
+            0.9896
+          ],
+          "top_10": 0.987,
+          "top_10_ci95": [
+            0.9759,
+            0.9973
+          ]
+        },
+        "Lookups + GPN-Star-M": {
+          "median_competitors": 0.0,
+          "top_1": 0.8316,
+          "top_1_ci95": [
+            0.7583,
+            0.8935
+          ],
+          "top_5": 0.9767,
+          "top_5_ci95": [
+            0.9578,
+            0.9921
+          ],
+          "top_10": 0.987,
+          "top_10_ci95": [
+            0.9759,
+            0.9973
+          ]
+        },
+        "Lookups combined (locked)": {
+          "median_competitors": 0.0,
+          "top_1": 0.8212,
+          "top_1_ci95": [
+            0.7577,
+            0.8813
+          ],
+          "top_5": 0.9456,
+          "top_5_ci95": [
+            0.9201,
+            0.9704
+          ],
+          "top_10": 0.956,
+          "top_10_ci95": [
+            0.9316,
+            0.9785
+          ]
+        },
+        "Lookups + AVI (locked)": {
+          "median_competitors": 0.0,
+          "top_1": 0.8135,
+          "top_1_ci95": [
+            0.7453,
+            0.8747
+          ],
+          "top_5": 0.9637,
+          "top_5_ci95": [
+            0.9395,
+            0.9843
+          ],
+          "top_10": 0.9689,
+          "top_10_ci95": [
+            0.9454,
+            0.9892
+          ]
+        },
+        "Lookups + GPN-MSA (locked)": {
+          "median_competitors": 0.0,
+          "top_1": 0.8264,
+          "top_1_ci95": [
+            0.769,
+            0.8797
+          ],
+          "top_5": 0.9456,
+          "top_5_ci95": [
+            0.9204,
+            0.9703
+          ],
+          "top_10": 0.9611,
+          "top_10_ci95": [
+            0.9362,
+            0.9831
+          ]
+        },
+        "Lookups + GPN-Star-V (locked)": {
+          "median_competitors": 0.0,
+          "top_1": 0.8316,
+          "top_1_ci95": [
+            0.7828,
+            0.8773
+          ],
+          "top_5": 0.9482,
+          "top_5_ci95": [
+            0.9213,
+            0.9719
+          ],
+          "top_10": 0.9611,
+          "top_10_ci95": [
+            0.9362,
+            0.9831
+          ]
+        },
+        "Lookups + GPN-Star-M (locked)": {
+          "median_competitors": 0.0,
+          "top_1": 0.842,
+          "top_1_ci95": [
+            0.7883,
+            0.8919
+          ],
+          "top_5": 0.9534,
+          "top_5_ci95": [
+            0.928,
+            0.9761
+          ],
+          "top_10": 0.9611,
+          "top_10_ci95": [
+            0.9362,
+            0.9831
+          ]
+        }
+      },
+      "rule_ties": {
+        "Rule-based": 0.0026,
+        "Rule + AVI": 0.0
+      },
+      "seed_label": "replication/bg1pct/gnomad: absent"
+    }
+  },
+  "gnomad_split": {
+    "sources": [
+      "data/gnomad_full.tsv",
+      "pool/gnomad_full.tsv"
+    ],
+    "diagnostics_found": 114,
+    "diagnostics_absent": 386,
+    "diagnostics_without_status": 0,
+    "seed_label": "replication/bg1pct/gnomad split",
+    "gnomad: found": {
+      "cases": 114,
+      "people": 46,
+      "contrasts": {
+        "Lookups + AVI (locked) minus Lookups combined (locked)": {
+          "role": "primary",
+          "top_1": -0.0263,
+          "top_1_ci95": [
+            -0.0958,
+            0.0408
+          ],
+          "top_5": 0.0175,
+          "top_5_ci95": [
+            -0.0236,
+            0.0594
+          ],
+          "top_10": 0.0175,
+          "top_10_ci95": [
+            -0.0177,
+            0.0521
+          ]
+        },
+        "Rule + AVI minus Rule-based": {
+          "role": "key secondary",
+          "top_1": 0.0877,
+          "top_1_ci95": [
+            0.0261,
+            0.1622
+          ],
+          "top_5": 0.0,
+          "top_5_ci95": [
+            -0.0238,
+            0.0263
+          ],
+          "top_10": 0.0,
+          "top_10_ci95": [
+            -0.0248,
+            0.0248
+          ]
+        }
+      }
+    },
+    "gnomad: absent": {
+      "cases": 386,
+      "people": 50,
+      "contrasts": {
+        "Lookups + AVI (locked) minus Lookups combined (locked)": {
+          "role": "primary",
+          "top_1": -0.0078,
+          "top_1_ci95": [
+            -0.0615,
+            0.0425
+          ],
+          "top_5": 0.0181,
+          "top_5_ci95": [
+            0.0052,
+            0.032
+          ],
+          "top_10": 0.013,
+          "top_10_ci95": [
+            0.0026,
+            0.0239
+          ]
+        },
+        "Rule + AVI minus Rule-based": {
+          "role": "key secondary",
+          "top_1": 0.0415,
+          "top_1_ci95": [
+            0.0,
+            0.0842
+          ],
+          "top_5": 0.0078,
+          "top_5_ci95": [
+            0.0,
+            0.0179
+          ],
+          "top_10": 0.0,
+          "top_10_ci95": [
+            -0.0103,
+            0.0103
+          ]
+        }
+      }
+    },
+    "difference": {
+      "Lookups + AVI (locked) minus Lookups combined (locked)": {
+        "role": "primary",
+        "top_1_absent_minus_found": 0.0185,
+        "top_1_ci95": [
+          -0.0407,
+          0.0779
+        ],
+        "possibly_gnomad_presence": false
+      },
+      "Rule + AVI minus Rule-based": {
+        "role": "key secondary",
+        "top_1_absent_minus_found": -0.0463,
+        "top_1_ci95": [
+          -0.1006,
+          0.0076
+        ],
+        "possibly_gnomad_presence": false
+      }
+    }
+  },
+  "primary": {
+    "Lookups + AVI (locked) minus Lookups combined (locked)": {
+      "role": "primary",
+      "top_1": -0.012,
+      "top_1_ci95": [
+        -0.066,
+        0.032
+      ],
+      "top_5": 0.018,
+      "top_5_ci95": [
+        0.002,
+        0.034
+      ],
+      "top_10": 0.014,
+      "top_10_ci95": [
+        0.002,
+        0.026
+      ],
+      "confirmatory": true,
+      "verdict": "Inconclusive"
+    }
+  }
+}

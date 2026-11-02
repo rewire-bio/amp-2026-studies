@@ -1,0 +1,15 @@
+replication evee: 492 cases, median 26 variants per case; background grpmax below 0.01, diagnostics full gnomAD grpmax below 0.01; background inheritance filter; background indels dropped after filtering
+model classes merged into other: ['synonymous', 'utr']
+diagnostics tied with a background variant: {}
+  CADD                           top1 0.510 [0.4449, 0.5805]  top5 0.837  top10 0.925
+  SpliceAI                       top1 0.516 [0.4623, 0.5635]  top5 0.640  top10 0.675
+  REVEL                          top1 0.262 [0.2251, 0.2982]  top5 0.317  top10 0.327
+  AlphaMissense                  top1 0.242 [0.2081, 0.2753]  top5 0.287  top10 0.291
+  AVI                            top1 0.760 [0.6973, 0.8195]  top5 0.955  top10 0.988
+  GPN-MSA                        top1 0.445 [0.3709, 0.5172]  top5 0.789  top10 0.904
+  GPN-Star-V                     top1 0.522 [0.4573, 0.5842]  top5 0.833  top10 0.929
+  GPN-Star-M                     top1 0.494 [0.4347, 0.5549]  top5 0.801  top10 0.945
+  EVEE                           top1 0.870 [0.8245, 0.9089]  top5 0.992  top10 0.998
+  Lookups combined               top1 0.880 [0.8279, 0.9202]  top5 0.978  top10 0.986
+  Lookups combined (locked)      top1 0.870 [0.8215, 0.9104]  top5 0.957  top10 0.968
+wrote /Users/timrichardson/Documents/projects/personal/blog/amp-2026-studies/rare-disease-v2/results/replication_evee.json

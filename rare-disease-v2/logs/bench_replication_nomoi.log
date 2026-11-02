@@ -1,0 +1,39 @@
+replication nomoi: 500 cases, median 34 variants per case; background grpmax below 0.001, diagnostics full gnomAD grpmax below 0.001; no inheritance filter; background indels dropped after filtering
+model classes merged into other: ['synonymous', 'utr']
+diagnostics tied with a background variant: {'Rule-based': 0.006, 'Rule + AVI': 0.0}
+  gnomAD absent minus found, Lookups + AVI (locked) minus Lookups combined (locked): +0.006 [-0.0639, 0.0719]
+  gnomAD absent minus found, Rule + AVI minus Rule-based: +0.017 [-0.0461, 0.0904]
+  CADD                           top1 0.478 [0.406, 0.5621]  top5 0.814  top10 0.920
+  SpliceAI                       top1 0.526 [0.48, 0.574]  top5 0.664  top10 0.712
+  REVEL                          top1 0.242 [0.2, 0.282]  top5 0.336  top10 0.370
+  AlphaMissense                  top1 0.212 [0.174, 0.246]  top5 0.292  top10 0.328
+  AVI                            top1 0.712 [0.636, 0.7821]  top5 0.944  top10 0.980
+  GPN-MSA                        top1 0.446 [0.374, 0.516]  top5 0.734  top10 0.870
+  GPN-Star-V                     top1 0.508 [0.44, 0.578]  top5 0.782  top10 0.884
+  GPN-Star-M                     top1 0.460 [0.386, 0.544]  top5 0.784  top10 0.894
+  Rule-based                     top1 0.724 [0.652, 0.7921]  top5 0.962  top10 0.974
+  Rule + AVI                     top1 0.746 [0.676, 0.8081]  top5 0.964  top10 0.978
+  Lookups combined               top1 0.844 [0.794, 0.89]  top5 0.972  top10 0.980
+  Lookups + AVI                  top1 0.844 [0.79, 0.894]  top5 0.980  top10 0.982
+  Lookups + GPN-MSA              top1 0.838 [0.79, 0.884]  top5 0.976  top10 0.982
+  Lookups + GPN-Star-V           top1 0.840 [0.792, 0.886]  top5 0.974  top10 0.978
+  Lookups + GPN-Star-M           top1 0.842 [0.79, 0.888]  top5 0.974  top10 0.976
+  Lookups combined (locked)      top1 0.796 [0.732, 0.854]  top5 0.950  top10 0.974
+  Lookups + AVI (locked)         top1 0.836 [0.774, 0.892]  top5 0.964  top10 0.978
+  Lookups + GPN-MSA (locked)     top1 0.794 [0.73, 0.854]  top5 0.944  top10 0.972
+  Lookups + GPN-Star-V (locked)  top1 0.794 [0.724, 0.856]  top5 0.954  top10 0.976
+  Lookups + GPN-Star-M (locked)  top1 0.810 [0.756, 0.864]  top5 0.952  top10 0.972
+  Lookups + AVI minus Lookups combined: top1 +0.000 [-0.022, 0.022] (primary contrast, cross-validated (descriptive))
+  Lookups combined minus Rule-based: top1 +0.120 [0.064, 0.176] (descriptive)
+  Lookups + AVI minus Rule-based: top1 +0.120 [0.058, 0.184] (descriptive)
+  Lookups + GPN-MSA minus Lookups combined: top1 -0.006 [-0.018, 0.006] (secondary, cross-validated (descriptive))
+  Lookups + GPN-Star-V minus Lookups combined: top1 -0.004 [-0.02, 0.01] (secondary, cross-validated (descriptive))
+  Lookups + GPN-Star-M minus Lookups combined: top1 -0.002 [-0.018, 0.012] (secondary, cross-validated (descriptive))
+  Lookups + AVI (locked) minus Lookups combined (locked): top1 +0.040 [-0.0, 0.08] (primary)  [Inconclusive]
+  Lookups combined (locked) minus Rule-based: top1 +0.072 [0.02, 0.126] (descriptive)
+  Lookups + AVI (locked) minus Rule-based: top1 +0.112 [0.056, 0.17] (descriptive)
+  Lookups + GPN-MSA (locked) minus Lookups combined (locked): top1 -0.002 [-0.024, 0.02] (secondary, Bonferroni-adjusted)
+  Lookups + GPN-Star-V (locked) minus Lookups combined (locked): top1 -0.002 [-0.032, 0.024] (secondary, Bonferroni-adjusted)
+  Lookups + GPN-Star-M (locked) minus Lookups combined (locked): top1 +0.014 [-0.012, 0.046] (secondary, Bonferroni-adjusted)
+  Rule + AVI minus Rule-based: top1 +0.022 [-0.012, 0.054] (key secondary)
+wrote /Users/timrichardson/Documents/projects/personal/blog/amp-2026-studies/rare-disease-v2/results/replication_nomoi.json

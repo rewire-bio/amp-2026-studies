@@ -1,0 +1,7 @@
+replication heldout: 500 cases, median 19 variants per case; background grpmax below 0.001, diagnostics full gnomAD grpmax below 0.001; background inheritance filter; background indels dropped after filtering
+model classes merged into other: ['synonymous', 'utr']
+  training_chromosomes (124 cases): Lookups + AVI (locked) minus Lookups combined (locked) +0.016 [0.0, 0.0417]; Rule + AVI minus Rule-based +0.008 [-0.0259, 0.0458]
+  other_chromosomes (376 cases): Lookups + AVI (locked) minus Lookups combined (locked) +0.021 [-0.0028, 0.0456]; Rule + AVI minus Rule-based +0.024 [0.0053, 0.0472]
+  difference (primary): -0.005 [-0.0366, 0.031]
+  difference (key secondary): -0.016 [-0.0563, 0.0253]
+wrote /Users/timrichardson/Documents/projects/personal/blog/amp-2026-studies/rare-disease-v2/results/replication_heldout.json
