@@ -3,7 +3,7 @@
   <prefix>_by_type.png       share of cases with the spiked-in variant ranked first, all cases and by variant type,
                              for the same four series in every panel: the lookups combined, AVI alone, the lookups +
                              AVI and the lookups + Evo 2 (SNV and cancer studies). For SNVs each type also shows the
-                             tool a lab would use for that type alone, and the gain from adding AVI with its interval
+                             one lookup for that type on its own, and the gain from adding AVI with its interval
   <prefix>_combined.png      top 1 / 5 / 10 for the combined lookups, alone and with AVI, GPN-MSA or Evo 2 added
   rd_gains.png               gain at top 1 from adding each score, first 200 cases against 500 new cases with the
                              same model, unchanged: a dot for the gain and a line for its 95% interval
@@ -44,7 +44,8 @@ SERIES = [("Lookups combined", "grey", 1.0, "Lookups combined"), ("AlphaGenome A
 ORDER = {"snv": ["all", "canonical_splice", "nonsense", "missense", "noncoding_or_synonymous"],
          "cancer": ["all", "missense", "canonical_splice", "nonsense", "frameshift", "noncoding"]}
 STEPS = {"snv": [1, 3, 4, 5], "cancer": [4, 5, 6]}
-# The tool a lab would use for each SNV type on its own (ACGS 2024 for missense and splicing; CADD for the rest).
+# One lookup for each SNV type on its own: SpliceAI for splice and non-coding, CADD for nonsense, AlphaMissense for
+# missense. ACGS 2024 names a missense tool and SpliceAI; nonsense variants are classified by consequence.
 SPECIALIST = {"canonical_splice": "SpliceAI", "nonsense": "CADD v1.7", "missense": "AlphaMissense",
               "noncoding_or_synonymous": "SpliceAI"}
 
@@ -53,7 +54,7 @@ def fixed_by_type(r: dict, c: dict, path: Path, groups: list[str], labels: dict,
                   specialist: dict | None = None) -> None:
     """Top 1 by type, the same series in every panel; panels after the first `show` are left blank.
 
-    With `specialist`, each type also gets a first bar for the tool a lab would use for that type alone, and a line
+    With `specialist`, each type also gets a first bar for the one lookup for that type on its own, and a line
     under its title with the gain from adding AVI to the lookups and its 95% interval.
     """
     series = [x for x in SERIES if x[0] in r["strata"]["all"]["scores"]]
@@ -99,7 +100,7 @@ def fixed_by_type(r: dict, c: dict, path: Path, groups: list[str], labels: dict,
     names = [x[3] for x in series]
     if specialist:
         handles = [plt.Rectangle((0, 0), 1, 1, facecolor=c["surface"], edgecolor=c["dark"], hatch="//")] + handles
-        names = ["Tool for the type, alone"] + names
+        names = ["One lookup for the type, alone"] + names
     fig.legend(handles, names, loc="lower center", ncol=len(names), frameon=False, fontsize=17,
                bbox_to_anchor=(0.5, 0))
     fig.tight_layout(rect=(0, 0.09, 1, 1))
@@ -179,7 +180,7 @@ def stricter(c: dict, path: Path) -> None:
             ("500 new cases", "results_replication.json", "added_to_locked_lookups", " (locked)"),
             ("500 new, gnomAD AF below 0.1%", "results_replication_gnomad0.001.json", "added_to_locked_lookups",
              " (locked)"),
-            ("500 new, below 0.1% in every\nancestry group (strict)", "results_replication_gnomad0.001_grpmax.json",
+            ("500 new, below 0.1% in each main\nancestry group (strict)", "results_replication_gnomad0.001_grpmax.json",
              "added_to_locked_lookups", " (locked)")]
     rows = []
     for i, (label, f, key, suffix) in enumerate(runs):
