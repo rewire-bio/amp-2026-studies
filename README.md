@@ -177,6 +177,7 @@ shell scripts need `bcftools`, `tabix` and `curl`. An Evo 2 run needs a Runpod A
 | `amp-2026-v3` | gnomAD frequency-filtered reruns of every case study |
 | `amp-2026-v4` | The strict grpmax filter now matches gnomAD's genome grpmax (Middle Eastern group left out) and its two runs were redone; charts redrawn with the same series in every panel, with step images; the case data, per-case scores, run logs and the EVEE chart script committed; documentation rewritten |
 | `amp-2026-v5` | `rare-disease-v2/`: the second run of the rare-disease case tests (intellectual disability panel). gnomAD frequencies with the person and their family left out, a grpmax filter below 0.1% and an inheritance filter built in, one consequence annotation, a rule-based baseline, paired intervals on shared resamples, and 500 replication cases from 50 new people. AVI added to the lookups: +1.8 points top 1 (-0.4 to +4.0), no gain that matters |
+| `amp-2026-v6` | Evo 2 7B scored on every second-run case (exploratory; no gain that matters: +0.8 points on the 500, +1.7 on the indels), two-sided bootstrap p-values on every paired result, and a paper (PDF) and visual companion page for every study, built by `tools/paper/build.sh` and `docs/build_site.py`. Every second-run value without Evo 2 is unchanged from `amp-2026-v5` |
 
 The code came from the private `rewire-bio/amp-2026-decks` at commit `9a7f2e1`. `rare-disease/` came from that
 repository's `v9`, `brca1-case-ranking/` from `v4` and `v9`, and `evo2-pipeline/` from `v3`. Paths were updated;
