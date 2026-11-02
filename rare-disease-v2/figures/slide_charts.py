@@ -85,9 +85,9 @@ def top1_scores(c: dict, out: Path) -> None:
     s = load("replication_main.json")["strata"]["all"]["scores"]
     rows = [("Lookups combined", s["Lookups combined (locked)"], "dark"), ("Rule-based", s["Rule-based"], "dark"),
             ("AVI alone", s["AVI"], "fm"), ("CADD", s["CADD"], "grey"), ("GPN-Star-V", s["GPN-Star-V"], "fm"),
-            ("SpliceAI", s["SpliceAI"], "grey"), ("GPN-MSA", s["GPN-MSA"], "fm"), ("REVEL", s["REVEL"], "grey"),
+            ("Evo 2 alone", s["Evo 2"], "evo"), ("SpliceAI", s["SpliceAI"], "grey"), ("GPN-MSA", s["GPN-MSA"], "fm"), ("REVEL", s["REVEL"], "grey"),
             ("AlphaMissense", s["AlphaMissense"], "grey")]
-    fig, ax = plt.subplots(figsize=(14, 5.4))
+    fig, ax = plt.subplots(figsize=(14, 6.0))
     dots(ax, [(n, pct(r), col, True) for n, r, col in rows], c, signed=False)
     ax.set_xlim(0, 112)
     ax.set_xlabel("Spiked-in variant ranked first, 500 new cases (%)")
@@ -120,8 +120,8 @@ def gains_avi(c: dict, out: Path) -> None:
     rep, snv = load("replication_main.json")["strata"]["all"]["contrasts"], load("snv_main.json")["strata"]["all"]["contrasts"]
     rows = [("Added to the lookups, 500 new cases", pct(rep[PRIMARY]), "fm", True),
             ("Added to the rule, 500 new cases", pct(rep[SECONDARY]), "dark", True),
-            ("Added to the lookups, first 200 cases", pct(snv["Lookups + AVI minus Lookups combined"]), "fm", False),
-            ("Added to the rule, first 200 cases", pct(snv[SECONDARY]), "dark", False)]
+            ("Added to the lookups, the 200 cases", pct(snv["Lookups + AVI minus Lookups combined"]), "fm", False),
+            ("Added to the rule, the 200 cases", pct(snv[SECONDARY]), "dark", False)]
     fig, ax = plt.subplots(figsize=(14, 4.6))
     dots(ax, rows, c, signed=True)
     gain_axes(ax, c, -8, 16, "Gain at top 1 from adding AVI (points); dashed lines at -5 and +5")
@@ -147,11 +147,25 @@ def gains_gpn(c: dict, out: Path) -> None:
     rows = [(f"{n} added to the lookups", pct(con[f"Lookups + {n} (locked) minus Lookups combined (locked)"],
                                              ci="top_1_ci98.33"), "fm", True)
             for n in ("GPN-MSA", "GPN-Star-V", "GPN-Star-M")]
+    rows.append(("Evo 2 added to the lookups", pct(con["Lookups + Evo 2 (locked) minus Lookups combined (locked)"],
+                                                   ci="top_1_ci98.75"), "evo", True))
     rows.append(("AVI added to the lookups (95%)", pct(con[PRIMARY]), "fm", True))
-    fig, ax = plt.subplots(figsize=(14, 3.8))
+    fig, ax = plt.subplots(figsize=(14, 4.4))
     dots(ax, rows, c, signed=True)
-    gain_axes(ax, c, -8, 12, "Gain at top 1, 500 new cases (points); GPN with 98.33% intervals")
-    save(fig, out, "v2_gains_gpn", c)
+    gain_axes(ax, c, -8, 12, "Gain at top 1, 500 new cases (points)")
+    save(fig, out, "v2_gains_added", c)
+
+
+def indel_top1(c: dict, out: Path) -> None:
+    st = load("indel_main.json")["strata"]["all"]
+    s, con = st["scores"], st["contrasts"]
+    rows = [("Lookups + Evo 2", s["Lookups + Evo 2"], "dark"), ("Lookups combined", s["Lookups combined"], "dark"),
+            ("Evo 2 alone", s["Evo 2"], "evo"), ("Rule-based", s["Rule-based"], "dark"), ("SpliceAI", s["SpliceAI"], "grey")]
+    fig, ax = plt.subplots(figsize=(14, 4.4))
+    dots(ax, [(n, pct(r), col, True) for n, r, col in rows], c, signed=False)
+    ax.set_xlim(0, 112)
+    ax.set_xlabel("Spiked-in indel ranked first, 120 indel cases (%)")
+    save(fig, out, "v2_indel_top1", c)
 
 
 def first_vs_second(c: dict, out: Path) -> None:
@@ -192,10 +206,10 @@ def main() -> None:
     a = p.parse_args()
     c = BRANDS[a.brand]
     a.out.mkdir(parents=True, exist_ok=True)
-    plt.rcParams.update({"font.family": c["font"], "font.size": 17, "axes.edgecolor": "#C9CED4",
+    plt.rcParams.update({"font.family": c["font"], "font.size": 22, "axes.edgecolor": "#C9CED4",
                          "axes.labelcolor": c["dark"], "xtick.color": c["dark"], "ytick.color": c["dark"],
                          "figure.facecolor": c["surface"], "axes.facecolor": c["surface"]})
-    for chart in (top1_scores, by_group, gains_avi, gains_by_group, gains_gpn, first_vs_second, checks):
+    for chart in (top1_scores, by_group, gains_avi, gains_by_group, gains_gpn, indel_top1, checks):
         chart(c, a.out)
     print(f"wrote 7 charts to {a.out} ({a.brand})")
 
