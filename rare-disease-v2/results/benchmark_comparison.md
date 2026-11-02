@@ -363,7 +363,7 @@ Rare-disease ranking
 - Cooperstein IB et al. Genome Med 2025;17:127. doi 10.1186/s13073-025-01546-1, PMC12539062, Figures 2 and 3.
 - Bridges Y et al. (PhEval). BMC Bioinformatics 2025;26:87. PMC11929307.
 - Stenton SL et al. (CAGI6 RGP). Hum Genomics 2024;18:44. PMC11057178, Table 2.
-- Wilson S et al. (Talos). Nat Med 2026. doi 10.1038/s41591-026-04477-5, Table 1 and "Comparison with other tools";
+- Welland MJ et al. (Talos). Nat Med 2026. doi 10.1038/s41591-026-04477-5, Table 1 and "Comparison with other tools";
   stored in `rewire-benchmark-data/data/omics/use-case-coverage-20260930/clinical/claims.csv`.
 - O'Brien TD et al. Genet Med 2022;24(1):192 (abstract).
 - Ruzicka J et al. medRxiv 2025, doi 10.1101/2025.02.04.25321641 (abstract).

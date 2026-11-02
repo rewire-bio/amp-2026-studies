@@ -2,7 +2,7 @@
 
 No published benchmark ranks variants without phenotype inside one gene panel after a grpmax and an inheritance
 filter, so our top 1 cannot be set against outside figures. With phenotype, Exomiser ranks the diagnostic first in 65
-to 83% of real cases genome-wide in Australian Genomics and 100,000 Genomes cohorts [@wilson2026talos; @smedley2021pilot; @jacobsen2022phenotype], and variant-only
+to 83% of real cases genome-wide in Australian Genomics and 100,000 Genomes cohorts [@welland2026talos; @smedley2021pilot; @jacobsen2022phenotype], and variant-only
 scoring reaches 1 to 77% on exome or genome lists [@robinson2014improved; @bone2016computational;
 @cipriani2020improved; @jacobsen2022phenotype]. Our higher rate reflects short lists, not a better method: after
 filtering, the 100,000 Genomes pilot left a median of 1 variant in PanelApp panels against 221 genome-wide
@@ -30,7 +30,7 @@ Already in `tools/paper/references.bib`:
 
 New entries needed:
 
-- `wilson2026talos`: Wilson S et al. Automated reanalysis of genomic data for rare disease diagnostics at scale.
+- `welland2026talos`: Welland MJ et al. Automated reanalysis of genomic data for rare disease diagnostics at scale.
   Nat Med 2026. doi 10.1038/s41591-026-04477-5
 - `smedley2021pilot`: Smedley D et al. 100,000 Genomes Pilot on Rare-Disease Diagnosis in Health Care. N Engl J Med
   2021;385:1868-1880. doi 10.1056/NEJMoa2035790

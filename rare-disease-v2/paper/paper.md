@@ -912,6 +912,62 @@ shown ones; the first run's baseline also lacked a CADD score for 84 of its 120 
 this run. Paired 95% intervals. The first run's grpmax setting has 498 cases, because two cases lost their diagnostic
 under that filter.](figures/avi_first_vs_second.pdf){width=90%}
 
+## Comparison with other benchmarks
+
+No published benchmark ranks variants without phenotype inside one gene panel after a grpmax filter and an
+inheritance filter, so the absolute top-1 rates here cannot be checked against outside figures. Table 16 sets this
+study beside the closest published designs; a longer comparison, with every source and locator, is in
+`results/benchmark_comparison.md`.
+
+**Our rates are higher, because our lists are shorter.** With phenotype (likely so in Talos), Exomiser ranks the
+diagnostic variant first in 65 to 83% of real cases scored genome-wide
+[@welland2026talos; @jacobsen2022phenotype; @smedley2021pilot]. Without phenotype, published rates run from 1 to
+77% (gene or variant level) on exome or genome lists, the higher figures with frequency sources that included the
+backgrounds [@robinson2014improved; @bone2016computational; @cipriani2020improved; @jacobsen2022phenotype]. The
+lookups here reach 90.6% mainly because the filters leave a median of 19 variants. Real pipelines shrink lists as hard: in the 100,000
+Genomes pilot, PanelApp panels left a median of 1 candidate variant per case, against 221 genome-wide
+[@smedley2021pilot]. In Undiagnosed Diseases Network genomes, configuration alone moved Exomiser's top 10 from
+49.7% to 85.5% [@cooperstein2025optimized], so list size and settings, not the scoring method, set most of the level.
+
+**The direction agrees with the literature.** Gains from adding one more score to an established pipeline are
+small wherever they have been measured: adding AlphaMissense and SpliceAI to an Exomiser configuration that
+already used REVEL and MVP raised top 10 by a reported 2.7% [@cooperstein2025optimized], and swapping in CADD or REVEL moved
+top 1 by 1.5 to 2.3 points, with phenotype in use, not significantly [@cipriani2020improved]. Cooperstein's figure
+is at top 10 and may be relative, and Cipriani's is a swap rather than an addition, so both agree with our +1.8 in
+size only roughly. AVI's own paper finds its lead mainly in non-coding variants
+[@cheng2026alphagenome]. An independent calibration, so far only a preprint abstract, finds it no better than
+AlphaMissense on missense but strong in exon-adjacent non-coding classes [@babazade2026calibration]. That is the
+pattern here. Evo 2 scores
+coding SNVs below AlphaMissense and CADD in its own ClinVar benchmark [@brixi2026genome], and EVEE is level with
+the established predictors in its own [@pearce2026interpretable], as here.
+
+**Why classification results do not carry over.** Model papers report pathogenic against benign AUROC on ClinVar.
+There the benign class is often defined, at least in part, by population frequency, which our filter has already
+removed, and consequence class carries much of the signal [@pearce2026interpretable], which our lookups already
+use. A score can separate ClinVar classes well and still add little to a filtered list that the lookups order
+correctly 9 times in 10.
+
+**Circularity has been seen before.** Bone et al. spiked variants into 1000 Genomes exomes and took frequencies
+from a source that included the same people; they described the result as "unrealistically effective frequency
+filtration" [@bone2016computational]. That is the flaw of this study's first run (issue #1). Leaving the person and
+their family out removes the direct overlap. Even so, 77% of diagnostics are absent from gnomAD, against about 2%
+of background variants, so the gnomAD-presence check (section 3.8) remains part of the design.
+
+| Benchmark | Cases and backgrounds | Lists and filters | Phenotype | Finding |
+|----------|------------|------------|-------|-----------------|
+| This study | 500 ClinVar P/LP in 1000 Genomes people | PanelApp 285; grpmax below 0.1%, family left out; inheritance; median 19 | No | Lookups 90.6% top 1; AVI added +1.8 (-0.4 to +4.0) |
+| Robinson 2014 [@robinson2014improved] | HGMD variants in 1,092 1000 Genomes exomes | Exome-wide | Both | Gene top 1: 28% (dominant) and 77% (recessive) without, 66% and 83% with |
+| Bone 2016 [@bone2016computational] | HGMD variants in 1000 Genomes exomes | Exome-wide, frequency source including the backgrounds or not | Both | Variant only: 20 to 77% with 1000 Genomes frequencies, 1 to 10% without |
+| Cipriani 2020 [@cipriani2020improved] | 134 solved retinal exomes | Mean 474 variants | Both | Top 1: 73.9% with phenotype, 3.0% variant only |
+| Jacobsen 2022 [@jacobsen2022phenotype] | 4,877 solved 100,000 Genomes probands | Genome-wide, frequency and segregation | Both | Top 1: 82.6% with phenotype, 33% variant score only |
+| 100,000 Genomes pilot [@smedley2021pilot] | 490 diagnoses | Exomiser genome-wide; PanelApp panels left a median of 1 variant, 221 genome-wide | Yes | Exomiser 77% top 1 |
+| Talos [@welland2026talos] | Real exomes and genomes of ill children | Exomiser v14, genome-wide | Likely | Top 1 65%, top 10 85% |
+| Cooperstein 2025 [@cooperstein2025optimized] | Undiagnosed Diseases Network genomes and exomes | Genome-wide, tuned settings | Yes | Top 10 from 49.7% to 85.5% by tuning (genomes); +2.7% from adding AlphaMissense and SpliceAI (points or relative not stated) |
+| AlphaGenome Atlas [@cheng2026alphagenome] | 112 P/LP variants in solved genomes | Whole genome, gnomAD AF below 0.001 arm | No | Top 10: AVI 36.2%, CADD 27.6% |
+
+Table: Published benchmarks closest to this study's design. Rates are as each source reports them; designs,
+metrics and list sizes differ, so the rows are not directly comparable.
+
 ## Limits
 
 - **Short lists.** After the filters the median list is 19 SNVs on the 500 and 4 indels on the 120. These lists hold
