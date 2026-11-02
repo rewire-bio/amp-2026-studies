@@ -1,0 +1,67 @@
+== full
+full: 57175 keys, 10397 to query
+  MyVariant: 1000 of 10397 queried, 1000 found
+  MyVariant: 2000 of 10397 queried, 2000 found
+  MyVariant: 3000 of 10397 queried, 3000 found
+  MyVariant: 4000 of 10397 queried, 4000 found
+  MyVariant: 5000 of 10397 queried, 4999 found
+  MyVariant: 6000 of 10397 queried, 5998 found
+  MyVariant: 7000 of 10397 queried, 6998 found
+  MyVariant: 8000 of 10397 queried, 7996 found
+  MyVariant: 9000 of 10397 queried, 8992 found
+  MyVariant: 10000 of 10397 queried, 9992 found
+  MyVariant: 10397 of 10397 queried, 10389 found
+full: 57175 keys written, 32714 found in gnomAD genomes
+== fetch
+fetch: chr13: 178 new positions, 178 with a row, 194 rows; 1019 requests, 126 MB in 71 s
+fetch: chr8: 333 new positions, 333 with a row, 405 rows; 1825 requests, 226 MB in 130 s
+fetch: chr14: 316 new positions, 316 with a row, 368 rows; 1826 requests, 225 MB in 126 s
+fetch: chr10: 351 new positions, 351 with a row, 456 rows; 1975 requests, 245 MB in 138 s
+fetch: chr4: 375 new positions, 375 with a row, 461 rows; 2128 requests, 264 MB in 141 s
+fetch: chr6: 384 new positions, 384 with a row, 458 rows; 2198 requests, 271 MB in 156 s
+fetch: chr5: 445 new positions, 445 with a row, 553 rows; 2498 requests, 311 MB in 162 s
+fetch: chr9: 412 new positions, 412 with a row, 537 rows; 2318 requests, 286 MB in 162 s
+fetch: chr7: 465 new positions, 461 with a row, 560 rows; 2568 requests, 320 MB in 172 s
+fetch: chr11: 504 new positions, 504 with a row, 584 rows; 2796 requests, 347 MB in 183 s
+fetch: chr3: 520 new positions, 518 with a row, 655 rows; 2937 requests, 363 MB in 187 s
+fetch: chr12: 565 new positions, 565 with a row, 687 rows; 3073 requests, 385 MB in 198 s
+fetch: chr18: 211 new positions, 211 with a row, 261 rows; 1067 requests, 135 MB in 64 s
+fetch: chr21: 182 new positions, 182 with a row, 243 rows; 1048 requests, 131 MB in 64 s
+fetch: chr15: 467 new positions, 466 with a row, 576 rows; 2572 requests, 320 MB in 166 s
+fetch: chr20: 207 new positions, 207 with a row, 246 rows; 1233 requests, 152 MB in 86 s
+fetch: chr2: 809 new positions, 808 with a row, 964 rows; 4647 requests, 575 MB in 278 s
+fetch: chr22: 336 new positions, 336 with a row, 416 rows; 1745 requests, 218 MB in 111 s
+fetch: chr17: 557 new positions, 556 with a row, 721 rows; 2989 requests, 372 MB in 183 s
+fetch: chr1: 1015 new positions, 1015 with a row, 1254 rows; 5325 requests, 668 MB in 319 s
+fetch: chr16: 587 new positions, 587 with a row, 739 rows; 3101 requests, 389 MB in 190 s
+fetch: chrX: 463 new positions, 463 with a row, 620 rows; 2763 requests, 340 MB in 160 s
+fetch: chr19: 561 new positions, 561 with a row, 686 rows; 3206 requests, 396 MB in 190 s
+fetch: all chromosomes cached
+== counts
+chr4: counts written
+chr10: counts written
+chr9: counts written
+chr7: counts written
+chr3: counts written
+chr6: counts written
+chr11: counts written
+chr8: counts written
+chr12: counts written
+chr5: counts written
+chr13: counts written
+chr14: counts written
+chr2: counts written
+chr20: counts written
+chr18: counts written
+chr21: counts written
+chr1: counts written
+chr15: counts written
+chr22: counts written
+chr17: counts written
+chrX: counts written
+chr16: counts written
+chr19: counts written
+== af
+af: main: {'family AC clamped at 0 (groups or overall)': 1, 'all-1KG AC clamped at 0 (groups or overall)': 4, 'rows': 17584, 'in subset': 17559, 'not found in gnomAD': 37, 'in subset but not found in MyVariant': 14}
+af: rep: {'family AC clamped at 0 (groups or overall)': 0, 'all-1KG AC clamped at 0 (groups or overall)': 2, 'rows': 16028, 'in subset': 16006, 'not found in gnomAD': 19}
+DONE

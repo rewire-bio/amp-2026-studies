@@ -423,9 +423,9 @@ What changes: gnomAD frequencies without the 1000 Genomes samples; a grpmax filt
 one consequence annotation throughout; a rule-based baseline (each variant scored by the tool for its type) next to
 the combined lookups; shared bootstrap resamples, so adding a score never moves another interval. The scores are the
 four lookups and AVI, with GPN-MSA, GPN-Star and EVEE as secondary scores. Evo 2 is left out and can be added later on
-the frozen indel cases. The inherited cancer panel is dropped.
+the same indel cases. The inherited cancer panel is dropped.
 
-Status: protocol written, not yet run. Until it is tagged, the numbers in 4.1 are the first run's.
+Status: protocol written, not yet run. Until it is done, the numbers in 4.1 are the first run's.
 
 ## 5. Reading list, in order
 

@@ -1,0 +1,26 @@
+== fetch
+fetch: chr13: 227 new positions, 227 with a row, 280 rows; 1280 requests, 158 MB in 90 s
+fetch: chr8: 539 new positions, 539 with a row, 654 rows; 2572 requests, 325 MB in 180 s
+fetch: chr10: 454 new positions, 454 with a row, 562 rows; 2323 requests, 291 MB in 179 s
+fetch: chr14: 499 new positions, 499 with a row, 655 rows; 2497 requests, 312 MB in 178 s
+fetch: chr4: 509 new positions, 508 with a row, 652 rows; 2687 requests, 336 MB in 182 s
+fetch: chr9: 593 new positions, 592 with a row, 743 rows; 3010 requests, 376 MB in 218 s
+fetch: chr5: 689 new positions, 689 with a row, 917 rows; 3340 requests, 421 MB in 224 s
+fetch: chr6: 651 new positions, 651 with a row, 866 rows; 3215 requests, 405 MB in 240 s
+fetch: chr11: 755 new positions, 754 with a row, 970 rows; 3624 requests, 462 MB in 250 s
+fetch: chr7: 732 new positions, 728 with a row, 999 rows; 3649 requests, 461 MB in 254 s
+fetch: chr3: 760 new positions, 759 with a row, 968 rows; 3869 requests, 488 MB in 256 s
+fetch: chr12: 779 new positions, 776 with a row, 1016 rows; 3757 requests, 475 MB in 260 s
+fetch: chr18: 335 new positions, 335 with a row, 493 rows; 1502 requests, 193 MB in 103 s
+fetch: chr21: 238 new positions, 238 with a row, 305 rows; 1147 requests, 145 MB in 85 s
+fetch: chr15: 699 new positions, 697 with a row, 865 rows; 3417 requests, 431 MB in 224 s
+fetch: chr20: 342 new positions, 342 with a row, 411 rows; 1642 requests, 207 MB in 116 s
+fetch: chr22: 442 new positions, 442 with a row, 662 rows; 2130 requests, 271 MB in 136 s
+fetch: chr2: 1350 new positions, 1349 with a row, 1752 rows; 6479 requests, 820 MB in 409 s
+fetch: chr1: 1347 new positions, 1344 with a row, 1847 rows; 6642 requests, 842 MB in 411 s
+fetch: chr17: 770 new positions, 770 with a row, 939 rows; 3854 requests, 486 MB in 248 s
+fetch: chr16: 837 new positions, 837 with a row, 1158 rows; 4101 requests, 521 MB in 256 s
+fetch: chr19: 880 new positions, 880 with a row, 1104 rows; 4464 requests, 559 MB in 258 s
+fetch: chrX: 645 new positions, 641 with a row, 983 rows; 3477 requests, 432 MB in 219 s
+fetch: all chromosomes cached
+DONE

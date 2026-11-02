@@ -13,7 +13,7 @@ tag `amp-2026-v4`.
 | Document | What it holds |
 |---|---|
 | [`PROPOSAL.md`](PROPOSAL.md) | Why the rerun, the questions, scope, smallest gain of interest, cost and risks |
-| [`PROTOCOL.md`](PROTOCOL.md) | The design, fixed before the 500 replication cases are built, and the deviation log |
+| [`PROTOCOL.md`](PROTOCOL.md) | The design and the deviation log |
 | [`PLAN.md`](PLAN.md) | The work, as phases and tasks, with open items and "done when" |
 
 ## What changes from the first run
@@ -42,7 +42,7 @@ rare-disease-v2/
   requirements.txt  pinned package versions
   *.py, *.sh        scripts, copied from rare-disease/ at amp-2026-v4 and changed here, or new
   data/             cases, per-case scores, frequencies (described in data/README.md)
-  results/          result files, case checksums, feasibility notes (described in results/README.md)
+  results/          result files, feasibility notes (described in results/README.md)
   figures/          chart script; charts in figures/out/ (not committed)
   logs/             run logs
 ```

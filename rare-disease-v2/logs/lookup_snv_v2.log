@@ -1,0 +1,24 @@
+8748 variants (7697 SNVs) from /Users/timrichardson/Documents/projects/personal/blog/amp-2026-studies/rare-disease-v2/data/snv/case_variants.tsv
+cadd: 8726 found by this run, 0 looked up by the first run (0 found); 22 to look up
+  CADD: 0 of 22 looked up found; 8726 rows in all, 0 with no MANE row (all-transcript consequence used), 72 where the MANE consequence differs from the all-transcript one
+cadd: 8726 of 8748 variants scored, wrote /Users/timrichardson/Documents/projects/personal/blog/amp-2026-studies/rare-disease-v2/data/snv/scores_cadd.tsv
+  (cadd: 4 s)
+revel: 1634 found by this run, 8584 looked up by the first run (1569 found), 0 of 1569 in both differ (this run's kept); 99 to look up
+revel: 1634 of 8748 variants scored, wrote /Users/timrichardson/Documents/projects/personal/blog/amp-2026-studies/rare-disease-v2/data/snv/scores_revel.tsv
+  (revel: 26 s)
+am: 1396 found by this run, 8584 looked up by the first run (1341 found), 0 of 1341 in both differ (this run's kept); 109 to look up
+am: 1396 of 8748 variants scored, wrote /Users/timrichardson/Documents/projects/personal/blog/amp-2026-studies/rare-disease-v2/data/snv/scores_am.tsv
+  (am: 28 s)
+avi: 7697 found by this run, 7558 looked up by the first run (7533 found), 0 of 7533 in both differ (this run's kept); 1026 to look up
+avi: 7697 of 8748 variants scored, wrote /Users/timrichardson/Documents/projects/personal/blog/amp-2026-studies/rare-disease-v2/data/snv/scores_avi.tsv
+  (avi: 0 s)
+gpnmsa: 7697 found by this run, 8584 looked up by the first run (7533 found), 0 of 7533 in both differ (this run's kept); 0 to look up
+gpnmsa: 7697 of 8748 variants scored, wrote /Users/timrichardson/Documents/projects/personal/blog/amp-2026-studies/rare-disease-v2/data/snv/scores_gpnmsa.tsv
+  (gpnmsa: 0 s)
+gpnstar_v: 7697 found by this run, 8584 looked up by the first run (7533 found), 0 of 7533 in both differ (this run's kept); 0 to look up
+gpnstar_v: 7697 of 8748 variants scored, wrote /Users/timrichardson/Documents/projects/personal/blog/amp-2026-studies/rare-disease-v2/data/snv/scores_gpnstar_v.tsv
+gpnstar_m: 7697 found by this run, 8584 looked up by the first run (7533 found), 0 of 7533 in both differ (this run's kept); 0 to look up
+gpnstar_m: 7697 of 8748 variants scored, wrote /Users/timrichardson/Documents/projects/personal/blog/amp-2026-studies/rare-disease-v2/data/snv/scores_gpnstar_m.tsv
+  (gpnstar: 0 s)
+evee: 3302 of 8748 variants scored, wrote /Users/timrichardson/Documents/projects/personal/blog/amp-2026-studies/rare-disease-v2/data/snv/scores_evee.tsv
+  (evee: 1 s)

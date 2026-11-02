@@ -1,0 +1,29 @@
+200 variants (200 SNVs) from /private/tmp/claude-501/-Users-timrichardson-Documents-projects-personal-blog-amp-2026-studies/915fc09f-23d7-46dc-afc2-c04f107e7af0/scratchpad/evee_diag/diag.tsv
+  EVEE shard 2: 871493 rows, 168 s
+  EVEE shard 0: 825720 rows, 474 s
+  EVEE shard 1: 826113 rows, 689 s
+  EVEE shard 3: 849270 rows, 568 s
+  EVEE shard 4: 880274 rows, 369 s
+Traceback (most recent call last):
+  File "/Users/timrichardson/Documents/projects/personal/blog/amp-2026-studies/rare-disease-v2/lookup_scores.py", line 422, in <module>
+    main()
+  File "/Users/timrichardson/Documents/projects/personal/blog/amp-2026-studies/rare-disease-v2/lookup_scores.py", line 416, in main
+    SOURCES[name](run)
+  File "/Users/timrichardson/Documents/projects/personal/blog/amp-2026-studies/rare-disease-v2/lookup_scores.py", line 359, in evee
+    evee_build()
+  File "/Users/timrichardson/Documents/projects/personal/blog/amp-2026-studies/rare-disease-v2/lookup_scores.py", line 322, in evee_build
+    distinct = duckdb.sql("SELECT count(DISTINCT (chrom, pos, ref, alt)) FROM table").fetchone()[0]
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/timrichardson/.cache/uv/archive-v0/veSzBBLdxaZBjnFyVZV7U/lib/python3.12/site-packages/duckdb/_relation.py", line 4462, in module_sql
+    return sql(_connection(connection), query, alias, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/timrichardson/.cache/uv/archive-v0/veSzBBLdxaZBjnFyVZV7U/lib/python3.12/site-packages/duckdb/_relation.py", line 3485, in sql
+    kept, text, kind, parsed = _seam.prepare_script_parsed(con, query, params)  # type: ignore[arg-type]
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/timrichardson/.cache/uv/archive-v0/veSzBBLdxaZBjnFyVZV7U/lib/python3.12/site-packages/duckdb/_seam.py", line 124, in prepare_script_parsed
+    kept, last_text, last_type, statement = con._prepare_script(query, values, with_statement=True)
+                                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_duckdb.ParserException: Parser Error: syntax error at or near "table"
+
+LINE 1: SELECT count(DISTINCT (chrom, pos, ref, alt)) FROM table
+                                                           ^^^^^

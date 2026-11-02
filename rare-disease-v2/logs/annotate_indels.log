@@ -1,0 +1,2 @@
+/Users/timrichardson/Documents/projects/personal/blog/amp-2026-studies/rare-disease-v2/data/snv/case_variants.tsv: 1051 indels annotated {'utr': 828, 'intronic': 132, 'inframe': 58, 'other': 15, 'frameshift': 16, 'splice': 2}
+/Users/timrichardson/Documents/projects/personal/blog/amp-2026-studies/rare-disease-v2/data/indel/case_variants.tsv: 1171 indels annotated {'utr': 835, 'intronic': 145, 'inframe': 88, 'splice': 32, 'frameshift': 56, 'other': 15}

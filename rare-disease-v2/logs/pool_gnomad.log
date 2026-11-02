@@ -1,0 +1,35 @@
+09:15:14 gnomAD: querying MyVariant.info for 31617 variants
+  MyVariant: 1000 of 31617 queried, 307 found
+  MyVariant: 2000 of 31617 queried, 554 found
+  MyVariant: 3000 of 31617 queried, 691 found
+  MyVariant: 4000 of 31617 queried, 971 found
+  MyVariant: 5000 of 31617 queried, 1295 found
+  MyVariant: 6000 of 31617 queried, 1603 found
+  MyVariant: 7000 of 31617 queried, 1909 found
+  MyVariant: 8000 of 31617 queried, 2203 found
+  MyVariant: 9000 of 31617 queried, 2468 found
+  MyVariant: 10000 of 31617 queried, 2685 found
+  MyVariant: 11000 of 31617 queried, 2986 found
+  MyVariant: 12000 of 31617 queried, 3154 found
+  MyVariant: 13000 of 31617 queried, 3452 found
+  MyVariant: 14000 of 31617 queried, 3721 found
+  MyVariant: 15000 of 31617 queried, 3997 found
+  MyVariant: 16000 of 31617 queried, 4240 found
+  MyVariant: 17000 of 31617 queried, 4329 found
+  MyVariant: 18000 of 31617 queried, 4536 found
+  MyVariant: 19000 of 31617 queried, 4764 found
+  MyVariant: 20000 of 31617 queried, 5004 found
+  MyVariant: 21000 of 31617 queried, 5278 found
+  MyVariant: 22000 of 31617 queried, 5302 found
+  MyVariant: 23000 of 31617 queried, 5327 found
+  MyVariant: 24000 of 31617 queried, 5567 found
+  MyVariant: 25000 of 31617 queried, 5825 found
+  MyVariant: 26000 of 31617 queried, 6127 found
+  MyVariant: 27000 of 31617 queried, 6334 found
+  MyVariant: 28000 of 31617 queried, 6584 found
+  MyVariant: 29000 of 31617 queried, 6827 found
+  MyVariant: 30000 of 31617 queried, 6926 found
+  MyVariant: 31000 of 31617 queried, 7172 found
+  MyVariant: 31617 of 31617 queried, 7198 found
+09:25:46 gnomAD: 7198 of 31617 found, written to /Users/timrichardson/Documents/projects/personal/blog/amp-2026-studies/rare-disease-v2/data/pool/gnomad_full.tsv
+DONE

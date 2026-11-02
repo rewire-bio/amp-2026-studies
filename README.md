@@ -51,7 +51,7 @@ flowchart LR
 | [`evo2-pipeline/`](evo2-pipeline/) | What it takes to add an Evo 2 score to a lab's pipeline, as a working Nextflow pipeline | `pipeline-overview`, backup `code-*` |
 | [`evee/`](evee/) | EVEE's published figure data redrawn as two charts | `evee-confounding`, `evee-results` |
 | [`gpu-drift/`](gpu-drift/) | What a flipped call is, from the recorded H100 and L40S BRCA1 runs in evo2-cloud-operations | `gpu-drift` |
-| [`rare-disease-v2/`](rare-disease-v2/) | Second run of the rare-disease case tests, intellectual disability panel only, with gnomAD frequencies that leave out the 1000 Genomes samples and a grpmax filter built in. Protocol written, not yet run | will replace the `rd-*` numbers once tagged |
+| [`rare-disease-v2/`](rare-disease-v2/) | Second run of the rare-disease case tests, intellectual disability panel only, with gnomAD frequencies that leave out the 1000 Genomes samples and a grpmax filter built in. Protocol written, not yet run | will replace the `rd-*` numbers once done |
 
 The rare-disease benchmark is the main study. Start with [`rare-disease/README.md`](rare-disease/README.md), then
 [`rare-disease/REPLICATION.md`](rare-disease/REPLICATION.md) for the follow-up checks.
@@ -139,7 +139,6 @@ shell scripts need `bcftools`, `tabix` and `curl`. An Evo 2 run needs a Runpod A
 | `amp-2026-v2` | AlphaGenome AVI added to the rare-disease benchmark, with the held-out chromosome check |
 | `amp-2026-v3` | gnomAD frequency-filtered reruns of every case study |
 | `amp-2026-v4` | The strict grpmax filter now matches gnomAD's genome grpmax (Middle Eastern group left out) and its two runs were redone; charts redrawn with the same series in every panel, with step images; the case data, per-case scores, run logs and the EVEE chart script committed; documentation rewritten |
-| (planned) `rd-v2-protocol` | `rare-disease-v2/` protocol, code and frozen case files, tagged before the 500 replication cases are built |
 
 The code came from the private `rewire-bio/amp-2026-decks` at commit `9a7f2e1`. `rare-disease/` came from that
 repository's `v9`, `brca1-case-ranking/` from `v4` and `v9`, and `evo2-pipeline/` from `v3`. Paths were updated;

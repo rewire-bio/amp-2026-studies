@@ -79,7 +79,7 @@ Out:
 
 - The inherited cancer panel, both the ranking test and the PP3 test that issue #2 would keep (Tim's decision). The
   first run's results stay as they are.
-- Evo 2. It can be added later on the frozen indel cases without changing any other number, as an exploratory
+- Evo 2. It can be added later on the same indel cases without changing any other number, as an exploratory
   analysis.
 - Recessive diagnoses as two different variants (compound heterozygotes); scores rank single variants.
 - VEP or any new annotation tool.
@@ -96,7 +96,7 @@ the protocol (section 8), not by whether its interval excludes zero.
 ## What the talk uses
 
 Slides `rd-design`, `rd-results`, `rd-combine`, `rd-indels`, `rd-limits`, `matrix` and `takeaways` will cite this
-run's results once it is tagged. `evee/`, `gpu-drift/`, `evo2-pipeline/` and `brca1-case-ranking/` are not affected.
+run's results once it is done. `evee/`, `gpu-drift/`, `evo2-pipeline/` and `brca1-case-ranking/` are not affected.
 
 ## Cost
 

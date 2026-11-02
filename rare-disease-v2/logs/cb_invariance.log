@@ -1,0 +1,15 @@
+== snv
+snv main: 1708 rows compared, 267 rows involve GPN-Star-M or are skipped, 0 problems
+== replication
+replication main: 2703 rows compared, 495 rows involve GPN-Star-M or are skipped, 0 problems
+== indel
+indel main: 348 rows compared, 1 rows involve GPN-Star-M or are skipped, 0 problems
+== snv --drop AVI
+snv main: 1452 rows compared, 523 rows involve AVI or are skipped, 0 problems
+== replication --drop AVI
+replication main: 2357 rows compared, 841 rows involve AVI or are skipped, 0 problems
+== snv --analysis heldout
+snv heldout: 278 rows compared, 31 rows involve GPN-Star-M or are skipped, 0 problems
+== replication --analysis evee --drop GPN-MSA
+replication evee: 725 rows compared, 66 rows involve GPN-MSA or are skipped, 0 problems
+done

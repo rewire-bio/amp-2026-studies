@@ -1,0 +1,18 @@
+8143 variants (7221 SNVs) from /Users/timrichardson/Documents/projects/personal/blog/amp-2026-studies/rare-disease-v2/data/replication/case_variants.tsv
+avi: 689 found by this run, 1250 looked up by the first run (1248 found), 0 of 689 in both differ (this run's kept); 6893 to look up
+  AVI: 5973 of 5973 SNVs found
+avi: 7221 of 8143 variants scored, wrote /Users/timrichardson/Documents/projects/personal/blog/amp-2026-studies/rare-disease-v2/data/replication/scores_avi.tsv
+  (avi: 15 s)
+revel: 122 found by this run, 1397 looked up by the first run (233 found), 0 of 122 in both differ (this run's kept); 6746 to look up
+revel: 1521 of 8143 variants scored, wrote /Users/timrichardson/Documents/projects/personal/blog/amp-2026-studies/rare-disease-v2/data/replication/scores_revel.tsv
+  (revel: 25 s)
+am: 108 found by this run, 1397 looked up by the first run (199 found), 0 of 108 in both differ (this run's kept); 6746 to look up
+am: 1326 of 8143 variants scored, wrote /Users/timrichardson/Documents/projects/personal/blog/amp-2026-studies/rare-disease-v2/data/replication/scores_am.tsv
+  (am: 29 s)
+evee: 3366 of 8143 variants scored, wrote /Users/timrichardson/Documents/projects/personal/blog/amp-2026-studies/rare-disease-v2/data/replication/scores_evee.tsv
+  (evee: 1 s)
+gpnmsa: 689 found by this run, 1397 looked up by the first run (1248 found), 0 of 689 in both differ (this run's kept); 6746 to look up
+gpnmsa: 7221 of 8143 variants scored, wrote /Users/timrichardson/Documents/projects/personal/blog/amp-2026-studies/rare-disease-v2/data/replication/scores_gpnmsa.tsv
+  (gpnmsa: 546 s)
+gpnstar_v: 689 found by this run, 1397 looked up by the first run (1248 found), 0 of 689 in both differ (this run's kept); 6746 to look up
+gpnstar_v: 7221 of 8143 variants scored, wrote /Users/timrichardson/Documents/projects/personal/blog/amp-2026-studies/rare-disease-v2/data/replication/scores_gpnstar_v.tsv

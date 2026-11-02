@@ -1,0 +1,186 @@
+=== snv main Mon  2 Nov 2026 12:38:13 GMT
+snv main: 200 cases, median 26 variants per case; background grpmax below 0.001, diagnostics full gnomAD grpmax below 0.001; background inheritance filter; background indels dropped after filtering
+model classes merged into other: ['synonymous', 'utr']
+diagnostics tied with a background variant: {'Rule-based': 0.0, 'Rule + AVI': 0.0}
+  gnomAD absent minus found, Lookups + AVI minus Lookups combined: -0.023 [-0.119, 0.0599]
+  gnomAD absent minus found, Rule + AVI minus Rule-based: +0.061 [-0.0057, 0.1376]
+  CADD                           top1 0.510 [0.43, 0.595]  top5 0.820  top10 0.930
+  SpliceAI                       top1 0.535 [0.46, 0.595]  top5 0.670  top10 0.705
+  REVEL                          top1 0.275 [0.23, 0.325]  top5 0.325  top10 0.380
+  AlphaMissense                  top1 0.235 [0.19, 0.28]  top5 0.285  top10 0.325
+  AVI                            top1 0.790 [0.71, 0.8601]  top5 0.950  top10 0.990
+  GPN-MSA                        top1 0.455 [0.36, 0.55]  top5 0.765  top10 0.885
+  GPN-Star-V                     top1 0.525 [0.44, 0.6051]  top5 0.855  top10 0.920
+  GPN-Star-M                     top1 0.505 [0.425, 0.58]  top5 0.805  top10 0.935
+  Rule-based                     top1 0.810 [0.735, 0.88]  top5 0.960  top10 0.975
+  Rule + AVI                     top1 0.855 [0.79, 0.91]  top5 0.965  top10 0.975
+  Lookups combined               top1 0.840 [0.755, 0.915]  top5 0.970  top10 0.985
+  Lookups + AVI                  top1 0.880 [0.81, 0.9401]  top5 0.980  top10 0.980
+  Lookups + GPN-MSA              top1 0.820 [0.74, 0.89]  top5 0.960  top10 0.970
+  Lookups + GPN-Star-V           top1 0.835 [0.7549, 0.91]  top5 0.970  top10 0.975
+  Lookups + GPN-Star-M           top1 0.845 [0.755, 0.915]  top5 0.970  top10 0.980
+  Lookups + AVI minus Lookups combined: top1 +0.040 [-0.02, 0.095] (primary contrast, cross-validated (descriptive))
+  Lookups combined minus Rule-based: top1 +0.030 [-0.045, 0.095] (descriptive)
+  Lookups + AVI minus Rule-based: top1 +0.070 [0.0, 0.13] (descriptive)
+  Lookups + GPN-MSA minus Lookups combined: top1 -0.020 [-0.07, 0.025] (secondary, cross-validated (descriptive))
+  Lookups + GPN-Star-V minus Lookups combined: top1 -0.005 [-0.055, 0.04] (secondary, cross-validated (descriptive))
+  Lookups + GPN-Star-M minus Lookups combined: top1 +0.005 [-0.04, 0.045] (secondary, cross-validated (descriptive))
+  Rule + AVI minus Rule-based: top1 +0.045 [0.005, 0.08] (key secondary)
+wrote /Users/timrichardson/Documents/projects/personal/blog/amp-2026-studies/rare-disease-v2/results/snv_main.json
+exit 0
+=== snv bg1pct Mon  2 Nov 2026 12:38:15 GMT
+snv bg1pct: 200 cases, median 78 variants per case; background grpmax below 0.01, diagnostics full gnomAD grpmax below 0.01; background inheritance filter; background indels dropped after filtering
+model classes merged into other: ['synonymous', 'utr']
+diagnostics tied with a background variant: {'Rule-based': 0.0, 'Rule + AVI': 0.0}
+  gnomAD absent minus found, Lookups + AVI minus Lookups combined: -0.038 [-0.1887, 0.132]
+  gnomAD absent minus found, Rule + AVI minus Rule-based: +0.054 [-0.0112, 0.1274]
+  CADD                           top1 0.410 [0.335, 0.485]  top5 0.670  top10 0.800
+  SpliceAI                       top1 0.470 [0.4, 0.545]  top5 0.615  top10 0.640
+  REVEL                          top1 0.255 [0.205, 0.305]  top5 0.305  top10 0.320
+  AlphaMissense                  top1 0.225 [0.18, 0.275]  top5 0.280  top10 0.285
+  AVI                            top1 0.700 [0.615, 0.78]  top5 0.930  top10 0.955
+  GPN-MSA                        top1 0.345 [0.275, 0.425]  top5 0.620  top10 0.760
+  GPN-Star-V                     top1 0.450 [0.38, 0.52]  top5 0.710  top10 0.845
+  GPN-Star-M                     top1 0.380 [0.3, 0.46]  top5 0.680  top10 0.835
+  Rule-based                     top1 0.715 [0.625, 0.795]  top5 0.935  top10 0.965
+  Rule + AVI                     top1 0.755 [0.68, 0.825]  top5 0.955  top10 0.960
+  Lookups combined               top1 0.770 [0.68, 0.8501]  top5 0.955  top10 0.965
+  Lookups + AVI                  top1 0.780 [0.695, 0.855]  top5 0.955  top10 0.960
+  Lookups + GPN-MSA              top1 0.765 [0.685, 0.84]  top5 0.955  top10 0.960
+  Lookups + GPN-Star-V           top1 0.770 [0.6949, 0.8401]  top5 0.950  top10 0.950
+  Lookups + GPN-Star-M           top1 0.775 [0.705, 0.84]  top5 0.945  top10 0.955
+  Lookups + AVI minus Lookups combined: top1 +0.010 [-0.075, 0.095] (primary contrast, cross-validated (descriptive))
+  Lookups combined minus Rule-based: top1 +0.055 [-0.025, 0.135] (descriptive)
+  Lookups + AVI minus Rule-based: top1 +0.065 [-0.025, 0.155] (descriptive)
+  Lookups + GPN-MSA minus Lookups combined: top1 -0.005 [-0.05, 0.04] (secondary, cross-validated (descriptive))
+  Lookups + GPN-Star-V minus Lookups combined: top1 +0.000 [-0.06, 0.06] (secondary, cross-validated (descriptive))
+  Lookups + GPN-Star-M minus Lookups combined: top1 +0.005 [-0.045, 0.0601] (secondary, cross-validated (descriptive))
+  Rule + AVI minus Rule-based: top1 +0.040 [0.005, 0.08] (key secondary)
+wrote /Users/timrichardson/Documents/projects/personal/blog/amp-2026-studies/rare-disease-v2/results/snv_bg1pct.json
+exit 0
+=== snv nomoi Mon  2 Nov 2026 12:38:16 GMT
+snv nomoi: 200 cases, median 52 variants per case; background grpmax below 0.001, diagnostics full gnomAD grpmax below 0.001; no inheritance filter; background indels dropped after filtering
+model classes merged into other: ['synonymous', 'utr']
+diagnostics tied with a background variant: {'Rule-based': 0.01, 'Rule + AVI': 0.0}
+  gnomAD absent minus found, Lookups + AVI minus Lookups combined: -0.053 [-0.1667, 0.0639]
+  gnomAD absent minus found, Rule + AVI minus Rule-based: +0.044 [-0.0384, 0.1332]
+  CADD                           top1 0.400 [0.325, 0.47]  top5 0.735  top10 0.835
+  SpliceAI                       top1 0.460 [0.39, 0.53]  top5 0.630  top10 0.665
+  REVEL                          top1 0.235 [0.18, 0.29]  top5 0.305  top10 0.330
+  AlphaMissense                  top1 0.200 [0.15, 0.25]  top5 0.280  top10 0.280
+  AVI                            top1 0.665 [0.585, 0.74]  top5 0.910  top10 0.950
+  GPN-MSA                        top1 0.355 [0.27, 0.44]  top5 0.675  top10 0.820
+  GPN-Star-V                     top1 0.440 [0.36, 0.515]  top5 0.775  top10 0.870
+  GPN-Star-M                     top1 0.395 [0.32, 0.47]  top5 0.720  top10 0.830
+  Rule-based                     top1 0.665 [0.58, 0.75]  top5 0.930  top10 0.965
+  Rule + AVI                     top1 0.735 [0.655, 0.815]  top5 0.940  top10 0.960
+  Lookups combined               top1 0.685 [0.575, 0.7901]  top5 0.950  top10 0.965
+  Lookups + AVI                  top1 0.740 [0.65, 0.8251]  top5 0.945  top10 0.965
+  Lookups + GPN-MSA              top1 0.710 [0.6149, 0.805]  top5 0.935  top10 0.955
+  Lookups + GPN-Star-V           top1 0.710 [0.62, 0.795]  top5 0.945  top10 0.965
+  Lookups + GPN-Star-M           top1 0.680 [0.59, 0.765]  top5 0.930  top10 0.955
+  Lookups + AVI minus Lookups combined: top1 +0.055 [-0.025, 0.135] (primary contrast, cross-validated (descriptive))
+  Lookups combined minus Rule-based: top1 +0.020 [-0.0701, 0.125] (descriptive)
+  Lookups + AVI minus Rule-based: top1 +0.075 [-0.015, 0.165] (descriptive)
+  Lookups + GPN-MSA minus Lookups combined: top1 +0.025 [-0.015, 0.07] (secondary, cross-validated (descriptive))
+  Lookups + GPN-Star-V minus Lookups combined: top1 +0.025 [-0.03, 0.08] (secondary, cross-validated (descriptive))
+  Lookups + GPN-Star-M minus Lookups combined: top1 -0.005 [-0.055, 0.045] (secondary, cross-validated (descriptive))
+  Rule + AVI minus Rule-based: top1 +0.070 [0.025, 0.12] (key secondary)
+wrote /Users/timrichardson/Documents/projects/personal/blog/amp-2026-studies/rare-disease-v2/results/snv_nomoi.json
+exit 0
+=== snv all1kg Mon  2 Nov 2026 12:38:18 GMT
+snv all1kg: 200 cases, median 26 variants per case; background grpmax_no1kg below 0.001, diagnostics full gnomAD grpmax below 0.001; background inheritance filter; background indels dropped after filtering
+model classes merged into other: ['synonymous', 'utr']
+diagnostics tied with a background variant: {'Rule-based': 0.0, 'Rule + AVI': 0.0}
+  gnomAD absent minus found, Lookups + AVI minus Lookups combined: -0.001 [-0.1205, 0.1213]
+  gnomAD absent minus found, Rule + AVI minus Rule-based: +0.087 [0.0325, 0.1559]
+  CADD                           top1 0.485 [0.405, 0.565]  top5 0.815  top10 0.930
+  SpliceAI                       top1 0.525 [0.455, 0.5801]  top5 0.670  top10 0.680
+  REVEL                          top1 0.275 [0.23, 0.33]  top5 0.325  top10 0.360
+  AlphaMissense                  top1 0.235 [0.195, 0.285]  top5 0.285  top10 0.310
+  AVI                            top1 0.775 [0.69, 0.855]  top5 0.950  top10 0.990
+  GPN-MSA                        top1 0.435 [0.35, 0.525]  top5 0.765  top10 0.885
+  GPN-Star-V                     top1 0.525 [0.445, 0.605]  top5 0.850  top10 0.915
+  GPN-Star-M                     top1 0.500 [0.425, 0.57]  top5 0.800  top10 0.930
+  Rule-based                     top1 0.795 [0.705, 0.865]  top5 0.960  top10 0.975
+  Rule + AVI                     top1 0.840 [0.7699, 0.9]  top5 0.965  top10 0.975
+  Lookups combined               top1 0.770 [0.68, 0.855]  top5 0.975  top10 0.985
+  Lookups + AVI                  top1 0.845 [0.765, 0.9101]  top5 0.975  top10 0.975
+  Lookups + GPN-MSA              top1 0.790 [0.705, 0.8651]  top5 0.970  top10 0.980
+  Lookups + GPN-Star-V           top1 0.825 [0.745, 0.895]  top5 0.980  top10 0.990
+  Lookups + GPN-Star-M           top1 0.825 [0.75, 0.895]  top5 0.970  top10 0.980
+  Lookups + AVI minus Lookups combined: top1 +0.075 [0.02, 0.145] (primary contrast, cross-validated (descriptive))
+  Lookups combined minus Rule-based: top1 -0.025 [-0.11, 0.055] (descriptive)
+  Lookups + AVI minus Rule-based: top1 +0.050 [-0.025, 0.12] (descriptive)
+  Lookups + GPN-MSA minus Lookups combined: top1 +0.020 [-0.02, 0.06] (secondary, cross-validated (descriptive))
+  Lookups + GPN-Star-V minus Lookups combined: top1 +0.055 [0.005, 0.11] (secondary, cross-validated (descriptive))
+  Lookups + GPN-Star-M minus Lookups combined: top1 +0.055 [0.015, 0.095] (secondary, cross-validated (descriptive))
+  Rule + AVI minus Rule-based: top1 +0.045 [0.01, 0.085] (key secondary)
+wrote /Users/timrichardson/Documents/projects/personal/blog/amp-2026-studies/rare-disease-v2/results/snv_all1kg.json
+exit 0
+=== snv heldout Mon  2 Nov 2026 12:38:19 GMT
+snv heldout: 200 cases, median 26 variants per case; background grpmax below 0.001, diagnostics full gnomAD grpmax below 0.001; background inheritance filter; background indels dropped after filtering
+model classes merged into other: ['synonymous', 'utr']
+  training_chromosomes (38 cases): Lookups + AVI minus Lookups combined +0.026 [-0.0625, 0.1081]; Rule + AVI minus Rule-based +0.026 [0.0, 0.0889]
+  other_chromosomes (162 cases): Lookups + AVI minus Lookups combined +0.031 [-0.0064, 0.075]; Rule + AVI minus Rule-based +0.043 [0.0063, 0.0818]
+  difference (primary): -0.004 [-0.0982, 0.0857]
+  difference (key secondary): -0.017 [-0.075, 0.0563]
+wrote /Users/timrichardson/Documents/projects/personal/blog/amp-2026-studies/rare-disease-v2/results/snv_heldout.json
+exit 0
+=== snv evee Mon  2 Nov 2026 12:38:20 GMT
+snv evee: 200 cases, median 30 variants per case; background grpmax below 0.01, diagnostics full gnomAD grpmax below 0.01; background inheritance filter; background indels dropped after filtering
+model classes merged into other: ['synonymous', 'utr']
+diagnostics tied with a background variant: {}
+  CADD                           top1 0.445 [0.375, 0.515]  top5 0.740  top10 0.910
+  SpliceAI                       top1 0.500 [0.435, 0.5701]  top5 0.635  top10 0.660
+  REVEL                          top1 0.265 [0.215, 0.3151]  top5 0.315  top10 0.330
+  AlphaMissense                  top1 0.240 [0.195, 0.285]  top5 0.280  top10 0.285
+  AVI                            top1 0.745 [0.665, 0.815]  top5 0.935  top10 0.975
+  GPN-MSA                        top1 0.415 [0.335, 0.49]  top5 0.745  top10 0.870
+  GPN-Star-V                     top1 0.515 [0.4399, 0.585]  top5 0.820  top10 0.920
+  GPN-Star-M                     top1 0.425 [0.34, 0.5101]  top5 0.810  top10 0.920
+  EVEE                           top1 0.815 [0.7549, 0.885]  top5 0.975  top10 0.985
+  Lookups combined               top1 0.820 [0.745, 0.885]  top5 0.965  top10 0.975
+wrote /Users/timrichardson/Documents/projects/personal/blog/amp-2026-studies/rare-disease-v2/results/snv_evee.json
+exit 0
+=== indel main Mon  2 Nov 2026 12:38:22 GMT
+indel main: 120 cases, median 4 variants per case; background grpmax below 0.001, diagnostics full gnomAD grpmax below 0.001; background inheritance filter; background SNVs dropped after filtering
+model classes merged into other: ['utr']
+diagnostics tied with a background variant: {'Rule-based': 0.0417}
+  SpliceAI                       top1 0.583 [0.4957, 0.6639]  top5 0.908  top10 0.992
+  Rule-based                     top1 0.767 [0.6583, 0.8678]  top5 0.958  top10 0.992
+  Lookups combined               top1 0.842 [0.754, 0.9244]  top5 0.958  top10 0.992
+  Lookups combined minus Rule-based: top1 +0.075 [0.0325, 0.1261] (descriptive)
+wrote /Users/timrichardson/Documents/projects/personal/blog/amp-2026-studies/rare-disease-v2/results/indel_main.json
+exit 0
+=== indel bg1pct Mon  2 Nov 2026 12:38:23 GMT
+indel bg1pct: 120 cases, median 14 variants per case; background grpmax below 0.01, diagnostics full gnomAD grpmax below 0.01; background inheritance filter; background SNVs dropped after filtering
+model classes merged into other: ['utr']
+diagnostics tied with a background variant: {'Rule-based': 0.0917}
+  SpliceAI                       top1 0.425 [0.336, 0.5169]  top5 0.658  top10 0.758
+  Rule-based                     top1 0.708 [0.5982, 0.8]  top5 0.942  top10 0.942
+  Lookups combined               top1 0.750 [0.6548, 0.8362]  top5 0.942  top10 0.942
+  Lookups combined minus Rule-based: top1 +0.042 [-0.0171, 0.104] (descriptive)
+wrote /Users/timrichardson/Documents/projects/personal/blog/amp-2026-studies/rare-disease-v2/results/indel_bg1pct.json
+exit 0
+=== indel nomoi Mon  2 Nov 2026 12:38:24 GMT
+indel nomoi: 120 cases, median 7 variants per case; background grpmax below 0.001, diagnostics full gnomAD grpmax below 0.001; no inheritance filter; background SNVs dropped after filtering
+model classes merged into other: ['utr']
+diagnostics tied with a background variant: {'Rule-based': 0.05}
+  SpliceAI                       top1 0.533 [0.4492, 0.6195]  top5 0.792  top10 0.992
+  Rule-based                     top1 0.742 [0.6356, 0.8455]  top5 0.950  top10 0.992
+  Lookups combined               top1 0.817 [0.7297, 0.8992]  top5 0.950  top10 0.992
+  Lookups combined minus Rule-based: top1 +0.075 [0.0248, 0.1293] (descriptive)
+wrote /Users/timrichardson/Documents/projects/personal/blog/amp-2026-studies/rare-disease-v2/results/indel_nomoi.json
+exit 0
+=== indel all1kg Mon  2 Nov 2026 12:38:25 GMT
+indel all1kg: 120 cases, median 4 variants per case; background grpmax_no1kg below 0.001, diagnostics full gnomAD grpmax below 0.001; background inheritance filter; background SNVs dropped after filtering
+model classes merged into other: ['utr']
+diagnostics tied with a background variant: {'Rule-based': 0.0417}
+  SpliceAI                       top1 0.592 [0.5082, 0.686]  top5 0.892  top10 0.992
+  Rule-based                     top1 0.767 [0.6612, 0.8689]  top5 0.958  top10 0.992
+  Lookups combined               top1 0.833 [0.7542, 0.9083]  top5 0.958  top10 0.992
+  Lookups combined minus Rule-based: top1 +0.067 [0.0254, 0.1148] (descriptive)
+wrote /Users/timrichardson/Documents/projects/personal/blog/amp-2026-studies/rare-disease-v2/results/indel_all1kg.json
+exit 0
+DONE Mon 2 Nov 2026 12:38:26 GMT

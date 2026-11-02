@@ -1,0 +1,24 @@
+7697 variants (7697 SNVs) from /Users/timrichardson/Documents/projects/personal/blog/amp-2026-studies/rare-disease-v2/data/snv/case_variants.tsv
+  CADD: 7697 found; 0 with no MANE row (all-transcript consequence used); 24 where the MANE consequence differs from the all-transcript one
+cadd: 7697 of 7697 variants scored, wrote /Users/timrichardson/Documents/projects/personal/blog/amp-2026-studies/rare-disease-v2/data/snv/scores_cadd.tsv
+  (cadd: 1811 s)
+revel: 7533 looked up by the first run (1569 found), 164 to look up
+revel: 1634 of 7697 variants scored, wrote /Users/timrichardson/Documents/projects/personal/blog/amp-2026-studies/rare-disease-v2/data/snv/scores_revel.tsv
+  (revel: 24 s)
+am: 7533 looked up by the first run (1341 found), 164 to look up
+am: 1396 of 7697 variants scored, wrote /Users/timrichardson/Documents/projects/personal/blog/amp-2026-studies/rare-disease-v2/data/snv/scores_am.tsv
+  (am: 27 s)
+avi: 7533 looked up by the first run (7533 found), 164 to look up
+  AVI: 164 of 164 SNVs found
+avi: 7697 of 7697 variants scored, wrote /Users/timrichardson/Documents/projects/personal/blog/amp-2026-studies/rare-disease-v2/data/snv/scores_avi.tsv
+  (avi: 2 s)
+gpnmsa: 7533 looked up by the first run (7533 found), 164 to look up
+gpnmsa: 7697 of 7697 variants scored, wrote /Users/timrichardson/Documents/projects/personal/blog/amp-2026-studies/rare-disease-v2/data/snv/scores_gpnmsa.tsv
+  (gpnmsa: 54 s)
+gpnstar_v: 7533 looked up by the first run (7533 found), 164 to look up
+gpnstar_v: 7697 of 7697 variants scored, wrote /Users/timrichardson/Documents/projects/personal/blog/amp-2026-studies/rare-disease-v2/data/snv/scores_gpnstar_v.tsv
+gpnstar_m: 7533 looked up by the first run (7533 found), 164 to look up
+gpnstar_m: 7697 of 7697 variants scored, wrote /Users/timrichardson/Documents/projects/personal/blog/amp-2026-studies/rare-disease-v2/data/snv/scores_gpnstar_m.tsv
+  (gpnstar: 156 s)
+evee: 3214 of 7697 variants scored, wrote /Users/timrichardson/Documents/projects/personal/blog/amp-2026-studies/rare-disease-v2/data/snv/scores_evee.tsv
+  (evee: 1 s)

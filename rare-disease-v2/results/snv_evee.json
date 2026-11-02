@@ -1,0 +1,1799 @@
+{
+  "study": "snv",
+  "analysis": "evee",
+  "filter": {
+    "max_af": 0.01,
+    "background_frequency": "grpmax",
+    "diagnostic_frequency": "grpmax",
+    "inheritance_filter": true,
+    "cases_before": 200,
+    "variants_before": 36508,
+    "cases_lost_diagnostic": 0,
+    "variants_after_frequency": 36508,
+    "unrecognised_moi_values_kept": [],
+    "rows_without_gene": 0,
+    "variants_after_inheritance": 22774,
+    "background_indels_in_inheritance_count": 3213,
+    "variants_after_dropping_other_type": 19561,
+    "description": "background grpmax below 0.01, diagnostics full gnomAD grpmax below 0.01; background inheritance filter; background indels dropped after filtering"
+  },
+  "load_notes": {
+    "case_variants_without_mane_cadd_row": 0,
+    "diagnostic_class_differs_from_cases_tsv": 0
+  },
+  "cases": 200,
+  "people": 50,
+  "median_variants_per_case": 29.5,
+  "coverage": {
+    "CADD": {
+      "variants": 7084,
+      "diagnostics": 200
+    },
+    "SpliceAI": {
+      "variants": 6692,
+      "diagnostics": 192
+    },
+    "REVEL": {
+      "variants": 2571,
+      "diagnostics": 68
+    },
+    "AlphaMissense": {
+      "variants": 2152,
+      "diagnostics": 57
+    },
+    "AVI": {
+      "variants": 7084,
+      "diagnostics": 200
+    },
+    "GPN-MSA": {
+      "variants": 7084,
+      "diagnostics": 200
+    },
+    "GPN-Star-V": {
+      "variants": 7084,
+      "diagnostics": 200
+    },
+    "GPN-Star-M": {
+      "variants": 7084,
+      "diagnostics": 200
+    },
+    "EVEE": {
+      "variants": 7084,
+      "diagnostics": 200
+    }
+  },
+  "scores_without_coverage": [],
+  "dropped_scores": [],
+  "model_classes": {
+    "training_diagnostics_per_class": {
+      "canonical_splice": 40,
+      "intronic": 38,
+      "missense": 60,
+      "nonsense": 30,
+      "splice_region": 23,
+      "synonymous": 6,
+      "utr": 3
+    },
+    "merged_into_other": [
+      "synonymous",
+      "utr"
+    ],
+    "model_classes": [
+      "canonical_splice",
+      "intronic",
+      "missense",
+      "nonsense",
+      "other",
+      "splice_region"
+    ],
+    "training_set": "the 200 SNV cases"
+  },
+  "fits": "cross-validated (5-fold by person)",
+  "intervals": "1000 resamples of people per stratum, seed sha256('snv/evee/<stratum>')",
+  "package_versions": {
+    "python": "3.12.14",
+    "numpy": "2.5.4",
+    "pandas": "3.1.0",
+    "scikit-learn": "1.9.1",
+    "scipy": "1.18.1",
+    "joblib": "1.6.0",
+    "threadpoolctl": "3.7.0"
+  },
+  "evee_note": "Descriptive only (PROTOCOL.md section 10): agreement with ClinVar labels on in-sample variants, not diagnostic performance. Models fitted on the full bg1pct lists, then ranked within the EVEE-covered lists.",
+  "cases_without_evee_diagnostic": 0,
+  "rule_ties": {},
+  "strata": {
+    "all": {
+      "cases": 200,
+      "people": 50,
+      "small": false,
+      "scores": {
+        "CADD": {
+          "median_competitors": 1.0,
+          "top_1": 0.445,
+          "top_1_ci95": [
+            0.375,
+            0.515
+          ],
+          "top_5": 0.74,
+          "top_5_ci95": [
+            0.68,
+            0.805
+          ],
+          "top_10": 0.91,
+          "top_10_ci95": [
+            0.86,
+            0.955
+          ]
+        },
+        "SpliceAI": {
+          "median_competitors": 0.5,
+          "top_1": 0.5,
+          "top_1_ci95": [
+            0.435,
+            0.5701
+          ],
+          "top_5": 0.635,
+          "top_5_ci95": [
+            0.58,
+            0.6851
+          ],
+          "top_10": 0.66,
+          "top_10_ci95": [
+            0.6099,
+            0.71
+          ]
+        },
+        "REVEL": {
+          "median_competitors": 23.0,
+          "top_1": 0.265,
+          "top_1_ci95": [
+            0.215,
+            0.3151
+          ],
+          "top_5": 0.315,
+          "top_5_ci95": [
+            0.26,
+            0.37
+          ],
+          "top_10": 0.33,
+          "top_10_ci95": [
+            0.275,
+            0.385
+          ]
+        },
+        "AlphaMissense": {
+          "median_competitors": 25.0,
+          "top_1": 0.24,
+          "top_1_ci95": [
+            0.195,
+            0.285
+          ],
+          "top_5": 0.28,
+          "top_5_ci95": [
+            0.235,
+            0.325
+          ],
+          "top_10": 0.285,
+          "top_10_ci95": [
+            0.24,
+            0.33
+          ]
+        },
+        "AVI": {
+          "median_competitors": 0.0,
+          "top_1": 0.745,
+          "top_1_ci95": [
+            0.665,
+            0.815
+          ],
+          "top_5": 0.935,
+          "top_5_ci95": [
+            0.895,
+            0.965
+          ],
+          "top_10": 0.975,
+          "top_10_ci95": [
+            0.95,
+            0.995
+          ]
+        },
+        "GPN-MSA": {
+          "median_competitors": 1.0,
+          "top_1": 0.415,
+          "top_1_ci95": [
+            0.335,
+            0.49
+          ],
+          "top_5": 0.745,
+          "top_5_ci95": [
+            0.695,
+            0.7901
+          ],
+          "top_10": 0.87,
+          "top_10_ci95": [
+            0.83,
+            0.91
+          ]
+        },
+        "GPN-Star-V": {
+          "median_competitors": 0.0,
+          "top_1": 0.515,
+          "top_1_ci95": [
+            0.4399,
+            0.585
+          ],
+          "top_5": 0.82,
+          "top_5_ci95": [
+            0.7749,
+            0.8701
+          ],
+          "top_10": 0.92,
+          "top_10_ci95": [
+            0.88,
+            0.955
+          ]
+        },
+        "GPN-Star-M": {
+          "median_competitors": 1.0,
+          "top_1": 0.425,
+          "top_1_ci95": [
+            0.34,
+            0.5101
+          ],
+          "top_5": 0.81,
+          "top_5_ci95": [
+            0.76,
+            0.855
+          ],
+          "top_10": 0.92,
+          "top_10_ci95": [
+            0.885,
+            0.955
+          ]
+        },
+        "EVEE": {
+          "median_competitors": 0.0,
+          "top_1": 0.815,
+          "top_1_ci95": [
+            0.7549,
+            0.885
+          ],
+          "top_5": 0.975,
+          "top_5_ci95": [
+            0.95,
+            0.995
+          ],
+          "top_10": 0.985,
+          "top_10_ci95": [
+            0.965,
+            1.0
+          ]
+        },
+        "Lookups combined": {
+          "median_competitors": 0.0,
+          "top_1": 0.82,
+          "top_1_ci95": [
+            0.745,
+            0.885
+          ],
+          "top_5": 0.965,
+          "top_5_ci95": [
+            0.93,
+            0.99
+          ],
+          "top_10": 0.975,
+          "top_10_ci95": [
+            0.94,
+            0.995
+          ]
+        }
+      },
+      "seed_label": "snv/evee/all"
+    },
+    "canonical_splice": {
+      "cases": 40,
+      "people": 30,
+      "small": false,
+      "scores": {
+        "CADD": {
+          "median_competitors": 0.0,
+          "top_1": 0.725,
+          "top_1_ci95": [
+            0.5676,
+            0.8501
+          ],
+          "top_5": 1.0,
+          "top_5_ci95": [
+            1.0,
+            1.0
+          ],
+          "top_10": 1.0,
+          "top_10_ci95": [
+            1.0,
+            1.0
+          ]
+        },
+        "SpliceAI": {
+          "median_competitors": 0.0,
+          "top_1": 0.9,
+          "top_1_ci95": [
+            0.7949,
+            0.9762
+          ],
+          "top_5": 0.975,
+          "top_5_ci95": [
+            0.9189,
+            1.0
+          ],
+          "top_10": 0.975,
+          "top_10_ci95": [
+            0.9189,
+            1.0
+          ]
+        },
+        "REVEL": {
+          "median_competitors": 30.5,
+          "top_1": 0.0,
+          "top_1_ci95": [
+            0.0,
+            0.0
+          ],
+          "top_5": 0.025,
+          "top_5_ci95": [
+            0.0,
+            0.0882
+          ],
+          "top_10": 0.05,
+          "top_10_ci95": [
+            0.0,
+            0.1317
+          ]
+        },
+        "AlphaMissense": {
+          "median_competitors": 32.0,
+          "top_1": 0.0,
+          "top_1_ci95": [
+            0.0,
+            0.0
+          ],
+          "top_5": 0.0,
+          "top_5_ci95": [
+            0.0,
+            0.0
+          ],
+          "top_10": 0.0,
+          "top_10_ci95": [
+            0.0,
+            0.0
+          ]
+        },
+        "AVI": {
+          "median_competitors": 0.0,
+          "top_1": 0.875,
+          "top_1_ci95": [
+            0.7111,
+            1.0
+          ],
+          "top_5": 0.975,
+          "top_5_ci95": [
+            0.9189,
+            1.0
+          ],
+          "top_10": 1.0,
+          "top_10_ci95": [
+            1.0,
+            1.0
+          ]
+        },
+        "GPN-MSA": {
+          "median_competitors": 0.0,
+          "top_1": 0.55,
+          "top_1_ci95": [
+            0.4048,
+            0.6924
+          ],
+          "top_5": 0.95,
+          "top_5_ci95": [
+            0.8837,
+            1.0
+          ],
+          "top_10": 1.0,
+          "top_10_ci95": [
+            1.0,
+            1.0
+          ]
+        },
+        "GPN-Star-V": {
+          "median_competitors": 0.0,
+          "top_1": 0.825,
+          "top_1_ci95": [
+            0.6969,
+            0.925
+          ],
+          "top_5": 0.925,
+          "top_5_ci95": [
+            0.8293,
+            1.0
+          ],
+          "top_10": 1.0,
+          "top_10_ci95": [
+            1.0,
+            1.0
+          ]
+        },
+        "GPN-Star-M": {
+          "median_competitors": 0.0,
+          "top_1": 0.725,
+          "top_1_ci95": [
+            0.5713,
+            0.85
+          ],
+          "top_5": 0.925,
+          "top_5_ci95": [
+            0.8333,
+            1.0
+          ],
+          "top_10": 0.975,
+          "top_10_ci95": [
+            0.9189,
+            1.0
+          ]
+        },
+        "EVEE": {
+          "median_competitors": 0.0,
+          "top_1": 0.95,
+          "top_1_ci95": [
+            0.8649,
+            1.0
+          ],
+          "top_5": 1.0,
+          "top_5_ci95": [
+            1.0,
+            1.0
+          ],
+          "top_10": 1.0,
+          "top_10_ci95": [
+            1.0,
+            1.0
+          ]
+        },
+        "Lookups combined": {
+          "median_competitors": 0.0,
+          "top_1": 0.875,
+          "top_1_ci95": [
+            0.7317,
+            0.975
+          ],
+          "top_5": 1.0,
+          "top_5_ci95": [
+            1.0,
+            1.0
+          ],
+          "top_10": 1.0,
+          "top_10_ci95": [
+            1.0,
+            1.0
+          ]
+        }
+      },
+      "seed_label": "snv/evee/canonical_splice"
+    },
+    "missense": {
+      "cases": 60,
+      "people": 43,
+      "small": false,
+      "scores": {
+        "CADD": {
+          "median_competitors": 1.0,
+          "top_1": 0.4667,
+          "top_1_ci95": [
+            0.3333,
+            0.5965
+          ],
+          "top_5": 0.9167,
+          "top_5_ci95": [
+            0.85,
+            0.9822
+          ],
+          "top_10": 0.9833,
+          "top_10_ci95": [
+            0.9492,
+            1.0
+          ]
+        },
+        "SpliceAI": {
+          "median_competitors": 23.0,
+          "top_1": 0.0833,
+          "top_1_ci95": [
+            0.0169,
+            0.1607
+          ],
+          "top_5": 0.2333,
+          "top_5_ci95": [
+            0.1451,
+            0.3279
+          ],
+          "top_10": 0.2833,
+          "top_10_ci95": [
+            0.1818,
+            0.3934
+          ]
+        },
+        "REVEL": {
+          "median_competitors": 0.0,
+          "top_1": 0.8667,
+          "top_1_ci95": [
+            0.7679,
+            0.95
+          ],
+          "top_5": 0.9833,
+          "top_5_ci95": [
+            0.9455,
+            1.0
+          ],
+          "top_10": 1.0,
+          "top_10_ci95": [
+            1.0,
+            1.0
+          ]
+        },
+        "AlphaMissense": {
+          "median_competitors": 0.0,
+          "top_1": 0.8,
+          "top_1_ci95": [
+            0.6949,
+            0.8947
+          ],
+          "top_5": 0.9333,
+          "top_5_ci95": [
+            0.873,
+            0.9839
+          ],
+          "top_10": 0.95,
+          "top_10_ci95": [
+            0.8971,
+            1.0
+          ]
+        },
+        "AVI": {
+          "median_competitors": 0.0,
+          "top_1": 0.7333,
+          "top_1_ci95": [
+            0.6154,
+            0.8388
+          ],
+          "top_5": 0.9667,
+          "top_5_ci95": [
+            0.9138,
+            1.0
+          ],
+          "top_10": 1.0,
+          "top_10_ci95": [
+            1.0,
+            1.0
+          ]
+        },
+        "GPN-MSA": {
+          "median_competitors": 0.0,
+          "top_1": 0.5833,
+          "top_1_ci95": [
+            0.4483,
+            0.7273
+          ],
+          "top_5": 0.9167,
+          "top_5_ci95": [
+            0.8448,
+            0.9706
+          ],
+          "top_10": 0.9833,
+          "top_10_ci95": [
+            0.9492,
+            1.0
+          ]
+        },
+        "GPN-Star-V": {
+          "median_competitors": 0.0,
+          "top_1": 0.6333,
+          "top_1_ci95": [
+            0.5082,
+            0.7461
+          ],
+          "top_5": 0.9667,
+          "top_5_ci95": [
+            0.9194,
+            1.0
+          ],
+          "top_10": 1.0,
+          "top_10_ci95": [
+            1.0,
+            1.0
+          ]
+        },
+        "GPN-Star-M": {
+          "median_competitors": 0.5,
+          "top_1": 0.5,
+          "top_1_ci95": [
+            0.3684,
+            0.6406
+          ],
+          "top_5": 0.9167,
+          "top_5_ci95": [
+            0.8246,
+            0.9839
+          ],
+          "top_10": 0.9667,
+          "top_10_ci95": [
+            0.8983,
+            1.0
+          ]
+        },
+        "EVEE": {
+          "median_competitors": 0.0,
+          "top_1": 0.7667,
+          "top_1_ci95": [
+            0.6363,
+            0.8947
+          ],
+          "top_5": 1.0,
+          "top_5_ci95": [
+            1.0,
+            1.0
+          ],
+          "top_10": 1.0,
+          "top_10_ci95": [
+            1.0,
+            1.0
+          ]
+        },
+        "Lookups combined": {
+          "median_competitors": 0.0,
+          "top_1": 0.8,
+          "top_1_ci95": [
+            0.6909,
+            0.8948
+          ],
+          "top_5": 0.9667,
+          "top_5_ci95": [
+            0.9167,
+            1.0
+          ],
+          "top_10": 1.0,
+          "top_10_ci95": [
+            1.0,
+            1.0
+          ]
+        }
+      },
+      "seed_label": "snv/evee/missense"
+    },
+    "noncoding": {
+      "cases": 70,
+      "people": 41,
+      "small": false,
+      "scores": {
+        "CADD": {
+          "median_competitors": 6.0,
+          "top_1": 0.0286,
+          "top_1_ci95": [
+            0.0,
+            0.0758
+          ],
+          "top_5": 0.3286,
+          "top_5_ci95": [
+            0.2191,
+            0.4534
+          ],
+          "top_10": 0.7571,
+          "top_10_ci95": [
+            0.6406,
+            0.8649
+          ]
+        },
+        "SpliceAI": {
+          "median_competitors": 0.0,
+          "top_1": 0.7857,
+          "top_1_ci95": [
+            0.6571,
+            0.8971
+          ],
+          "top_5": 0.9143,
+          "top_5_ci95": [
+            0.8428,
+            0.9846
+          ],
+          "top_10": 0.9286,
+          "top_10_ci95": [
+            0.8592,
+            0.9859
+          ]
+        },
+        "REVEL": {
+          "median_competitors": 27.0,
+          "top_1": 0.0,
+          "top_1_ci95": [
+            0.0,
+            0.0
+          ],
+          "top_5": 0.0,
+          "top_5_ci95": [
+            0.0,
+            0.0
+          ],
+          "top_10": 0.0143,
+          "top_10_ci95": [
+            0.0,
+            0.0462
+          ]
+        },
+        "AlphaMissense": {
+          "median_competitors": 27.0,
+          "top_1": 0.0,
+          "top_1_ci95": [
+            0.0,
+            0.0
+          ],
+          "top_5": 0.0,
+          "top_5_ci95": [
+            0.0,
+            0.0
+          ],
+          "top_10": 0.0,
+          "top_10_ci95": [
+            0.0,
+            0.0
+          ]
+        },
+        "AVI": {
+          "median_competitors": 0.0,
+          "top_1": 0.5857,
+          "top_1_ci95": [
+            0.4745,
+            0.6944
+          ],
+          "top_5": 0.8571,
+          "top_5_ci95": [
+            0.7714,
+            0.9316
+          ],
+          "top_10": 0.9286,
+          "top_10_ci95": [
+            0.873,
+            0.9846
+          ]
+        },
+        "GPN-MSA": {
+          "median_competitors": 5.0,
+          "top_1": 0.2,
+          "top_1_ci95": [
+            0.1,
+            0.3077
+          ],
+          "top_5": 0.4571,
+          "top_5_ci95": [
+            0.3382,
+            0.5811
+          ],
+          "top_10": 0.6857,
+          "top_10_ci95": [
+            0.5733,
+            0.7941
+          ]
+        },
+        "GPN-Star-V": {
+          "median_competitors": 3.0,
+          "top_1": 0.1714,
+          "top_1_ci95": [
+            0.1,
+            0.25
+          ],
+          "top_5": 0.5857,
+          "top_5_ci95": [
+            0.4627,
+            0.6974
+          ],
+          "top_10": 0.7857,
+          "top_10_ci95": [
+            0.6811,
+            0.8732
+          ]
+        },
+        "GPN-Star-M": {
+          "median_competitors": 4.0,
+          "top_1": 0.0857,
+          "top_1_ci95": [
+            0.0278,
+            0.1528
+          ],
+          "top_5": 0.5857,
+          "top_5_ci95": [
+            0.4776,
+            0.6857
+          ],
+          "top_10": 0.8143,
+          "top_10_ci95": [
+            0.7324,
+            0.8871
+          ]
+        },
+        "EVEE": {
+          "median_competitors": 0.0,
+          "top_1": 0.7,
+          "top_1_ci95": [
+            0.5781,
+            0.8033
+          ],
+          "top_5": 0.9286,
+          "top_5_ci95": [
+            0.8636,
+            0.9744
+          ],
+          "top_10": 0.9571,
+          "top_10_ci95": [
+            0.9077,
+            1.0
+          ]
+        },
+        "Lookups combined": {
+          "median_competitors": 0.0,
+          "top_1": 0.7429,
+          "top_1_ci95": [
+            0.6142,
+            0.853
+          ],
+          "top_5": 0.9286,
+          "top_5_ci95": [
+            0.8594,
+            0.9861
+          ],
+          "top_10": 0.9286,
+          "top_10_ci95": [
+            0.8594,
+            0.9861
+          ]
+        }
+      },
+      "seed_label": "snv/evee/noncoding"
+    },
+    "noncoding: intronic": {
+      "cases": 38,
+      "people": 28,
+      "small": false,
+      "scores": {
+        "CADD": {
+          "median_competitors": 6.0,
+          "top_1": 0.0263,
+          "top_1_ci95": [
+            0.0,
+            0.0858
+          ],
+          "top_5": 0.3684,
+          "top_5_ci95": [
+            0.2222,
+            0.5143
+          ],
+          "top_10": 0.7895,
+          "top_10_ci95": [
+            0.641,
+            0.9189
+          ]
+        },
+        "SpliceAI": {
+          "median_competitors": 0.0,
+          "top_1": 0.8421,
+          "top_1_ci95": [
+            0.684,
+            0.973
+          ],
+          "top_5": 0.9737,
+          "top_5_ci95": [
+            0.9111,
+            1.0
+          ],
+          "top_10": 0.9737,
+          "top_10_ci95": [
+            0.9111,
+            1.0
+          ]
+        },
+        "REVEL": {
+          "median_competitors": 27.0,
+          "top_1": 0.0,
+          "top_1_ci95": [
+            0.0,
+            0.0
+          ],
+          "top_5": 0.0,
+          "top_5_ci95": [
+            0.0,
+            0.0
+          ],
+          "top_10": 0.0,
+          "top_10_ci95": [
+            0.0,
+            0.0
+          ]
+        },
+        "AlphaMissense": {
+          "median_competitors": 27.0,
+          "top_1": 0.0,
+          "top_1_ci95": [
+            0.0,
+            0.0
+          ],
+          "top_5": 0.0,
+          "top_5_ci95": [
+            0.0,
+            0.0
+          ],
+          "top_10": 0.0,
+          "top_10_ci95": [
+            0.0,
+            0.0
+          ]
+        },
+        "AVI": {
+          "median_competitors": 0.0,
+          "top_1": 0.6316,
+          "top_1_ci95": [
+            0.4872,
+            0.7647
+          ],
+          "top_5": 0.9211,
+          "top_5_ci95": [
+            0.8205,
+            1.0
+          ],
+          "top_10": 0.9737,
+          "top_10_ci95": [
+            0.9189,
+            1.0
+          ]
+        },
+        "GPN-MSA": {
+          "median_competitors": 4.0,
+          "top_1": 0.3158,
+          "top_1_ci95": [
+            0.1818,
+            0.4595
+          ],
+          "top_5": 0.5263,
+          "top_5_ci95": [
+            0.3824,
+            0.6667
+          ],
+          "top_10": 0.7105,
+          "top_10_ci95": [
+            0.5556,
+            0.8421
+          ]
+        },
+        "GPN-Star-V": {
+          "median_competitors": 2.0,
+          "top_1": 0.2632,
+          "top_1_ci95": [
+            0.1429,
+            0.3846
+          ],
+          "top_5": 0.6316,
+          "top_5_ci95": [
+            0.4865,
+            0.7632
+          ],
+          "top_10": 0.8421,
+          "top_10_ci95": [
+            0.7297,
+            0.9459
+          ]
+        },
+        "GPN-Star-M": {
+          "median_competitors": 3.5,
+          "top_1": 0.1316,
+          "top_1_ci95": [
+            0.05,
+            0.2308
+          ],
+          "top_5": 0.6053,
+          "top_5_ci95": [
+            0.4595,
+            0.7369
+          ],
+          "top_10": 0.8684,
+          "top_10_ci95": [
+            0.75,
+            0.9688
+          ]
+        },
+        "EVEE": {
+          "median_competitors": 0.0,
+          "top_1": 0.8684,
+          "top_1_ci95": [
+            0.7576,
+            0.9714
+          ],
+          "top_5": 1.0,
+          "top_5_ci95": [
+            1.0,
+            1.0
+          ],
+          "top_10": 1.0,
+          "top_10_ci95": [
+            1.0,
+            1.0
+          ]
+        },
+        "Lookups combined": {
+          "median_competitors": 0.0,
+          "top_1": 0.8421,
+          "top_1_ci95": [
+            0.6923,
+            0.9487
+          ],
+          "top_5": 0.9737,
+          "top_5_ci95": [
+            0.9189,
+            1.0
+          ],
+          "top_10": 0.9737,
+          "top_10_ci95": [
+            0.9189,
+            1.0
+          ]
+        }
+      },
+      "seed_label": "snv/evee/noncoding: intronic"
+    },
+    "noncoding: splice_region": {
+      "cases": 23,
+      "people": 20,
+      "small": false,
+      "scores": {
+        "CADD": {
+          "median_competitors": 6.0,
+          "top_1": 0.0,
+          "top_1_ci95": [
+            0.0,
+            0.0
+          ],
+          "top_5": 0.3478,
+          "top_5_ci95": [
+            0.1427,
+            0.5455
+          ],
+          "top_10": 0.8696,
+          "top_10_ci95": [
+            0.7273,
+            1.0
+          ]
+        },
+        "SpliceAI": {
+          "median_competitors": 0.0,
+          "top_1": 0.7826,
+          "top_1_ci95": [
+            0.6,
+            0.9545
+          ],
+          "top_5": 0.913,
+          "top_5_ci95": [
+            0.7619,
+            1.0
+          ],
+          "top_10": 0.9565,
+          "top_10_ci95": [
+            0.8571,
+            1.0
+          ]
+        },
+        "REVEL": {
+          "median_competitors": 27.0,
+          "top_1": 0.0,
+          "top_1_ci95": [
+            0.0,
+            0.0
+          ],
+          "top_5": 0.0,
+          "top_5_ci95": [
+            0.0,
+            0.0
+          ],
+          "top_10": 0.0,
+          "top_10_ci95": [
+            0.0,
+            0.0
+          ]
+        },
+        "AlphaMissense": {
+          "median_competitors": 27.0,
+          "top_1": 0.0,
+          "top_1_ci95": [
+            0.0,
+            0.0
+          ],
+          "top_5": 0.0,
+          "top_5_ci95": [
+            0.0,
+            0.0
+          ],
+          "top_10": 0.0,
+          "top_10_ci95": [
+            0.0,
+            0.0
+          ]
+        },
+        "AVI": {
+          "median_competitors": 1.0,
+          "top_1": 0.4783,
+          "top_1_ci95": [
+            0.2726,
+            0.6822
+          ],
+          "top_5": 0.8261,
+          "top_5_ci95": [
+            0.6783,
+            0.9565
+          ],
+          "top_10": 0.9565,
+          "top_10_ci95": [
+            0.8571,
+            1.0
+          ]
+        },
+        "GPN-MSA": {
+          "median_competitors": 5.0,
+          "top_1": 0.087,
+          "top_1_ci95": [
+            0.0,
+            0.2273
+          ],
+          "top_5": 0.4783,
+          "top_5_ci95": [
+            0.2727,
+            0.6667
+          ],
+          "top_10": 0.8261,
+          "top_10_ci95": [
+            0.65,
+            0.9583
+          ]
+        },
+        "GPN-Star-V": {
+          "median_competitors": 3.0,
+          "top_1": 0.087,
+          "top_1_ci95": [
+            0.0,
+            0.2083
+          ],
+          "top_5": 0.6957,
+          "top_5_ci95": [
+            0.5195,
+            0.8636
+          ],
+          "top_10": 0.8696,
+          "top_10_ci95": [
+            0.7143,
+            1.0
+          ]
+        },
+        "GPN-Star-M": {
+          "median_competitors": 3.0,
+          "top_1": 0.0,
+          "top_1_ci95": [
+            0.0,
+            0.0
+          ],
+          "top_5": 0.6087,
+          "top_5_ci95": [
+            0.4348,
+            0.773
+          ],
+          "top_10": 0.7826,
+          "top_10_ci95": [
+            0.6087,
+            0.9167
+          ]
+        },
+        "EVEE": {
+          "median_competitors": 0.0,
+          "top_1": 0.5652,
+          "top_1_ci95": [
+            0.3636,
+            0.7727
+          ],
+          "top_5": 0.913,
+          "top_5_ci95": [
+            0.7917,
+            1.0
+          ],
+          "top_10": 0.9565,
+          "top_10_ci95": [
+            0.8571,
+            1.0
+          ]
+        },
+        "Lookups combined": {
+          "median_competitors": 0.0,
+          "top_1": 0.6522,
+          "top_1_ci95": [
+            0.4545,
+            0.85
+          ],
+          "top_5": 0.9565,
+          "top_5_ci95": [
+            0.8571,
+            1.0
+          ],
+          "top_10": 0.9565,
+          "top_10_ci95": [
+            0.8571,
+            1.0
+          ]
+        }
+      },
+      "seed_label": "snv/evee/noncoding: splice_region"
+    },
+    "noncoding: synonymous": {
+      "cases": 6,
+      "people": 6,
+      "small": true,
+      "scores": {
+        "CADD": {
+          "median_competitors": 8.0,
+          "top_1": 0.1667,
+          "top_1_ci95": [
+            0.0,
+            0.5
+          ],
+          "top_5": 0.1667,
+          "top_5_ci95": [
+            0.0,
+            0.5
+          ],
+          "top_10": 0.5,
+          "top_10_ci95": [
+            0.1667,
+            0.8333
+          ]
+        },
+        "SpliceAI": {
+          "median_competitors": 0.0,
+          "top_1": 0.8333,
+          "top_1_ci95": [
+            0.5,
+            1.0
+          ],
+          "top_5": 1.0,
+          "top_5_ci95": [
+            1.0,
+            1.0
+          ],
+          "top_10": 1.0,
+          "top_10_ci95": [
+            1.0,
+            1.0
+          ]
+        },
+        "REVEL": {
+          "median_competitors": 25.5,
+          "top_1": 0.0,
+          "top_1_ci95": [
+            0.0,
+            0.0
+          ],
+          "top_5": 0.0,
+          "top_5_ci95": [
+            0.0,
+            0.0
+          ],
+          "top_10": 0.1667,
+          "top_10_ci95": [
+            0.0,
+            0.5
+          ]
+        },
+        "AlphaMissense": {
+          "median_competitors": 28.0,
+          "top_1": 0.0,
+          "top_1_ci95": [
+            0.0,
+            0.0
+          ],
+          "top_5": 0.0,
+          "top_5_ci95": [
+            0.0,
+            0.0
+          ],
+          "top_10": 0.0,
+          "top_10_ci95": [
+            0.0,
+            0.0
+          ]
+        },
+        "AVI": {
+          "median_competitors": 0.0,
+          "top_1": 0.8333,
+          "top_1_ci95": [
+            0.5,
+            1.0
+          ],
+          "top_5": 0.8333,
+          "top_5_ci95": [
+            0.5,
+            1.0
+          ],
+          "top_10": 0.8333,
+          "top_10_ci95": [
+            0.5,
+            1.0
+          ]
+        },
+        "GPN-MSA": {
+          "median_competitors": 14.5,
+          "top_1": 0.0,
+          "top_1_ci95": [
+            0.0,
+            0.0
+          ],
+          "top_5": 0.0,
+          "top_5_ci95": [
+            0.0,
+            0.0
+          ],
+          "top_10": 0.1667,
+          "top_10_ci95": [
+            0.0,
+            0.5
+          ]
+        },
+        "GPN-Star-V": {
+          "median_competitors": 11.0,
+          "top_1": 0.0,
+          "top_1_ci95": [
+            0.0,
+            0.0
+          ],
+          "top_5": 0.0,
+          "top_5_ci95": [
+            0.0,
+            0.0
+          ],
+          "top_10": 0.3333,
+          "top_10_ci95": [
+            0.0,
+            0.6667
+          ]
+        },
+        "GPN-Star-M": {
+          "median_competitors": 6.5,
+          "top_1": 0.1667,
+          "top_1_ci95": [
+            0.0,
+            0.5
+          ],
+          "top_5": 0.5,
+          "top_5_ci95": [
+            0.1667,
+            0.8333
+          ],
+          "top_10": 0.6667,
+          "top_10_ci95": [
+            0.3333,
+            1.0
+          ]
+        },
+        "EVEE": {
+          "median_competitors": 3.5,
+          "top_1": 0.1667,
+          "top_1_ci95": [
+            0.0,
+            0.5
+          ],
+          "top_5": 0.5,
+          "top_5_ci95": [
+            0.1667,
+            0.8333
+          ],
+          "top_10": 0.6667,
+          "top_10_ci95": [
+            0.3333,
+            1.0
+          ]
+        },
+        "Lookups combined": {
+          "median_competitors": 0.0,
+          "top_1": 0.8333,
+          "top_1_ci95": [
+            0.5,
+            1.0
+          ],
+          "top_5": 1.0,
+          "top_5_ci95": [
+            1.0,
+            1.0
+          ],
+          "top_10": 1.0,
+          "top_10_ci95": [
+            1.0,
+            1.0
+          ]
+        }
+      },
+      "seed_label": "snv/evee/noncoding: synonymous"
+    },
+    "noncoding: utr": {
+      "cases": 3,
+      "people": 2,
+      "small": true,
+      "scores": {
+        "CADD": {
+          "median_competitors": 10.0,
+          "top_1": 0.0,
+          "top_1_ci95": [
+            0.0,
+            0.0
+          ],
+          "top_5": 0.0,
+          "top_5_ci95": [
+            0.0,
+            0.0
+          ],
+          "top_10": 0.0,
+          "top_10_ci95": [
+            0.0,
+            0.0
+          ]
+        },
+        "SpliceAI": {
+          "median_competitors": 52.0,
+          "top_1": 0.0,
+          "top_1_ci95": [
+            0.0,
+            0.0
+          ],
+          "top_5": 0.0,
+          "top_5_ci95": [
+            0.0,
+            0.0
+          ],
+          "top_10": 0.0,
+          "top_10_ci95": [
+            0.0,
+            0.0
+          ]
+        },
+        "REVEL": {
+          "median_competitors": 52.0,
+          "top_1": 0.0,
+          "top_1_ci95": [
+            0.0,
+            0.0
+          ],
+          "top_5": 0.0,
+          "top_5_ci95": [
+            0.0,
+            0.0
+          ],
+          "top_10": 0.0,
+          "top_10_ci95": [
+            0.0,
+            0.0
+          ]
+        },
+        "AlphaMissense": {
+          "median_competitors": 52.0,
+          "top_1": 0.0,
+          "top_1_ci95": [
+            0.0,
+            0.0
+          ],
+          "top_5": 0.0,
+          "top_5_ci95": [
+            0.0,
+            0.0
+          ],
+          "top_10": 0.0,
+          "top_10_ci95": [
+            0.0,
+            0.0
+          ]
+        },
+        "AVI": {
+          "median_competitors": 18.0,
+          "top_1": 0.3333,
+          "top_1_ci95": [
+            0.0,
+            0.5
+          ],
+          "top_5": 0.3333,
+          "top_5_ci95": [
+            0.0,
+            0.5
+          ],
+          "top_10": 0.3333,
+          "top_10_ci95": [
+            0.0,
+            0.5
+          ]
+        },
+        "GPN-MSA": {
+          "median_competitors": 23.0,
+          "top_1": 0.0,
+          "top_1_ci95": [
+            0.0,
+            0.0
+          ],
+          "top_5": 0.3333,
+          "top_5_ci95": [
+            0.0,
+            0.5
+          ],
+          "top_10": 0.3333,
+          "top_10_ci95": [
+            0.0,
+            0.5
+          ]
+        },
+        "GPN-Star-V": {
+          "median_competitors": 21.0,
+          "top_1": 0.0,
+          "top_1_ci95": [
+            0.0,
+            0.0
+          ],
+          "top_5": 0.3333,
+          "top_5_ci95": [
+            0.0,
+            0.5
+          ],
+          "top_10": 0.3333,
+          "top_10_ci95": [
+            0.0,
+            0.5
+          ]
+        },
+        "GPN-Star-M": {
+          "median_competitors": 9.0,
+          "top_1": 0.0,
+          "top_1_ci95": [
+            0.0,
+            0.0
+          ],
+          "top_5": 0.3333,
+          "top_5_ci95": [
+            0.0,
+            0.5
+          ],
+          "top_10": 0.6667,
+          "top_10_ci95": [
+            0.0,
+            1.0
+          ]
+        },
+        "EVEE": {
+          "median_competitors": 0.0,
+          "top_1": 0.6667,
+          "top_1_ci95": [
+            0.0,
+            1.0
+          ],
+          "top_5": 1.0,
+          "top_5_ci95": [
+            1.0,
+            1.0
+          ],
+          "top_10": 1.0,
+          "top_10_ci95": [
+            1.0,
+            1.0
+          ]
+        },
+        "Lookups combined": {
+          "median_competitors": 51.0,
+          "top_1": 0.0,
+          "top_1_ci95": [
+            0.0,
+            0.0
+          ],
+          "top_5": 0.0,
+          "top_5_ci95": [
+            0.0,
+            0.0
+          ],
+          "top_10": 0.0,
+          "top_10_ci95": [
+            0.0,
+            0.0
+          ]
+        }
+      },
+      "seed_label": "snv/evee/noncoding: utr"
+    },
+    "nonsense": {
+      "cases": 30,
+      "people": 26,
+      "small": false,
+      "scores": {
+        "CADD": {
+          "median_competitors": 0.0,
+          "top_1": 1.0,
+          "top_1_ci95": [
+            1.0,
+            1.0
+          ],
+          "top_5": 1.0,
+          "top_5_ci95": [
+            1.0,
+            1.0
+          ],
+          "top_10": 1.0,
+          "top_10_ci95": [
+            1.0,
+            1.0
+          ]
+        },
+        "SpliceAI": {
+          "median_competitors": 17.5,
+          "top_1": 0.1333,
+          "top_1_ci95": [
+            0.0312,
+            0.2814
+          ],
+          "top_5": 0.3333,
+          "top_5_ci95": [
+            0.1724,
+            0.5172
+          ],
+          "top_10": 0.3667,
+          "top_10_ci95": [
+            0.2,
+            0.5484
+          ]
+        },
+        "REVEL": {
+          "median_competitors": 28.5,
+          "top_1": 0.0333,
+          "top_1_ci95": [
+            0.0,
+            0.1071
+          ],
+          "top_5": 0.1,
+          "top_5_ci95": [
+            0.0,
+            0.2258
+          ],
+          "top_10": 0.1,
+          "top_10_ci95": [
+            0.0,
+            0.2258
+          ]
+        },
+        "AlphaMissense": {
+          "median_competitors": 29.5,
+          "top_1": 0.0,
+          "top_1_ci95": [
+            0.0,
+            0.0
+          ],
+          "top_5": 0.0,
+          "top_5_ci95": [
+            0.0,
+            0.0
+          ],
+          "top_10": 0.0,
+          "top_10_ci95": [
+            0.0,
+            0.0
+          ]
+        },
+        "AVI": {
+          "median_competitors": 0.0,
+          "top_1": 0.9667,
+          "top_1_ci95": [
+            0.9,
+            1.0
+          ],
+          "top_5": 1.0,
+          "top_5_ci95": [
+            1.0,
+            1.0
+          ],
+          "top_10": 1.0,
+          "top_10_ci95": [
+            1.0,
+            1.0
+          ]
+        },
+        "GPN-MSA": {
+          "median_competitors": 1.0,
+          "top_1": 0.4,
+          "top_1_ci95": [
+            0.2333,
+            0.5714
+          ],
+          "top_5": 0.8,
+          "top_5_ci95": [
+            0.6667,
+            0.9286
+          ],
+          "top_10": 0.9,
+          "top_10_ci95": [
+            0.7941,
+            1.0
+          ]
+        },
+        "GPN-Star-V": {
+          "median_competitors": 0.0,
+          "top_1": 0.6667,
+          "top_1_ci95": [
+            0.4848,
+            0.8333
+          ],
+          "top_5": 0.9333,
+          "top_5_ci95": [
+            0.8436,
+            1.0
+          ],
+          "top_10": 0.9667,
+          "top_10_ci95": [
+            0.9,
+            1.0
+          ]
+        },
+        "GPN-Star-M": {
+          "median_competitors": 0.0,
+          "top_1": 0.6667,
+          "top_1_ci95": [
+            0.5,
+            0.8333
+          ],
+          "top_5": 0.9667,
+          "top_5_ci95": [
+            0.9,
+            1.0
+          ],
+          "top_10": 1.0,
+          "top_10_ci95": [
+            1.0,
+            1.0
+          ]
+        },
+        "EVEE": {
+          "median_competitors": 0.0,
+          "top_1": 1.0,
+          "top_1_ci95": [
+            1.0,
+            1.0
+          ],
+          "top_5": 1.0,
+          "top_5_ci95": [
+            1.0,
+            1.0
+          ],
+          "top_10": 1.0,
+          "top_10_ci95": [
+            1.0,
+            1.0
+          ]
+        },
+        "Lookups combined": {
+          "median_competitors": 0.0,
+          "top_1": 0.9667,
+          "top_1_ci95": [
+            0.8928,
+            1.0
+          ],
+          "top_5": 1.0,
+          "top_5_ci95": [
+            1.0,
+            1.0
+          ],
+          "top_10": 1.0,
+          "top_10_ci95": [
+            1.0,
+            1.0
+          ]
+        }
+      },
+      "seed_label": "snv/evee/nonsense"
+    }
+  }
+}

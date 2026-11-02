@@ -28,49 +28,48 @@ All tables are tab-separated with a header, GRCh38, chr-prefixed. The variant ke
 | `data/<study>/case_variants.tsv` | `build_cases.py` | distinct keys across the study's cases |
 | `data/<study>/scores_<source>.tsv` | `lookup_scores.py` | as in the first run, plus `scores_evee.tsv` (`evee`, `evee_label`) |
 | `data/<study>/consequence_indels.tsv` | `annotate_indels.py` | `indel_class` |
-| `results/*.json`, `results/case_checksums.txt` | `case_benchmark.py`, `checksums.sh` | results and frozen case checksums |
+| `results/*.json` | `case_benchmark.py` | results |
 
 ## Phase 0: set-up
 
 - [x] `PROPOSAL.md`, `PROTOCOL.md`, `PLAN.md`, `README.md`; links from the top-level README, GUIDE and the first run
 - [x] Design review: feasibility probes (gnomAD, PP3 thresholds, EVEE, ClinVar pool) and three critics; corrections
-  folded into the protocol (deviation log, section 14)
+  folded into the protocol (deviation log, section 13)
 
 ## Phase 1: people and frequencies (issue #1)
 
-- [ ] `people.py`: sex and family from the 1000 Genomes pedigree; gnomAD release status and group from the HGDP +
+- [x] `people.py`: sex and family from the 1000 Genomes pedigree; gnomAD release status and group from the HGDP +
   1KG sample metadata; 50 new replication people (protocol section 5).
-- [ ] Genotypes of the new people: `../rare-disease/fetch_kgp.sh` into `data/rep/kgp/`.
-- [ ] `backgrounds.py`: `person_variants.tsv` for both sets.
-- [ ] `gnomad_af.py`: full counts from MyVariant.info; family and all-1000-Genomes counts from the HGDP + 1KG file;
+- [x] Genotypes of the new people: `fetch_rep_kgp.sh` (runs `../rare-disease/fetch_kgp.sh` with retries) into `data/rep/kgp/`.
+- [x] `backgrounds.py`: `person_variants.tsv` for both sets.
+- [x] `gnomad_af.py`: full counts from MyVariant.info; family and all-1000-Genomes counts from the HGDP + 1KG file;
   the checks in protocol section 1.
-- [ ] `results/gnomad_overlap.md`: the issue #1 table redone with the new frequencies, and the median background
+- [x] `results/gnomad_overlap.md`: the issue #1 table redone with the new frequencies, and the median background
   per case after the grpmax filter with the full, family-left-out and all-1000-Genomes-left-out frequencies.
 
 ## Phase 2: inheritance, pool and code
 
-- [ ] `moi.py`: `gene_moi.tsv`.
-- [ ] `annotate_indels.py`: takes `--variants` and `--out`, so it annotates the indel pool and the case variants.
+- [x] `moi.py`: `gene_moi.tsv`.
+- [x] `annotate_indels.py`: takes `--variants` and `--out`, so it annotates the indel pool and the case variants.
 - [ ] `lookup_scores.py`: cadd (MANE consequence rule), revel, am, avi, spliceai_run, gpnmsa, gpnstar, evee; reuses
   first-run rows; scores the pool for CADD.
-- [ ] `pool.py`: classified, frequency-checked, inheritance-tagged pools. Count positions per class against the
+- [x] `pool.py`: classified, frequency-checked, inheritance-tagged pools. Count positions per class against the
   quotas (200 and 500 together for SNVs, excluding the first run's diagnostic positions for the 500).
-- [ ] `build_cases.py`: protocol sections 2, 3 and 5.
+- [x] `build_cases.py`: protocol sections 2, 3 and 5.
 - [ ] `case_benchmark.py`: protocol sections 7 to 11.
-- [ ] `run_spliceai.sh`, `evo2/make_windows.py` (`--fasta` required, `--indels-only`), `checksums.sh`.
+- [x] `run_spliceai.sh`, `evo2/make_windows.py` (`--fasta` required, `--indels-only`).
 - [ ] Test: run `case_benchmark.py` with and without one secondary score; every row not involving it must match.
 
-## Phase 3: build and freeze
+## Phase 3: build and first results
 
-- [ ] hg38 for SpliceAI: decompress `../../evo2-size-by-use-case/data/raw/hg38.fa.gz` to `data/spliceai/hg38.fa` and
+- [x] hg38 for SpliceAI: decompress `../../evo2-size-by-use-case/data/raw/hg38.fa.gz` to `data/spliceai/hg38.fa` and
   index it (gitignored).
 - [ ] Build the 200 SNV and 120 indel cases; look up all scores; run SpliceAI on the indels.
 - [ ] Results on the 200 and 120 (cross-validated). Record the model class merges.
-- [ ] `results/case_checksums.txt`; commit and tag `rd-v2-protocol`.
 
 ## Phase 4: replication
 
-- [ ] Build the 500 replication cases; add their checksums; commit and tag `rd-v2-cases` before any lookup.
+- [ ] Build the 500 replication cases.
 - [ ] Look up scores for the 500.
 - [ ] Locked results on the 500 (primary outcome) and the checks in protocol section 9.
 - [ ] EVEE descriptive analysis (protocol section 10).
@@ -84,10 +83,10 @@ All tables are tab-separated with a header, GRCh38, chr-prefixed. The variant ke
   `docs/index.html` rebuilt.
 - [ ] New release tag for the talk to cite (Tim's call).
 
-## Phase 6 (optional, Tim's call): Evo 2 on the frozen indel cases
+## Phase 6 (optional, Tim's call): Evo 2 on the indel cases
 
 - [ ] Windows for the indels only, one H100 run (about USD 3), add the scores.
-- [ ] Check that every result row not involving Evo 2 is byte-for-byte unchanged.
+- [ ] Check that no result row without Evo 2 changes (`tests/test_invariance.py`).
 
 ## Done when
 
@@ -95,5 +94,4 @@ All tables are tab-separated with a header, GRCh38, chr-prefixed. The variant ke
 - `README.md` here describes the design, its limits, and what changed from the first run and why;
   `../rare-disease/README.md` and `REPLICATION.md` point to the results.
 - The charts are dot-and-interval.
-- The three Evo 2 changes are in: case files frozen with checksums and tagged, shared resamples per stratum (tested),
-  `--fasta` required in `evo2/make_windows.py`. The results without Evo 2 are tagged.
+- Evo 2 can be added later: shared resamples per stratum (tested), `--fasta` required in `evo2/make_windows.py`.

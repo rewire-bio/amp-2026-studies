@@ -1,0 +1,55 @@
+== counts
+chr10: counts written
+chr9: counts written
+chr4: counts written
+chr5: counts written
+chr8: counts written
+chr7: counts written
+chr3: counts written
+chr6: counts written
+chr12: counts written
+chr13: counts written
+chr11: counts written
+chr14: counts written
+chr18: counts written
+chr2: counts written
+chr20: counts written
+chr21: counts written
+chr15: counts written
+chr1: counts written
+chr17: counts written
+chr22: counts written
+chr16: counts written
+chr19: counts written
+chrX: counts written
+== af
+af: main: {'family AC clamped at 0 (groups or overall)': 0, 'all-1KG AC clamped at 0 (groups or overall)': 0, 'rows': 17584, 'in subset': 17559, 'not found in gnomAD': 37, 'in subset but not found in MyVariant': 14}
+af: rep: {'family AC clamped at 0 (groups or overall)': 0, 'all-1KG AC clamped at 0 (groups or overall)': 0, 'rows': 16028, 'in subset': 16006, 'not found in gnomAD': 19}
+== checks
+checks: wrote /Users/timrichardson/Documents/projects/personal/blog/amp-2026-studies/rare-disease-v2/results/gnomad_checks.md
+== overlap
+overlap: wrote /Users/timrichardson/Documents/projects/personal/blog/amp-2026-studies/rare-disease-v2/results/gnomad_overlap.md
+# gnomAD overlap of the first run's 200 SNV cases, with the new frequencies
+
+Made by `gnomad_af.py overlap`. Issue #1's table, redone. Bins use the overall gnomAD v3.1.2 genome AF; "not in gnomAD" means AF 0 (not found, or no allele left after leaving people out). The spiked-in (diagnostic) variants are not carried by the person, so they keep the full frequency. Full-frequency rows count distinct variants, as in the issue; leave-out rows count person variants (the same variant in two people can have different frequencies).
+
+| Variants | Frequency | n | Not in gnomAD | Below 0.01% | 0.01 to 0.1% | 0.1% or more |
+|---|---|---|---|---|---|---|
+| 200 cases, spiked-in | full | 200 | 76% | 22% | 2% | 0% |
+| 200 cases, background | full | 13,145 | 0% | 16% | 26% | 57% |
+| 200 cases, background, per person variant | full | 15,216 | 0% | 14% | 24% | 61% |
+| 200 cases, background | family left out | 15,216 | 2% | 12% | 24% | 61% |
+| 200 cases, background | all 1000 Genomes left out | 15,216 | 4% | 12% | 24% | 60% |
+
+## Background variants per case left after the grpmax filter
+
+Median (and range) over the 200 cases of the background SNVs kept, by the frequency used for grpmax.
+
+| Frequency | Before the filter | grpmax below 0.1% | grpmax below 1% |
+|---|---|---|---|
+| full | 233.5 (172 to 604) | 49 (13 to 96) | 139 (82 to 287) |
+| family left out | 233.5 (172 to 604) | 50.5 (15 to 97) | 139.5 (82 to 287) |
+| all 1000 Genomes left out | 233.5 (172 to 604) | 50 (16 to 97) | 140 (81 to 291) |
+
+All 15,216 background person variants of the 200 cases join to `data/main/person_variant_af.tsv`.
+DONE

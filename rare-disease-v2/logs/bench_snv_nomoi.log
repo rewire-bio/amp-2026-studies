@@ -1,0 +1,28 @@
+snv nomoi: 200 cases, median 52 variants per case; background grpmax below 0.001, diagnostics full gnomAD grpmax below 0.001; no inheritance filter; background indels dropped after filtering
+model classes merged into other: ['synonymous', 'utr']
+diagnostics tied with a background variant: {'Rule-based': 0.01, 'Rule + AVI': 0.0}
+  gnomAD absent minus found, Lookups + AVI minus Lookups combined: -0.056 [-0.1714, 0.0639]
+  gnomAD absent minus found, Rule + AVI minus Rule-based: +0.043 [-0.0408, 0.133]
+  CADD                           top1 0.400 [0.325, 0.47]  top5 0.735  top10 0.835
+  SpliceAI                       top1 0.460 [0.39, 0.53]  top5 0.630  top10 0.665
+  REVEL                          top1 0.235 [0.18, 0.29]  top5 0.305  top10 0.330
+  AlphaMissense                  top1 0.200 [0.15, 0.25]  top5 0.280  top10 0.280
+  AVI                            top1 0.665 [0.585, 0.74]  top5 0.910  top10 0.950
+  GPN-MSA                        top1 0.355 [0.27, 0.44]  top5 0.675  top10 0.820
+  GPN-Star-V                     top1 0.440 [0.36, 0.515]  top5 0.775  top10 0.870
+  GPN-Star-M                     top1 0.395 [0.32, 0.47]  top5 0.720  top10 0.830
+  Rule-based                     top1 0.665 [0.58, 0.75]  top5 0.930  top10 0.965
+  Rule + AVI                     top1 0.735 [0.655, 0.815]  top5 0.940  top10 0.960
+  Lookups combined               top1 0.685 [0.575, 0.7901]  top5 0.950  top10 0.965
+  Lookups + AVI                  top1 0.740 [0.65, 0.8251]  top5 0.945  top10 0.965
+  Lookups + GPN-MSA              top1 0.710 [0.6149, 0.805]  top5 0.935  top10 0.955
+  Lookups + GPN-Star-V           top1 0.710 [0.62, 0.795]  top5 0.945  top10 0.965
+  Lookups + GPN-Star-M           top1 0.680 [0.59, 0.765]  top5 0.930  top10 0.955
+  Lookups + AVI minus Lookups combined: top1 +0.055 [-0.025, 0.135] (primary contrast, cross-validated (descriptive))
+  Lookups combined minus Rule-based: top1 +0.020 [-0.0701, 0.125] (descriptive)
+  Lookups + AVI minus Rule-based: top1 +0.075 [-0.015, 0.165] (descriptive)
+  Lookups + GPN-MSA minus Lookups combined: top1 +0.025 [-0.015, 0.07] (secondary, cross-validated (descriptive))
+  Lookups + GPN-Star-V minus Lookups combined: top1 +0.025 [-0.03, 0.08] (secondary, cross-validated (descriptive))
+  Lookups + GPN-Star-M minus Lookups combined: top1 -0.005 [-0.055, 0.045] (secondary, cross-validated (descriptive))
+  Rule + AVI minus Rule-based: top1 +0.070 [0.025, 0.12] (key secondary)
+wrote /Users/timrichardson/Documents/projects/personal/blog/amp-2026-studies/rare-disease-v2/results/snv_nomoi.json

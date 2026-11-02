@@ -1,0 +1,748 @@
+{
+  "study": "snv",
+  "analysis": "heldout",
+  "filter": {
+    "max_af": 0.001,
+    "background_frequency": "grpmax",
+    "diagnostic_frequency": "grpmax",
+    "inheritance_filter": true,
+    "cases_before": 200,
+    "variants_before": 36508,
+    "cases_lost_diagnostic": 0,
+    "variants_after_frequency": 10956,
+    "unrecognised_moi_values_kept": [],
+    "rows_without_gene": 0,
+    "variants_after_inheritance": 6189,
+    "background_indels_in_inheritance_count": 788,
+    "variants_after_dropping_other_type": 5401,
+    "description": "background grpmax below 0.001, diagnostics full gnomAD grpmax below 0.001; background inheritance filter; background indels dropped after filtering"
+  },
+  "load_notes": {
+    "case_variants_without_mane_cadd_row": 0,
+    "diagnostic_class_differs_from_cases_tsv": 0
+  },
+  "cases": 200,
+  "people": 50,
+  "median_variants_per_case": 26.0,
+  "coverage": {
+    "CADD": {
+      "variants": 5401,
+      "diagnostics": 200
+    },
+    "SpliceAI": {
+      "variants": 4485,
+      "diagnostics": 192
+    },
+    "REVEL": {
+      "variants": 1244,
+      "diagnostics": 68
+    },
+    "AlphaMissense": {
+      "variants": 1025,
+      "diagnostics": 57
+    },
+    "AVI": {
+      "variants": 5401,
+      "diagnostics": 200
+    },
+    "GPN-MSA": {
+      "variants": 5401,
+      "diagnostics": 200
+    },
+    "GPN-Star-V": {
+      "variants": 5401,
+      "diagnostics": 200
+    },
+    "GPN-Star-M": {
+      "variants": 5401,
+      "diagnostics": 200
+    }
+  },
+  "scores_without_coverage": [],
+  "dropped_scores": [],
+  "model_classes": {
+    "training_diagnostics_per_class": {
+      "canonical_splice": 40,
+      "intronic": 38,
+      "missense": 60,
+      "nonsense": 30,
+      "splice_region": 23,
+      "synonymous": 6,
+      "utr": 3
+    },
+    "merged_into_other": [
+      "synonymous",
+      "utr"
+    ],
+    "model_classes": [
+      "canonical_splice",
+      "intronic",
+      "missense",
+      "nonsense",
+      "other",
+      "splice_region"
+    ],
+    "training_set": "the 200 SNV cases"
+  },
+  "fits": "cross-validated (5-fold by person)",
+  "intervals": "1000 resamples of people per stratum, seed sha256('snv/heldout/<stratum>')",
+  "package_versions": {
+    "python": "3.12.14",
+    "numpy": "2.5.4",
+    "pandas": "3.1.0",
+    "scikit-learn": "1.9.1",
+    "scipy": "1.18.1",
+    "joblib": "1.6.0",
+    "threadpoolctl": "3.7.0"
+  },
+  "heldout": {
+    "training_chromosomes": {
+      "cases": 38,
+      "median_variants_per_case": 7.0,
+      "scores": {
+        "CADD": {
+          "median_competitors": 0.0,
+          "top_1": 0.7105,
+          "top_1_ci95": [
+            0.5476,
+            0.853
+          ],
+          "top_5": 0.9474,
+          "top_5_ci95": [
+            0.881,
+            1.0
+          ],
+          "top_10": 1.0,
+          "top_10_ci95": [
+            1.0,
+            1.0
+          ]
+        },
+        "SpliceAI": {
+          "median_competitors": 0.0,
+          "top_1": 0.6316,
+          "top_1_ci95": [
+            0.46,
+            0.7826
+          ],
+          "top_5": 0.8158,
+          "top_5_ci95": [
+            0.6944,
+            0.9259
+          ],
+          "top_10": 0.9474,
+          "top_10_ci95": [
+            0.8684,
+            1.0
+          ]
+        },
+        "REVEL": {
+          "median_competitors": 2.5,
+          "top_1": 0.2368,
+          "top_1_ci95": [
+            0.1176,
+            0.3824
+          ],
+          "top_5": 0.5789,
+          "top_5_ci95": [
+            0.4118,
+            0.7576
+          ],
+          "top_10": 0.8947,
+          "top_10_ci95": [
+            0.7619,
+            1.0
+          ]
+        },
+        "AlphaMissense": {
+          "median_competitors": 4.0,
+          "top_1": 0.2105,
+          "top_1_ci95": [
+            0.0952,
+            0.3548
+          ],
+          "top_5": 0.5,
+          "top_5_ci95": [
+            0.3243,
+            0.6774
+          ],
+          "top_10": 0.8421,
+          "top_10_ci95": [
+            0.7058,
+            0.9487
+          ]
+        },
+        "AVI": {
+          "median_competitors": 0.0,
+          "top_1": 0.8158,
+          "top_1_ci95": [
+            0.6757,
+            0.931
+          ],
+          "top_5": 1.0,
+          "top_5_ci95": [
+            1.0,
+            1.0
+          ],
+          "top_10": 1.0,
+          "top_10_ci95": [
+            1.0,
+            1.0
+          ]
+        },
+        "GPN-MSA": {
+          "median_competitors": 0.0,
+          "top_1": 0.7105,
+          "top_1_ci95": [
+            0.575,
+            0.8621
+          ],
+          "top_5": 0.8947,
+          "top_5_ci95": [
+            0.8,
+            0.9737
+          ],
+          "top_10": 1.0,
+          "top_10_ci95": [
+            1.0,
+            1.0
+          ]
+        },
+        "GPN-Star-V": {
+          "median_competitors": 0.0,
+          "top_1": 0.7632,
+          "top_1_ci95": [
+            0.6279,
+            0.8947
+          ],
+          "top_5": 0.8947,
+          "top_5_ci95": [
+            0.8,
+            0.9737
+          ],
+          "top_10": 1.0,
+          "top_10_ci95": [
+            1.0,
+            1.0
+          ]
+        },
+        "GPN-Star-M": {
+          "median_competitors": 0.0,
+          "top_1": 0.7632,
+          "top_1_ci95": [
+            0.6279,
+            0.8947
+          ],
+          "top_5": 0.9211,
+          "top_5_ci95": [
+            0.8333,
+            1.0
+          ],
+          "top_10": 1.0,
+          "top_10_ci95": [
+            1.0,
+            1.0
+          ]
+        },
+        "Rule-based": {
+          "median_competitors": 0.0,
+          "top_1": 0.8947,
+          "top_1_ci95": [
+            0.8,
+            0.9744
+          ],
+          "top_5": 0.9737,
+          "top_5_ci95": [
+            0.9189,
+            1.0
+          ],
+          "top_10": 1.0,
+          "top_10_ci95": [
+            1.0,
+            1.0
+          ]
+        },
+        "Rule + AVI": {
+          "median_competitors": 0.0,
+          "top_1": 0.9211,
+          "top_1_ci95": [
+            0.8421,
+            1.0
+          ],
+          "top_5": 0.9737,
+          "top_5_ci95": [
+            0.9189,
+            1.0
+          ],
+          "top_10": 1.0,
+          "top_10_ci95": [
+            1.0,
+            1.0
+          ]
+        },
+        "Lookups combined": {
+          "median_competitors": 0.0,
+          "top_1": 0.9474,
+          "top_1_ci95": [
+            0.878,
+            1.0
+          ],
+          "top_5": 1.0,
+          "top_5_ci95": [
+            1.0,
+            1.0
+          ],
+          "top_10": 1.0,
+          "top_10_ci95": [
+            1.0,
+            1.0
+          ]
+        },
+        "Lookups + AVI": {
+          "median_competitors": 0.0,
+          "top_1": 0.9737,
+          "top_1_ci95": [
+            0.9118,
+            1.0
+          ],
+          "top_5": 1.0,
+          "top_5_ci95": [
+            1.0,
+            1.0
+          ],
+          "top_10": 1.0,
+          "top_10_ci95": [
+            1.0,
+            1.0
+          ]
+        },
+        "Lookups + GPN-MSA": {
+          "median_competitors": 0.0,
+          "top_1": 0.8947,
+          "top_1_ci95": [
+            0.8049,
+            0.9722
+          ],
+          "top_5": 1.0,
+          "top_5_ci95": [
+            1.0,
+            1.0
+          ],
+          "top_10": 1.0,
+          "top_10_ci95": [
+            1.0,
+            1.0
+          ]
+        },
+        "Lookups + GPN-Star-V": {
+          "median_competitors": 0.0,
+          "top_1": 0.9211,
+          "top_1_ci95": [
+            0.8421,
+            1.0
+          ],
+          "top_5": 1.0,
+          "top_5_ci95": [
+            1.0,
+            1.0
+          ],
+          "top_10": 1.0,
+          "top_10_ci95": [
+            1.0,
+            1.0
+          ]
+        },
+        "Lookups + GPN-Star-M": {
+          "median_competitors": 0.0,
+          "top_1": 0.9474,
+          "top_1_ci95": [
+            0.8649,
+            1.0
+          ],
+          "top_5": 1.0,
+          "top_5_ci95": [
+            1.0,
+            1.0
+          ],
+          "top_10": 1.0,
+          "top_10_ci95": [
+            1.0,
+            1.0
+          ]
+        }
+      },
+      "contrasts": {
+        "Lookups + AVI minus Lookups combined": {
+          "role": "primary",
+          "top_1": 0.0263,
+          "top_1_ci95": [
+            -0.0625,
+            0.1081
+          ],
+          "top_5": 0.0,
+          "top_5_ci95": [
+            0.0,
+            0.0
+          ],
+          "top_10": 0.0,
+          "top_10_ci95": [
+            0.0,
+            0.0
+          ]
+        },
+        "Rule + AVI minus Rule-based": {
+          "role": "key secondary",
+          "top_1": 0.0263,
+          "top_1_ci95": [
+            0.0,
+            0.0889
+          ],
+          "top_5": 0.0,
+          "top_5_ci95": [
+            0.0,
+            0.0
+          ],
+          "top_10": 0.0,
+          "top_10_ci95": [
+            0.0,
+            0.0
+          ]
+        }
+      }
+    },
+    "other_chromosomes": {
+      "cases": 162,
+      "median_variants_per_case": 19.0,
+      "scores": {
+        "CADD": {
+          "median_competitors": 0.0,
+          "top_1": 0.537,
+          "top_1_ci95": [
+            0.4506,
+            0.6281
+          ],
+          "top_5": 0.8765,
+          "top_5_ci95": [
+            0.8155,
+            0.9298
+          ],
+          "top_10": 0.9568,
+          "top_10_ci95": [
+            0.9273,
+            0.9868
+          ]
+        },
+        "SpliceAI": {
+          "median_competitors": 0.0,
+          "top_1": 0.5556,
+          "top_1_ci95": [
+            0.481,
+            0.6386
+          ],
+          "top_5": 0.6667,
+          "top_5_ci95": [
+            0.6012,
+            0.7301
+          ],
+          "top_10": 0.7469,
+          "top_10_ci95": [
+            0.6785,
+            0.8126
+          ]
+        },
+        "REVEL": {
+          "median_competitors": 11.0,
+          "top_1": 0.2901,
+          "top_1_ci95": [
+            0.2363,
+            0.3457
+          ],
+          "top_5": 0.358,
+          "top_5_ci95": [
+            0.293,
+            0.426
+          ],
+          "top_10": 0.4383,
+          "top_10_ci95": [
+            0.3554,
+            0.5211
+          ]
+        },
+        "AlphaMissense": {
+          "median_competitors": 13.0,
+          "top_1": 0.2654,
+          "top_1_ci95": [
+            0.2099,
+            0.3208
+          ],
+          "top_5": 0.3148,
+          "top_5_ci95": [
+            0.2559,
+            0.3782
+          ],
+          "top_10": 0.3889,
+          "top_10_ci95": [
+            0.3067,
+            0.4737
+          ]
+        },
+        "AVI": {
+          "median_competitors": 0.0,
+          "top_1": 0.8395,
+          "top_1_ci95": [
+            0.761,
+            0.9079
+          ],
+          "top_5": 0.9753,
+          "top_5_ci95": [
+            0.95,
+            0.994
+          ],
+          "top_10": 0.9938,
+          "top_10_ci95": [
+            0.9809,
+            1.0
+          ]
+        },
+        "GPN-MSA": {
+          "median_competitors": 0.0,
+          "top_1": 0.5123,
+          "top_1_ci95": [
+            0.4155,
+            0.6085
+          ],
+          "top_5": 0.8395,
+          "top_5_ci95": [
+            0.7751,
+            0.9
+          ],
+          "top_10": 0.9321,
+          "top_10_ci95": [
+            0.8941,
+            0.9701
+          ]
+        },
+        "GPN-Star-V": {
+          "median_competitors": 0.0,
+          "top_1": 0.5617,
+          "top_1_ci95": [
+            0.4734,
+            0.6604
+          ],
+          "top_5": 0.9136,
+          "top_5_ci95": [
+            0.8688,
+            0.9581
+          ],
+          "top_10": 0.963,
+          "top_10_ci95": [
+            0.9263,
+            0.9937
+          ]
+        },
+        "GPN-Star-M": {
+          "median_competitors": 0.0,
+          "top_1": 0.5185,
+          "top_1_ci95": [
+            0.4303,
+            0.6108
+          ],
+          "top_5": 0.858,
+          "top_5_ci95": [
+            0.8,
+            0.913
+          ],
+          "top_10": 0.9568,
+          "top_10_ci95": [
+            0.9226,
+            0.9873
+          ]
+        },
+        "Rule-based": {
+          "median_competitors": 0.0,
+          "top_1": 0.8272,
+          "top_1_ci95": [
+            0.7471,
+            0.9053
+          ],
+          "top_5": 0.9753,
+          "top_5_ci95": [
+            0.9434,
+            1.0
+          ],
+          "top_10": 0.9753,
+          "top_10_ci95": [
+            0.9434,
+            1.0
+          ]
+        },
+        "Rule + AVI": {
+          "median_competitors": 0.0,
+          "top_1": 0.8704,
+          "top_1_ci95": [
+            0.795,
+            0.9321
+          ],
+          "top_5": 0.9753,
+          "top_5_ci95": [
+            0.9434,
+            1.0
+          ],
+          "top_10": 0.9753,
+          "top_10_ci95": [
+            0.9434,
+            1.0
+          ]
+        },
+        "Lookups combined": {
+          "median_competitors": 0.0,
+          "top_1": 0.8827,
+          "top_1_ci95": [
+            0.8077,
+            0.9451
+          ],
+          "top_5": 0.9753,
+          "top_5_ci95": [
+            0.9434,
+            1.0
+          ],
+          "top_10": 0.9815,
+          "top_10_ci95": [
+            0.9497,
+            1.0
+          ]
+        },
+        "Lookups + AVI": {
+          "median_competitors": 0.0,
+          "top_1": 0.9136,
+          "top_1_ci95": [
+            0.847,
+            0.9673
+          ],
+          "top_5": 0.9815,
+          "top_5_ci95": [
+            0.9497,
+            1.0
+          ],
+          "top_10": 0.9815,
+          "top_10_ci95": [
+            0.9497,
+            1.0
+          ]
+        },
+        "Lookups + GPN-MSA": {
+          "median_competitors": 0.0,
+          "top_1": 0.8827,
+          "top_1_ci95": [
+            0.8125,
+            0.9445
+          ],
+          "top_5": 0.9691,
+          "top_5_ci95": [
+            0.9371,
+            0.9939
+          ],
+          "top_10": 0.9753,
+          "top_10_ci95": [
+            0.9434,
+            1.0
+          ]
+        },
+        "Lookups + GPN-Star-V": {
+          "median_competitors": 0.0,
+          "top_1": 0.8827,
+          "top_1_ci95": [
+            0.8121,
+            0.9419
+          ],
+          "top_5": 0.9753,
+          "top_5_ci95": [
+            0.9434,
+            1.0
+          ],
+          "top_10": 0.9815,
+          "top_10_ci95": [
+            0.9497,
+            1.0
+          ]
+        },
+        "Lookups + GPN-Star-M": {
+          "median_competitors": 0.0,
+          "top_1": 0.8765,
+          "top_1_ci95": [
+            0.8,
+            0.9434
+          ],
+          "top_5": 0.9753,
+          "top_5_ci95": [
+            0.9434,
+            1.0
+          ],
+          "top_10": 0.9753,
+          "top_10_ci95": [
+            0.9434,
+            1.0
+          ]
+        }
+      },
+      "contrasts": {
+        "Lookups + AVI minus Lookups combined": {
+          "role": "primary",
+          "top_1": 0.0309,
+          "top_1_ci95": [
+            -0.0064,
+            0.075
+          ],
+          "top_5": 0.0062,
+          "top_5_ci95": [
+            0.0,
+            0.0187
+          ],
+          "top_10": 0.0,
+          "top_10_ci95": [
+            0.0,
+            0.0
+          ]
+        },
+        "Rule + AVI minus Rule-based": {
+          "role": "key secondary",
+          "top_1": 0.0432,
+          "top_1_ci95": [
+            0.0063,
+            0.0818
+          ],
+          "top_5": 0.0,
+          "top_5_ci95": [
+            0.0,
+            0.0
+          ],
+          "top_10": 0.0,
+          "top_10_ci95": [
+            0.0,
+            0.0
+          ]
+        }
+      }
+    },
+    "difference": {
+      "primary": {
+        "contrast": "Lookups + AVI minus Lookups combined",
+        "top_1_training_minus_other": -0.0045,
+        "top_1_ci95": [
+          -0.0982,
+          0.0857
+        ],
+        "possibly_inflated_by_training_overlap": false
+      },
+      "key secondary": {
+        "contrast": "Rule + AVI minus Rule-based",
+        "top_1_training_minus_other": -0.0169,
+        "top_1_ci95": [
+          -0.075,
+          0.0563
+        ]
+      }
+    },
+    "note": "Each split's resamples are the same draws of people (seed label '<study>/heldout/splits'), so the difference between splits is paired by person."
+  }
+}

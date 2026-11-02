@@ -1,0 +1,22 @@
+12:26:54 pools: 22968 SNVs, 8649 indels
+12:26:54 CADD: 0 SNVs with no row, 0 with no MANE row (most severe over all rows used)
+12:26:54 gnomAD found: SNV 5320 of 22968, indel 1878 of 8649
+/Users/timrichardson/Documents/projects/personal/blog/amp-2026-studies/rare-disease/data/clinvar_indel_plp2.tsv: 8649 indels annotated {'frameshift': 7991, 'inframe': 252, 'splice': 367, 'intronic': 28, 'utr': 11}
+12:26:56 indel pool: 159 variants with REF and ALT both longer than 1 bp left out (frameshift 78, inframe 60, canonical_splice 21); 8490 indels left
+12:26:56 snv: genes per variant: none 0, one 22965, several 3
+12:26:56 indel: genes per variant: none 0, one 8490, several 0
+12:26:56 wrote /Users/timrichardson/Documents/projects/personal/blog/amp-2026-studies/rare-disease-v2/data/pool/snv_pool.tsv: 22968 rows, 22878 eligible
+12:26:56 wrote /Users/timrichardson/Documents/projects/personal/blog/amp-2026-studies/rare-disease-v2/data/pool/indel_pool.tsv: 8490 rows, 8458 eligible
+12:26:57 wrote /Users/timrichardson/Documents/projects/personal/blog/amp-2026-studies/rare-disease-v2/results/pool_counts.md
+## Feasibility
+
+- SNV missense: feasible. 8543 positions for 210 together (spare 8333); 8331 not first-run for the 500's 150 (spare 8181); under the cap the 500 can draw 4083 (spare 3933). After a simulated 200, the spare for the 500 is 3905 at worst and 3917 at the median. Feasible even if the 200 took only non-first-run positions. The cap bites: 192 genes with more than 10 positions (PAH 338, SCN1A 271, NF1 222).
+- SNV canonical_splice: feasible. 3660 positions for 140 together (spare 3520); 3521 not first-run for the 500's 100 (spare 3421); under the cap the 500 can draw 2412 (spare 2312). After a simulated 200, the spare for the 500 is 2285 at worst and 2295 at the median. Feasible even if the 200 took only non-first-run positions. The cap bites: 89 genes with more than 10 positions (NF1 189, DMD 111, TSC2 77).
+- SNV nonsense: feasible. 8488 positions for 105 together (spare 8383); 8382 not first-run for the 500's 75 (spare 8307); under the cap the 500 can draw 4538 (spare 4463). After a simulated 200, the spare for the 500 is 4448 at worst and 4454 at the median. Feasible even if the 200 took only non-first-run positions. The cap bites: 205 genes with more than 10 positions (NF1 419, DMD 337, CEP290 170).
+- SNV noncoding: feasible. 515 positions for 245 together (spare 270); 276 not first-run for the 500's 175 (spare 101); under the cap the 500 can draw 246 (spare 71). After a simulated 200, the spare for the 500 is 29 at worst and 40 at the median. Feasible even if the 200 took only non-first-run positions. The cap bites: 5 genes with more than 10 positions (NF1 75, PAH 31, TSC2 16).
+- Indel frameshift: feasible. 7561 positions, 3792 under the cap, for 40 (spare 3752).
+- Indel inframe: feasible. 187 positions, 187 under the cap, for 30 (spare 157).
+- Indel canonical_splice: feasible. 337 positions, 323 under the cap, for 30 (spare 293).
+- Indel noncoding: feasible. 36 positions, 36 under the cap, for 20 (spare 16).
+
+12:26:57 DONE

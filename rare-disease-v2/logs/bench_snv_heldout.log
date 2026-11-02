@@ -1,0 +1,7 @@
+snv heldout: 200 cases, median 26 variants per case; background grpmax below 0.001, diagnostics full gnomAD grpmax below 0.001; background inheritance filter; background indels dropped after filtering
+model classes merged into other: ['synonymous', 'utr']
+  training_chromosomes (38 cases): Lookups + AVI minus Lookups combined +0.026 [-0.0625, 0.1081]; Rule + AVI minus Rule-based +0.026 [0.0, 0.0889]
+  other_chromosomes (162 cases): Lookups + AVI minus Lookups combined +0.031 [-0.0064, 0.075]; Rule + AVI minus Rule-based +0.043 [0.0063, 0.0818]
+  difference (primary): -0.004 [-0.0982, 0.0857]
+  difference (key secondary): -0.017 [-0.075, 0.0563]
+wrote /Users/timrichardson/Documents/projects/personal/blog/amp-2026-studies/rare-disease-v2/results/snv_heldout.json

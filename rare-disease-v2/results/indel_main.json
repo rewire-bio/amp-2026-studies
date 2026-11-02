@@ -1,0 +1,825 @@
+{
+  "study": "indel",
+  "analysis": "main",
+  "filter": {
+    "max_af": 0.001,
+    "background_frequency": "grpmax",
+    "diagnostic_frequency": "grpmax",
+    "inheritance_filter": true,
+    "cases_before": 120,
+    "variants_before": 21042,
+    "cases_lost_diagnostic": 0,
+    "variants_after_frequency": 6410,
+    "unrecognised_moi_values_kept": [],
+    "rows_without_gene": 0,
+    "variants_after_inheritance": 3615,
+    "background_snvs_in_inheritance_count": 3039,
+    "variants_after_dropping_other_type": 576,
+    "description": "background grpmax below 0.001, diagnostics full gnomAD grpmax below 0.001; background inheritance filter; background SNVs dropped after filtering"
+  },
+  "load_notes": {
+    "case_variants_without_mane_cadd_row": 0,
+    "diagnostic_class_differs_from_cases_tsv": 0
+  },
+  "cases": 120,
+  "people": 50,
+  "median_variants_per_case": 4.0,
+  "coverage": {
+    "SpliceAI": {
+      "variants": 483,
+      "diagnostics": 111
+    }
+  },
+  "scores_without_coverage": [
+    "CADD",
+    "REVEL",
+    "AlphaMissense",
+    "AVI",
+    "GPN-MSA",
+    "GPN-Star-V",
+    "GPN-Star-M"
+  ],
+  "dropped_scores": [],
+  "model_classes": {
+    "training_diagnostics_per_class": {
+      "canonical_splice": 30,
+      "frameshift": 40,
+      "inframe": 30,
+      "intronic": 13,
+      "utr": 7
+    },
+    "merged_into_other": [
+      "utr"
+    ],
+    "model_classes": [
+      "canonical_splice",
+      "frameshift",
+      "inframe",
+      "intronic",
+      "other"
+    ],
+    "training_set": "the 120 indel cases"
+  },
+  "fits": "cross-validated (5-fold by person)",
+  "intervals": "1000 resamples of people per stratum, seed sha256('indel/main/<stratum>')",
+  "package_versions": {
+    "python": "3.12.14",
+    "numpy": "2.5.4",
+    "pandas": "3.1.0",
+    "scikit-learn": "1.9.1",
+    "scipy": "1.18.1",
+    "joblib": "1.6.0",
+    "threadpoolctl": "3.7.0"
+  },
+  "rule_ties": {
+    "Rule-based": 0.0417
+  },
+  "strata": {
+    "all": {
+      "cases": 120,
+      "people": 50,
+      "small": false,
+      "scores": {
+        "SpliceAI": {
+          "median_competitors": 0.0,
+          "top_1": 0.5833,
+          "top_1_ci95": [
+            0.4957,
+            0.6639
+          ],
+          "top_5": 0.9083,
+          "top_5_ci95": [
+            0.8448,
+            0.96
+          ],
+          "top_10": 0.9917,
+          "top_10_ci95": [
+            0.9741,
+            1.0
+          ]
+        },
+        "Rule-based": {
+          "median_competitors": 0.0,
+          "top_1": 0.7667,
+          "top_1_ci95": [
+            0.6583,
+            0.8678
+          ],
+          "top_5": 0.9583,
+          "top_5_ci95": [
+            0.918,
+            0.9916
+          ],
+          "top_10": 0.9917,
+          "top_10_ci95": [
+            0.9741,
+            1.0
+          ]
+        },
+        "Lookups combined": {
+          "median_competitors": 0.0,
+          "top_1": 0.8417,
+          "top_1_ci95": [
+            0.754,
+            0.9244
+          ],
+          "top_5": 0.9583,
+          "top_5_ci95": [
+            0.918,
+            0.9916
+          ],
+          "top_10": 0.9917,
+          "top_10_ci95": [
+            0.9741,
+            1.0
+          ]
+        }
+      },
+      "rule_ties": {
+        "Rule-based": 0.0417
+      },
+      "contrasts": {
+        "Lookups combined minus Rule-based": {
+          "role": "descriptive",
+          "top_1": 0.075,
+          "top_1_ci95": [
+            0.0325,
+            0.1261
+          ],
+          "top_5": 0.0,
+          "top_5_ci95": [
+            0.0,
+            0.0
+          ],
+          "top_10": 0.0,
+          "top_10_ci95": [
+            0.0,
+            0.0
+          ]
+        }
+      },
+      "seed_label": "indel/main/all"
+    },
+    "canonical_splice": {
+      "cases": 30,
+      "people": 24,
+      "small": false,
+      "scores": {
+        "SpliceAI": {
+          "median_competitors": 0.0,
+          "top_1": 1.0,
+          "top_1_ci95": [
+            1.0,
+            1.0
+          ],
+          "top_5": 1.0,
+          "top_5_ci95": [
+            1.0,
+            1.0
+          ],
+          "top_10": 1.0,
+          "top_10_ci95": [
+            1.0,
+            1.0
+          ]
+        },
+        "Rule-based": {
+          "median_competitors": 0.0,
+          "top_1": 1.0,
+          "top_1_ci95": [
+            1.0,
+            1.0
+          ],
+          "top_5": 1.0,
+          "top_5_ci95": [
+            1.0,
+            1.0
+          ],
+          "top_10": 1.0,
+          "top_10_ci95": [
+            1.0,
+            1.0
+          ]
+        },
+        "Lookups combined": {
+          "median_competitors": 0.0,
+          "top_1": 1.0,
+          "top_1_ci95": [
+            1.0,
+            1.0
+          ],
+          "top_5": 1.0,
+          "top_5_ci95": [
+            1.0,
+            1.0
+          ],
+          "top_10": 1.0,
+          "top_10_ci95": [
+            1.0,
+            1.0
+          ]
+        }
+      },
+      "rule_ties": {
+        "Rule-based": 0.0
+      },
+      "contrasts": {
+        "Lookups combined minus Rule-based": {
+          "role": "descriptive",
+          "top_1": 0.0,
+          "top_1_ci95": [
+            0.0,
+            0.0
+          ],
+          "top_5": 0.0,
+          "top_5_ci95": [
+            0.0,
+            0.0
+          ],
+          "top_10": 0.0,
+          "top_10_ci95": [
+            0.0,
+            0.0
+          ]
+        }
+      },
+      "seed_label": "indel/main/canonical_splice"
+    },
+    "frameshift": {
+      "cases": 40,
+      "people": 29,
+      "small": false,
+      "scores": {
+        "SpliceAI": {
+          "median_competitors": 1.5,
+          "top_1": 0.325,
+          "top_1_ci95": [
+            0.1578,
+            0.5
+          ],
+          "top_5": 0.95,
+          "top_5_ci95": [
+            0.8683,
+            1.0
+          ],
+          "top_10": 1.0,
+          "top_10_ci95": [
+            1.0,
+            1.0
+          ]
+        },
+        "Rule-based": {
+          "median_competitors": 0.0,
+          "top_1": 0.875,
+          "top_1_ci95": [
+            0.7435,
+            0.9778
+          ],
+          "top_5": 1.0,
+          "top_5_ci95": [
+            1.0,
+            1.0
+          ],
+          "top_10": 1.0,
+          "top_10_ci95": [
+            1.0,
+            1.0
+          ]
+        },
+        "Lookups combined": {
+          "median_competitors": 0.0,
+          "top_1": 0.925,
+          "top_1_ci95": [
+            0.8293,
+            1.0
+          ],
+          "top_5": 1.0,
+          "top_5_ci95": [
+            1.0,
+            1.0
+          ],
+          "top_10": 1.0,
+          "top_10_ci95": [
+            1.0,
+            1.0
+          ]
+        }
+      },
+      "rule_ties": {
+        "Rule-based": 0.05
+      },
+      "contrasts": {
+        "Lookups combined minus Rule-based": {
+          "role": "descriptive",
+          "top_1": 0.05,
+          "top_1_ci95": [
+            0.0,
+            0.1667
+          ],
+          "top_5": 0.0,
+          "top_5_ci95": [
+            0.0,
+            0.0
+          ],
+          "top_10": 0.0,
+          "top_10_ci95": [
+            0.0,
+            0.0
+          ]
+        }
+      },
+      "seed_label": "indel/main/frameshift"
+    },
+    "inframe": {
+      "cases": 30,
+      "people": 24,
+      "small": false,
+      "scores": {
+        "SpliceAI": {
+          "median_competitors": 1.0,
+          "top_1": 0.4667,
+          "top_1_ci95": [
+            0.2759,
+            0.6552
+          ],
+          "top_5": 0.8667,
+          "top_5_ci95": [
+            0.7428,
+            0.9688
+          ],
+          "top_10": 1.0,
+          "top_10_ci95": [
+            1.0,
+            1.0
+          ]
+        },
+        "Rule-based": {
+          "median_competitors": 0.0,
+          "top_1": 0.7,
+          "top_1_ci95": [
+            0.5,
+            0.8889
+          ],
+          "top_5": 1.0,
+          "top_5_ci95": [
+            1.0,
+            1.0
+          ],
+          "top_10": 1.0,
+          "top_10_ci95": [
+            1.0,
+            1.0
+          ]
+        },
+        "Lookups combined": {
+          "median_competitors": 0.0,
+          "top_1": 0.7667,
+          "top_1_ci95": [
+            0.5938,
+            0.9286
+          ],
+          "top_5": 1.0,
+          "top_5_ci95": [
+            1.0,
+            1.0
+          ],
+          "top_10": 1.0,
+          "top_10_ci95": [
+            1.0,
+            1.0
+          ]
+        }
+      },
+      "rule_ties": {
+        "Rule-based": 0.1
+      },
+      "contrasts": {
+        "Lookups combined minus Rule-based": {
+          "role": "descriptive",
+          "top_1": 0.0667,
+          "top_1_ci95": [
+            0.0,
+            0.1613
+          ],
+          "top_5": 0.0,
+          "top_5_ci95": [
+            0.0,
+            0.0
+          ],
+          "top_10": 0.0,
+          "top_10_ci95": [
+            0.0,
+            0.0
+          ]
+        }
+      },
+      "seed_label": "indel/main/inframe"
+    },
+    "noncoding": {
+      "cases": 20,
+      "people": 18,
+      "small": false,
+      "scores": {
+        "SpliceAI": {
+          "median_competitors": 0.0,
+          "top_1": 0.65,
+          "top_1_ci95": [
+            0.4286,
+            0.85
+          ],
+          "top_5": 0.75,
+          "top_5_ci95": [
+            0.5554,
+            0.9444
+          ],
+          "top_10": 0.95,
+          "top_10_ci95": [
+            0.8333,
+            1.0
+          ]
+        },
+        "Rule-based": {
+          "median_competitors": 1.0,
+          "top_1": 0.3,
+          "top_1_ci95": [
+            0.1051,
+            0.5263
+          ],
+          "top_5": 0.75,
+          "top_5_ci95": [
+            0.5554,
+            0.9444
+          ],
+          "top_10": 0.95,
+          "top_10_ci95": [
+            0.8333,
+            1.0
+          ]
+        },
+        "Lookups combined": {
+          "median_competitors": 0.0,
+          "top_1": 0.55,
+          "top_1_ci95": [
+            0.35,
+            0.7372
+          ],
+          "top_5": 0.75,
+          "top_5_ci95": [
+            0.5554,
+            0.9444
+          ],
+          "top_10": 0.95,
+          "top_10_ci95": [
+            0.8333,
+            1.0
+          ]
+        }
+      },
+      "rule_ties": {
+        "Rule-based": 0.0
+      },
+      "contrasts": {
+        "Lookups combined minus Rule-based": {
+          "role": "descriptive",
+          "top_1": 0.25,
+          "top_1_ci95": [
+            0.0556,
+            0.4211
+          ],
+          "top_5": 0.0,
+          "top_5_ci95": [
+            0.0,
+            0.0
+          ],
+          "top_10": 0.0,
+          "top_10_ci95": [
+            0.0,
+            0.0
+          ]
+        }
+      },
+      "seed_label": "indel/main/noncoding"
+    },
+    "noncoding: intronic": {
+      "cases": 13,
+      "people": 12,
+      "small": true,
+      "scores": {
+        "SpliceAI": {
+          "median_competitors": 0.0,
+          "top_1": 0.9231,
+          "top_1_ci95": [
+            0.75,
+            1.0
+          ],
+          "top_5": 0.9231,
+          "top_5_ci95": [
+            0.75,
+            1.0
+          ],
+          "top_10": 1.0,
+          "top_10_ci95": [
+            1.0,
+            1.0
+          ]
+        },
+        "Rule-based": {
+          "median_competitors": 1.0,
+          "top_1": 0.3846,
+          "top_1_ci95": [
+            0.1333,
+            0.6667
+          ],
+          "top_5": 0.9231,
+          "top_5_ci95": [
+            0.75,
+            1.0
+          ],
+          "top_10": 1.0,
+          "top_10_ci95": [
+            1.0,
+            1.0
+          ]
+        },
+        "Lookups combined": {
+          "median_competitors": 0.0,
+          "top_1": 0.7692,
+          "top_1_ci95": [
+            0.5619,
+            1.0
+          ],
+          "top_5": 0.9231,
+          "top_5_ci95": [
+            0.75,
+            1.0
+          ],
+          "top_10": 1.0,
+          "top_10_ci95": [
+            1.0,
+            1.0
+          ]
+        }
+      },
+      "rule_ties": {
+        "Rule-based": 0.0
+      },
+      "contrasts": {
+        "Lookups combined minus Rule-based": {
+          "role": "descriptive",
+          "top_1": 0.3846,
+          "top_1_ci95": [
+            0.1538,
+            0.6154
+          ],
+          "top_5": 0.0,
+          "top_5_ci95": [
+            0.0,
+            0.0
+          ],
+          "top_10": 0.0,
+          "top_10_ci95": [
+            0.0,
+            0.0
+          ]
+        }
+      },
+      "seed_label": "indel/main/noncoding: intronic"
+    },
+    "noncoding: utr": {
+      "cases": 7,
+      "people": 7,
+      "small": true,
+      "scores": {
+        "SpliceAI": {
+          "median_competitors": 5.0,
+          "top_1": 0.1429,
+          "top_1_ci95": [
+            0.0,
+            0.4286
+          ],
+          "top_5": 0.4286,
+          "top_5_ci95": [
+            0.0,
+            0.7143
+          ],
+          "top_10": 0.8571,
+          "top_10_ci95": [
+            0.5714,
+            1.0
+          ]
+        },
+        "Rule-based": {
+          "median_competitors": 5.0,
+          "top_1": 0.1429,
+          "top_1_ci95": [
+            0.0,
+            0.4286
+          ],
+          "top_5": 0.4286,
+          "top_5_ci95": [
+            0.0,
+            0.7143
+          ],
+          "top_10": 0.8571,
+          "top_10_ci95": [
+            0.5714,
+            1.0
+          ]
+        },
+        "Lookups combined": {
+          "median_competitors": 5.0,
+          "top_1": 0.1429,
+          "top_1_ci95": [
+            0.0,
+            0.4286
+          ],
+          "top_5": 0.4286,
+          "top_5_ci95": [
+            0.0,
+            0.7143
+          ],
+          "top_10": 0.8571,
+          "top_10_ci95": [
+            0.5714,
+            1.0
+          ]
+        }
+      },
+      "rule_ties": {
+        "Rule-based": 0.0
+      },
+      "contrasts": {
+        "Lookups combined minus Rule-based": {
+          "role": "descriptive",
+          "top_1": 0.0,
+          "top_1_ci95": [
+            0.0,
+            0.0
+          ],
+          "top_5": 0.0,
+          "top_5_ci95": [
+            0.0,
+            0.0
+          ],
+          "top_10": 0.0,
+          "top_10_ci95": [
+            0.0,
+            0.0
+          ]
+        }
+      },
+      "seed_label": "indel/main/noncoding: utr"
+    },
+    "gnomad: found": {
+      "cases": 29,
+      "people": 26,
+      "small": false,
+      "scores": {
+        "SpliceAI": {
+          "median_competitors": 0.0,
+          "top_1": 0.6552,
+          "top_1_ci95": [
+            0.5,
+            0.8002
+          ],
+          "top_5": 0.931,
+          "top_5_ci95": [
+            0.8386,
+            1.0
+          ],
+          "top_10": 1.0,
+          "top_10_ci95": [
+            1.0,
+            1.0
+          ]
+        },
+        "Rule-based": {
+          "median_competitors": 0.0,
+          "top_1": 0.8276,
+          "top_1_ci95": [
+            0.6664,
+            0.9667
+          ],
+          "top_5": 0.9655,
+          "top_5_ci95": [
+            0.8889,
+            1.0
+          ],
+          "top_10": 1.0,
+          "top_10_ci95": [
+            1.0,
+            1.0
+          ]
+        },
+        "Lookups combined": {
+          "median_competitors": 0.0,
+          "top_1": 0.8621,
+          "top_1_ci95": [
+            0.7241,
+            0.9667
+          ],
+          "top_5": 0.9655,
+          "top_5_ci95": [
+            0.8889,
+            1.0
+          ],
+          "top_10": 1.0,
+          "top_10_ci95": [
+            1.0,
+            1.0
+          ]
+        }
+      },
+      "rule_ties": {
+        "Rule-based": 0.1034
+      },
+      "seed_label": "indel/main/gnomad: found"
+    },
+    "gnomad: absent": {
+      "cases": 91,
+      "people": 49,
+      "small": false,
+      "scores": {
+        "SpliceAI": {
+          "median_competitors": 0.0,
+          "top_1": 0.5604,
+          "top_1_ci95": [
+            0.4494,
+            0.6667
+          ],
+          "top_5": 0.9011,
+          "top_5_ci95": [
+            0.8283,
+            0.9663
+          ],
+          "top_10": 0.989,
+          "top_10_ci95": [
+            0.9625,
+            1.0
+          ]
+        },
+        "Rule-based": {
+          "median_competitors": 0.0,
+          "top_1": 0.7473,
+          "top_1_ci95": [
+            0.6322,
+            0.8571
+          ],
+          "top_5": 0.956,
+          "top_5_ci95": [
+            0.9032,
+            0.9897
+          ],
+          "top_10": 0.989,
+          "top_10_ci95": [
+            0.9625,
+            1.0
+          ]
+        },
+        "Lookups combined": {
+          "median_competitors": 0.0,
+          "top_1": 0.8352,
+          "top_1_ci95": [
+            0.7438,
+            0.9184
+          ],
+          "top_5": 0.956,
+          "top_5_ci95": [
+            0.9032,
+            0.9897
+          ],
+          "top_10": 0.989,
+          "top_10_ci95": [
+            0.9625,
+            1.0
+          ]
+        }
+      },
+      "rule_ties": {
+        "Rule-based": 0.022
+      },
+      "seed_label": "indel/main/gnomad: absent"
+    }
+  },
+  "gnomad_split": {
+    "sources": [
+      "data/gnomad_full.tsv",
+      "pool/gnomad_full.tsv"
+    ],
+    "diagnostics_found": 29,
+    "diagnostics_absent": 91,
+    "diagnostics_without_status": 0,
+    "seed_label": "indel/main/gnomad split",
+    "gnomad: found": {
+      "cases": 29,
+      "people": 26,
+      "contrasts": {}
+    },
+    "gnomad: absent": {
+      "cases": 91,
+      "people": 49,
+      "contrasts": {}
+    },
+    "difference": {}
+  }
+}

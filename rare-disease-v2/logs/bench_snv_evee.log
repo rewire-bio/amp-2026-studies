@@ -1,0 +1,14 @@
+snv evee: 200 cases, median 30 variants per case; background grpmax below 0.01, diagnostics full gnomAD grpmax below 0.01; background inheritance filter; background indels dropped after filtering
+model classes merged into other: ['synonymous', 'utr']
+diagnostics tied with a background variant: {}
+  CADD                           top1 0.445 [0.375, 0.515]  top5 0.740  top10 0.910
+  SpliceAI                       top1 0.500 [0.435, 0.5701]  top5 0.635  top10 0.660
+  REVEL                          top1 0.265 [0.215, 0.3151]  top5 0.315  top10 0.330
+  AlphaMissense                  top1 0.240 [0.195, 0.285]  top5 0.280  top10 0.285
+  AVI                            top1 0.745 [0.665, 0.815]  top5 0.935  top10 0.975
+  GPN-MSA                        top1 0.415 [0.335, 0.49]  top5 0.745  top10 0.870
+  GPN-Star-V                     top1 0.515 [0.4399, 0.585]  top5 0.820  top10 0.920
+  GPN-Star-M                     top1 0.425 [0.34, 0.5101]  top5 0.810  top10 0.920
+  EVEE                           top1 0.815 [0.7549, 0.885]  top5 0.975  top10 0.985
+  Lookups combined               top1 0.820 [0.745, 0.885]  top5 0.965  top10 0.975
+wrote /Users/timrichardson/Documents/projects/personal/blog/amp-2026-studies/rare-disease-v2/results/snv_evee.json
