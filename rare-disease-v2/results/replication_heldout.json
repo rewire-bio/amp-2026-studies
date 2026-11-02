@@ -56,6 +56,10 @@
     "GPN-Star-M": {
       "variants": 10475,
       "diagnostics": 500
+    },
+    "Evo 2": {
+      "variants": 10475,
+      "diagnostics": 500
     }
   },
   "scores_without_coverage": [],
@@ -244,6 +248,24 @@
             1.0
           ]
         },
+        "Evo 2": {
+          "median_competitors": 0.0,
+          "top_1": 0.8065,
+          "top_1_ci95": [
+            0.7132,
+            0.8899
+          ],
+          "top_5": 1.0,
+          "top_5_ci95": [
+            1.0,
+            1.0
+          ],
+          "top_10": 1.0,
+          "top_10_ci95": [
+            1.0,
+            1.0
+          ]
+        },
         "Rule-based": {
           "median_competitors": 0.0,
           "top_1": 0.9516,
@@ -370,6 +392,24 @@
             1.0
           ]
         },
+        "Lookups + Evo 2": {
+          "median_competitors": 0.0,
+          "top_1": 0.9597,
+          "top_1_ci95": [
+            0.92,
+            0.9912
+          ],
+          "top_5": 1.0,
+          "top_5_ci95": [
+            1.0,
+            1.0
+          ],
+          "top_10": 1.0,
+          "top_10_ci95": [
+            1.0,
+            1.0
+          ]
+        },
         "Lookups combined (locked)": {
           "median_competitors": 0.0,
           "top_1": 0.9355,
@@ -459,6 +499,24 @@
             1.0,
             1.0
           ]
+        },
+        "Lookups + Evo 2 (locked)": {
+          "median_competitors": 0.0,
+          "top_1": 0.9355,
+          "top_1_ci95": [
+            0.8809,
+            0.9818
+          ],
+          "top_5": 0.9758,
+          "top_5_ci95": [
+            0.9322,
+            1.0
+          ],
+          "top_10": 1.0,
+          "top_10_ci95": [
+            1.0,
+            1.0
+          ]
         }
       },
       "contrasts": {
@@ -469,16 +527,19 @@
             0.0,
             0.0417
           ],
+          "top_1_p": 0.244,
           "top_5": 0.0,
           "top_5_ci95": [
             -0.0236,
             0.0238
           ],
+          "top_5_p": 1.0,
           "top_10": 0.0,
           "top_10_ci95": [
             0.0,
             0.0
-          ]
+          ],
+          "top_10_p": 1.0
         },
         "Rule + AVI minus Rule-based": {
           "role": "key secondary",
@@ -487,16 +548,19 @@
             -0.0259,
             0.0458
           ],
+          "top_1_p": 0.788,
           "top_5": 0.0,
           "top_5_ci95": [
             0.0,
             0.0
           ],
+          "top_5_p": 1.0,
           "top_10": 0.0,
           "top_10_ci95": [
             0.0,
             0.0
-          ]
+          ],
+          "top_10_p": 1.0
         }
       }
     },
@@ -648,6 +712,24 @@
             0.9948
           ]
         },
+        "Evo 2": {
+          "median_competitors": 0.0,
+          "top_1": 0.6489,
+          "top_1_ci95": [
+            0.5816,
+            0.7218
+          ],
+          "top_5": 0.9495,
+          "top_5_ci95": [
+            0.9193,
+            0.9735
+          ],
+          "top_10": 0.9814,
+          "top_10_ci95": [
+            0.9683,
+            0.9921
+          ]
+        },
         "Rule-based": {
           "median_competitors": 0.0,
           "top_1": 0.883,
@@ -774,6 +856,24 @@
             1.0
           ]
         },
+        "Lookups + Evo 2": {
+          "median_competitors": 0.0,
+          "top_1": 0.9415,
+          "top_1_ci95": [
+            0.9005,
+            0.9753
+          ],
+          "top_5": 0.992,
+          "top_5_ci95": [
+            0.9817,
+            1.0
+          ],
+          "top_10": 0.9973,
+          "top_10_ci95": [
+            0.9918,
+            1.0
+          ]
+        },
         "Lookups combined (locked)": {
           "median_competitors": 0.0,
           "top_1": 0.9122,
@@ -863,6 +963,24 @@
             0.9867,
             1.0
           ]
+        },
+        "Lookups + Evo 2 (locked)": {
+          "median_competitors": 0.0,
+          "top_1": 0.9202,
+          "top_1_ci95": [
+            0.8867,
+            0.9501
+          ],
+          "top_5": 0.9814,
+          "top_5_ci95": [
+            0.9684,
+            0.9922
+          ],
+          "top_10": 0.9867,
+          "top_10_ci95": [
+            0.9756,
+            0.9973
+          ]
         }
       },
       "contrasts": {
@@ -873,16 +991,19 @@
             -0.0028,
             0.0456
           ],
+          "top_1_p": 0.112,
           "top_5": 0.0053,
           "top_5_ci95": [
             -0.0053,
             0.0161
           ],
+          "top_5_p": 0.434,
           "top_10": 0.0027,
           "top_10_ci95": [
             -0.0055,
             0.0112
-          ]
+          ],
+          "top_10_p": 0.818
         },
         "Rule + AVI minus Rule-based": {
           "role": "key secondary",
@@ -891,16 +1012,19 @@
             0.0053,
             0.0472
           ],
+          "top_1_p": 0.02,
           "top_5": 0.0027,
           "top_5_ci95": [
             0.0,
             0.0081
           ],
+          "top_5_p": 0.714,
           "top_10": 0.0027,
           "top_10_ci95": [
             0.0,
             0.0082
-          ]
+          ],
+          "top_10_p": 0.7
         }
       }
     },
@@ -912,6 +1036,7 @@
           -0.0366,
           0.031
         ],
+        "top_1_p": 0.74,
         "possibly_inflated_by_training_overlap": false
       },
       "key secondary": {
@@ -920,7 +1045,8 @@
         "top_1_ci95": [
           -0.0563,
           0.0253
-        ]
+        ],
+        "top_1_p": 0.468
       }
     },
     "note": "Each split's resamples are the same draws of people (seed label '<study>/heldout/splits'), so the difference between splits is paired by person."

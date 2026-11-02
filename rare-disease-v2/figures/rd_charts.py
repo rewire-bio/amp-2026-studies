@@ -1,6 +1,6 @@
 """Dot-and-interval charts of the second run's results (PROTOCOL.md section 11), from case_benchmark.py's JSON.
 
-Four charts, each written as SVG and PNG:
+Six charts, each written as SVG and PNG:
 
   gains_primary      the primary contrast (Lookups + AVI minus Lookups combined) and the key secondary (Rule + AVI
                      minus Rule-based), top 1, for each study with results; dashed lines at -5, 0 and +5 points
@@ -10,6 +10,11 @@ Four charts, each written as SVG and PNG:
                      Rule-based); the GPN family on the 500 with its Bonferroni 98.33% interval
   gains_gnomad       the primary and key secondary in cases whose diagnostic is found in full gnomAD and in cases
                      whose diagnostic is absent, and the difference absent minus found (section 9, shared draws)
+  avi_first_vs_second  AVI added to the locked lookups on 500 replication cases under the first run's three designs
+                     (read from ../rare-disease/results) and this run's
+  evo2_gains         Evo 2 added to the lookups by diagnostic group in each study, with the first run's indel result
+
+--readme also copies the charts the README embeds into figures/ (committed; figures/out/ is not).
 
 A study with results but no AVI contrast (the indel study: AVI scores SNVs only) gets a row saying so.
 
@@ -190,9 +195,10 @@ def gains_added(res: dict, out: Path) -> None:
             name = f"Lookups + {x}{f} minus {LOOKUPS}{f}"
             if name not in c:
                 continue
-            adjusted = "top_1_ci98.33" in c[name] and study == "replication"
-            est, ci = pts(c[name], ci="top_1_ci98.33" if adjusted else "top_1_ci95")
-            note = ", 98.33% interval" if adjusted else ""
+            adj = next((k for k in c[name] if k.startswith("top_1_ci") and k != "top_1_ci95"), None)
+            adjusted = adj is not None and study == "replication"
+            est, ci = pts(c[name], ci=adj if adjusted else "top_1_ci95")
+            note = f", {adj[len('top_1_ci'):]}% interval" if adjusted else ""
             rows.append((f"{x} added to lookups\n{label}{note}", est, ci, BLUE if x == "AVI" else AQUA))
         name = f"{RULE_AVI} minus {RULE}"
         if name in c:
@@ -244,10 +250,83 @@ def gains_gnomad(res: dict, out: Path) -> None:
     save(fig, out, "gains_gnomad")
 
 
+FIRST_RUN = HERE.parent / "rare-disease" / "results"
+
+
+def first_vs_second(res: dict, out: Path) -> None:
+    """AVI added to the lookups, locked, on 500 replication cases: the first run's designs and this run's."""
+    first = [("results_replication.json", "First run, no frequency filter"),
+             ("results_replication_gnomad0.001.json", "First run, gnomAD AF below 0.1%"),
+             ("results_replication_gnomad0.001_grpmax.json", "First run, grpmax below 0.1%")]
+    rows = []
+    for f, label in first:
+        path = FIRST_RUN / f
+        if not path.exists():
+            continue
+        r = json.loads(path.read_text())["strata"]["all"]["added_to_locked_lookups"]["Lookups + AlphaGenome AVI (locked)"]
+        est, ci = pts(r)
+        rows.append((f"{label}\nperson in gnomAD, carrier states counted", est, ci, GREY))
+    c = res.get("replication", {}).get("strata", {}).get("all", {}).get("contrasts", {})
+    name = f"{PLUS_AVI}{LOCKED} minus {LOOKUPS}{LOCKED}"
+    if name in c:
+        est, ci = pts(c[name])
+        rows.append(("Second run, grpmax below 0.1%\nfamily left out of gnomAD, inheritance filter", est, ci, BLUE))
+    if not rows:
+        return
+    fig, ax = plt.subplots(figsize=(7, 0.6 * len(rows) + 1.3))
+    dot_rows(ax, rows, "Top-1 gain from adding AVI, percentage points (95% paired interval)", guides=(-5, 0, 5))
+    ax.set_title("AVI added to the lookups, locked, 500 replication cases: first run and second run", loc="left",
+                 fontsize=10)
+    save(fig, out, "avi_first_vs_second")
+
+
+def evo2_gains(res: dict, out: Path) -> None:
+    """Evo 2 added to the lookups, by diagnostic group, in each study; the first run's indel result for reference."""
+    rows = []
+    for study, label in STUDIES:
+        if study not in res:
+            continue
+        f = fit(study)
+        name = f"Lookups + Evo 2{f} minus {LOOKUPS}{f}"
+        for g, s in res[study]["strata"].items():
+            if g.startswith("gnomad") or ":" in g or name not in s.get("contrasts", {}):
+                continue
+            c = s["contrasts"][name]
+            adj = next((k for k in c if k.startswith("top_1_ci") and k != "top_1_ci95"), None)
+            use = adj if (g == "all" and adj) else "top_1_ci95"
+            est, ci = pts(c, ci=use)
+            note = f", {use[len('top_1_ci'):]}% interval" if use != "top_1_ci95" else ""
+            small = " (small)" if s.get("small") else ""
+            rows.append((f"{g.replace('_', ' ')}, {s['cases']} cases{small}{note}\n{label}", est, ci,
+                         AQUA if g == "all" else GREY))
+    for f, label in (("results_indel.json", "First run, 120 indel cases, no filter"),
+                     ("results_indel_gnomad0.001.json", "First run, 120 indel cases, AF below 0.1%")):
+        path = FIRST_RUN / f
+        if path.exists():
+            r = json.loads(path.read_text())["strata"]["all"]["added_to_lookups"].get("Lookups + Evo 2")
+            if r:
+                est, ci = pts(r)
+                rows.append((f"all\n{label}", est, ci, GREY))
+    if not rows:
+        print("evo2_gains: no Evo 2 contrasts in the results; skipped")
+        return
+    fig, ax = plt.subplots(figsize=(7.5, 0.5 * len(rows) + 1.3))
+    dot_rows(ax, rows, "Top-1 gain from adding Evo 2 to the lookups, percentage points", guides=(-5, 0, 5))
+    ax.set_title("Evo 2 added to the lookups, by diagnostic group (95% paired intervals unless marked)", loc="left",
+                 fontsize=10)
+    save(fig, out, "evo2_gains")
+
+
+README_CHARTS = ["gains_primary", "top1_by_group_replication", "gains_added", "evo2_gains", "avi_first_vs_second",
+                 "gains_gnomad"]
+
+
 def main() -> None:
     p = argparse.ArgumentParser(description=__doc__.split("\n")[0])
     p.add_argument("--analysis", default="main")
     p.add_argument("--out", type=Path, default=HERE / "figures/out")
+    p.add_argument("--readme", action="store_true",
+                   help="also copy the charts the README embeds into figures/ (committed)")
     a = p.parse_args()
     style()
     res = load(a.analysis)
@@ -255,6 +334,16 @@ def main() -> None:
     top1_by_group(res, a.out)
     gains_added(res, a.out)
     gains_gnomad(res, a.out)
+    first_vs_second(res, a.out)
+    evo2_gains(res, a.out)
+    if a.readme:
+        import shutil
+        for name in README_CHARTS:
+            for ext in ("png", "svg"):
+                src = a.out / f"{name}.{ext}"
+                if src.exists():
+                    shutil.copy(src, HERE / "figures" / src.name)
+        print(f"copied {len(README_CHARTS)} charts to {HERE / 'figures'}")
 
 
 if __name__ == "__main__":

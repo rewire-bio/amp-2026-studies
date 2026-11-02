@@ -10,5 +10,6 @@ diagnostics tied with a background variant: {}
   GPN-Star-V                     top1 0.515 [0.4399, 0.585]  top5 0.820  top10 0.920
   GPN-Star-M                     top1 0.425 [0.34, 0.5101]  top5 0.810  top10 0.920
   EVEE                           top1 0.815 [0.7549, 0.885]  top5 0.975  top10 0.985
+  Evo 2                          top1 0.470 [0.39, 0.55]  top5 0.800  top10 0.910
   Lookups combined               top1 0.820 [0.745, 0.885]  top5 0.965  top10 0.975
 wrote /Users/timrichardson/Documents/projects/personal/blog/amp-2026-studies/rare-disease-v2/results/snv_evee.json

@@ -278,15 +278,20 @@ variants, not as diagnostic performance, and is not compared with the main analy
 - Every gain has a paired interval. Charts are dot-and-interval.
 - `case_benchmark.py` runs with the package versions pinned in `requirements.txt`.
 
-## 12. Adding Evo 2 later
+## 12. Evo 2 (added after the other results)
 
-- `evo2/make_windows.py` takes a required `--fasta` (hg38 from `../evo2-size-by-use-case/data/raw/hg38.fa.gz`) and an
-  `--indels-only` option.
-- Evo 2 on the indel cases is an exploratory analysis, run only if Tim asks for it (about 2,100 indels, roughly
-  USD 3 on one H100). With 120 cases a top-1 gain has an interval of about plus or minus 7 points, and there is no
-  held-out indel set, so it cannot confirm the first run's indel gain.
+- Evo 2 7B scores every case variant in all three studies (SNVs and indels), the same way as the first run: 8,192 bp
+  windows from hg38 with the variant at index 4,096, score minus the change in mean log-likelihood, on one H100 with
+  the first run's pinned image and code (`../rare-disease/evo2/launch.sh`, `score_windows.py`). Windows come from
+  `evo2/make_windows.py` (required `--fasta`).
+- Variants the first run already scored are reused (`evo2/run1_v1/`, same checkpoint, image and code commit). A
+  random 200 of them (seed 20261111) are scored again in the new run (`evo2/run2/`) to check that the reused scores
+  reproduce; where both exist the reused score is used.
+- Evo 2 was added after every other result had been seen, so it is exploratory. Lookups + Evo 2 against lookups
+  combined has a 95% interval and a Bonferroni-adjusted 98.75% interval (over the four added secondary scores: three
+  GPN models and Evo 2). The GPN rows keep their pre-specified 98.33%.
 - Adding it changes no other result row, because bootstrap draws are shared per stratum (section 11;
-  `tests/test_invariance.py`).
+  `tests/test_invariance.py`), and every other value is checked against tag `amp-2026-v5`.
 
 ## 13. Deviation log
 
@@ -310,3 +315,6 @@ variants, not as diagnostic performance, and is not compared with the main analy
 | 2026-11-02 | 7 | Rule-based ties written out: scores from different tools never compared, CADD between them; a variant with no level ranks last | The first wording compared REVEL with SpliceAI values within a level, which moved rule-based top 1 by 4 points on the 200 (code review) |
 | 2026-11-02 | 8 | Locked models fitted under the main filters, except the 1% check and EVEE | The code refitted the locked model under each check's filters, against section 8 (code review) |
 | 2026-11-02 | 9 | Check added: gains split by whether the diagnostic is in gnomAD | Leaving the family out leaves 2% of background variants absent from gnomAD against 76% of diagnostics, so issue #1 is only partly fixed |
+| 2026-11-02 | 12 | Evo 2 scored on all cases, not only the indel cases; reported as exploratory with a 98.75% adjusted interval; first-run scores reused | Tim's decision after the results without Evo 2 (tag `amp-2026-v5`) |
+| 2026-11-02 | 8, 11 | Two-sided bootstrap p-values added next to every paired interval | So each finding can be stated at its significance level; no interval changes |
+| 2026-11-02 | 13 (former) | The freeze (tag `rd-v2-protocol` and case-file checksums before the 500 were built) dropped; the scripts and this protocol are the record | Tim's decision. The 500 were built and scored after the code-review fixes above; after their results were seen, the only analysis changes are the Evo 2 and p-value entries |

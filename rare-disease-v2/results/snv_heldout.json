@@ -56,6 +56,10 @@
     "GPN-Star-M": {
       "variants": 5401,
       "diagnostics": 200
+    },
+    "Evo 2": {
+      "variants": 5401,
+      "diagnostics": 200
     }
   },
   "scores_without_coverage": [],
@@ -244,6 +248,24 @@
             1.0
           ]
         },
+        "Evo 2": {
+          "median_competitors": 0.0,
+          "top_1": 0.7632,
+          "top_1_ci95": [
+            0.6052,
+            0.8929
+          ],
+          "top_5": 0.9211,
+          "top_5_ci95": [
+            0.8333,
+            1.0
+          ],
+          "top_10": 0.9737,
+          "top_10_ci95": [
+            0.9149,
+            1.0
+          ]
+        },
         "Rule-based": {
           "median_competitors": 0.0,
           "top_1": 0.8947,
@@ -369,6 +391,24 @@
             1.0,
             1.0
           ]
+        },
+        "Lookups + Evo 2": {
+          "median_competitors": 0.0,
+          "top_1": 0.9474,
+          "top_1_ci95": [
+            0.881,
+            1.0
+          ],
+          "top_5": 1.0,
+          "top_5_ci95": [
+            1.0,
+            1.0
+          ],
+          "top_10": 1.0,
+          "top_10_ci95": [
+            1.0,
+            1.0
+          ]
         }
       },
       "contrasts": {
@@ -379,16 +419,19 @@
             -0.0625,
             0.1081
           ],
+          "top_1_p": 0.768,
           "top_5": 0.0,
           "top_5_ci95": [
             0.0,
             0.0
           ],
+          "top_5_p": 1.0,
           "top_10": 0.0,
           "top_10_ci95": [
             0.0,
             0.0
-          ]
+          ],
+          "top_10_p": 1.0
         },
         "Rule + AVI minus Rule-based": {
           "role": "key secondary",
@@ -397,16 +440,19 @@
             0.0,
             0.0889
           ],
+          "top_1_p": 0.738,
           "top_5": 0.0,
           "top_5_ci95": [
             0.0,
             0.0
           ],
+          "top_5_p": 1.0,
           "top_10": 0.0,
           "top_10_ci95": [
             0.0,
             0.0
-          ]
+          ],
+          "top_10_p": 1.0
         }
       }
     },
@@ -558,6 +604,24 @@
             0.9873
           ]
         },
+        "Evo 2": {
+          "median_competitors": 0.0,
+          "top_1": 0.5432,
+          "top_1_ci95": [
+            0.4606,
+            0.6273
+          ],
+          "top_5": 0.8519,
+          "top_5_ci95": [
+            0.7891,
+            0.9112
+          ],
+          "top_10": 0.9444,
+          "top_10_ci95": [
+            0.9114,
+            0.9758
+          ]
+        },
         "Rule-based": {
           "median_competitors": 0.0,
           "top_1": 0.8272,
@@ -683,6 +747,24 @@
             0.9434,
             1.0
           ]
+        },
+        "Lookups + Evo 2": {
+          "median_competitors": 0.0,
+          "top_1": 0.8827,
+          "top_1_ci95": [
+            0.8182,
+            0.9416
+          ],
+          "top_5": 0.9815,
+          "top_5_ci95": [
+            0.9497,
+            1.0
+          ],
+          "top_10": 0.9815,
+          "top_10_ci95": [
+            0.9497,
+            1.0
+          ]
         }
       },
       "contrasts": {
@@ -693,16 +775,19 @@
             -0.0064,
             0.075
           ],
+          "top_1_p": 0.182,
           "top_5": 0.0062,
           "top_5_ci95": [
             0.0,
             0.0187
           ],
+          "top_5_p": 0.766,
           "top_10": 0.0,
           "top_10_ci95": [
             0.0,
             0.0
-          ]
+          ],
+          "top_10_p": 1.0
         },
         "Rule + AVI minus Rule-based": {
           "role": "key secondary",
@@ -711,16 +796,19 @@
             0.0063,
             0.0818
           ],
+          "top_1_p": 0.022,
           "top_5": 0.0,
           "top_5_ci95": [
             0.0,
             0.0
           ],
+          "top_5_p": 1.0,
           "top_10": 0.0,
           "top_10_ci95": [
             0.0,
             0.0
-          ]
+          ],
+          "top_10_p": 1.0
         }
       }
     },
@@ -732,6 +820,7 @@
           -0.0982,
           0.0857
         ],
+        "top_1_p": 0.892,
         "possibly_inflated_by_training_overlap": false
       },
       "key secondary": {
@@ -740,7 +829,8 @@
         "top_1_ci95": [
           -0.075,
           0.0563
-        ]
+        ],
+        "top_1_p": 0.604
       }
     },
     "note": "Each split's resamples are the same draws of people (seed label '<study>/heldout/splits'), so the difference between splits is paired by person."

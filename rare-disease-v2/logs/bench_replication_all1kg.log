@@ -11,6 +11,7 @@ diagnostics tied with a background variant: {'Rule-based': 0.0, 'Rule + AVI': 0.
   GPN-MSA                        top1 0.510 [0.438, 0.586]  top5 0.824  top10 0.932
   GPN-Star-V                     top1 0.586 [0.52, 0.6541]  top5 0.856  top10 0.948
   GPN-Star-M                     top1 0.532 [0.454, 0.606]  top5 0.868  top10 0.944
+  Evo 2                          top1 0.552 [0.486, 0.622]  top5 0.892  top10 0.974
   Rule-based                     top1 0.842 [0.786, 0.8921]  top5 0.978  top10 0.984
   Rule + AVI                     top1 0.868 [0.8159, 0.912]  top5 0.974  top10 0.984
   Lookups combined               top1 0.886 [0.828, 0.934]  top5 0.982  top10 0.994
@@ -18,22 +19,26 @@ diagnostics tied with a background variant: {'Rule-based': 0.0, 'Rule + AVI': 0.
   Lookups + GPN-MSA              top1 0.884 [0.826, 0.9301]  top5 0.980  top10 0.994
   Lookups + GPN-Star-V           top1 0.896 [0.84, 0.942]  top5 0.984  top10 0.990
   Lookups + GPN-Star-M           top1 0.888 [0.834, 0.934]  top5 0.982  top10 0.992
+  Lookups + Evo 2                top1 0.886 [0.8259, 0.934]  top5 0.982  top10 0.990
   Lookups combined (locked)      top1 0.878 [0.8319, 0.918]  top5 0.958  top10 0.986
   Lookups + AVI (locked)         top1 0.882 [0.83, 0.926]  top5 0.978  top10 0.988
   Lookups + GPN-MSA (locked)     top1 0.864 [0.806, 0.91]  top5 0.964  top10 0.984
   Lookups + GPN-Star-V (locked)  top1 0.884 [0.846, 0.9181]  top5 0.976  top10 0.984
   Lookups + GPN-Star-M (locked)  top1 0.878 [0.8319, 0.918]  top5 0.966  top10 0.982
+  Lookups + Evo 2 (locked)       top1 0.886 [0.838, 0.922]  top5 0.960  top10 0.980
   Lookups + AVI minus Lookups combined: top1 +0.002 [-0.028, 0.032] (primary contrast, cross-validated (descriptive))
   Lookups combined minus Rule-based: top1 +0.044 [-0.008, 0.092] (descriptive)
   Lookups + AVI minus Rule-based: top1 +0.046 [-0.004, 0.094] (descriptive)
   Lookups + GPN-MSA minus Lookups combined: top1 -0.002 [-0.016, 0.012] (secondary, cross-validated (descriptive))
   Lookups + GPN-Star-V minus Lookups combined: top1 +0.010 [-0.004, 0.026] (secondary, cross-validated (descriptive))
   Lookups + GPN-Star-M minus Lookups combined: top1 +0.002 [-0.016, 0.02] (secondary, cross-validated (descriptive))
+  Lookups + Evo 2 minus Lookups combined: top1 +0.000 [-0.012, 0.014] (exploratory, Bonferroni-adjusted over four scores)
   Lookups + AVI (locked) minus Lookups combined (locked): top1 +0.004 [-0.028, 0.03] (primary)  [No gain that matters]
   Lookups combined (locked) minus Rule-based: top1 +0.036 [0.002, 0.072] (descriptive)
   Lookups + AVI (locked) minus Rule-based: top1 +0.040 [-0.004, 0.086] (descriptive)
   Lookups + GPN-MSA (locked) minus Lookups combined (locked): top1 -0.014 [-0.03, -0.002] (secondary, Bonferroni-adjusted)
   Lookups + GPN-Star-V (locked) minus Lookups combined (locked): top1 +0.006 [-0.01, 0.024] (secondary, Bonferroni-adjusted)
   Lookups + GPN-Star-M (locked) minus Lookups combined (locked): top1 +0.000 [-0.01, 0.012] (secondary, Bonferroni-adjusted)
+  Lookups + Evo 2 (locked) minus Lookups combined (locked): top1 +0.008 [-0.006, 0.024] (exploratory, Bonferroni-adjusted over four scores)
   Rule + AVI minus Rule-based: top1 +0.026 [0.004, 0.054] (key secondary)
 wrote /Users/timrichardson/Documents/projects/personal/blog/amp-2026-studies/rare-disease-v2/results/replication_all1kg.json

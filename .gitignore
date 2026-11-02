@@ -39,3 +39,8 @@ rare-disease-v2/figures/out/
 rare-disease-v2/data/spliceai/hg38.fa*
 rare-disease-v2/data/gnomad_subset/
 rare-disease-v2/evo2/data*/
+rare-disease-v2/evo2/run*/ref_scores.tsv
+rare-disease-v2/evo2/run*/var_scores.tsv
+rare-disease-v2/evo2/run*/score.log
+rare-disease-v2/evo2/run*/.known_hosts
+rare-disease-v2/evo2/run*/.ssh-key*

@@ -559,10 +559,26 @@ def summarise(comp: pd.Series, sample: pd.Series, draws: Draws) -> dict:
 
 
 BONFERRONI = round(100 - 5 / 3, 2)  # 98.33
+BONFERRONI_EVO2 = round(100 - 5 / 4, 2)  # 98.75: Evo 2 was added later, so its row is adjusted over all four
 
 
-def paired(comp_a: pd.Series, comp_b: pd.Series, sample: pd.Series, draws: Draws, adjusted: bool = False) -> dict:
-    """Difference in top-k rate, a minus b, on the same cases, with the stratum's shared resamples."""
+def p_value(boot: np.ndarray) -> float:
+    """Two-sided bootstrap p-value for a difference of zero: twice the smaller share of draws at or beyond zero.
+
+    Floored at one draw's share, so it is never reported as 0. A difference that is zero in every draw gives 1.
+    """
+    b = boot[~np.isnan(boot)]
+    if len(b) == 0:
+        return float("nan")
+    p = 2 * min(float(np.mean(b <= 0)), float(np.mean(b >= 0)))
+    return round(min(1.0, max(p, 1 / len(b))), 4)
+
+
+def paired(comp_a: pd.Series, comp_b: pd.Series, sample: pd.Series, draws: Draws, adjusted=False) -> dict:
+    """Difference in top-k rate, a minus b, on the same cases, with the stratum's shared resamples.
+
+    adjusted: False, True (the GPN family's Bonferroni level) or a level in percent (Evo 2's, over four scores).
+    """
     a, b = comp_a.to_numpy(), comp_b.loc[comp_a.index].to_numpy()
     s = sample.loc[comp_a.index].to_numpy()
     out = {}
@@ -571,8 +587,10 @@ def paired(comp_a: pd.Series, comp_b: pd.Series, sample: pd.Series, draws: Draws
         boot = draws.means(d, s)
         out[f"top_{k}"] = round(float(d.mean()), 4)
         out[f"top_{k}_ci95"] = interval(boot)
+        out[f"top_{k}_p"] = p_value(boot)
         if adjusted:
-            out[f"top_{k}_ci{BONFERRONI:g}"] = interval(boot, BONFERRONI)
+            level = BONFERRONI if adjusted is True else adjusted
+            out[f"top_{k}_ci{level:g}"] = interval(boot, level)
     return out
 
 
@@ -605,6 +623,10 @@ def contrast_specs(scores: list[str], study: str) -> list[dict]:
             if x == "AVI":
                 continue
             gpn = x in GPN_FAMILY
+            if x == "Evo 2":  # added after the other results; exploratory, adjusted over the four added scores
+                specs.append({"a": f"Lookups + {x}{fit}", "b": lookups, "adjusted": BONFERRONI_EVO2,
+                              "role": "exploratory, Bonferroni-adjusted over four scores"})
+                continue
             specs.append({"a": f"Lookups + {x}{fit}", "b": lookups, "adjusted": gpn,
                           "role": ("secondary, Bonferroni-adjusted" if confirmatory else
                                    "secondary, cross-validated (descriptive)") if gpn else "descriptive"})
@@ -857,7 +879,7 @@ def gnomad_split(comp: dict, diag: pd.DataFrame, found: pd.Series, study: str, a
         boot = (draws.means(ga.to_numpy(), sample.loc[ga.index].to_numpy())
                 - draws.means(gf.to_numpy(), sample.loc[gf.index].to_numpy()))
         diff = {"role": role, "top_1_absent_minus_found": round(float(ga.mean() - gf.mean()), 4),
-                "top_1_ci95": interval(boot)}
+                "top_1_ci95": interval(boot), "top_1_p": p_value(boot)}
         diff["possibly_gnomad_presence"] = bool(diff["top_1_absent_minus_found"] > 0 and diff["top_1_ci95"][0] > 0)
         out["difference"][f"{x} minus {y}"] = diff
     return out
@@ -888,7 +910,7 @@ def heldout(cases: pd.DataFrame, scores: list[str], study: str, draws: Draws) ->
         (gt, st), (go, so) = gains[("training_chromosomes", name)], gains[("other_chromosomes", name)]
         boot = draws.means(gt.to_numpy(), st.to_numpy()) - draws.means(go.to_numpy(), so.to_numpy())
         diff = {"contrast": f"{x} minus {y}", "top_1_training_minus_other": round(float(gt.mean() - go.mean()), 4),
-                "top_1_ci95": interval(boot)}
+                "top_1_ci95": interval(boot), "top_1_p": p_value(boot)}
         if name == "primary":
             diff["possibly_inflated_by_training_overlap"] = bool(diff["top_1_training_minus_other"] > 0
                                                                  and diff["top_1_ci95"][0] > 0)

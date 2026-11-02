@@ -2,7 +2,10 @@ indel all1kg: 120 cases, median 4 variants per case; background grpmax_no1kg bel
 model classes merged into other: ['utr']
 diagnostics tied with a background variant: {'Rule-based': 0.0417}
   SpliceAI                       top1 0.592 [0.5082, 0.686]  top5 0.892  top10 0.992
+  Evo 2                          top1 0.817 [0.736, 0.8908]  top5 1.000  top10 1.000
   Rule-based                     top1 0.767 [0.6612, 0.8689]  top5 0.958  top10 0.992
   Lookups combined               top1 0.833 [0.7542, 0.9083]  top5 0.958  top10 0.992
+  Lookups + Evo 2                top1 0.883 [0.8083, 0.9474]  top5 1.000  top10 1.000
   Lookups combined minus Rule-based: top1 +0.067 [0.0254, 0.1148] (descriptive)
+  Lookups + Evo 2 minus Lookups combined: top1 +0.050 [-0.0246, 0.121] (exploratory, Bonferroni-adjusted over four scores)
 wrote /Users/timrichardson/Documents/projects/personal/blog/amp-2026-studies/rare-disease-v2/results/indel_all1kg.json

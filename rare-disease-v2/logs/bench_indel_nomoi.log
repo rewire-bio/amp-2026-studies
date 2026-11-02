@@ -2,7 +2,10 @@ indel nomoi: 120 cases, median 7 variants per case; background grpmax below 0.00
 model classes merged into other: ['utr']
 diagnostics tied with a background variant: {'Rule-based': 0.05}
   SpliceAI                       top1 0.533 [0.4492, 0.6195]  top5 0.792  top10 0.992
+  Evo 2                          top1 0.783 [0.7083, 0.8621]  top5 1.000  top10 1.000
   Rule-based                     top1 0.742 [0.6356, 0.8455]  top5 0.950  top10 0.992
   Lookups combined               top1 0.817 [0.7297, 0.8992]  top5 0.950  top10 0.992
+  Lookups + Evo 2                top1 0.875 [0.812, 0.9333]  top5 1.000  top10 1.000
   Lookups combined minus Rule-based: top1 +0.075 [0.0248, 0.1293] (descriptive)
+  Lookups + Evo 2 minus Lookups combined: top1 +0.058 [0.0, 0.121] (exploratory, Bonferroni-adjusted over four scores)
 wrote /Users/timrichardson/Documents/projects/personal/blog/amp-2026-studies/rare-disease-v2/results/indel_nomoi.json
