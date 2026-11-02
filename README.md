@@ -25,7 +25,7 @@ flowchart LR
 
     subgraph studies["This repository"]
         rd["rare-disease/<br/>case benchmark"]
-        rd2["rare-disease-v2/<br/>second run (planned)"]
+        rd2["rare-disease-v2/<br/>second run"]
         evo2["rare-disease/evo2/<br/>Evo 2 7B on one H100"]
         brca1["brca1-case-ranking/"]
         pipe["evo2-pipeline/<br/>Nextflow"]
@@ -51,7 +51,7 @@ flowchart LR
 | [`evo2-pipeline/`](evo2-pipeline/) | What it takes to add an Evo 2 score to a lab's pipeline, as a working Nextflow pipeline | `pipeline-overview`, backup `code-*` |
 | [`evee/`](evee/) | EVEE's published figure data redrawn as two charts | `evee-confounding`, `evee-results` |
 | [`gpu-drift/`](gpu-drift/) | What a flipped call is, from the recorded H100 and L40S BRCA1 runs in evo2-cloud-operations | `gpu-drift` |
-| [`rare-disease-v2/`](rare-disease-v2/) | Second run of the rare-disease case tests, intellectual disability panel only, with gnomAD frequencies that leave out the 1000 Genomes samples and a grpmax filter built in. Protocol written, not yet run | will replace the `rd-*` numbers once done |
+| [`rare-disease-v2/`](rare-disease-v2/) | Second run of the rare-disease case tests, intellectual disability panel only, with gnomAD frequencies that leave out each person's family, a grpmax filter and an inheritance filter built in. Done: adding AVI to the lookups gains +1.8 points at top 1 (-0.4 to +4.0) on 500 new cases, no gain that matters | will replace the `rd-*` numbers |
 
 The rare-disease benchmark is the main study. Start with [`rare-disease/README.md`](rare-disease/README.md), then
 [`rare-disease/REPLICATION.md`](rare-disease/REPLICATION.md) for the follow-up checks.
@@ -70,9 +70,10 @@ top 5.
 | Lookups + AVI | 67.0% | 93.5% | 67.2% (locked) | 93.8% (locked) |
 
 - **The lookups labs already use, combined, do most of the work.** No foundation-model table beats them on its own.
-- **AlphaGenome AVI is the one table whose added gain holds on new cases:** +6.2 points at top 1 with the model
-  locked (95% interval 0.0 to +13.0), and +7.4 (+1.2 to +14.2) after a gnomAD 0.1% frequency filter. The gain does
-  not come from AVI's training chromosomes.
+- **In the first run, AlphaGenome AVI was the one table whose added gain held on new cases:** +6.2 points at top 1
+  with the model locked (95% interval 0.0 to +13.0), and +7.4 (+1.2 to +14.2) after a gnomAD 0.1% frequency filter.
+  The gain did not come from AVI's training chromosomes. The second run, with realistic frequencies and filters, does
+  not confirm it (below).
 - **GPN-MSA's +6 point gain on the first 200 cases did not replicate** (+1.2 locked, interval −3.0 to +5.8).
 - **Indels:** adding Evo 2 to the lookups gains +15.8 points at top 1 (+5.0 to +26.8), and +8.3 (+0.9 to +16.3)
   after the frequency filter. Which indel type the gain comes from is not settled.
@@ -83,12 +84,30 @@ top 5.
 "Locked" means the model was fitted on the first 200 cases and applied unchanged to the 500 new ones. The full
 tables and caveats are in the study READMEs.
 
-**A second run is planned.** The 1000 Genomes background people are themselves in gnomAD, so every background
-variant has a gnomAD frequency while most diagnostic variants have none. That makes frequency, and scores that learned
-it such as AVI, look stronger than they would on a real patient
-([issue #1](https://github.com/rewire-bio/amp-2026-studies/issues/1)). [`rare-disease-v2/`](rare-disease-v2/) holds
-the proposal, protocol and work plan for a rerun that fixes this
-([issue #2](https://github.com/rewire-bio/amp-2026-studies/issues/2)).
+### Second run: AVI adds no gain that matters
+
+The 1000 Genomes background people are themselves in gnomAD, so every background variant has a gnomAD frequency
+while most diagnostic variants have none. That makes frequency, and scores that learned it such as AVI, look stronger
+than they would on a real patient ([issue #1](https://github.com/rewire-bio/amp-2026-studies/issues/1)).
+[`rare-disease-v2/`](rare-disease-v2/) reran the intellectual disability cases with gnomAD frequencies that leave out
+each person and their family, a grpmax filter below 0.1% and an inheritance filter, on 500 cases from 50 people the
+first run never used ([issue #2](https://github.com/rewire-bio/amp-2026-studies/issues/2)).
+
+| AVI added to the lookups, 500 new cases, model locked | Top-1 gain (points, 95% interval) |
+|---|---|
+| First run, no frequency filter | +6.2 (0.0 to +13.0) |
+| First run, gnomAD AF below 0.1% | +7.4 (+1.2 to +14.2) |
+| First run, grpmax AF below 0.1% | +0.2 (-3.6 to +3.8) |
+| Second run, family left out, grpmax below 0.1%, inheritance filter | +1.8 (-0.4 to +4.0) |
+
+- **No gain that matters.** The second run's interval lies inside -5 to +5, the reading rule fixed in advance. It
+  agrees with the first run's grpmax result, not its headline.
+- **The lookups combined rank the diagnostic first in 90.6% of cases** (87.8 to 93.4), and a rule-based ranking from
+  ClinGen thresholds in 87.2% (82.8 to 91.0). Lists are short after the filters (median 19 variants).
+- **AVI helps only with non-coding diagnostics** (+5.1, +0.6 to +10.5, added to the lookups). GPN-MSA and GPN-Star
+  add nothing.
+
+Details: [`rare-disease-v2/README.md`](rare-disease-v2/README.md).
 
 ## Data and licences
 
@@ -96,7 +115,7 @@ the proposal, protocol and work plan for a rerun that fixes this
 |---|---|---|
 | Code, results, run logs, Evo 2 scores and receipts | Yes | Our work |
 | Case definitions, region files, gnomAD frequencies | Yes | Built from public data |
-| Per-case AlphaGenome AVI, AlphaMissense, GPN-MSA and GPN-Star scores | Yes | Their licences allow redistribution (below) |
+| Per-case AlphaGenome AVI, AlphaMissense, GPN-MSA, GPN-Star and EVEE scores | Yes | Their licences allow redistribution (below) |
 | Per-case CADD and REVEL scores | No | Free for non-commercial use but not licensed for redistribution. `lookup_scores.py cadd` and `revel` fetch them; CADD needs no download (remote tabix) |
 | Bulk downloads (AVI table 82 GB, AlphaMissense, full ClinVar, index files) | No | Too large; the scripts download them again |
 | BRCA1 assay labels and score extracts | No | Read from a sibling `evo2-cloud-operations` checkout |
@@ -108,7 +127,7 @@ The code is under the [MIT licence](LICENSE). Data from others keeps its own lic
 |---|---|---|
 | AlphaGenome AVI scores | AlphaGenome Atlas static AVI download, permissive use (commercial and non-commercial); research only, not for clinical decisions | Cheng et al. 2026, AlphaGenome Atlas |
 | AlphaMissense scores | CC BY 4.0 (Zenodo 10813168) | Cheng et al. 2023, *Science* |
-| EVEE per-variant scores (planned, `rare-disease-v2/`) | CC BY 4.0 (Zenodo 19701997) | Pearce et al. 2026 |
+| EVEE per-variant scores (`rare-disease-v2/`) | CC BY 4.0 (Zenodo 19701997) | Pearce et al. 2026 |
 | GPN-MSA, GPN-Star scores | MIT; Apache 2.0 | Song Lab, UC Berkeley (Hugging Face) |
 | ClinVar, MANE | Public domain (NCBI) | NCBI |
 | 1000 Genomes genotypes | Open access (IGSR) | Byrska-Bishop et al. 2022 |

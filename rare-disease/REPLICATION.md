@@ -117,6 +117,11 @@ whose top-1 gain holds on the new cases: +7.5 [-0.5, +15.5] on the original 200,
 interval's lower bound is zero, so the size of the gain is uncertain; its direction is consistent across all
 three estimates.
 
+Note, 2 November 2026: the second run in [`../rare-disease-v2/`](../rare-disease-v2/README.md#results), with gnomAD
+frequencies that leave out each person's family, a grpmax filter and an inheritance filter, finds no gain that
+matters from AVI on 500 new cases: +1.8 points locked (-0.4 to +4.0). That agrees with the grpmax result below
+(+0.2 locked). The numbers in this file are unchanged.
+
 Alone, AVI ranks the diagnostic variant in the top 5 in 87% of the original cases and 83% of the new ones, against
 57.5% and 64% for GPN-Star-V, the best other single score, and 92% and 92.6% for the four lookups combined by a
 fitted model. AVI is not a language-model score like GPN-MSA or GPN-Star: it is a trained combination of 18

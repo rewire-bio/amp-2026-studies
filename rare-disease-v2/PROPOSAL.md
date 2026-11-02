@@ -101,7 +101,7 @@ run's results once it is done. `evee/`, `gpu-drift/`, `evo2-pipeline/` and `brca
 ## Cost
 
 CPU only. Network reads: gnomAD's HGDP + 1KG genotypes at the case positions (about an hour with parallel reads),
-CADD by remote tabix, and about 60 MB of EVEE columns. A later Evo 2 run on the indels would be about 2,100 variants,
+CADD by remote tabix, and about 73 MB of EVEE columns. A later Evo 2 run on the indels would be about 2,100 variants,
 roughly 30 minutes and USD 3 on one H100 (the first run scored 2,814 indel and cancer variants in 40 minutes for
 about USD 3).
 

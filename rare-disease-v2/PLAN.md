@@ -13,7 +13,9 @@ Run everything from `rare-disease-v2/` with `uv run --with-requirements requirem
 
 ## Files
 
-All tables are tab-separated with a header, GRCh38, chr-prefixed. The variant key is `chrom, pos, ref, alt`.
+All tables are tab-separated with a header, GRCh38, chr-prefixed. The variant key is `chrom, pos, ref, alt`. The
+full list, with every column and what is not committed, is in [`data/README.md`](data/README.md) and
+[`results/README.md`](results/README.md).
 
 | File | Made by | Contents |
 |---|---|---|
@@ -51,35 +53,35 @@ All tables are tab-separated with a header, GRCh38, chr-prefixed. The variant ke
 
 - [x] `moi.py`: `gene_moi.tsv`.
 - [x] `annotate_indels.py`: takes `--variants` and `--out`, so it annotates the indel pool and the case variants.
-- [ ] `lookup_scores.py`: cadd (MANE consequence rule), revel, am, avi, spliceai_run, gpnmsa, gpnstar, evee; reuses
+- [x] `lookup_scores.py`: cadd (MANE consequence rule), revel, am, avi, spliceai_run, gpnmsa, gpnstar, evee; reuses
   first-run rows; scores the pool for CADD.
 - [x] `pool.py`: classified, frequency-checked, inheritance-tagged pools. Count positions per class against the
   quotas (200 and 500 together for SNVs, excluding the first run's diagnostic positions for the 500).
 - [x] `build_cases.py`: protocol sections 2, 3 and 5.
-- [ ] `case_benchmark.py`: protocol sections 7 to 11.
+- [x] `case_benchmark.py`: protocol sections 7 to 11.
 - [x] `run_spliceai.sh`, `evo2/make_windows.py` (`--fasta` required, `--indels-only`).
-- [ ] Test: run `case_benchmark.py` with and without one secondary score; every row not involving it must match.
+- [x] Test: run `case_benchmark.py` with and without one secondary score; every row not involving it must match.
 
 ## Phase 3: build and first results
 
 - [x] hg38 for SpliceAI: decompress `../../evo2-size-by-use-case/data/raw/hg38.fa.gz` to `data/spliceai/hg38.fa` and
   index it (gitignored).
-- [ ] Build the 200 SNV and 120 indel cases; look up all scores; run SpliceAI on the indels.
-- [ ] Results on the 200 and 120 (cross-validated). Record the model class merges.
+- [x] Build the 200 SNV and 120 indel cases; look up all scores; run SpliceAI on the indels.
+- [x] Results on the 200 and 120 (cross-validated). Record the model class merges.
 
 ## Phase 4: replication
 
-- [ ] Build the 500 replication cases.
-- [ ] Look up scores for the 500.
-- [ ] Locked results on the 500 (primary outcome) and the checks in protocol section 9.
-- [ ] EVEE descriptive analysis (protocol section 10).
+- [x] Build the 500 replication cases.
+- [x] Look up scores for the 500.
+- [x] Locked results on the 500 (primary outcome) and the checks in protocol section 9.
+- [x] EVEE descriptive analysis (protocol section 10).
 
 ## Phase 5: write-up
 
-- [ ] `README.md` here: results, limits, and what changed from the first run and why.
-- [ ] `data/README.md` and `results/README.md`: every file and field.
-- [ ] Dot-and-interval charts.
-- [ ] Top-level README findings, GUIDE card, and the notes in `../rare-disease/README.md` and `REPLICATION.md`;
+- [x] `README.md` here: results, limits, and what changed from the first run and why.
+- [x] `data/README.md` and `results/README.md`: every file and field.
+- [x] Dot-and-interval charts.
+- [x] Top-level README findings, GUIDE card, and the notes in `../rare-disease/README.md` and `REPLICATION.md`;
   `docs/index.html` rebuilt.
 - [ ] New release tag for the talk to cite (Tim's call).
 

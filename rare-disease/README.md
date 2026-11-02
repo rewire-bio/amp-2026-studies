@@ -95,6 +95,10 @@ These are the first results. [`REPLICATION.md`](REPLICATION.md) tests them in th
    zero). GPN-MSA's falls to +2, and Evo 2's indel gain halves to +8.3. A stricter filter leaves short lists, where
    the lookups alone put the diagnostic variant first in 74 to 80% of cases.
 
+Note, 2 November 2026: the second run in [`../rare-disease-v2/`](../rare-disease-v2/README.md#results), with gnomAD
+frequencies that leave out each person's family, a grpmax filter and an inheritance filter, finds no gain that
+matters from AVI on 500 new cases: +1.8 points locked (-0.4 to +4.0). The numbers here are unchanged.
+
 ## Limits
 
 - The background people are in gnomAD (1000 Genomes is part of it), so every background variant has a gnomAD
