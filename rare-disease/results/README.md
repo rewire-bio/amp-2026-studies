@@ -1,7 +1,7 @@
 # Rare-disease results
 
 Every result of the case benchmark. `case_benchmark.py` writes all files except `avi_heldout.json` and
-`compare_amp-2026-v1.txt`. The talk's companion reads values from these files at tag `amp-2026-v3` and checks each
+`compare_amp-2026-v1.txt`. The talk's companion reads values from these files at tag `amp-2026-v4` and checks each
 number it quotes against them.
 
 ## Files
