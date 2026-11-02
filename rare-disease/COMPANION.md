@@ -15,7 +15,7 @@ files, and [`REPLICATION.md`](REPLICATION.md) for the follow-up checks.
 
 ## Design
 
-Four studies, one design. The SNV, indel and cancer studies use the same 50 people from 1000 Genomes. The
+Four studies, one design. The SNV, indel and cancer studies use the same 50 people from 1000 Genomes. Panels: [PanelApp 285, Intellectual disability](https://panelapp.genomicsengland.co.uk/panels/285/) (v11.45) for the SNV, indel and replication studies, and [PanelApp 245, Adult solid tumours cancer susceptibility](https://panelapp.genomicsengland.co.uk/panels/245/) (v2.40) for the cancer study. The
 replication uses 50 new people and models fitted on the 200 SNV cases, then locked.
 
 ```mermaid

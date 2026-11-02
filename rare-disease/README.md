@@ -35,9 +35,9 @@ flowchart LR
 
 | Study | Cases | Diagnostic variants | Panel | Result |
 |---|---|---|---|---|
-| SNVs | 200 (4 per person) | 60 missense, 40 canonical splice, 30 nonsense, 70 synonymous, UTR or intronic | PanelApp 285 Intellectual disability, 1,512 green genes | [`results/results.json`](results/results.json) |
+| SNVs | 200 (4 per person) | 60 missense, 40 canonical splice, 30 nonsense, 70 synonymous, UTR or intronic | [PanelApp 285 Intellectual disability](https://panelapp.genomicsengland.co.uk/panels/285/), 1,512 green genes | [`results/results.json`](results/results.json) |
 | Indels (up to 50 bp) | 120 | 40 frameshift, 30 in-frame, 30 canonical splice, 20 UTR or intronic | same | [`results/results_indel.json`](results/results_indel.json) |
-| Inherited cancer | 140 | 40 missense, 25 each of nonsense, frameshift, canonical splice, non-coding | PanelApp 245 Adult solid tumours cancer susceptibility | [`results/results_cancer.json`](results/results_cancer.json) |
+| Inherited cancer | 140 | 40 missense, 25 each of nonsense, frameshift, canonical splice, non-coding | [PanelApp 245 Adult solid tumours cancer susceptibility](https://panelapp.genomicsengland.co.uk/panels/245/) | [`results/results_cancer.json`](results/results_cancer.json) |
 | Replication of the SNV study | 500 (10 per person) | 150 missense, 100 canonical splice, 75 nonsense, 175 other; no position reused | 285, with 50 new unrelated people | [`results/results_replication.json`](results/results_replication.json) |
 | Any of the above with a gnomAD frequency filter | as above, minus cases whose diagnostic variant is filtered out | | | `results/results[_<study>]_gnomad<af>[_grpmax].json` |
 | AVI on held-out chromosomes | SNV and replication cases | | | [`results/avi_heldout.json`](results/avi_heldout.json) |

@@ -423,7 +423,7 @@ flowchart LR
 
 ### 4.6 Rare-disease case tests, second run
 
-> **Question.** The same as 4.1, on the intellectual disability panel only: with the frequencies a real patient's
+> **Question.** The same as 4.1, on the intellectual disability panel ([PanelApp 285](https://panelapp.genomicsengland.co.uk/panels/285/)) only: with the frequencies a real patient's
 > pipeline would see, does adding AlphaGenome AVI to the lookups still help on new cases?
 >
 > **Why.** Review of the first run found that the 1000 Genomes background people are in gnomAD, so "not in gnomAD"

@@ -116,7 +116,7 @@ footer { border-top: 1px solid var(--line); color: var(--muted); font-size: 14px
 </table>
 <p>Gains are top-1 percentage points with paired bootstrap intervals over people.</p>
 <h2 id="how-a-case-is-built">How a case is built</h2>
-<p>One 1000 Genomes person's rare variants in the intellectual disability panel's genes, plus one inserted ClinVar pathogenic variant. Each score ranks the list; the outcome is where the diagnostic lands.</p>
+<p>One 1000 Genomes person's rare variants in the genes of <a href="https://panelapp.genomicsengland.co.uk/panels/285/">PanelApp panel 285, Intellectual disability</a> (v11.45, about 1,510 genes; diagnostics from 348 of them), plus one inserted ClinVar pathogenic variant. Each score ranks the list; the outcome is where the diagnostic lands.</p>
 <pre class="mermaid">flowchart TB
   A[&quot;One 1000 Genomes person:&lt;br/&gt;variants in the panel gene regions&lt;br/&gt;(1000 Genomes AF below 1%, grpmax below 1%,&lt;br/&gt;ClinVar P/LP removed)&quot;]
   B[&quot;gnomAD v3.1.2 frequency,&lt;br/&gt;with the person and their family left out&quot;]

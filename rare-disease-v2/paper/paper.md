@@ -78,7 +78,8 @@ Each score ranks every variant in the case, and the outcome is where the diagnos
 Figure 1 shows the design and Figure 2 how one case is built.
 
 Inputs were fixed to the first run's. The panel is PanelApp panel 285, intellectual disability, version 11.45,
-green genes only [@martin2019panelapp; @genomicsengland2026panelapp285]. The regions are the MANE v1.5 Select
+green genes only [@martin2019panelapp; @genomicsengland2026panelapp285]
+(`https://panelapp.genomicsengland.co.uk/panels/285/`). The 820 diagnostic variants fall in 348 of its genes. The regions are the MANE v1.5 Select
 [@morales2022joint] exons of those genes plus 20 bp on each side. Diagnostic candidates are ClinVar variants
 (fileDate 2026-10-11) classified pathogenic or likely pathogenic with at least two review stars
 [@ncbi2026clinvar]. Backgrounds come from the 1000 Genomes high-coverage phased panel (20220422)

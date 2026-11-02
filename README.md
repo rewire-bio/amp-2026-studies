@@ -65,7 +65,7 @@ flowchart LR
 | [`evo2-pipeline/`](evo2-pipeline/) | What it takes to add an Evo 2 score to a lab's pipeline, as a working Nextflow pipeline | `pipeline-overview`, backup `code-*` |
 | [`evee/`](evee/) | EVEE's published figure data redrawn as two charts | `evee-confounding`, `evee-results` |
 | [`gpu-drift/`](gpu-drift/) | What a flipped call is, from the recorded H100 and L40S BRCA1 runs in evo2-cloud-operations | `gpu-drift` |
-| [`rare-disease-v2/`](rare-disease-v2/) | Second run of the rare-disease case tests, intellectual disability panel only, with gnomAD frequencies that leave out each person's family, a grpmax filter and an inheritance filter built in. Done: adding AVI to the lookups gains +1.8 points at top 1 (-0.4 to +4.0) on 500 new cases, no gain that matters | will replace the `rd-*` numbers |
+| [`rare-disease-v2/`](rare-disease-v2/) | Second run of the rare-disease case tests, intellectual disability panel ([PanelApp 285](https://panelapp.genomicsengland.co.uk/panels/285/)) only, with gnomAD frequencies that leave out each person's family, a grpmax filter and an inheritance filter built in. Done: adding AVI to the lookups gains +1.8 points at top 1 (-0.4 to +4.0) on 500 new cases, no gain that matters | will replace the `rd-*` numbers |
 
 The rare-disease benchmark is the main study. Start with [`rare-disease/README.md`](rare-disease/README.md), then
 [`rare-disease/REPLICATION.md`](rare-disease/REPLICATION.md) for the follow-up checks.
@@ -150,7 +150,7 @@ The code is under the [MIT licence](LICENSE). Data from others keeps its own lic
 | ClinVar, MANE | Public domain (NCBI) | NCBI |
 | 1000 Genomes genotypes | Open access (IGSR) | Byrska-Bishop et al. 2022 |
 | gnomAD frequencies | Open access | gnomAD, via MyVariant.info |
-| PanelApp panels 285 and 245 | PanelApp terms of use | Genomics England PanelApp |
+| PanelApp panels [285](https://panelapp.genomicsengland.co.uk/panels/285/) and [245](https://panelapp.genomicsengland.co.uk/panels/245/) | PanelApp terms of use | Genomics England PanelApp |
 
 ## Setup
 

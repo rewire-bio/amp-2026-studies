@@ -24,7 +24,7 @@ Gains are top-1 percentage points with paired bootstrap intervals over people.
 
 ## How a case is built
 
-One 1000 Genomes person's rare variants in the intellectual disability panel's genes, plus one inserted ClinVar
+One 1000 Genomes person's rare variants in the genes of [PanelApp panel 285, Intellectual disability](https://panelapp.genomicsengland.co.uk/panels/285/) (v11.45, about 1,510 genes; diagnostics from 348 of them), plus one inserted ClinVar
 pathogenic variant. Each score ranks the list; the outcome is where the diagnostic lands.
 
 ```mermaid

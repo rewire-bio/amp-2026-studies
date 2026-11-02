@@ -9,7 +9,8 @@ its top-1 result on indels is inconclusive. The first
 run's AVI gain (+6.2, 0.0 to +13.0) and its Evo 2 indel gain (+15.8, +5.0 to +26.8) do not hold under this design.
 
 This is a second run of the rare-disease case tests in [`../rare-disease/`](../rare-disease/), on the intellectual
-disability panel only. It fixes the problems found in review of the first run
+disability panel only: [PanelApp panel 285, Intellectual disability](https://panelapp.genomicsengland.co.uk/panels/285/) (version 11.45, about 1,510 green genes; the diagnostic variants come from 348
+of them). It fixes the problems found in review of the first run
 ([issue #1](https://github.com/rewire-bio/amp-2026-studies/issues/1),
 [issue #2](https://github.com/rewire-bio/amp-2026-studies/issues/2)): the 1000 Genomes background people are in
 gnomAD, the realistic grpmax filter was only a side check, about half the diagnoses were carrier states, the combined
