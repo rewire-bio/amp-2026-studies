@@ -1,0 +1,12 @@
+%% How one case is built (PROTOCOL.md sections 1 to 5). Rendered by ../make_figures.sh.
+flowchart TB
+  A["One 1000 Genomes person:<br/>variants in the panel gene regions<br/>(1000 Genomes AF below 1%, grpmax below 1%,<br/>ClinVar P/LP removed)"]
+  B["gnomAD v3.1.2 frequency,<br/>with the person and their family left out"]
+  C["Keep grpmax AF below 0.1%"]
+  E["Add one ClinVar P/LP diagnostic<br/>(genotype set by the gene's mode;<br/>full gnomAD grpmax below 0.1%,<br/>exempt from the frequency filter)"]
+  D["Inheritance filter:<br/>keep genotypes the gene's mode allows"]
+  F["Rank every variant in the list<br/>by each score"]
+  G["Outcome: rank of the diagnostic<br/>(top 1 if nothing scores as high)"]
+  A --> B --> C --> E --> D --> F --> G
+  classDef out fill:#eef4fb,stroke:#2a78d6,color:#0b0b0b;
+  class G out;

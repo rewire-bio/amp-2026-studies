@@ -1,0 +1,43 @@
+%% The scripts, in the order they run. Rendered by ../make_figures.sh.
+flowchart TB
+  subgraph G1["People and backgrounds"]
+    direction TB
+    people["people.py<br/>sex, family, 50 new people"]
+    fetch["fetch_rep_kgp.sh<br/>genotypes of the new 50"]
+    bg["backgrounds.py<br/>rare variants per person"]
+    af["gnomad_af.py<br/>gnomAD frequency, family left out"]
+    people --> fetch --> bg --> af
+  end
+  subgraph G2["Genes and diagnostics"]
+    direction TB
+    moi["moi.py<br/>inheritance mode per gene"]
+    annp["annotate_indels.py<br/>consequence of pool indels"]
+    pool["pool.py<br/>ClinVar diagnostic pools"]
+    moi --> pool
+    annp --> pool
+  end
+  build["build_cases.py<br/>cases for the three studies"]
+  subgraph G3["Scores"]
+    direction TB
+    annc["annotate_indels.py<br/>consequence of case indels"]
+    splice["run_spliceai.sh<br/>SpliceAI on indels"]
+    look["lookup_scores.py<br/>precomputed scores"]
+    sel["evo2/select_variants.py<br/>reuse first-run scores"]
+    win["evo2/make_windows.py<br/>8,192 bp windows"]
+    evo["Evo 2 run on one GPU<br/>(exploratory)"]
+    splice --> look
+    sel --> win
+    win --> evo
+  end
+  bench["case_benchmark.py<br/>ranks, models, intervals, checks"]
+  charts["figures/rd_charts.py<br/>charts"]
+  af --> build
+  pool --> build
+  build --> annc
+  build --> splice
+  build --> look
+  build --> sel
+  annc --> bench
+  look --> bench
+  evo --> bench
+  bench --> charts

@@ -1,0 +1,21 @@
+%% Study design (PROTOCOL.md sections 5 and 8). Rendered by ../make_figures.sh.
+flowchart LR
+  subgraph S1["First run's 50 people"]
+    direction LR
+    P1["200 SNV cases<br/>4 per person"]
+    P2["120 indel cases<br/>ranked among indels"]
+    CV["5-fold cross-validation,<br/>grouped by person<br/>(descriptive)"]
+    FIT["Models fitted on all 200<br/>and locked"]
+    P1 --> FIT
+    P1 --> CV
+    P2 --> CV
+  end
+  subgraph S2["50 new people, no overlap, no relatives"]
+    direction TB
+    R["500 replication cases<br/>10 per person"]
+  end
+  APPLY["Locked models applied<br/>unchanged to the 500"]
+  RULE["<b>Reading rule, fixed in advance</b><br/>Gain that matters: interval above 0<br/>and estimate at least 5 points<br/>and key secondary points the same way<br/>No gain that matters: interval inside -5 to +5<br/>Otherwise: inconclusive"]
+  FIT --> APPLY
+  R --> APPLY
+  APPLY --> RULE

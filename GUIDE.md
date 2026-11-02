@@ -440,13 +440,16 @@ What changes: gnomAD frequencies without the person and their family; a grpmax f
 inheritance filter built into the cases; one consequence annotation throughout; a rule-based baseline (each variant
 scored by the tool for its type) next to the combined lookups; shared bootstrap resamples, so adding a score never
 moves another interval. The scores are the
-four lookups and AVI, with GPN-MSA, GPN-Star and EVEE as secondary scores. Evo 2 is left out and can be added later on
-the same indel cases. The inherited cancer panel is dropped.
+four lookups and AVI, with GPN-MSA, GPN-Star and EVEE as secondary scores, and Evo 2 on every case as an exploratory
+score added after the other results. The inherited cancer panel is dropped.
 
 Status: done. On 500 new cases with the model locked, adding AVI to the lookups raises top 1 from 90.6% to 92.4%, a
 gain of +1.8 points (95% interval -0.4 to +4.0): no gain that matters by the rule fixed in advance. The first run
 reported +6.2 (0.0 to +13.0) without a frequency filter and +0.2 (-3.6 to +3.8) under grpmax; the second run agrees
-with the grpmax result. AVI helps only with non-coding diagnostics, and GPN-MSA and GPN-Star add nothing. Results:
+with the grpmax result. AVI helps only with non-coding diagnostics, and GPN-MSA and GPN-Star add nothing. Evo 2 adds +0.8 (-0.4 to +2.0) on
+the 500 and +1.7 (-5.9 to +9.9) on 120 new indel cases, so the first run's +15.8 on indels is not reproduced.
+Full write-up: [paper (PDF)](rare-disease-v2/paper/paper.pdf),
+[visual companion](https://rewire-bio.github.io/amp-2026-studies/rare-disease-v2/) and
 [`rare-disease-v2/README.md`](rare-disease-v2/README.md). The numbers in 4.1 are still the first run's.
 
 ## 5. Reading list, in order

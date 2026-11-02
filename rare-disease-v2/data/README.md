@@ -62,6 +62,27 @@ has no score, and a missing score ranks last.
 AlphaMissense, AVI and the GPN scores do not depend on annotation, so rows are copied from the first run where it
 looked the key up. The SNV studies' SpliceAI score is `spliceai_max` from CADD's annotation (below).
 
+### Evo 2 (`../evo2/`)
+
+Evo 2 7B scores for every case variant in the three studies (16,173 keys), outside `data/` because they come from a
+GPU run (PROTOCOL.md section 12). `case_benchmark.py` reads `evo2/run*/scores*.tsv` in sorted order and keeps the
+first row per key, so a reused first-run score wins over a rescored one; its Evo 2 score is minus `evo2_delta`
+(higher is more damaging).
+
+| File | Made by | Columns and contents |
+|---|---|---|
+| `evo2/select_variants.py` | | Chooses what to score: reads every study's `case_variants.tsv` and the first run's `../rare-disease/evo2/run*/scores*.tsv` |
+| `evo2/run1_v1/scores.tsv` | `select_variants.py` | First-run scores for the 8,592 case variants the first run had scored (same checkpoint, image and code commit): key, `ref_score` and `var_score` (mean log-likelihood of the reference and variant windows), `evo2_delta` (variant minus reference) |
+| `evo2/check_keys.tsv` | `select_variants.py` | 200 of those keys (seed 20261111), scored again to check that the reused scores reproduce: key only |
+| `evo2/variants_to_score.tsv` | `select_variants.py` | The 7,581 variants with no first-run score plus the 200 check keys (7,781): key only |
+| `evo2/make_windows.py` | | Builds the 8,192 bp windows (variant at index 4,096) from hg38; `--fasta` is required |
+| `evo2/run2/scores.tsv` | `score_windows.py` on the pod, copied back by `../rare-disease/evo2/launch.sh` | The new run's scores for the 7,781 variants, same columns as `run1_v1/scores.tsv`. The 200 check keys match `run1_v1` exactly (maximum difference 0.0) |
+| `evo2/run2/receipt.json` | `../rare-disease/evo2/score_windows.py` on the pod | GPU, numerics, windows scored (15,541: 7,760 reference, 7,781 variant), load and scoring time (73 s, 5,343 s), throughput (2.91 windows per second), peak memory (16.8 GiB), start and finish times |
+| `evo2/run2/events.jsonl` | `launch.sh` | Launch, pod created, running, workload start and end, terminated, in UTC (pod 14:00 to 15:42 on 2 November 2026) |
+| `evo2/run2/instance.json`, `host.txt` | `launch.sh` | Provider, GPU, region, pod ID, image digest, price (USD 3.99 per hour), host driver |
+| `evo2/run2/code_sha256.txt`, `ops_commit.txt` | `launch.sh` | Checksum of the code bundle sent to the pod, and the evo2-cloud-operations commit it came from |
+| `evo2/run2/DONE` | the pod | Written by the pod when the job finished |
+
 ## Not committed
 
 | File | Why | How to get it back |
@@ -72,3 +93,5 @@ looked the key up. The SNV studies' SpliceAI score is `spliceai_max` from CADD's
 | `gnomad_subset/` | A local cache of downloads and intermediate files: the HGDP + 1KG sample metadata, the 1000 Genomes pedigree and sample lists, tabix indexes, slim VCFs of gnomAD's genotype calls at the person-variant positions (`dense/`), per-row adj counts (`counts_chrN.tsv`), fetch logs | `people.py` and `gnomad_af.py fetch` and `counts` (the fetch takes about an hour) |
 | `spliceai/hg38.fa`, `hg38.fa.fai` | 3 GB, and already on disk in a sibling repository | `gunzip -c ../../evo2-size-by-use-case/data/raw/hg38.fa.gz > data/spliceai/hg38.fa`, then `samtools faidx` |
 | `*.tbi`, `*.csi` | Index files | Rebuilt by the scripts that need them |
+| `../evo2/data/refs.tsv.gz`, `vars.tsv.gz` | The Evo 2 input windows, 8,192 bp each; large and rebuilt exactly from hg38 | `evo2/make_windows.py --fasta data/spliceai/hg38.fa --variants evo2/variants_to_score.tsv` |
+| `../evo2/run2/ref_scores.tsv`, `var_scores.tsv`, `score.log` | Per-window intermediate scores and the scorer's log; `scores.tsv` holds the joined result | Written by the next run of `launch.sh` |

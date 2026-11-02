@@ -1,7 +1,9 @@
 # Research proposal: rare-disease case tests, second run
 
-Status: revised 2 November 2026 after a design review. Design in [`PROTOCOL.md`](PROTOCOL.md), work plan in
-[`PLAN.md`](PLAN.md). Tracked in issues [#1](https://github.com/rewire-bio/amp-2026-studies/issues/1) and
+Status: done, 2 November 2026. Revised after a design review; Evo 2 was added on every case after the other results
+(results without Evo 2 at tag `amp-2026-v5`, with Evo 2 at `amp-2026-v6`). Results in [`README.md`](README.md).
+Design in [`PROTOCOL.md`](PROTOCOL.md), work plan in [`PLAN.md`](PLAN.md). Tracked in issues
+[#1](https://github.com/rewire-bio/amp-2026-studies/issues/1) and
 [#2](https://github.com/rewire-bio/amp-2026-studies/issues/2).
 
 ## Background

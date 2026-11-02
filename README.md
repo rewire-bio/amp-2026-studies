@@ -7,7 +7,21 @@ own work comes from a file in this repository, and the companion cites it at a t
 
 New to this work? Start with the [visual guide](https://rewire-bio.github.io/amp-2026-studies/) (also in
 [`GUIDE.md`](GUIDE.md)): what each study asks and why, the ideas behind it, and a reading list.
-`python3 docs/build_site.py` rebuilds the page from `GUIDE.md`.
+`python3 docs/build_site.py` rebuilds the guide from `GUIDE.md` and each study's companion page from its `COMPANION.md`.
+
+## Papers and visual companions
+
+Each study has a full write-up as a paper (PDF) and a short visual companion page with its diagrams, charts and
+findings.
+
+| Study | Paper | Visual companion | Folder |
+|---|---|---|---|
+| Rare-disease case tests, second run (the current results) | [PDF](rare-disease-v2/paper/paper.pdf) | [page](https://rewire-bio.github.io/amp-2026-studies/rare-disease-v2/) | [`rare-disease-v2/`](rare-disease-v2/) |
+| Rare-disease case tests, first run | [PDF](rare-disease/paper/paper.pdf) | [page](https://rewire-bio.github.io/amp-2026-studies/rare-disease/) | [`rare-disease/`](rare-disease/) |
+| BRCA1 case ranking with Evo 2 | [PDF](brca1-case-ranking/paper/paper.pdf) | [page](https://rewire-bio.github.io/amp-2026-studies/brca1-case-ranking/) | [`brca1-case-ranking/`](brca1-case-ranking/) |
+| Evo 2 Nextflow pipeline | [PDF](evo2-pipeline/paper/paper.pdf) | [page](https://rewire-bio.github.io/amp-2026-studies/evo2-pipeline/) | [`evo2-pipeline/`](evo2-pipeline/) |
+| EVEE charts and checks | [PDF](evee/paper/paper.pdf) | [page](https://rewire-bio.github.io/amp-2026-studies/evee/) | [`evee/`](evee/) |
+| Evo 2 calls across GPUs | [PDF](gpu-drift/paper/paper.pdf) | [page](https://rewire-bio.github.io/amp-2026-studies/gpu-drift/) | [`gpu-drift/`](gpu-drift/) |
 
 ## What is here
 
@@ -76,7 +90,7 @@ top 5.
   not confirm it (below).
 - **GPN-MSA's +6 point gain on the first 200 cases did not replicate** (+1.2 locked, interval −3.0 to +5.8).
 - **Indels:** adding Evo 2 to the lookups gains +15.8 points at top 1 (+5.0 to +26.8), and +8.3 (+0.9 to +16.3)
-  after the frequency filter. Which indel type the gain comes from is not settled.
+  after the frequency filter, in the first run. The second run, on new cases, does not reproduce it (below).
 - **With a strict frequency filter** (grpmax AF below 0.1%), lists shrink to a median of 35 to 51 variants, the
   lookups alone rank the diagnostic variant first in 74 to 80% of cases, and no table adds a detectable gain on the
   500 cases.
@@ -84,7 +98,7 @@ top 5.
 "Locked" means the model was fitted on the first 200 cases and applied unchanged to the 500 new ones. The full
 tables and caveats are in the study READMEs.
 
-### Second run: AVI adds no gain that matters
+### Second run: AVI and Evo 2 add no gain that matters
 
 The 1000 Genomes background people are themselves in gnomAD, so every background variant has a gnomAD frequency
 while most diagnostic variants have none. That makes frequency, and scores that learned it such as AVI, look stronger
@@ -106,8 +120,12 @@ first run never used ([issue #2](https://github.com/rewire-bio/amp-2026-studies/
   ClinGen thresholds in 87.2% (82.8 to 91.0). Lists are short after the filters (median 19 variants).
 - **AVI helps only with non-coding diagnostics** (+5.1, +0.6 to +10.5, added to the lookups). GPN-MSA and GPN-Star
   add nothing.
+- **Evo 2, run on every case, adds no gain that matters:** +0.8 (-0.4 to +2.0) on the 500, and +1.7 (-5.9 to +9.9)
+  on 120 new indel cases, against the first run's +15.8 on its indel cases (an exploratory analysis, added after the
+  other results).
 
-Details: [`rare-disease-v2/README.md`](rare-disease-v2/README.md).
+Full write-up: [paper (PDF)](rare-disease-v2/paper/paper.pdf), [visual companion](https://rewire-bio.github.io/amp-2026-studies/rare-disease-v2/)
+and [`rare-disease-v2/README.md`](rare-disease-v2/README.md).
 
 ## Data and licences
 

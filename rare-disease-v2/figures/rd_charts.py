@@ -191,6 +191,7 @@ def gains_added(res: dict, out: Path) -> None:
             continue
         c = res[study]["strata"]["all"].get("contrasts", {})
         f = fit(study)
+        before = len(rows)
         for x in ["AVI", "GPN-MSA", "GPN-Star-V", "GPN-Star-M", "Evo 2"]:
             name = f"Lookups + {x}{f} minus {LOOKUPS}{f}"
             if name not in c:
@@ -204,7 +205,7 @@ def gains_added(res: dict, out: Path) -> None:
         if name in c:
             est, ci = pts(c[name])
             rows.append((f"AVI added to the rule\n{label}", est, ci, ORANGE))
-        if f"Lookups + AVI{f} minus {LOOKUPS}{f}" not in c and name not in c:
+        if len(rows) == before:
             rows.append((label, None, None, no_avi(study)))
     if all(r[1] is None for r in rows):
         print("gains_added: no added-score contrasts in the results; skipped")

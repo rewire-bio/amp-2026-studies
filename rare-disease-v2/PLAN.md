@@ -83,12 +83,23 @@ full list, with every column and what is not committed, is in [`data/README.md`]
 - [x] Dot-and-interval charts.
 - [x] Top-level README findings, GUIDE card, and the notes in `../rare-disease/README.md` and `REPLICATION.md`;
   `docs/index.html` rebuilt.
-- [ ] New release tag for the talk to cite (Tim's call).
+- [x] Release tag `amp-2026-v5`: every result without Evo 2.
 
-## Phase 6 (optional, Tim's call): Evo 2 on the indel cases
+## Phase 6: Evo 2 on every case (Tim's call, after the results without Evo 2)
 
-- [ ] Windows for the indels only, one H100 run (about USD 3), add the scores.
-- [ ] Check that no result row without Evo 2 changes (`tests/test_invariance.py`).
+Widened from the indel cases to every case in all three studies (PROTOCOL.md section 12 and deviation log).
+
+- [x] `evo2/select_variants.py`: reuse the first run's scores for 8,592 case variants; list the 7,581 others plus
+  200 reused ones (seed 20261111) to score again.
+- [x] Windows from hg38 (`evo2/make_windows.py`), one H100 run with the first run's image and code: 15,541 windows,
+  5,343 s scoring, pod 14:00 to 15:42 UTC on 2 November 2026, about USD 6.80 (`evo2/run2/`).
+- [x] Reproducibility: the 200 rescored variants match the reused scores exactly.
+- [x] `case_benchmark.py`: Evo 2 as an exploratory added score with a 98.75% interval, and a two-sided bootstrap
+  p-value on every paired gain; every result file rerun.
+- [x] Check that no value without Evo 2 changes: all 16 result files identical to tag `amp-2026-v5` outside Evo 2.
+- [x] Charts (`evo2_gains`, and Evo 2 in `gains_added` and `top1_by_group`), README, companion page, the two
+  analysis files, `results/README.md`, `data/README.md`.
+- [ ] Release tag `amp-2026-v6`: this version, the results with Evo 2 (Tim's call).
 
 ## Done when
 
@@ -96,4 +107,4 @@ full list, with every column and what is not committed, is in [`data/README.md`]
 - `README.md` here describes the design, its limits, and what changed from the first run and why;
   `../rare-disease/README.md` and `REPLICATION.md` point to the results.
 - The charts are dot-and-interval.
-- Evo 2 can be added later: shared resamples per stratum (tested), `--fasta` required in `evo2/make_windows.py`.
+- Evo 2 is added on every case as an exploratory score, with every other value unchanged from `amp-2026-v5`.
