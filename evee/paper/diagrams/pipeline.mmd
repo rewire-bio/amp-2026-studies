@@ -1,0 +1,20 @@
+%% What this folder does with EVEE's released files. Rendered by ../make_figures.sh.
+flowchart TB
+  R["goodfire-ai/evee-manuscript<br/>commit bb3bfa6, artifacts/"]
+  A1["dataset_characterization.feather<br/>counts by consequence"]
+  A2["deconf_benchmark.feather<br/>AUROC by consequence, no intervals"]
+  A3["snv_benchmark.feather<br/>AUROC by consequence, 95% intervals"]
+  C["evee/evee_charts.py"]
+  S["evee/paper/stats.py"]
+  F1["Confounding chart"]
+  F2["Results chart"]
+  J["stats.json<br/>shares, consequence-only AUROC,<br/>approximate intervals, chart check"]
+  R --> A1 & A2 & A3
+  A1 --> C --> F1
+  A2 --> C --> F2
+  A1 --> S
+  A2 --> S
+  A3 --> S
+  F1 -. "read back" .-> S
+  F2 -. "read back" .-> S
+  S --> J

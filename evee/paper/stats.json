@@ -1,0 +1,1014 @@
+{
+ "composition": {
+  "full": {
+   "total": 833970,
+   "pathogenic": 96793,
+   "intronic_plus_synonymous": 547106,
+   "rows": [
+    {
+     "consequence": "3' UTR",
+     "count": 16679,
+     "n_pathogenic": 27,
+     "share_pct": 0.16188020864560226,
+     "lo_pct": 0.1112821301349243,
+     "hi_pct": 0.23543014321407083
+    },
+    {
+     "consequence": "5' UTR",
+     "count": 15232,
+     "n_pathogenic": 82,
+     "share_pct": 0.5383403361344538,
+     "lo_pct": 0.4339532588719901,
+     "hi_pct": 0.6676692496994523
+    },
+    {
+     "consequence": "Initiator Codon",
+     "count": 1363,
+     "n_pathogenic": 1191,
+     "share_pct": 87.38077769625825,
+     "lo_pct": 85.5121806030529,
+     "hi_pct": 89.03926012029257
+    },
+    {
+     "consequence": "Intronic",
+     "count": 254737,
+     "n_pathogenic": 1723,
+     "share_pct": 0.6763838782744556,
+     "lo_pct": 0.6452900781078433,
+     "hi_pct": 0.7089652659211383
+    },
+    {
+     "consequence": "Missense",
+     "count": 125092,
+     "n_pathogenic": 36301,
+     "share_pct": 29.019441690915485,
+     "lo_pct": 28.768583459606244,
+     "hi_pct": 29.271588469487554
+    },
+    {
+     "consequence": "Non-coding Transcript",
+     "count": 67267,
+     "n_pathogenic": 108,
+     "share_pct": 0.16055420934484962,
+     "lo_pct": 0.133011731156436,
+     "hi_pct": 0.19378878763248408
+    },
+    {
+     "consequence": "Nonsense",
+     "count": 36050,
+     "n_pathogenic": 35454,
+     "share_pct": 98.34674063800277,
+     "lo_pct": 98.20986835564426,
+     "hi_pct": 98.47331043892295
+    },
+    {
+     "consequence": "Other",
+     "count": 3498,
+     "n_pathogenic": 260,
+     "share_pct": 7.43281875357347,
+     "lo_pct": 6.6094895384674395,
+     "hi_pct": 8.34953887650379
+    },
+    {
+     "consequence": "Splice Acceptor",
+     "count": 9828,
+     "n_pathogenic": 9655,
+     "share_pct": 98.23972323972323,
+     "lo_pct": 97.96025779135866,
+     "hi_pct": 98.48149261374701
+    },
+    {
+     "consequence": "Splice Donor",
+     "count": 11855,
+     "n_pathogenic": 11693,
+     "share_pct": 98.63348797975537,
+     "lo_pct": 98.40818930067037,
+     "hi_pct": 98.82727876745385
+    },
+    {
+     "consequence": "Synonymous",
+     "count": 292369,
+     "n_pathogenic": 299,
+     "share_pct": 0.10226802431174303,
+     "lo_pct": 0.09131925690368653,
+     "hi_pct": 0.11452799480349293
+    }
+   ]
+  },
+  "deconfounded": {
+   "total": 158616,
+   "pathogenic": 44057,
+   "intronic_plus_synonymous": 40229,
+   "rows": [
+    {
+     "consequence": "3' UTR",
+     "count": 876,
+     "n_pathogenic": 25,
+     "share_pct": 2.853881278538813,
+     "lo_pct": 1.940422077351666,
+     "hi_pct": 4.17902800513871
+    },
+    {
+     "consequence": "5' UTR",
+     "count": 1480,
+     "n_pathogenic": 75,
+     "share_pct": 5.0675675675675675,
+     "lo_pct": 4.0618524618204725,
+     "hi_pct": 6.305930292900562
+    },
+    {
+     "consequence": "Initiator Codon",
+     "count": 715,
+     "n_pathogenic": 559,
+     "share_pct": 78.18181818181819,
+     "lo_pct": 75.00824930722226,
+     "hi_pct": 81.05418212615288
+    },
+    {
+     "consequence": "Intronic",
+     "count": 27644,
+     "n_pathogenic": 1369,
+     "share_pct": 4.952250036174215,
+     "lo_pct": 4.702697785808566,
+     "hi_pct": 5.2143203762025445
+    },
+    {
+     "consequence": "Missense",
+     "count": 101666,
+     "n_pathogenic": 32509,
+     "share_pct": 31.976275254263964,
+     "lo_pct": 31.69027626183262,
+     "hi_pct": 32.26363625132728
+    },
+    {
+     "consequence": "Non-coding Transcript",
+     "count": 3593,
+     "n_pathogenic": 97,
+     "share_pct": 2.699693849151127,
+     "lo_pct": 2.2181417532260475,
+     "hi_pct": 3.2822802459918288
+    },
+    {
+     "consequence": "Nonsense",
+     "count": 6367,
+     "n_pathogenic": 5822,
+     "share_pct": 91.4402387309565,
+     "lo_pct": 90.72780894795075,
+     "hi_pct": 92.10269364827344
+    },
+    {
+     "consequence": "Other",
+     "count": 187,
+     "n_pathogenic": 102,
+     "share_pct": 54.54545454545455,
+     "lo_pct": 47.3888949214136,
+     "hi_pct": 61.51902272900326
+    },
+    {
+     "consequence": "Splice Acceptor",
+     "count": 1650,
+     "n_pathogenic": 1497,
+     "share_pct": 90.72727272727273,
+     "lo_pct": 89.23158357663907,
+     "hi_pct": 92.03376339979472
+    },
+    {
+     "consequence": "Splice Donor",
+     "count": 1853,
+     "n_pathogenic": 1713,
+     "share_pct": 92.44468429573665,
+     "lo_pct": 91.15160615500963,
+     "hi_pct": 93.56214215539786
+    },
+    {
+     "consequence": "Synonymous",
+     "count": 12585,
+     "n_pathogenic": 289,
+     "share_pct": 2.296384584823202,
+     "lo_pct": 2.048879353834244,
+     "hi_pct": 2.573003134572288
+    }
+   ]
+  }
+ },
+ "consequence_only": {
+  "full": {
+   "auroc": 0.9671961118869576,
+   "lo": 0.9667470666131437,
+   "hi": 0.9676536349749723,
+   "n": 833970,
+   "n_pathogenic": 96793,
+   "cross_fitted": {
+    "auroc": 0.9671843456115912,
+    "splits": 200
+   },
+   "within_class_pair_share": 0.05299189568082212,
+   "majority_rule_accuracy": 0.9521529551422713
+  },
+  "deconfounded": {
+   "auroc": 0.7368026186471189,
+   "lo": 0.7347271559735423,
+   "hi": 0.7387663176104551,
+   "n": 158616,
+   "n_pathogenic": 44057,
+   "cross_fitted": {
+    "auroc": 0.7367526926783594,
+    "splits": 200
+   },
+   "within_class_pair_share": 0.45411041476141606,
+   "majority_rule_accuracy": 0.7765483936046805
+  }
+ },
+ "deconfounded_chart": [
+  {
+   "method": "Covpool probe",
+   "label": "EVEE probe",
+   "consequence": "Overall",
+   "n_scored": 32437,
+   "n_pathogenic_scored": 8630,
+   "split_assumed": false,
+   "auroc": 0.9765323703686866,
+   "lo": 0.9742685416641557,
+   "hi": 0.9787961990732175,
+   "on_chart": false
+  },
+  {
+   "method": "Covpool probe",
+   "label": "EVEE probe",
+   "consequence": "Missense",
+   "n_scored": 20679,
+   "n_pathogenic_scored": 6222,
+   "split_assumed": false,
+   "auroc": 0.9674940162723773,
+   "lo": 0.9643616476452493,
+   "hi": 0.9706263848995053,
+   "on_chart": true
+  },
+  {
+   "method": "Covpool probe",
+   "label": "EVEE probe",
+   "consequence": "Synonymous",
+   "n_scored": 2557,
+   "n_pathogenic_scored": 50,
+   "split_assumed": false,
+   "auroc": 0.9282967690466695,
+   "lo": 0.8786015683100152,
+   "hi": 0.9779919697833237,
+   "on_chart": true
+  },
+  {
+   "method": "Covpool probe",
+   "label": "EVEE probe",
+   "consequence": "Intronic",
+   "n_scored": 5771,
+   "n_pathogenic_scored": 308,
+   "split_assumed": false,
+   "auroc": 0.9652389985997895,
+   "lo": 0.9508735200333134,
+   "hi": 0.9796044771662655,
+   "on_chart": true
+  },
+  {
+   "method": "Covpool probe",
+   "label": "EVEE probe",
+   "consequence": "Splice Donor",
+   "n_scored": 391,
+   "n_pathogenic_scored": 357,
+   "split_assumed": false,
+   "auroc": 0.8705717581150108,
+   "lo": 0.8254260013594703,
+   "hi": 0.9157175148705512,
+   "on_chart": true
+  },
+  {
+   "method": "Covpool probe",
+   "label": "EVEE probe",
+   "consequence": "Splice Acceptor",
+   "n_scored": 377,
+   "n_pathogenic_scored": 344,
+   "split_assumed": false,
+   "auroc": 0.9069326990838619,
+   "lo": 0.8709132440650939,
+   "hi": 0.9429521541026299,
+   "on_chart": true
+  },
+  {
+   "method": "Covpool probe",
+   "label": "EVEE probe",
+   "consequence": "Nonsense",
+   "n_scored": 1320,
+   "n_pathogenic_scored": 1195,
+   "split_assumed": false,
+   "auroc": 0.8229958158995816,
+   "lo": 0.7932276418082271,
+   "hi": 0.852763989990936,
+   "on_chart": true
+  },
+  {
+   "method": "Evo2 loss",
+   "label": "Evo 2 zero-shot",
+   "consequence": "Overall",
+   "n_scored": 158616,
+   "n_pathogenic_scored": 44057,
+   "split_assumed": false,
+   "auroc": 0.928849284177243,
+   "lo": 0.9271398510805006,
+   "hi": 0.9305587172739854,
+   "on_chart": false
+  },
+  {
+   "method": "Evo2 loss",
+   "label": "Evo 2 zero-shot",
+   "consequence": "Missense",
+   "n_scored": 101666,
+   "n_pathogenic_scored": 32509,
+   "split_assumed": false,
+   "auroc": 0.9387353083743716,
+   "lo": 0.9368711657606852,
+   "hi": 0.940599450988058,
+   "on_chart": true
+  },
+  {
+   "method": "Evo2 loss",
+   "label": "Evo 2 zero-shot",
+   "consequence": "Synonymous",
+   "n_scored": 12585,
+   "n_pathogenic_scored": 289,
+   "split_assumed": false,
+   "auroc": 0.7527873581979005,
+   "lo": 0.7200155706398078,
+   "hi": 0.7855591457559933,
+   "on_chart": true
+  },
+  {
+   "method": "Evo2 loss",
+   "label": "Evo 2 zero-shot",
+   "consequence": "Intronic",
+   "n_scored": 27644,
+   "n_pathogenic_scored": 1369,
+   "split_assumed": false,
+   "auroc": 0.8012465918228769,
+   "lo": 0.7870112803730237,
+   "hi": 0.8154819032727302,
+   "on_chart": true
+  },
+  {
+   "method": "Evo2 loss",
+   "label": "Evo 2 zero-shot",
+   "consequence": "Splice Donor",
+   "n_scored": 1853,
+   "n_pathogenic_scored": 1713,
+   "split_assumed": false,
+   "auroc": 0.7564923692769577,
+   "lo": 0.7223043274307304,
+   "hi": 0.7906804111231851,
+   "on_chart": true
+  },
+  {
+   "method": "Evo2 loss",
+   "label": "Evo 2 zero-shot",
+   "consequence": "Splice Acceptor",
+   "n_scored": 1650,
+   "n_pathogenic_scored": 1497,
+   "split_assumed": false,
+   "auroc": 0.7838138149938221,
+   "lo": 0.7530174512651402,
+   "hi": 0.814610178722504,
+   "on_chart": true
+  },
+  {
+   "method": "Evo2 loss",
+   "label": "Evo 2 zero-shot",
+   "consequence": "Nonsense",
+   "n_scored": 6367,
+   "n_pathogenic_scored": 5822,
+   "split_assumed": false,
+   "auroc": 0.784307703459513,
+   "lo": 0.7681614516119131,
+   "hi": 0.8004539553071128,
+   "on_chart": true
+  },
+  {
+   "method": "AlphaMissense",
+   "label": "AlphaMissense",
+   "consequence": "Overall",
+   "n_scored": 95924,
+   "n_pathogenic_scored": 26644,
+   "split_assumed": true,
+   "auroc": 0.972245674130769,
+   "lo": 0.9708462817558084,
+   "hi": 0.9736450665057296,
+   "on_chart": false
+  },
+  {
+   "method": "AlphaMissense",
+   "label": "AlphaMissense",
+   "consequence": "Missense",
+   "n_scored": 95791,
+   "n_pathogenic_scored": 31833,
+   "split_assumed": false,
+   "auroc": 0.9723088679319126,
+   "lo": 0.9710261593484721,
+   "hi": 0.9735915765153531,
+   "on_chart": true
+  },
+  {
+   "method": "REVEL",
+   "label": "REVEL",
+   "consequence": "Overall",
+   "n_scored": 29485,
+   "n_pathogenic_scored": 8190,
+   "split_assumed": true,
+   "auroc": 0.9803761389588644,
+   "lo": 0.9782467748987185,
+   "hi": 0.9825055030190104,
+   "on_chart": false
+  },
+  {
+   "method": "REVEL",
+   "label": "REVEL",
+   "consequence": "Missense",
+   "n_scored": 29113,
+   "n_pathogenic_scored": 9309,
+   "split_assumed": true,
+   "auroc": 0.9812106862848284,
+   "lo": 0.9792526186598239,
+   "hi": 0.9831687539098329,
+   "on_chart": true
+  },
+  {
+   "method": "REVEL",
+   "label": "REVEL",
+   "consequence": "Synonymous",
+   "n_scored": 49,
+   "n_pathogenic_scored": 1,
+   "split_assumed": true,
+   "auroc": 0.8617021276595744,
+   "lo": 0.3958528662614336,
+   "hi": 1.0,
+   "on_chart": false
+  },
+  {
+   "method": "REVEL",
+   "label": "REVEL",
+   "consequence": "Intronic",
+   "n_scored": 106,
+   "n_pathogenic_scored": 5,
+   "split_assumed": true,
+   "auroc": 0.7892156862745098,
+   "lo": 0.5484579069297524,
+   "hi": 1.0,
+   "on_chart": true
+  },
+  {
+   "method": "CADD v1.7",
+   "label": "CADD v1.7",
+   "consequence": "Overall",
+   "n_scored": 158607,
+   "n_pathogenic_scored": 44055,
+   "split_assumed": true,
+   "auroc": 0.963281926554687,
+   "lo": 0.9620348289632006,
+   "hi": 0.9645290241461735,
+   "on_chart": false
+  },
+  {
+   "method": "CADD v1.7",
+   "label": "CADD v1.7",
+   "consequence": "Missense",
+   "n_scored": 101658,
+   "n_pathogenic_scored": 32506,
+   "split_assumed": true,
+   "auroc": 0.9523437289354733,
+   "lo": 0.9506911554454551,
+   "hi": 0.9539963024254914,
+   "on_chart": true
+  },
+  {
+   "method": "CADD v1.7",
+   "label": "CADD v1.7",
+   "consequence": "Synonymous",
+   "n_scored": 12584,
+   "n_pathogenic_scored": 289,
+   "split_assumed": true,
+   "auroc": 0.9334619947062625,
+   "lo": 0.913466229314607,
+   "hi": 0.9534577600979179,
+   "on_chart": true
+  },
+  {
+   "method": "CADD v1.7",
+   "label": "CADD v1.7",
+   "consequence": "Intronic",
+   "n_scored": 27644,
+   "n_pathogenic_scored": 1369,
+   "split_assumed": false,
+   "auroc": 0.9037163534815706,
+   "lo": 0.8928984178242176,
+   "hi": 0.9145342891389237,
+   "on_chart": true
+  },
+  {
+   "method": "CADD v1.7",
+   "label": "CADD v1.7",
+   "consequence": "Splice Donor",
+   "n_scored": 1853,
+   "n_pathogenic_scored": 1713,
+   "split_assumed": false,
+   "auroc": 0.8598469685597532,
+   "lo": 0.836777193258751,
+   "hi": 0.8829167438607554,
+   "on_chart": true
+  },
+  {
+   "method": "CADD v1.7",
+   "label": "CADD v1.7",
+   "consequence": "Splice Acceptor",
+   "n_scored": 1650,
+   "n_pathogenic_scored": 1497,
+   "split_assumed": false,
+   "auroc": 0.864829877620164,
+   "lo": 0.8427069282843265,
+   "hi": 0.8869528269560014,
+   "on_chart": true
+  },
+  {
+   "method": "CADD v1.7",
+   "label": "CADD v1.7",
+   "consequence": "Nonsense",
+   "n_scored": 6367,
+   "n_pathogenic_scored": 5822,
+   "split_assumed": false,
+   "auroc": 0.7889309452598338,
+   "lo": 0.7730221089082998,
+   "hi": 0.8048397816113677,
+   "on_chart": true
+  }
+ ],
+ "chart_check": {
+  "results_chart": [
+   {
+    "method": "Covpool probe",
+    "consequence": "Missense",
+    "table": 0.9674940162723773,
+    "chart": 0.9674940162350731,
+    "diff": 3.7304159761220035e-11
+   },
+   {
+    "method": "Covpool probe",
+    "consequence": "Synonymous",
+    "table": 0.9282967690466695,
+    "chart": 0.9282967689520998,
+    "diff": 9.456968541599053e-11
+   },
+   {
+    "method": "Covpool probe",
+    "consequence": "Intronic",
+    "table": 0.9652389985997895,
+    "chart": 0.9652389987924326,
+    "diff": 1.926431236753956e-10
+   },
+   {
+    "method": "Covpool probe",
+    "consequence": "Splice Donor",
+    "table": 0.8705717581150108,
+    "chart": 0.8705717579498189,
+    "diff": 1.6519186019081644e-10
+   },
+   {
+    "method": "Covpool probe",
+    "consequence": "Splice Acceptor",
+    "table": 0.9069326990838619,
+    "chart": 0.9069326990473634,
+    "diff": 3.649847091224956e-11
+   },
+   {
+    "method": "Covpool probe",
+    "consequence": "Nonsense",
+    "table": 0.8229958158995816,
+    "chart": 0.8229958157788809,
+    "diff": 1.2070067167968546e-10
+   },
+   {
+    "method": "Evo2 loss",
+    "consequence": "Missense",
+    "table": 0.9387353083743716,
+    "chart": 0.938735308198041,
+    "diff": 1.7633061677457817e-10
+   },
+   {
+    "method": "Evo2 loss",
+    "consequence": "Synonymous",
+    "table": 0.7527873581979005,
+    "chart": 0.7527873583791761,
+    "diff": 1.8127555012625862e-10
+   },
+   {
+    "method": "Evo2 loss",
+    "consequence": "Intronic",
+    "table": 0.8012465918228769,
+    "chart": 0.8012465918422111,
+    "diff": 1.9334200906939714e-11
+   },
+   {
+    "method": "Evo2 loss",
+    "consequence": "Splice Donor",
+    "table": 0.7564923692769577,
+    "chart": 0.7564923692472829,
+    "diff": 2.967481815829842e-11
+   },
+   {
+    "method": "Evo2 loss",
+    "consequence": "Splice Acceptor",
+    "table": 0.7838138149938221,
+    "chart": 0.7838138148396618,
+    "diff": 1.5416024012893104e-10
+   },
+   {
+    "method": "Evo2 loss",
+    "consequence": "Nonsense",
+    "table": 0.784307703459513,
+    "chart": 0.7843077034751107,
+    "diff": 1.559774531756375e-11
+   },
+   {
+    "method": "AlphaMissense",
+    "consequence": "Missense",
+    "table": 0.9723088679319126,
+    "chart": 0.9723088681068026,
+    "diff": 1.7488999137782457e-10
+   },
+   {
+    "method": "REVEL",
+    "consequence": "Missense",
+    "table": 0.9812106862848284,
+    "chart": 0.9812106864349925,
+    "diff": 1.5016410337409525e-10
+   },
+   {
+    "method": "REVEL",
+    "consequence": "Intronic",
+    "table": 0.7892156862745098,
+    "chart": 0.7892156861666443,
+    "diff": 1.0786549431429648e-10
+   },
+   {
+    "method": "CADD v1.7",
+    "consequence": "Missense",
+    "table": 0.9523437289354733,
+    "chart": 0.9523437288340265,
+    "diff": 1.0144673989742614e-10
+   },
+   {
+    "method": "CADD v1.7",
+    "consequence": "Synonymous",
+    "table": 0.9334619947062625,
+    "chart": 0.9334619949013819,
+    "diff": 1.95119476131822e-10
+   },
+   {
+    "method": "CADD v1.7",
+    "consequence": "Intronic",
+    "table": 0.9037163534815706,
+    "chart": 0.9037163532805581,
+    "diff": 2.0101253994653234e-10
+   },
+   {
+    "method": "CADD v1.7",
+    "consequence": "Splice Donor",
+    "table": 0.8598469685597532,
+    "chart": 0.8598469684690728,
+    "diff": 9.068035211612369e-11
+   },
+   {
+    "method": "CADD v1.7",
+    "consequence": "Splice Acceptor",
+    "table": 0.864829877620164,
+    "chart": 0.8648298774989936,
+    "diff": 1.211702960191019e-10
+   },
+   {
+    "method": "CADD v1.7",
+    "consequence": "Nonsense",
+    "table": 0.7889309452598338,
+    "chart": 0.7889309453911176,
+    "diff": 1.3128387266192476e-10
+   }
+  ],
+  "confounding_chart": [
+   {
+    "consequence": "Synonymous",
+    "chart_pct": 0.1,
+    "table_pct": 0.1,
+    "match": true
+   },
+   {
+    "consequence": "5' UTR",
+    "chart_pct": 0.5,
+    "table_pct": 0.5,
+    "match": true
+   },
+   {
+    "consequence": "Intronic",
+    "chart_pct": 0.7,
+    "table_pct": 0.7,
+    "match": true
+   },
+   {
+    "consequence": "Missense",
+    "chart_pct": 29.0,
+    "table_pct": 29.0,
+    "match": true
+   },
+   {
+    "consequence": "Initiator Codon",
+    "chart_pct": 87.4,
+    "table_pct": 87.4,
+    "match": true
+   },
+   {
+    "consequence": "Splice Acceptor",
+    "chart_pct": 98.2,
+    "table_pct": 98.2,
+    "match": true
+   },
+   {
+    "consequence": "Nonsense",
+    "chart_pct": 98.3,
+    "table_pct": 98.3,
+    "match": true
+   },
+   {
+    "consequence": "Splice Donor",
+    "chart_pct": 98.6,
+    "table_pct": 98.6,
+    "match": true
+   }
+  ],
+  "max_results_diff": 2.0101253994653234e-10,
+  "all_confounding_match": true
+ },
+ "full_set": [
+  {
+   "method": "Covpool probe",
+   "label": "EVEE probe",
+   "consequence": "Overall",
+   "n_scored": 833970,
+   "auroc": 0.9968364013830402,
+   "lo": 0.9967136753919968,
+   "hi": 0.9969642257172219
+  },
+  {
+   "method": "Covpool probe",
+   "label": "EVEE probe",
+   "consequence": "Missense",
+   "n_scored": 125092,
+   "auroc": 0.9713303815922599,
+   "lo": 0.9704512977371761,
+   "hi": 0.972080510229232
+  },
+  {
+   "method": "Covpool probe",
+   "label": "EVEE probe",
+   "consequence": "Synonymous",
+   "n_scored": 292369,
+   "auroc": 0.9611768173502184,
+   "lo": 0.948397274242463,
+   "hi": 0.9732632295114455
+  },
+  {
+   "method": "Covpool probe",
+   "label": "EVEE probe",
+   "consequence": "Intronic",
+   "n_scored": 254737,
+   "auroc": 0.9835342063270354,
+   "lo": 0.9797947449468913,
+   "hi": 0.9868847448133553
+  },
+  {
+   "method": "Covpool probe",
+   "label": "EVEE probe",
+   "consequence": "Splice Donor",
+   "n_scored": 11855,
+   "auroc": 0.9201022981988802,
+   "lo": 0.8938201693814561,
+   "hi": 0.9440091338145074
+  },
+  {
+   "method": "Covpool probe",
+   "label": "EVEE probe",
+   "consequence": "Splice Acceptor",
+   "n_scored": 9828,
+   "auroc": 0.9280515950584171,
+   "lo": 0.902481751952304,
+   "hi": 0.9512047438056441
+  },
+  {
+   "method": "Covpool probe",
+   "label": "EVEE probe",
+   "consequence": "Nonsense",
+   "n_scored": 36050,
+   "auroc": 0.9002417538483556,
+   "lo": 0.8852363179975824,
+   "hi": 0.9140260585992134
+  },
+  {
+   "method": "Evo2 loss",
+   "label": "Evo 2 zero-shot",
+   "consequence": "Overall",
+   "n_scored": 833970,
+   "auroc": 0.9401135026709738,
+   "lo": 0.939277400787865,
+   "hi": 0.9410215749988114
+  },
+  {
+   "method": "Evo2 loss",
+   "label": "Evo 2 zero-shot",
+   "consequence": "Missense",
+   "n_scored": 125092,
+   "auroc": 0.9255077411464735,
+   "lo": 0.9240864467014637,
+   "hi": 0.9268185681292875
+  },
+  {
+   "method": "Evo2 loss",
+   "label": "Evo 2 zero-shot",
+   "consequence": "Synonymous",
+   "n_scored": 292369,
+   "auroc": 0.6703169098716772,
+   "lo": 0.6425407258392908,
+   "hi": 0.6996054108214402
+  },
+  {
+   "method": "Evo2 loss",
+   "label": "Evo 2 zero-shot",
+   "consequence": "Intronic",
+   "n_scored": 254737,
+   "auroc": 0.8005981752821414,
+   "lo": 0.787163517199922,
+   "hi": 0.8139986452850823
+  },
+  {
+   "method": "Evo2 loss",
+   "label": "Evo 2 zero-shot",
+   "consequence": "Splice Donor",
+   "n_scored": 11855,
+   "auroc": 0.7624509968504951,
+   "lo": 0.7138509913652757,
+   "hi": 0.8106594319569792
+  },
+  {
+   "method": "Evo2 loss",
+   "label": "Evo 2 zero-shot",
+   "consequence": "Splice Acceptor",
+   "n_scored": 9828,
+   "auroc": 0.8000062862394218,
+   "lo": 0.7586068161010735,
+   "hi": 0.8400386554541679
+  },
+  {
+   "method": "Evo2 loss",
+   "label": "Evo 2 zero-shot",
+   "consequence": "Nonsense",
+   "n_scored": 36050,
+   "auroc": 0.8086704560555449,
+   "lo": 0.7883212981577445,
+   "hi": 0.8281848604047115
+  },
+  {
+   "method": "AlphaMissense",
+   "label": "AlphaMissense",
+   "consequence": "Overall",
+   "n_scored": 118983,
+   "auroc": 0.96716713483436,
+   "lo": 0.9661538780355212,
+   "hi": 0.9681152650596478
+  },
+  {
+   "method": "AlphaMissense",
+   "label": "AlphaMissense",
+   "consequence": "Missense",
+   "n_scored": 117653,
+   "auroc": 0.9675907395464746,
+   "lo": 0.966633516789406,
+   "hi": 0.968547261519909
+  },
+  {
+   "method": "AlphaMissense",
+   "label": "AlphaMissense",
+   "consequence": "Splice Acceptor",
+   "n_scored": 29,
+   "auroc": 0.7842105263157895,
+   "lo": 0.6153409090909091,
+   "hi": 0.9229231366459628
+  },
+  {
+   "method": "REVEL",
+   "label": "REVEL",
+   "consequence": "Overall",
+   "n_scored": 39374,
+   "auroc": 0.9761989376908896,
+   "lo": 0.974584888838813,
+   "hi": 0.9777270023252396
+  },
+  {
+   "method": "REVEL",
+   "label": "REVEL",
+   "consequence": "Missense",
+   "n_scored": 36783,
+   "auroc": 0.9783429291234504,
+   "lo": 0.977173649425796,
+   "hi": 0.9798661190599738
+  },
+  {
+   "method": "REVEL",
+   "label": "REVEL",
+   "consequence": "Synonymous",
+   "n_scored": 859,
+   "auroc": 0.8920653442240373,
+   "lo": null,
+   "hi": null
+  },
+  {
+   "method": "REVEL",
+   "label": "REVEL",
+   "consequence": "Intronic",
+   "n_scored": 752,
+   "auroc": 0.7708533077660594,
+   "lo": 0.6044151486097794,
+   "hi": 0.9084018408309024
+  },
+  {
+   "method": "REVEL",
+   "label": "REVEL",
+   "consequence": "Nonsense",
+   "n_scored": 64,
+   "auroc": 0.5241935483870968,
+   "lo": null,
+   "hi": null
+  },
+  {
+   "method": "CADD v1.7",
+   "label": "CADD v1.7",
+   "consequence": "Overall",
+   "n_scored": 832690,
+   "auroc": 0.991439835241894,
+   "lo": 0.9911298929294328,
+   "hi": 0.9917415338040294
+  },
+  {
+   "method": "CADD v1.7",
+   "label": "CADD v1.7",
+   "consequence": "Missense",
+   "n_scored": 125082,
+   "auroc": 0.946136654289722,
+   "lo": 0.9448988269538736,
+   "hi": 0.9471891524953988
+  },
+  {
+   "method": "CADD v1.7",
+   "label": "CADD v1.7",
+   "consequence": "Synonymous",
+   "n_scored": 292368,
+   "auroc": 0.9294592972607116,
+   "lo": 0.909014848225753,
+   "hi": 0.9496998688041296
+  },
+  {
+   "method": "CADD v1.7",
+   "label": "CADD v1.7",
+   "consequence": "Intronic",
+   "n_scored": 254736,
+   "auroc": 0.909505586020787,
+   "lo": 0.8999049791396496,
+   "hi": 0.9179701245668928
+  },
+  {
+   "method": "CADD v1.7",
+   "label": "CADD v1.7",
+   "consequence": "Splice Donor",
+   "n_scored": 11855,
+   "auroc": 0.8567379132603341,
+   "lo": 0.819399315173672,
+   "hi": 0.8929124464996268
+  },
+  {
+   "method": "CADD v1.7",
+   "label": "CADD v1.7",
+   "consequence": "Splice Acceptor",
+   "n_scored": 9828,
+   "auroc": 0.8815804204596138,
+   "lo": 0.840879716644047,
+   "hi": 0.9164257898817127
+  },
+  {
+   "method": "CADD v1.7",
+   "label": "CADD v1.7",
+   "consequence": "Nonsense",
+   "n_scored": 36050,
+   "auroc": 0.7830295651080916,
+   "lo": 0.7598925394192383,
+   "hi": 0.8007315990018317
+  }
+ ]
+}

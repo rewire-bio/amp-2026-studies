@@ -1,0 +1,268 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Rare-disease case benchmark, first run: visual companion</title>
+<meta name="description" content="Diagrams, charts and findings of the Rare-disease case benchmark, first run study, with a link to its paper.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #fbfaf7; --surface: #ffffff; --ink: #1f2430; --muted: #5e6874; --line: #e4e2dc;
+  --accent: #df007d; --accent-soft: #fde2ef; --blue: #005eb8; --blue-soft: #e3eefa;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #14161b; --surface: #1c1f26; --ink: #e8e9ec; --muted: #a3a9b3; --line: #2e323b;
+    --accent: #ff4fa8; --accent-soft: #3a1830; --blue: #6aa8ff; --blue-soft: #16263d;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #14161b; --surface: #1c1f26; --ink: #e8e9ec; --muted: #a3a9b3; --line: #2e323b;
+  --accent: #ff4fa8; --accent-soft: #3a1830; --blue: #6aa8ff; --blue-soft: #16263d;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { margin: 0; background: var(--bg); color: var(--ink); font: 16px/1.65 Inter, system-ui, sans-serif; }
+header.hero { background: linear-gradient(135deg, #2b2f3b 0%, #3d2240 100%); color: #fff; padding: 56px 16px 48px; }
+header.hero .inner { max-width: 1080px; margin: 0 auto; }
+header.hero .kicker { text-transform: uppercase; letter-spacing: .12em; font-size: 13px; color: #f29ccb; font-weight: 600; }
+header.hero h1 { font-size: clamp(30px, 5vw, 46px); line-height: 1.15; margin: 10px 0 14px; }
+header.hero p { max-width: 720px; color: #d9dbe2; font-size: 18px; margin: 0 0 18px; }
+header.hero a.btn { display: inline-block; color: #fff; border: 1px solid #ffffff55; border-radius: 999px; padding: 6px 16px;
+  text-decoration: none; font-size: 14px; margin-right: 8px; }
+header.hero a.btn:hover { background: #ffffff1a; }
+.layout { max-width: 1080px; margin: 0 auto; padding: 0 16px; display: grid; grid-template-columns: 220px minmax(0, 1fr); gap: 40px; }
+nav.toc { position: sticky; top: 24px; align-self: start; padding-top: 40px; font-size: 14px; }
+nav.toc a { display: block; color: var(--muted); text-decoration: none; padding: 4px 0 4px 12px; border-left: 2px solid var(--line); }
+nav.toc a:hover { color: var(--accent); border-left-color: var(--accent); }
+main { padding: 24px 0 80px; min-width: 0; }
+main img { max-width: 100%; height: auto; }
+main h1:first-child { display: none; }
+main h2 { font-size: 28px; margin: 56px 0 12px; padding-top: 8px; border-top: 1px solid var(--line); }
+main h3 { font-size: 21px; margin: 36px 0 8px; color: var(--accent); }
+main a { color: var(--blue); }
+main blockquote { margin: 16px 0; padding: 16px 20px; background: var(--surface); border: 1px solid var(--line);
+  border-left: 4px solid var(--accent); border-radius: 10px; }
+main blockquote p { margin: 6px 0; }
+pre.mermaid { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 18px; margin: 18px 0;
+  overflow-x: auto; text-align: center; }
+pre.mermaid code { font: inherit; white-space: pre; }
+table { border-collapse: collapse; width: 100%; font-size: 14.5px; margin: 14px 0; display: block; overflow-x: auto; }
+th, td { border-bottom: 1px solid var(--line); padding: 8px 10px; text-align: left; vertical-align: top; }
+th { color: var(--muted); font-weight: 600; }
+code { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: .9em; background: var(--blue-soft);
+  padding: 1px 5px; border-radius: 4px; }
+ul li, ol li { margin: 4px 0; }
+footer { border-top: 1px solid var(--line); color: var(--muted); font-size: 14px; padding: 24px 16px 48px; text-align: center; }
+@media (max-width: 860px) { .layout { grid-template-columns: 1fr; gap: 0; } nav.toc { display: none; } }
+</style>
+</head>
+<body>
+<header class="hero"><div class="inner">
+  <div class="kicker">AMP 2026 · Visual companion · rare-disease/</div>
+  <h1>Rare-disease case benchmark, first run</h1>
+  <p>The study's diagrams, charts and findings on one page. The paper has the full method and every number.</p>
+  <a class="btn" href="../">Back to the guide</a>
+  <a class="btn" href="https://github.com/rewire-bio/amp-2026-studies/blob/main/rare-disease/paper/paper.pdf">Paper (PDF)</a>
+  <a class="btn" href="https://github.com/rewire-bio/amp-2026-studies/raw/main/rare-disease/paper/paper.pdf">Paper (raw PDF)</a>
+  <a class="btn" href="https://github.com/rewire-bio/amp-2026-studies/tree/main/rare-disease">Code, data and results on GitHub</a>
+</div></header>
+<div class="layout">
+<nav class="toc"><a href="#design">Design</a><a href="#how-a-case-works">How a case works</a><a href="#charts">Charts</a><a href="#findings">Findings</a><a href="#what-it-means">What it means</a><a href="#limits">Limits</a><a href="#code-and-data">Code and data</a></nav>
+<main>
+<h1 id="rare-disease-case-benchmark-first-run">Rare-disease case benchmark, first run</h1>
+<p><strong>Answer.</strong> In simulated rare-disease cases, the four established lookups (CADD, SpliceAI, REVEL, AlphaMissense) combined with consequence class did most of the work: they put the diagnostic variant first in 59.5% (48.0 to 70.0) of 200 SNV cases and in the top 5 in 92.0% (88.5 to 95.5). No foundation-model score did better on its own. GPN-MSA's early gain did not replicate on 500 new cases. AlphaGenome AVI's gain on the new cases was similar in size (+6.2 points, 0.0 to +13.0), but its interval reaches zero, and it vanished under the per-ancestry frequency filter a pipeline uses (+0.2, -3.6 to +3.8). Evo 2 helped most on indels (+15.8, +5.0 to +26.8), but the second run, with shorter lists and a higher baseline, finds +1.7 (-5.9 to +9.9). Review then found that the background people are in gnomAD, which flatters frequency. The second run in <a href="https://github.com/rewire-bio/amp-2026-studies/blob/main/rare-disease-v2/README.md"><code>rare-disease-v2/</code></a> fixes that and finds no gain that matters from AVI (+1.8, -0.4 to +4.0). Its result replaces this run's AVI claim.</p>
+<p>Read the <a href="https://github.com/rewire-bio/amp-2026-studies/blob/main/rare-disease/paper/paper.pdf">paper (PDF)</a> for the full method and every number, the <a href="https://github.com/rewire-bio/amp-2026-studies/blob/main/rare-disease/README.md">README</a> for the files, and <a href="https://github.com/rewire-bio/amp-2026-studies/blob/main/rare-disease/REPLICATION.md"><code>REPLICATION.md</code></a> for the follow-up checks.</p>
+<h2 id="design">Design</h2>
+<p>Four studies, one design. The SNV, indel and cancer studies use the same 50 people from 1000 Genomes. The replication uses 50 new people and models fitted on the 200 SNV cases, then locked.</p>
+<pre class="mermaid">flowchart LR
+  S[&quot;200 SNV cases&lt;br/&gt;panel 285, intellectual disability&lt;br/&gt;50 people, 4 cases each&quot;]
+  I[&quot;120 indel cases&lt;br/&gt;panel 285, same 50 people&quot;]
+  C[&quot;140 inherited cancer cases&lt;br/&gt;panel 245, same 50 people&quot;]
+  CV[&quot;Combined models,&lt;br/&gt;5-fold cross-validation&lt;br/&gt;grouped by person&quot;]
+  LOCK[&quot;Models fitted on all 200,&lt;br/&gt;then locked&quot;]
+  R[&quot;500 replication SNV cases&lt;br/&gt;50 new unrelated people&quot;]
+  CHK[&quot;Follow-up checks&lt;br/&gt;AVI training chromosomes&lt;br/&gt;gnomAD AF and grpmax filters&quot;]
+  S --&gt; CV
+  I --&gt; CV
+  C --&gt; CV
+  S --&gt; LOCK --&gt; R --&gt; CHK
+  S --&gt; CHK</pre>
+<h2 id="how-a-case-works">How a case works</h2>
+<pre class="mermaid">flowchart LR
+  person[&quot;One 1000 Genomes person:&lt;br/&gt;rare variants in the panel&#39;s exons&lt;br/&gt;(1000 Genomes AF below 1%)&quot;] --&gt; case[&quot;One case:&lt;br/&gt;background plus&lt;br/&gt;one diagnostic variant&quot;]
+  clinvar[&quot;One ClinVar P/LP variant,&lt;br/&gt;2+ stars, inserted&quot;] --&gt; case
+  case --&gt; rank[&quot;Each score ranks every variant.&lt;br/&gt;Competitors: background variants&lt;br/&gt;scoring at or above the diagnostic&quot;]
+  rank --&gt; top[&quot;Top 1, 5, 10:&lt;br/&gt;share of cases with fewer&lt;br/&gt;than 1, 5 or 10 competitors&quot;]</pre>
+<p>Ties count against the score. A diagnostic variant with no score ranks last; background variants with no score are dropped. Intervals are 95% bootstrap intervals over the 50 people.</p>
+<h2 id="charts">Charts</h2>
+<p>Top 1, 5 and 10 for the lookups combined, alone and with one foundation-model score added (200 SNV cases):</p>
+<p><img src="figures/rd_combined.png" alt="Top 1, 5 and 10 for the lookups combined, alone and with AVI, GPN-MSA or Evo 2 added" /></p>
+<p>Top 1 by consequence group. The hatched bar is the one lookup suited to the group, alone. The combined model never beats it:</p>
+<p><img src="figures/rd_by_type.png" alt="Top 1 by consequence group, 200 SNV cases" /></p>
+<p>Gains at top 1 from adding a score: the first 200 cases (hollow) against the 500 new cases with the model locked (filled):</p>
+<p><img src="figures/rd_gains.png" alt="Gain at top 1, first 200 cases against 500 new cases" /></p>
+<p>AVI's gain as the tests get stricter. It vanishes under the grpmax filter:</p>
+<p><img src="figures/rd_stricter.png" alt="AVI gain at top 1 as the tests get stricter" /></p>
+<p>Indels (120 cases), with and without Evo 2:</p>
+<p><img src="figures/rd_indel_combined.png" alt="Top 1, 5 and 10 for indels, lookups combined with and without Evo 2" /></p>
+<p>Inherited cancer panel (140 cases). AVI scores no indels, so its frameshift bar is 0:</p>
+<p><img src="figures/rd_cancer_by_type.png" alt="Top 1 by consequence group, 140 inherited cancer cases" /></p>
+<h2 id="findings">Findings</h2>
+<p>Gains are in percentage points, rates in percent, both with 95% intervals. "Significant" means the interval excludes zero (5% level, not adjusted for multiple comparisons). Only the GPN-MSA replication was planned before its data were seen; every other row is exploratory.</p>
+<table>
+<thead>
+<tr>
+<th>Finding</th>
+<th>Estimate</th>
+<th>95% interval</th>
+<th>Significant</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Lookups combined, top 1, 200 SNV cases</td>
+<td>59.5%</td>
+<td>48.0 to 70.0</td>
+<td></td>
+</tr>
+<tr>
+<td>Lookups combined, top 5, 200 SNV cases</td>
+<td>92.0%</td>
+<td>88.5 to 95.5</td>
+<td></td>
+</tr>
+<tr>
+<td>Best single score (AVI), top 5, 200 SNV cases</td>
+<td>87.0%</td>
+<td>82.0 to 91.5</td>
+<td></td>
+</tr>
+<tr>
+<td>GPN-MSA added, top 1, 200 cases</td>
+<td>+6.0</td>
+<td>+2.0 to +10.5</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>GPN-MSA added, top 1, 500 new cases, locked</td>
+<td>+1.2</td>
+<td>-3.0 to +5.8</td>
+<td>No (did not replicate)</td>
+</tr>
+<tr>
+<td>AVI added, top 1, 200 cases</td>
+<td>+7.5</td>
+<td>-0.5 to +15.5</td>
+<td>No</td>
+</tr>
+<tr>
+<td>AVI added, top 1, 500 new cases, locked</td>
+<td>+6.2</td>
+<td>0.0 to +13.0</td>
+<td>No (interval reaches zero)</td>
+</tr>
+<tr>
+<td>AVI added, top 1, 500 locked, gnomAD AF below 0.1%</td>
+<td>+7.4</td>
+<td>+1.2 to +14.2</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>AVI added, top 1, 500 locked, grpmax AF below 0.1%</td>
+<td>+0.2</td>
+<td>-3.6 to +3.8</td>
+<td>No</td>
+</tr>
+<tr>
+<td>Evo 2 added, top 1, 200 SNV cases</td>
+<td>+3.5</td>
+<td>-1.5 to +9.0</td>
+<td>No</td>
+</tr>
+<tr>
+<td>Evo 2 added, top 1, 120 indel cases</td>
+<td>+15.8</td>
+<td>+5.0 to +26.8</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>Evo 2 added, top 1, indels, gnomAD AF below 0.1%</td>
+<td>+8.3</td>
+<td>+0.9 to +16.3</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>Second run: Evo 2 added, top 1, 120 indel cases</td>
+<td>+1.7</td>
+<td>-5.9 to +9.9</td>
+<td>No</td>
+</tr>
+<tr>
+<td>Lookups combined, top 1, 140 cancer cases</td>
+<td>85.0%</td>
+<td>75.7 to 92.4</td>
+<td></td>
+</tr>
+<tr>
+<td>AVI added, top 1, 140 cancer cases</td>
+<td>+3.6</td>
+<td>0.0 to +7.3</td>
+<td>No (interval reaches zero)</td>
+</tr>
+<tr>
+<td>Evo 2 added, top 1, 140 cancer cases</td>
+<td>+4.3</td>
+<td>+0.7 to +9.3</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>Second run: AVI added, top 1, 500 new cases, locked</td>
+<td>+1.8</td>
+<td>-0.4 to +4.0</td>
+<td>No</td>
+</tr>
+</tbody>
+</table>
+<p>Sources: <code>results/results.json</code>, <code>results_replication.json</code>, <code>results_indel.json</code>, <code>results_cancer.json</code> and the <code>_gnomad</code> files, at tag <code>amp-2026-v4</code>. The second-run AVI row is from <a href="https://github.com/rewire-bio/amp-2026-studies/blob/main/rare-disease-v2/README.md"><code>rare-disease-v2/README.md</code></a> at tag <code>amp-2026-v5</code>; the second-run Evo 2 row is from <a href="https://github.com/rewire-bio/amp-2026-studies/blob/main/rare-disease-v2/results/indel_main.json"><code>rare-disease-v2/results/indel_main.json</code></a> at commit <code>6697db7</code>.</p>
+<h2 id="what-it-means">What it means</h2>
+<ul>
+<li>A lab's existing lookups, combined with the consequence class, already rank the diagnosis first in most of these cases and in the top 5 in about nine in ten.</li>
+<li>A gain picked as the largest of several on 200 cases can shrink on new cases. GPN-MSA's did, from +6.0 to +1.2.</li>
+<li>AVI's gain in this run depended on a frequency signal the design flattered. With realistic frequencies and filters, the second run finds no gain that matters. Do not cite this run's AVI gain.</li>
+<li>Evo 2 helped on indels here, where no score table exists, but the second run, with shorter lists and a higher baseline, finds no gain that matters.</li>
+</ul>
+<h2 id="limits">Limits</h2>
+<ul>
+<li><strong>The background people are in gnomAD</strong> (<a href="https://github.com/rewire-bio/amp-2026-studies/issues/1">issue #1</a>). Almost every background variant had been seen there (all but 14 of 13,145 in the 200 cases, and all 11,208 in the 500) and about three quarters of the diagnostic variants had not. That flatters any score that learned frequency, including AVI.</li>
+<li><strong>Other design problems</strong> (<a href="https://github.com/rewire-bio/amp-2026-studies/issues/2">issue #2</a>): the per-ancestry filter was only a side check, the combined model is a weak baseline within each variant type, two consequence annotations were mixed, and groups are small.</li>
+<li><strong>Inserted diagnoses.</strong> Inheritance and phenotype are ignored; many diagnoses were carrier states.</li>
+<li><strong>Circularity.</strong> ClinVar classifications partly used these scores, which favours them.</li>
+<li><strong>Few people.</strong> 50 per study, so intervals are wide.</li>
+</ul>
+<h2 id="code-and-data">Code and data</h2>
+<ul>
+<li>Paper: <a href="https://github.com/rewire-bio/amp-2026-studies/blob/main/rare-disease/paper/paper.pdf"><code>paper/paper.pdf</code></a>, source <a href="https://github.com/rewire-bio/amp-2026-studies/blob/main/rare-disease/paper/paper.md"><code>paper/paper.md</code></a></li>
+<li>Method and files: <a href="https://github.com/rewire-bio/amp-2026-studies/blob/main/rare-disease/README.md"><code>README.md</code></a>; follow-up checks: <a href="https://github.com/rewire-bio/amp-2026-studies/blob/main/rare-disease/REPLICATION.md"><code>REPLICATION.md</code></a></li>
+<li>Main script: <a href="https://github.com/rewire-bio/amp-2026-studies/blob/main/rare-disease/case_benchmark.py"><code>case_benchmark.py</code></a>; case builder: <a href="https://github.com/rewire-bio/amp-2026-studies/blob/main/rare-disease/build_cases.py"><code>build_cases.py</code></a></li>
+<li>Results: <a href="https://github.com/rewire-bio/amp-2026-studies/tree/main/rare-disease/results/"><code>results/</code></a>; data: <a href="https://github.com/rewire-bio/amp-2026-studies/tree/main/rare-disease/data/"><code>data/</code></a>; Evo 2 runs: <a href="https://github.com/rewire-bio/amp-2026-studies/tree/main/rare-disease/evo2/"><code>evo2/</code></a></li>
+<li>Charts: <a href="https://github.com/rewire-bio/amp-2026-studies/blob/main/rare-disease/figures/rd_charts.py"><code>figures/rd_charts.py</code></a></li>
+<li>Second run: <a href="https://github.com/rewire-bio/amp-2026-studies/blob/main/rare-disease-v2/README.md"><code>../rare-disease-v2/</code></a></li>
+</ul>
+
+</main>
+</div>
+<footer>Tim Richardson · Built from <a href="https://github.com/rewire-bio/amp-2026-studies/blob/main/rare-disease/COMPANION.md">rare-disease/COMPANION.md</a> · Code under the MIT licence</footer>
+<script src="https://cdn.jsdelivr.net/npm/mermaid@11.4.1/dist/mermaid.min.js"></script>
+<script>
+  // Draw after the web font has loaded, so labels are measured in the font they are shown in.
+  const dark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+  mermaid.initialize({ startOnLoad: false, theme: dark ? "dark" : "default", securityLevel: "strict",
+    fontFamily: "Inter, system-ui, sans-serif",
+    flowchart: { htmlLabels: true, curve: "basis", wrappingWidth: 260, subGraphTitleMargin: { top: 8, bottom: 16 } } });
+  document.fonts.ready.then(() => mermaid.run());
+</script>
+</body>
+</html>

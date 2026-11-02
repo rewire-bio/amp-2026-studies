@@ -1,0 +1,213 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>EVEE charts: how much of a ClinVar AUROC is the consequence class?: visual companion</title>
+<meta name="description" content="Diagrams, charts and findings of the EVEE charts: how much of a ClinVar AUROC is the consequence class? study, with a link to its paper.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #fbfaf7; --surface: #ffffff; --ink: #1f2430; --muted: #5e6874; --line: #e4e2dc;
+  --accent: #df007d; --accent-soft: #fde2ef; --blue: #005eb8; --blue-soft: #e3eefa;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #14161b; --surface: #1c1f26; --ink: #e8e9ec; --muted: #a3a9b3; --line: #2e323b;
+    --accent: #ff4fa8; --accent-soft: #3a1830; --blue: #6aa8ff; --blue-soft: #16263d;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #14161b; --surface: #1c1f26; --ink: #e8e9ec; --muted: #a3a9b3; --line: #2e323b;
+  --accent: #ff4fa8; --accent-soft: #3a1830; --blue: #6aa8ff; --blue-soft: #16263d;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { margin: 0; background: var(--bg); color: var(--ink); font: 16px/1.65 Inter, system-ui, sans-serif; }
+header.hero { background: linear-gradient(135deg, #2b2f3b 0%, #3d2240 100%); color: #fff; padding: 56px 16px 48px; }
+header.hero .inner { max-width: 1080px; margin: 0 auto; }
+header.hero .kicker { text-transform: uppercase; letter-spacing: .12em; font-size: 13px; color: #f29ccb; font-weight: 600; }
+header.hero h1 { font-size: clamp(30px, 5vw, 46px); line-height: 1.15; margin: 10px 0 14px; }
+header.hero p { max-width: 720px; color: #d9dbe2; font-size: 18px; margin: 0 0 18px; }
+header.hero a.btn { display: inline-block; color: #fff; border: 1px solid #ffffff55; border-radius: 999px; padding: 6px 16px;
+  text-decoration: none; font-size: 14px; margin-right: 8px; }
+header.hero a.btn:hover { background: #ffffff1a; }
+.layout { max-width: 1080px; margin: 0 auto; padding: 0 16px; display: grid; grid-template-columns: 220px minmax(0, 1fr); gap: 40px; }
+nav.toc { position: sticky; top: 24px; align-self: start; padding-top: 40px; font-size: 14px; }
+nav.toc a { display: block; color: var(--muted); text-decoration: none; padding: 4px 0 4px 12px; border-left: 2px solid var(--line); }
+nav.toc a:hover { color: var(--accent); border-left-color: var(--accent); }
+main { padding: 24px 0 80px; min-width: 0; }
+main img { max-width: 100%; height: auto; }
+main h1:first-child { display: none; }
+main h2 { font-size: 28px; margin: 56px 0 12px; padding-top: 8px; border-top: 1px solid var(--line); }
+main h3 { font-size: 21px; margin: 36px 0 8px; color: var(--accent); }
+main a { color: var(--blue); }
+main blockquote { margin: 16px 0; padding: 16px 20px; background: var(--surface); border: 1px solid var(--line);
+  border-left: 4px solid var(--accent); border-radius: 10px; }
+main blockquote p { margin: 6px 0; }
+pre.mermaid { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 18px; margin: 18px 0;
+  overflow-x: auto; text-align: center; }
+pre.mermaid code { font: inherit; white-space: pre; }
+table { border-collapse: collapse; width: 100%; font-size: 14.5px; margin: 14px 0; display: block; overflow-x: auto; }
+th, td { border-bottom: 1px solid var(--line); padding: 8px 10px; text-align: left; vertical-align: top; }
+th { color: var(--muted); font-weight: 600; }
+code { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: .9em; background: var(--blue-soft);
+  padding: 1px 5px; border-radius: 4px; }
+ul li, ol li { margin: 4px 0; }
+footer { border-top: 1px solid var(--line); color: var(--muted); font-size: 14px; padding: 24px 16px 48px; text-align: center; }
+@media (max-width: 860px) { .layout { grid-template-columns: 1fr; gap: 0; } nav.toc { display: none; } }
+</style>
+</head>
+<body>
+<header class="hero"><div class="inner">
+  <div class="kicker">AMP 2026 · Visual companion · evee/</div>
+  <h1>EVEE charts: how much of a ClinVar AUROC is the consequence class?</h1>
+  <p>The study's diagrams, charts and findings on one page. The paper has the full method and every number.</p>
+  <a class="btn" href="../">Back to the guide</a>
+  <a class="btn" href="https://github.com/rewire-bio/amp-2026-studies/blob/main/evee/paper/paper.pdf">Paper (PDF)</a>
+  <a class="btn" href="https://github.com/rewire-bio/amp-2026-studies/raw/main/evee/paper/paper.pdf">Paper (raw PDF)</a>
+  <a class="btn" href="https://github.com/rewire-bio/amp-2026-studies/tree/main/evee">Code, data and results on GitHub</a>
+</div></header>
+<div class="layout">
+<nav class="toc"><a href="#the-trap">The trap</a><a href="#within-each-consequence">Within each consequence</a><a href="#how-evee-scores-a-variant">How EVEE scores a variant</a><a href="#findings">Findings</a><a href="#what-it-means">What it means</a><a href="#limits">Limits</a><a href="#links">Links</a></nav>
+<main>
+<h1 id="evee-charts-how-much-of-a-clinvar-auroc-is-the-consequence-class">EVEE charts: how much of a ClinVar AUROC is the consequence class?</h1>
+<p><strong>Answer.</strong> Most of it. In EVEE's set of 833,970 ClinVar SNVs, a score that knows only a variant's consequence class reaches an AUROC of 0.967 (95% interval 0.967 to 0.968). Headline AUROCs near 0.99 mostly measure that. Within each class, AUROCs are lower and the order of methods changes: EVEE's probe leads CADD v1.7 clearly on intronic variants, REVEL is higher on the missense variants it can score (36,783 of 125,092), and on EVEE's deconfounded set EVEE's gaps to CADD v1.7 in the synonymous, splice and nonsense classes are within the approximate intervals. This folder redraws two figures from the EVEE preprint (Pearce et al. 2026) for the talk, from the data Goodfire released. We ran no model. Both charts show the published values exactly.</p>
+<h2 id="the-trap">The trap</h2>
+<pre class="mermaid">flowchart TB
+  CV[&quot;EVEE&#39;s ClinVar SNV set&lt;br/&gt;833,970 variants&lt;br/&gt;96,793 pathogenic&quot;]
+  CON[&quot;Pathogenic share by consequence&lt;br/&gt;nonsense 98.3%, missense 29.0%&lt;br/&gt;intronic 0.68%, synonymous 0.10%&quot;]
+  TRAP[&quot;Consequence alone as a score&lt;br/&gt;AUROC 0.967 on the full set&quot;]
+  DEC[&quot;EVEE&#39;s deconfounded set&lt;br/&gt;158,616 variants&lt;br/&gt;consequence alone: AUROC 0.737&quot;]
+  FIX[&quot;Compare methods within&lt;br/&gt;each consequence class&quot;]
+  CV --&gt; CON --&gt; TRAP
+  CV --&gt; DEC
+  TRAP --&gt; FIX
+  DEC --&gt; FIX</pre>
+<img src="figures/evee_confounding.png" width="100%" alt="Share of variants labelled pathogenic, by consequence, in EVEE's full set of 833,970 ClinVar SNVs">
+
+<h2 id="within-each-consequence">Within each consequence</h2>
+<img src="figures/evee_results.png" width="100%" alt="AUROC within each consequence class on EVEE's deconfounded ClinVar set, for the EVEE probe, Evo 2 zero-shot, AlphaMissense, REVEL and CADD v1.7">
+
+<p>Points where a method scored fewer than 100 variants are left out. The methods were scored on different subsets: EVEE on 32,437 of the 158,616 deconfounded variants, CADD v1.7 on 158,607.</p>
+<h2 id="how-evee-scores-a-variant">How EVEE scores a variant</h2>
+<pre class="mermaid">flowchart TB
+  step1[&quot;Step 1: Reference and variant&lt;br/&gt;65 kb, both strands&quot;]
+  step2[&quot;Step 2: Evo 2 7B, frozen&lt;br/&gt;block 27&quot;]
+  step3[&quot;Step 3: Keep 256 positions&lt;br/&gt;per strand that differ most&quot;]
+  step4[&quot;Step 4: Variant minus reference,&lt;br/&gt;covariance pooling (trained)&quot;]
+  step5[&quot;Step 5: Linear readout to&lt;br/&gt;P(pathogenic) (trained)&quot;]
+  step1 --&gt; step2 --&gt; step3 --&gt; step4 --&gt; step5</pre>
+<p>Steps 4 and 5 are trained on ClinVar SNV labels. Genes are split into five partitions, and each is scored by a probe that never saw its genes (evee-manuscript README).</p>
+<h2 id="findings">Findings</h2>
+<p>All comparisons are exploratory. On the full set, "significant" means the published 95% intervals do not overlap, and we apply this only between methods that scored the same variants (EVEE, Evo 2 zero-shot, CADD v1.7). The deconfounded set has no published intervals; ours there are approximate (Hanley and McNeil) and we test nothing.</p>
+<table>
+<thead>
+<tr>
+<th>Finding</th>
+<th>Estimate</th>
+<th>95% interval</th>
+<th>Significant?</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Consequence alone as a score, full set</td>
+<td>AUROC 0.967</td>
+<td>0.967 to 0.968</td>
+<td>Not tested (descriptive)</td>
+</tr>
+<tr>
+<td>Consequence alone as a score, deconfounded set</td>
+<td>AUROC 0.737</td>
+<td>0.735 to 0.739</td>
+<td>Not tested (descriptive)</td>
+</tr>
+<tr>
+<td>Pathogenic share, nonsense against synonymous (full set)</td>
+<td>98.3% against 0.10%</td>
+<td>98.2 to 98.5; 0.09 to 0.11</td>
+<td>Not tested (descriptive)</td>
+</tr>
+<tr>
+<td>EVEE against CADD v1.7, all SNVs</td>
+<td>0.9968 against 0.9914</td>
+<td>0.9967 to 0.9970; 0.9911 to 0.9917</td>
+<td>Yes, but small</td>
+</tr>
+<tr>
+<td>EVEE against CADD v1.7, intronic (full set)</td>
+<td>0.984 against 0.910</td>
+<td>0.980 to 0.987; 0.900 to 0.918</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>EVEE against CADD v1.7, nonsense (full set)</td>
+<td>0.900 against 0.783</td>
+<td>0.885 to 0.914; 0.760 to 0.801</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>EVEE against CADD v1.7, synonymous and splice acceptor (full set)</td>
+<td>0.961 against 0.929; 0.928 against 0.882</td>
+<td>overlapping</td>
+<td>No</td>
+</tr>
+<tr>
+<td>EVEE against REVEL, missense (full set, different subsets)</td>
+<td>0.971 against 0.978</td>
+<td>0.970 to 0.972; 0.977 to 0.980</td>
+<td>Not comparable: REVEL scored only 36,783 of 125,092</td>
+</tr>
+<tr>
+<td>EVEE against CADD v1.7, intronic (deconfounded)</td>
+<td>0.965 against 0.904</td>
+<td>about 0.951 to 0.980; 0.893 to 0.915</td>
+<td>Not tested</td>
+</tr>
+<tr>
+<td>EVEE against REVEL and AlphaMissense, missense (deconfounded)</td>
+<td>0.967 against 0.981 and 0.972</td>
+<td>about 0.9644 to 0.9706; 0.9793 to 0.9832; 0.9710 to 0.9736</td>
+<td>Not tested</td>
+</tr>
+<tr>
+<td>Charts against the published tables</td>
+<td>21 of 21 markers, 8 of 8 labels match</td>
+<td></td>
+<td>Check passed</td>
+</tr>
+</tbody>
+</table>
+<h2 id="what-it-means">What it means</h2>
+<p>A headline AUROC of 0.99 or more says little about how well a tool separates two missense variants, or two intronic ones. The gap between EVEE and CADD v1.7 is 0.005 overall but 0.025 to 0.117 within a class. A lab choosing a predictor should read its results within the consequence classes that matter for its cases, on the variants the tool can actually score.</p>
+<h2 id="limits">Limits</h2>
+<ul>
+<li>No new scores: every AUROC is EVEE's. The input files are read from a clone of goodfire-ai/evee-manuscript at commit <code>bb3bfa6</code> and are not in this repository.</li>
+<li>The deconfounded table has no intervals, and the methods were scored on different subsets. We do not know why EVEE was scored on only a fifth of that set but on every variant of the full set.</li>
+<li>The repository does not include the code behind the full-set intervals or the deconfounded selection, which its script calls "CADD-deconfounded".</li>
+<li>The probe is trained and tested on ClinVar labels (in held-out genes); CADD and Evo 2 zero-shot never saw them.</li>
+</ul>
+<h2 id="links">Links</h2>
+<ul>
+<li><a href="https://github.com/rewire-bio/amp-2026-studies/blob/main/evee/paper/paper.pdf">Paper (PDF)</a>, with Methods, all tables and the full list of limits</li>
+<li><a href="https://github.com/rewire-bio/amp-2026-studies/blob/main/evee/README.md">README</a> for the chart commands</li>
+<li>Code: <a href="https://github.com/rewire-bio/amp-2026-studies/blob/main/evee/evee_charts.py">chart script</a>, <a href="https://github.com/rewire-bio/amp-2026-studies/blob/main/evee/paper/stats.py">values and chart check</a> with output <a href="https://github.com/rewire-bio/amp-2026-studies/blob/main/evee/paper/stats.json">stats.json</a>, <a href="https://github.com/rewire-bio/amp-2026-studies/blob/main/evee/paper/make_figures.sh">figure build</a></li>
+<li>Source data: <a href="https://github.com/goodfire-ai/evee-manuscript">goodfire-ai/evee-manuscript</a> and the preprint, <a href="https://doi.org/10.64898/2026.04.10.717844">doi:10.64898/2026.04.10.717844</a></li>
+</ul>
+
+</main>
+</div>
+<footer>Tim Richardson · Built from <a href="https://github.com/rewire-bio/amp-2026-studies/blob/main/evee/COMPANION.md">evee/COMPANION.md</a> · Code under the MIT licence</footer>
+<script src="https://cdn.jsdelivr.net/npm/mermaid@11.4.1/dist/mermaid.min.js"></script>
+<script>
+  // Draw after the web font has loaded, so labels are measured in the font they are shown in.
+  const dark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+  mermaid.initialize({ startOnLoad: false, theme: dark ? "dark" : "default", securityLevel: "strict",
+    fontFamily: "Inter, system-ui, sans-serif",
+    flowchart: { htmlLabels: true, curve: "basis", wrappingWidth: 260, subGraphTitleMargin: { top: 8, bottom: 16 } } });
+  document.fonts.ready.then(() => mermaid.run());
+</script>
+</body>
+</html>

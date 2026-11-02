@@ -6,6 +6,22 @@ what to read first. The READMEs in each folder have the full method and every nu
 Every claim has a source. Published work is cited by first author and year, with the full reference and DOI in the
 [reading list](#5-reading-list-in-order). Our own numbers link to the results file they come from.
 
+Study companions and papers. Each study has a paper (PDF) and a companion page with its diagrams, charts and
+findings:
+
+- Rare-disease case benchmark: [companion](https://rewire-bio.github.io/amp-2026-studies/rare-disease/),
+  [paper (PDF)](https://github.com/rewire-bio/amp-2026-studies/blob/main/rare-disease/paper/paper.pdf)
+- Rare-disease case tests, second run: [companion](https://rewire-bio.github.io/amp-2026-studies/rare-disease-v2/),
+  [paper (PDF)](https://github.com/rewire-bio/amp-2026-studies/blob/main/rare-disease-v2/paper/paper.pdf)
+- BRCA1 case ranking: [companion](https://rewire-bio.github.io/amp-2026-studies/brca1-case-ranking/),
+  [paper (PDF)](https://github.com/rewire-bio/amp-2026-studies/blob/main/brca1-case-ranking/paper/paper.pdf)
+- Evo 2 case pipeline: [companion](https://rewire-bio.github.io/amp-2026-studies/evo2-pipeline/),
+  [paper (PDF)](https://github.com/rewire-bio/amp-2026-studies/blob/main/evo2-pipeline/paper/paper.pdf)
+- EVEE charts: [companion](https://rewire-bio.github.io/amp-2026-studies/evee/),
+  [paper (PDF)](https://github.com/rewire-bio/amp-2026-studies/blob/main/evee/paper/paper.pdf)
+- GPU drift charts: [companion](https://rewire-bio.github.io/amp-2026-studies/gpu-drift/),
+  [paper (PDF)](https://github.com/rewire-bio/amp-2026-studies/blob/main/gpu-drift/paper/paper.pdf)
+
 Contents:
 
 1. [The question in one picture](#1-the-question-in-one-picture)

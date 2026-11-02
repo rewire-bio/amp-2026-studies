@@ -1,0 +1,11 @@
+%% How EVEE scores one SNV, from the evee-manuscript README (Figure 1 protocol) and the preprint.
+flowchart TB
+  W["1. Reference and variant sequence<br/>65 kb window, both strands"]
+  E["2. Evo 2 7B, weights frozen<br/>hidden state of block 27"]
+  P["3. Keep the 256 positions per strand<br/>where reference and variant<br/>differ most (cosine)"]
+  C["4. Variant minus reference,<br/>covariance pooling (trained)"]
+  R["5. Linear readout to<br/>P(pathogenic) (trained)"]
+  T["Trained on ClinVar SNV labels;<br/>5 gene partitions, each predicted<br/>by a probe that never saw its genes"]
+  W --> E --> P --> C --> R
+  T -.-> C
+  T -.-> R

@@ -1,0 +1,11 @@
+%% Study design. Rendered by ../make_figures.sh.
+flowchart TB
+  SGE["BRCA1 saturation genome editing<br/>3,893 SNVs in 13 exons<br/>(Findlay et al. 2018)"]
+  LOF["823 loss of function (LOF)<br/>each one a diagnostic variant"]
+  FUNC["3,070 functional<br/>or intermediate"]
+  CASE["Simulated case<br/>1 LOF variant<br/>+ K others at other positions<br/>K = 100 (main), K = 20<br/>10 cases per LOF variant"]
+  RANK["Rank all candidates by<br/>CADD v1.7, SpliceAI, REVEL v1.3,<br/>Evo 2 7B and combinations"]
+  OUT["Share ranked first<br/>Share in the top 5<br/>95% intervals by position"]
+  SGE --> LOF --> CASE
+  SGE --> FUNC --> CASE
+  CASE --> RANK --> OUT

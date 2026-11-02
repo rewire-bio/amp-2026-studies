@@ -1,0 +1,351 @@
+{
+ "versions": {
+  "nextflow": "24.10.5 build 5935",
+  "java": "openjdk version \"21.0.12.1\" 2026-08-18",
+  "bcftools": "bcftools 1.24",
+  "htslib": "Using htslib 1.24",
+  "samtools": "samtools 1.24",
+  "python": "Python 3.15.0",
+  "os": "Darwin 25.6.0 arm64",
+  "evo2-cloud-operations": "f8ae11c9a1c45505487c978b4cb7e064c4e59905",
+  "amp-2026-studies": "6697db790700df8a60b4de7187de6f25c4462baf"
+ },
+ "test_case_rebuilt_identical": true,
+ "windows_match_source_study": {
+  "variants": 100,
+  "windows_pipeline": 198,
+  "windows_source": 198,
+  "variants_identical": 100,
+  "sha256_pipeline": "3fb8d5c5b0f6f6b67b6e4c0d2d988c3a5fa6eb749261621f95d9d74c999636df",
+  "sha256_source": "3fb8d5c5b0f6f6b67b6e4c0d2d988c3a5fa6eb749261621f95d9d74c999636df",
+  "identical": true
+ },
+ "case": {
+  "variants": 100,
+  "positions": 98,
+  "evo2_sequences": 198,
+  "consequences": {
+   "Missense": 49,
+   "Intronic": 24,
+   "Splice region": 14,
+   "Synonymous": 12,
+   "Canonical splice": 1
+  },
+  "assay_classes": {
+   "FUNC": 94,
+   "INT": 5,
+   "LOF": 1
+  }
+ },
+ "coverage": {
+  "cadd": 100,
+  "spliceai": 100,
+  "evo2": 100
+ },
+ "diagnostic": {
+  "variant": "17:41258546:A>C",
+  "consequence": "Missense",
+  "cadd": {
+   "rank": 9,
+   "rank_min": 9,
+   "rank_max": 9,
+   "variants_sharing_the_score": 1
+  },
+  "spliceai": {
+   "rank": 96,
+   "rank_min": 46,
+   "rank_max": 100,
+   "variants_sharing_the_score": 55
+  },
+  "evo2_h100": {
+   "rank": 8,
+   "rank_min": 8,
+   "rank_max": 8,
+   "variants_sharing_the_score": 1
+  },
+  "evo2_l40s": {
+   "rank": 10,
+   "rank_min": 10,
+   "rank_max": 10,
+   "variants_sharing_the_score": 1
+  },
+  "evo2_lof_h100": 0.0034337639808654785,
+  "evo2_lof_l40s": 0.0031464099884033203
+ },
+ "replay_matches_recorded_max_abs_diff": 0.0,
+ "runs": {
+  "first": {
+   "exit": 0,
+   "wall_s": 3.21
+  },
+  "second": {
+   "exit": 0,
+   "wall_s": 2.07
+  },
+  "resume": {
+   "exit": 0,
+   "wall_s": 1.43
+  },
+  "p3": {
+   "exit": 0,
+   "wall_s": 2.06
+  },
+  "l40s": {
+   "exit": 0,
+   "wall_s": 2.06
+  },
+  "mismatch": {
+   "exit": 0,
+   "wall_s": 2.0
+  },
+  "missing": {
+   "exit": 1,
+   "wall_s": 1.87
+  }
+ },
+ "first_run_tasks": [
+  {
+   "name": "NORMALISE",
+   "status": "COMPLETED",
+   "duration": "48ms"
+  },
+  {
+   "name": "ANNOTATE_PRECOMPUTED",
+   "status": "COMPLETED",
+   "duration": "89ms"
+  },
+  {
+   "name": "MAKE_WINDOWS",
+   "status": "COMPLETED",
+   "duration": "720ms"
+  },
+  {
+   "name": "REPLAY_EVO2",
+   "status": "COMPLETED",
+   "duration": "306ms"
+  },
+  {
+   "name": "ANNOTATE_EVO2",
+   "status": "COMPLETED",
+   "duration": "46ms"
+  },
+  {
+   "name": "RANK_CASE",
+   "status": "COMPLETED",
+   "duration": "330ms"
+  }
+ ],
+ "determinism": {
+  "ranked_identical": true,
+  "annotated_vcf_bytes_identical": false,
+  "annotated_vcf_identical_without_bcftools_command_lines": true
+ },
+ "resume": {
+  "cached_tasks": 6,
+  "submitted_tasks": 0
+ },
+ "p3_ranked_identical": true,
+ "p3_evo2_identical": true,
+ "l40s_vs_h100": {
+  "n": 100,
+  "median_abs_diff": 0.00010132789611816406,
+  "max_abs_diff": 0.0005214810371398926,
+  "spearman": 0.9658205820582059,
+  "variants_whose_evo2_rank_changes": 80,
+  "median_rank_move": 3.0,
+  "variants_moving_at_most_2": 45,
+  "variants_moving_5_or_more": 37,
+  "variants_moving_10_or_more": 16,
+  "largest_rank_move": 30,
+  "largest_move_variant": "17:41199638:C>G",
+  "largest_move_h100_rank": 80,
+  "largest_move_l40s_rank": 50,
+  "top5_ranks_unchanged": true,
+  "top10_shared_variants": 10
+ },
+ "guards": {
+  "ref_mismatch": {
+   "exit": 0,
+   "bcftools_norm_counts": "101/0/0/0/1/0/0",
+   "ranked_rows": 100
+  },
+  "missing_score": {
+   "exit": 1,
+   "message": "No recorded Evo 2 score for chr17:41250000:A>C"
+  }
+ },
+ "cloud_run_recorded_b75c67aa": {
+  "P2": {
+   "gpu": "NVIDIA H100 80GB HBM3",
+   "provider": "gcp",
+   "purchase_option": "spot",
+   "instance_type": "a3-highgpu-1g",
+   "region": "us-central1",
+   "attempt": "attempt-1",
+   "cost": {
+    "billed_seconds": 2734,
+    "instance_usd_per_hour": 6.2426,
+    "price_source": "Cloud Billing Catalog API, Spot, us-central1: 26 vCPU x Spot Preemptible A3 Instance Core running in Americas, 234 GiB x Spot Preemptible A3 Instance Ram running in Americas, 1 x Nvidia H100 80GB GPU attached to Spot Preemptible VMs running in Americas",
+    "storage_usd_per_hour": 0.0466,
+    "usd": 4.78
+   },
+   "docker_pull_s": 491,
+   "events_utc": {
+    "gpu_ready": "2026-10-09T16:17:06Z",
+    "launch_requested": "2026-10-09T16:16:06Z",
+    "running": "2026-10-09T16:16:29Z",
+    "ssh_ready": "2026-10-09T16:17:04Z",
+    "terminated": "2026-10-09T17:02:03Z",
+    "workload_end": "2026-10-09T17:01:25Z",
+    "workload_start": "2026-10-09T16:17:20Z"
+   },
+   "timings_s": {
+    "evo2_7b_base_download_and_verify_s": 55.999,
+    "evo2_7b_base_load_s": 2.689,
+    "evo2_7b_download_and_verify_s": 59.942,
+    "evo2_7b_load_s": 3.049,
+    "repeat_evo2_7b_download_and_verify_s": 10.512,
+    "repeat_evo2_7b_load_s": 2.88,
+    "repeat_w4_s": 92.515,
+    "w0_s": 2.985,
+    "w1_s": 1782.141,
+    "w2_s": 82.382,
+    "w3_s": 2.834
+   },
+   "w1_sequences_per_second": 2.9297,
+   "w1_peak_memory_gib": 16.83
+  },
+  "P3": {
+   "gpu": "NVIDIA H100 80GB HBM3",
+   "provider": "runpod",
+   "purchase_option": "on-demand",
+   "instance_type": "NVIDIA H100 80GB HBM3",
+   "region": "US-MO-1",
+   "attempt": "attempt-1",
+   "cost": {
+    "billed_seconds": 2526,
+    "instance_usd_per_hour": 3.99,
+    "price_source": "RunPod pod costPerHr returned by the REST API at launch",
+    "storage_usd_per_hour": 0.0274,
+    "usd": 2.82
+   },
+   "docker_pull_s": null,
+   "events_utc": {
+    "launch_requested": "2026-10-09T16:15:59Z",
+    "pod_created": "2026-10-09T16:16:00Z",
+    "running": "2026-10-09T16:22:14Z",
+    "ssh_ready": "2026-10-09T16:22:16Z",
+    "terminated": "2026-10-09T16:58:06Z",
+    "workload_end": "2026-10-09T16:57:56Z",
+    "workload_start": "2026-10-09T16:22:40Z"
+   },
+   "timings_s": {
+    "evo2_7b_base_download_and_verify_s": 53.098,
+    "evo2_7b_base_load_s": 2.573,
+    "evo2_7b_download_and_verify_s": 50.321,
+    "evo2_7b_load_s": 3.373,
+    "repeat_evo2_7b_download_and_verify_s": 9.666,
+    "repeat_evo2_7b_load_s": 2.958,
+    "repeat_w4_s": 92.88,
+    "w0_s": 2.801,
+    "w1_s": 1795.638,
+    "w2_s": 82.831,
+    "w3_s": 2.787
+   },
+   "w1_sequences_per_second": 2.9075,
+   "w1_peak_memory_gib": 16.83
+  },
+  "P5": {
+   "gpu": "NVIDIA L40S",
+   "provider": "runpod",
+   "purchase_option": "on-demand",
+   "instance_type": "NVIDIA L40S",
+   "region": "US-MO-1",
+   "attempt": "attempt-2",
+   "cost": {
+    "billed_seconds": 9531,
+    "instance_usd_per_hour": 1.09,
+    "price_source": "RunPod pod costPerHr returned by the REST API at launch",
+    "storage_usd_per_hour": 0.0274,
+    "usd": 2.96
+   },
+   "docker_pull_s": null,
+   "events_utc": {
+    "launch_requested": "2026-10-09T16:59:54Z",
+    "pod_created": "2026-10-09T16:59:55Z",
+    "running": "2026-10-09T17:00:12Z",
+    "ssh_ready": "2026-10-09T17:00:13Z",
+    "terminated": "2026-10-09T19:38:46Z",
+    "workload_end": "2026-10-09T19:38:36Z",
+    "workload_start": "2026-10-09T17:00:36Z"
+   },
+   "timings_s": {
+    "evo2_7b_base_download_and_verify_s": 49.36,
+    "evo2_7b_base_load_s": 4.078,
+    "evo2_7b_download_and_verify_s": 50.014,
+    "evo2_7b_load_s": 4.58,
+    "repeat_evo2_7b_download_and_verify_s": 10.811,
+    "repeat_evo2_7b_load_s": 4.112,
+    "repeat_w4_s": 427.078,
+    "w0_s": 5.532,
+    "w1_s": 8533.271,
+    "w2_s": 363.24,
+    "w3_s": 10.55
+   },
+   "w1_sequences_per_second": 0.6117,
+   "w1_peak_memory_gib": 16.78
+  }
+ },
+ "cloud_agreement": {
+  "agreement_with_reference": {
+   "P3": {
+    "w1": {
+     "max_abs_difference": 0.0,
+     "median_abs_difference": 0.0,
+     "n": 3893,
+     "rank_moves_over_1pct": 0,
+     "spearman": 1.0
+    },
+    "w2_max_abs_difference": 0.0
+   },
+   "P5": {
+    "w1": {
+     "max_abs_difference": 0.0013126134872437,
+     "median_abs_difference": 0.00011736154556274414,
+     "n": 3893,
+     "rank_moves_over_1pct": 2627,
+     "spearman": 0.9829038105050308
+    },
+    "w2_max_abs_difference": 0.020125597715377808
+   }
+  },
+  "same_platform_repeat": {
+   "P2": {
+    "max_abs_difference": 0.0,
+    "median_abs_difference": 0.0,
+    "n": 200,
+    "rank_moves_over_1pct": 0,
+    "spearman": 1.0
+   },
+   "P3": {
+    "max_abs_difference": 0.0,
+    "median_abs_difference": 0.0,
+    "n": 200,
+    "rank_moves_over_1pct": 0,
+    "spearman": 1.0
+   },
+   "P5": {
+    "max_abs_difference": 0.0,
+    "median_abs_difference": 0.0,
+    "n": 200,
+    "rank_moves_over_1pct": 0,
+    "spearman": 1.0
+   }
+  }
+ },
+ "case_gpu_estimate": {
+  "sequences": 198,
+  "rate_sequences_per_s_P2": 2.9297,
+  "scoring_seconds": 67.58371164283032
+ }
+}

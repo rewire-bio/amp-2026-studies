@@ -1,0 +1,25 @@
+%% Study design: what was run where, and which comparisons the paper reports. Rendered by ../make_figures.sh.
+flowchart TB
+  FIX["<b>Held fixed</b><br/>one container image, pinned by digest<br/>Evo 2 7B weights, pinned by revision and SHA-256<br/>3,893 BRCA1 SNVs, 8,192 bp windows"]
+  subgraph MAIN["Main runs, 9 October 2026: all 3,893 variants"]
+    direction LR
+    P2["P2: H100<br/>Google Cloud"]
+    P3["P3: H100<br/>Runpod"]
+    P5["P5: L40S<br/>Runpod"]
+  end
+  REP["Reproduction:<br/>each platform again<br/>on fresh machines"]
+  subgraph FU["Follow-up, 11 October 2026: 487 variants"]
+    direction LR
+    FH["H100: default, FP8 off,<br/>FP32, batch 8"]
+    FL["L40S: default,<br/>FP8 off, FP32"]
+    FA["L40: default,<br/>FP8 off"]
+  end
+  CUT["Cut-offs fitted on the reference GPU's scores<br/>(H100; L40 for L40 pairs):<br/>Youden, 90% and 95% sensitivity"]
+  OUT["Score agreement, AUROC, and<br/>calls that change, with exact 95% intervals"]
+  FIX --> MAIN
+  FIX --> FU
+  MAIN --> REP
+  MAIN --> CUT
+  FU --> CUT
+  REP --> OUT
+  CUT --> OUT

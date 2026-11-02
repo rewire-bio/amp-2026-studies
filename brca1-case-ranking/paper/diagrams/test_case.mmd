@@ -1,0 +1,13 @@
+%% How one simulated case is scored (case_ranking.py: simulate, competitors, summarise).
+flowchart TB
+  D["Diagnostic variant<br/>one LOF variant"]
+  C["100 candidates<br/>drawn without replacement from the<br/>3,070 non-LOF variants at other positions"]
+  S["One score for each of the 101 variants<br/>(missing score ranks lowest)"]
+  N["Competitors = candidates scoring<br/>equal to or higher than the diagnostic<br/>(ties count against the score)"]
+  F["0 competitors:<br/>ranked first"]
+  T["0 to 4 competitors:<br/>in the top 5"]
+  D --> S
+  C --> S
+  S --> N
+  N --> F
+  N --> T

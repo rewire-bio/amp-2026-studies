@@ -1,0 +1,254 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>GPU drift: do Evo 2 calls change between GPU models?: visual companion</title>
+<meta name="description" content="Diagrams, charts and findings of the GPU drift: do Evo 2 calls change between GPU models? study, with a link to its paper.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #fbfaf7; --surface: #ffffff; --ink: #1f2430; --muted: #5e6874; --line: #e4e2dc;
+  --accent: #df007d; --accent-soft: #fde2ef; --blue: #005eb8; --blue-soft: #e3eefa;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #14161b; --surface: #1c1f26; --ink: #e8e9ec; --muted: #a3a9b3; --line: #2e323b;
+    --accent: #ff4fa8; --accent-soft: #3a1830; --blue: #6aa8ff; --blue-soft: #16263d;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #14161b; --surface: #1c1f26; --ink: #e8e9ec; --muted: #a3a9b3; --line: #2e323b;
+  --accent: #ff4fa8; --accent-soft: #3a1830; --blue: #6aa8ff; --blue-soft: #16263d;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { margin: 0; background: var(--bg); color: var(--ink); font: 16px/1.65 Inter, system-ui, sans-serif; }
+header.hero { background: linear-gradient(135deg, #2b2f3b 0%, #3d2240 100%); color: #fff; padding: 56px 16px 48px; }
+header.hero .inner { max-width: 1080px; margin: 0 auto; }
+header.hero .kicker { text-transform: uppercase; letter-spacing: .12em; font-size: 13px; color: #f29ccb; font-weight: 600; }
+header.hero h1 { font-size: clamp(30px, 5vw, 46px); line-height: 1.15; margin: 10px 0 14px; }
+header.hero p { max-width: 720px; color: #d9dbe2; font-size: 18px; margin: 0 0 18px; }
+header.hero a.btn { display: inline-block; color: #fff; border: 1px solid #ffffff55; border-radius: 999px; padding: 6px 16px;
+  text-decoration: none; font-size: 14px; margin-right: 8px; }
+header.hero a.btn:hover { background: #ffffff1a; }
+.layout { max-width: 1080px; margin: 0 auto; padding: 0 16px; display: grid; grid-template-columns: 220px minmax(0, 1fr); gap: 40px; }
+nav.toc { position: sticky; top: 24px; align-self: start; padding-top: 40px; font-size: 14px; }
+nav.toc a { display: block; color: var(--muted); text-decoration: none; padding: 4px 0 4px 12px; border-left: 2px solid var(--line); }
+nav.toc a:hover { color: var(--accent); border-left-color: var(--accent); }
+main { padding: 24px 0 80px; min-width: 0; }
+main img { max-width: 100%; height: auto; }
+main h1:first-child { display: none; }
+main h2 { font-size: 28px; margin: 56px 0 12px; padding-top: 8px; border-top: 1px solid var(--line); }
+main h3 { font-size: 21px; margin: 36px 0 8px; color: var(--accent); }
+main a { color: var(--blue); }
+main blockquote { margin: 16px 0; padding: 16px 20px; background: var(--surface); border: 1px solid var(--line);
+  border-left: 4px solid var(--accent); border-radius: 10px; }
+main blockquote p { margin: 6px 0; }
+pre.mermaid { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 18px; margin: 18px 0;
+  overflow-x: auto; text-align: center; }
+pre.mermaid code { font: inherit; white-space: pre; }
+table { border-collapse: collapse; width: 100%; font-size: 14.5px; margin: 14px 0; display: block; overflow-x: auto; }
+th, td { border-bottom: 1px solid var(--line); padding: 8px 10px; text-align: left; vertical-align: top; }
+th { color: var(--muted); font-weight: 600; }
+code { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: .9em; background: var(--blue-soft);
+  padding: 1px 5px; border-radius: 4px; }
+ul li, ol li { margin: 4px 0; }
+footer { border-top: 1px solid var(--line); color: var(--muted); font-size: 14px; padding: 24px 16px 48px; text-align: center; }
+@media (max-width: 860px) { .layout { grid-template-columns: 1fr; gap: 0; } nav.toc { display: none; } }
+</style>
+</head>
+<body>
+<header class="hero"><div class="inner">
+  <div class="kicker">AMP 2026 · Visual companion · gpu-drift/</div>
+  <h1>GPU drift: do Evo 2 calls change between GPU models?</h1>
+  <p>The study's diagrams, charts and findings on one page. The paper has the full method and every number.</p>
+  <a class="btn" href="../">Back to the guide</a>
+  <a class="btn" href="https://github.com/rewire-bio/amp-2026-studies/blob/main/gpu-drift/paper/paper.pdf">Paper (PDF)</a>
+  <a class="btn" href="https://github.com/rewire-bio/amp-2026-studies/raw/main/gpu-drift/paper/paper.pdf">Paper (raw PDF)</a>
+  <a class="btn" href="https://github.com/rewire-bio/amp-2026-studies/tree/main/gpu-drift">Code, data and results on GitHub</a>
+</div></header>
+<div class="layout">
+<nav class="toc"><a href="#design">Design</a><a href="#how-one-call-flips">How one call flips</a><a href="#all-variants">All variants</a><a href="#findings">Findings</a><a href="#what-it-means">What it means</a><a href="#limits">Limits</a><a href="#read-more">Read more</a></nav>
+<main>
+<h1 id="gpu-drift-do-evo-2-calls-change-between-gpu-models">GPU drift: do Evo 2 calls change between GPU models?</h1>
+<p><strong>Answer.</strong> Yes, for borderline variants. The same container, Evo 2 7B weights and inputs scored 3,893 BRCA1 SNVs on two H100 GPUs at two clouds and on an L40S. The two H100s gave bit-identical scores. The L40S scores differed by a median of 1.17e-4, which moved AUROC by only 0.0021 (95% interval 0.0002 to 0.0042) but changed 72 of 3,893 calls (1.8%, 1.4% to 2.3%) at a cut-off fitted on the H100, and up to 189 (4.9%) at more sensitive cut-offs. An L40 and an L40S, which share an architecture, disagreed as much. Computing in FP32 removed almost all of the difference, at 3 to 6 times the GPU time. Fix the GPU product and validate on it, or compute in FP32. The runs and the analysis are in <a href="https://github.com/rewire-bio/evo2-cloud-operations/tree/f8ae11c9a1c4">rewire-bio/evo2-cloud-operations</a>; the gpu-drift folder of this repository draws the charts and writes them up.</p>
+<h2 id="design">Design</h2>
+<pre class="mermaid">flowchart TB
+  FIX[&quot;Held fixed&lt;br/&gt;one container image, pinned by digest&lt;br/&gt;Evo 2 7B weights, pinned by revision and SHA-256&lt;br/&gt;3,893 BRCA1 SNVs, 8,192 bp windows&quot;]
+  subgraph MAIN[&quot;Main runs, 9 October 2026: all 3,893 variants&quot;]
+    P2[&quot;P2: H100&lt;br/&gt;Google Cloud&quot;]
+    P3[&quot;P3: H100&lt;br/&gt;Runpod&quot;]
+    P5[&quot;P5: L40S&lt;br/&gt;Runpod&quot;]
+  end
+  REP[&quot;Reproduction:&lt;br/&gt;each platform again&lt;br/&gt;on fresh machines&quot;]
+  subgraph FU[&quot;Follow-up, 11 October 2026: 487 variants&quot;]
+    FH[&quot;H100: default, FP8 off,&lt;br/&gt;FP32, batch 8&quot;]
+    FL[&quot;L40S: default,&lt;br/&gt;FP8 off, FP32&quot;]
+    FA[&quot;L40: default,&lt;br/&gt;FP8 off&quot;]
+  end
+  CUT[&quot;Cut-offs fitted on the reference GPU&#39;s scores&lt;br/&gt;(H100; L40 for L40 pairs):&lt;br/&gt;Youden, 90% and 95% sensitivity&quot;]
+  OUT[&quot;Score agreement, AUROC, and&lt;br/&gt;calls that change, with exact 95% intervals&quot;]
+  FIX --&gt; MAIN
+  FIX --&gt; FU
+  MAIN --&gt; REP
+  MAIN --&gt; CUT
+  FU --&gt; CUT
+  REP --&gt; OUT
+  CUT --&gt; OUT</pre>
+<h2 id="how-one-call-flips">How one call flips</h2>
+<pre class="mermaid">flowchart TB
+  V[&quot;One BRCA1 SNV&lt;br/&gt;chr17:41276094:C&gt;A&quot;]
+  S[&quot;Score = reference window&lt;br/&gt;minus variant window,&lt;br/&gt;mean log-likelihood&quot;]
+  H[&quot;H100 score 0.002101&quot;]
+  L[&quot;L40S score 0.001625&quot;]
+  T{&quot;Cut-off 0.001698&lt;br/&gt;fitted on H100&quot;}
+  CH[&quot;Above: loss of function&quot;]
+  CL[&quot;Below: functional&quot;]
+  V --&gt; S
+  S --&gt; H
+  S --&gt; L
+  H --&gt; T
+  L --&gt; T
+  T --&gt;|&quot;H100: above&quot;| CH
+  T --&gt;|&quot;L40S: below&quot;| CL</pre>
+<img src="figures/gpu_flip_step2.png" width="100%" alt="One variant on both GPUs around the Youden cut-off: the H100 calls it loss of function, the L40S calls it functional">
+
+<p>The assay classes this missense variant as functional, so here the L40S happens to agree with it. Across all variants, flips run both ways: 41 called loss of function on the H100 only, 31 on the L40S only.</p>
+<h2 id="all-variants">All variants</h2>
+<img src="figures/gpu_flip_scatter.png" width="60%" alt="H100 score against L40S score for all 3,893 variants, near the Youden cut-off; the 72 flipped calls in orange">
+
+<img src="figures/flips_by_threshold.png" width="100%" alt="Calls that change, with exact 95% intervals, at three cut-offs, for each pair of GPUs and precision settings">
+
+<img src="figures/differences.png" width="80%" alt="Median and maximum per-variant score difference for each comparison in the 487-variant follow-up, log scale">
+
+<h2 id="findings">Findings</h2>
+<table>
+<thead>
+<tr>
+<th>Finding</th>
+<th>Estimate</th>
+<th>95% interval</th>
+<th>Status</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>H100 vs H100 (two clouds), and each platform against its own rerun</td>
+<td>0 differences in 3,893 scores</td>
+<td>none (exact equality)</td>
+<td>Not a test: identical</td>
+</tr>
+<tr>
+<td>H100 vs L40S, median score difference</td>
+<td>1.17e-4 (Spearman 0.983)</td>
+<td>not computed</td>
+<td>Descriptive</td>
+</tr>
+<tr>
+<td>H100 vs L40S, AUROC difference (L40S minus H100)</td>
+<td>0.0021</td>
+<td>0.0002 to 0.0042</td>
+<td>Yes, but too small to matter</td>
+</tr>
+<tr>
+<td>Calls that change, Youden cut-off</td>
+<td>72 of 3,893 (1.8%)</td>
+<td>1.4% to 2.3%</td>
+<td>Estimate (nonzero; controls 0)</td>
+</tr>
+<tr>
+<td>Calls that change, 90% sensitivity cut-off</td>
+<td>152 of 3,893 (3.9%)</td>
+<td>3.3% to 4.6%</td>
+<td>Estimate (nonzero; controls 0)</td>
+</tr>
+<tr>
+<td>Calls that change, 95% sensitivity cut-off</td>
+<td>189 of 3,893 (4.9%)</td>
+<td>4.2% to 5.6%</td>
+<td>Estimate (nonzero; controls 0)</td>
+</tr>
+<tr>
+<td>Same-GPU controls, calls that change</td>
+<td>0 of 3,893 at every cut-off</td>
+<td>0.0% to 0.09% (exact)</td>
+<td>Not a test: identical</td>
+</tr>
+<tr>
+<td>Follow-up: FP8 off, H100 vs L40S median difference</td>
+<td>0.70 of default</td>
+<td>not computed</td>
+<td>Exploratory</td>
+</tr>
+<tr>
+<td>Follow-up: FP32, H100 vs L40S median difference</td>
+<td>4.77e-7, about 250 times smaller</td>
+<td>not computed</td>
+<td>Exploratory</td>
+</tr>
+<tr>
+<td>Follow-up: FP32, calls that change (Youden, 90%, 95%)</td>
+<td>0, 0 and 1 of 487</td>
+<td>0.0% to 0.8%, 0.0% to 0.8%, 0.0% to 1.1%</td>
+<td>Exploratory</td>
+</tr>
+<tr>
+<td>Follow-up: L40 vs L40S median difference</td>
+<td>1.13e-4, about the same as H100 vs L40S (1.19e-4)</td>
+<td>not computed</td>
+<td>Exploratory</td>
+</tr>
+<tr>
+<td>Follow-up: batch 8 vs batch 1 on the H100</td>
+<td>0 differences</td>
+<td>none (exact equality)</td>
+<td>Exploratory</td>
+</tr>
+<tr>
+<td>Follow-up: FP32 GPU time</td>
+<td>5.8 times slower on H100, 3.4 on L40S</td>
+<td>not computed</td>
+<td>Exploratory</td>
+</tr>
+</tbody>
+</table>
+<h2 id="what-it-means">What it means</h2>
+<ul>
+<li>The GPU model is part of the method. Validate Evo 2 on the GPU product that will run it, and revalidate when it changes. The same architecture is not enough.</li>
+<li>Arc's forward test passed on every GPU, so it does not catch this.</li>
+<li>A call hides how close a variant was to the cut-off. Here 150 to 334 of 3,893 variants sat within one median GPU difference of a cut-off. Report a margin.</li>
+<li>If scores must depend as little as possible on the hardware, compute in FP32 and pay 3 to 6 times the GPU time.</li>
+</ul>
+<h2 id="limits">Limits</h2>
+<ul>
+<li>The cut-offs were fitted and applied on the same assay data. They are for counting flips, not clinical use.</li>
+<li>One gene, one model size (7B), one window length and three GPU products. Flip rates depend on how many variants sit near the cut-off.</li>
+<li>Same-model identity was shown for the H100 only.</li>
+<li>The follow-up used 487 variants, one machine per GPU, and was exploratory.</li>
+<li>The cause is inferred, not traced. The L40 and L40S have the same architecture and the same number of multiprocessors (142), and in the follow-up ran one image on one driver, so cuBLAS's conditions for identical results were met. Other kernels whose choice depends on the device (Transformer Engine, flash attention, Triton) are the likely source.</li>
+<li>Exact intervals treat variants as independent. Flips cluster slightly (189 flips at 165 positions at the 95% cut-off), so the intervals may be a little narrow.</li>
+</ul>
+<h2 id="read-more">Read more</h2>
+<ul>
+<li><a href="https://github.com/rewire-bio/amp-2026-studies/blob/main/gpu-drift/paper/paper.pdf">Paper (PDF)</a>, built from <a href="https://github.com/rewire-bio/amp-2026-studies/blob/main/gpu-drift/paper/paper.md">paper/paper.md</a></li>
+<li><a href="https://github.com/rewire-bio/amp-2026-studies/blob/main/gpu-drift/README.md">README</a></li>
+<li>Code: <a href="https://github.com/rewire-bio/amp-2026-studies/blob/main/gpu-drift/flip_charts.py">flip_charts.py</a> (slide charts) and <a href="https://github.com/rewire-bio/amp-2026-studies/blob/main/gpu-drift/paper/make_figures.py">paper/make_figures.py</a> (paper charts)</li>
+<li>Runs and analysis: <a href="https://github.com/rewire-bio/evo2-cloud-operations/tree/f8ae11c9a1c4">evo2-cloud-operations</a>, including <a href="https://github.com/rewire-bio/evo2-cloud-operations/blob/f8ae11c9a1c4/followup/CLASSIFICATION-FLIPS.md">CLASSIFICATION-FLIPS.md</a> and <a href="https://github.com/rewire-bio/evo2-cloud-operations/blob/f8ae11c9a1c4/followup/RESULTS.md">RESULTS.md</a></li>
+</ul>
+
+</main>
+</div>
+<footer>Tim Richardson · Built from <a href="https://github.com/rewire-bio/amp-2026-studies/blob/main/gpu-drift/COMPANION.md">gpu-drift/COMPANION.md</a> · Code under the MIT licence</footer>
+<script src="https://cdn.jsdelivr.net/npm/mermaid@11.4.1/dist/mermaid.min.js"></script>
+<script>
+  // Draw after the web font has loaded, so labels are measured in the font they are shown in.
+  const dark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+  mermaid.initialize({ startOnLoad: false, theme: dark ? "dark" : "default", securityLevel: "strict",
+    fontFamily: "Inter, system-ui, sans-serif",
+    flowchart: { htmlLabels: true, curve: "basis", wrappingWidth: 260, subGraphTitleMargin: { top: 8, bottom: 16 } } });
+  document.fonts.ready.then(() => mermaid.run());
+</script>
+</body>
+</html>

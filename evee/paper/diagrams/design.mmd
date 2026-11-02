@@ -1,0 +1,11 @@
+%% Why the charts compare within each consequence. Numbers from stats.json (EVEE's published tables).
+flowchart LR
+  CV["EVEE's ClinVar SNV set<br/>833,970 variants<br/>96,793 pathogenic"]
+  CON["Pathogenic share by consequence<br/>nonsense 98.3%, missense 29.0%<br/>intronic 0.68%, synonymous 0.10%"]
+  TRAP["Consequence alone as a score<br/>AUROC 0.967 on the full set"]
+  DEC["EVEE's deconfounded set<br/>158,616 variants<br/>consequence alone: AUROC 0.737"]
+  FIX["Compare methods within<br/>each consequence class"]
+  CV --> CON --> TRAP
+  CV --> DEC
+  TRAP --> FIX
+  DEC --> FIX

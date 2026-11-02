@@ -1,0 +1,13 @@
+%% Code and data flow. Rendered by ../make_figures.sh.
+flowchart TB
+  LAB["evo2-cloud-operations<br/>brca1_variants.tsv<br/>assay labels, position, region"]
+  EVO["evo2-cloud-operations<br/>Evo 2 7B scores<br/>run b75c67aa, H100"]
+  EXT["evo2-cloud-operations<br/>CADD v1.7, SpliceAI, REVEL v1.3<br/>current_predictors.py --fetch"]
+  CR["case_ranking.py<br/>cross-validated models<br/>8,230 cases at K = 100 and K = 20<br/>1,000 position resamples"]
+  RES["results.json"]
+  CH["paper/charts.py"]
+  FIG["Figures"]
+  LAB --> CR
+  EVO --> CR
+  EXT --> CR
+  CR --> RES --> CH --> FIG

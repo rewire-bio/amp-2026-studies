@@ -1,0 +1,16 @@
+%% What makes a score reproducible, and what each control fixes. Rendered by ../make_figures.sh.
+flowchart TB
+  subgraph fixed["Fixed by the pipeline"]
+    direction TB
+    a["Container image for SCORE_EVO2<br/>pinned by sha256 digest"] ~~~ b["Evo 2 7B weights<br/>pinned revision, SHA-256 checked<br/>before torch.load"]
+    b ~~~ c["Test case<br/>rebuilt from a fixed seed and<br/>compared with the committed files"] ~~~ d["Steps<br/>Nextflow caches each task<br/>by its inputs and script"]
+  end
+  subgraph open["Not fixed by the pipeline"]
+    direction TB
+    e["GPU model<br/>H100 and L40S scores differ<br/>by about 1e-4"] ~~~ h["Tool versions for the CPU steps<br/>host bcftools, htslib, python3"]
+    h ~~~ i["Checksums of resources/<br/>and the recorded scores"] ~~~ f["Run record in the VCF<br/>image digest and GPU<br/>not yet written"]
+  end
+  fixed --> s["Same score on the<br/>same GPU type"]
+  open --> g["Ranks can move<br/>between GPU types"]
+  classDef out fill:#eef4fb,stroke:#2a78d6,color:#0b0b0b;
+  class s,g out;

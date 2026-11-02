@@ -1,0 +1,11 @@
+%% The scripts, in the order they run. Rendered by ../make_figures.sh.
+flowchart LR
+  prep["prepare_data.sh<br/>regions.py, clinvar_plp.py,<br/>fetch_kgp.sh"] --> build["build_cases.py<br/>snv, indel, cancer,<br/>replication"]
+  build --> lookup["lookup_scores.py"]
+  build --> ann["annotate_indels.py<br/>run_spliceai.sh"]
+  build --> gn["gnomad_af.py"]
+  build --> win["evo2/make_windows.py<br/>evo2/launch.sh"]
+  lookup & ann & gn & win --> bench["case_benchmark.py"]
+  bench --> res["results/*.json"]
+  res --> charts["figures/rd_charts.py"]
+  res --> held["avi_heldout.py"]

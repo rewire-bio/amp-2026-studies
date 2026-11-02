@@ -1,0 +1,18 @@
+%% How the test case is built and checked (scripts/prepare_resources.py, record_run.sh). Rendered by ../make_figures.sh.
+flowchart TB
+  A["3,893 BRCA1 SNVs with saturation<br/>genome editing classes (Findlay 2018)"]
+  B["Seed 20261016: draw one<br/>loss-of-function variant"]
+  C["Draw 99 variants not classed<br/>loss of function, at other positions"]
+  D["test/case_brca1.vcf (100 variants)<br/>test/case_brca1.truth.txt"]
+  E["Run the pipeline<br/>(replay profile)"]
+  F["Outcome: rank of the diagnostic<br/>variant under each score"]
+  K["Checks in record_run.sh<br/>Rebuild the case: identical files<br/>Rebuild the windows with the source code: identical<br/>Run twice: identical ranked.tsv<br/>-resume: every task cached<br/>Replay Runpod H100 and L40S scores<br/>Add a REF mismatch: record dropped<br/>Add an unscored SNV: run stops"]
+  A --> B --> D
+  A --> C --> D
+  D --> E
+  E --> F
+  E --> K
+  classDef out fill:#eef4fb,stroke:#2a78d6,color:#0b0b0b;
+  class F out;
+  classDef checks text-align:left;
+  class K checks;

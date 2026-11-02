@@ -1,0 +1,7 @@
+task_id	hash	native_id	name	status	exit	submit	duration	realtime	%cpu	peak_rss	peak_vmem	rchar	wchar
+1	b7/61559a	87119	NORMALISE	COMPLETED	0	2026-11-02 16:06:59.297	48ms	0ms	-	-	-	-	-
+2	3e/6eac0e	87145	ANNOTATE_PRECOMPUTED	COMPLETED	0	2026-11-02 16:06:59.362	89ms	0ms	-	-	-	-	-
+3	7a/b7eaf1	87176	MAKE_WINDOWS	COMPLETED	0	2026-11-02 16:06:59.464	720ms	1s	-	-	-	-	-
+4	8e/ffe760	87204	REPLAY_EVO2	COMPLETED	0	2026-11-02 16:07:00.191	306ms	0ms	-	-	-	-	-
+5	15/c618c1	87226	ANNOTATE_EVO2	COMPLETED	0	2026-11-02 16:07:00.508	46ms	0ms	-	-	-	-	-
+6	03/12c9a6	87253	RANK_CASE	COMPLETED	0	2026-11-02 16:07:00.559	330ms	0ms	-	-	-	-	-

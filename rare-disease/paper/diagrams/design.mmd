@@ -1,0 +1,14 @@
+%% The studies and the follow-up checks. Rendered by ../make_figures.sh.
+flowchart LR
+  S["<b>200 SNV cases</b><br/>panel 285, intellectual disability<br/>50 people, 4 cases each"]
+  I["<b>120 indel cases</b><br/>panel 285<br/>the same 50 people"]
+  C["<b>140 inherited cancer cases</b><br/>panel 245, SNVs and indels<br/>the same 50 people"]
+  CV["Combined models fitted with<br/>5-fold cross-validation,<br/>grouped by person"]
+  LOCK["Models fitted on all 200<br/>SNV cases, then locked"]
+  R["<b>500 replication SNV cases</b><br/>panel 285, 50 new unrelated<br/>people, 10 cases each"]
+  CHK["Follow-up checks<br/>AVI training chromosomes<br/>gnomAD AF below 1% and 0.1%<br/>grpmax AF below 0.1%"]
+  S --> CV
+  I --> CV
+  C --> CV
+  S --> LOCK --> R --> CHK
+  S --> CHK

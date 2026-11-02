@@ -4,6 +4,8 @@ Two charts on the talk's EVEE slides, redrawn from the figure data that Goodfire
 ([goodfire-ai/evee-manuscript](https://github.com/goodfire-ai/evee-manuscript), `artifacts/*.feather`). No new
 analysis: the values are EVEE's, drawn in the talk's colours.
 
+Paper: [paper/paper.pdf](paper/paper.pdf). Visual companion: https://rewire-bio.github.io/amp-2026-studies/evee/
+
 | Output | Slide | From | Shows |
 |---|---|---|---|
 | `evee_confounding[_gel].svg` | `evee-confounding` | `dataset_characterization.feather` | Share of ClinVar SNVs labelled pathogenic, by consequence, in EVEE's full set of 834,000 variants. Consequence alone predicts much of the label |

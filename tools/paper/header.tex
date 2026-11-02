@@ -1,0 +1,21 @@
+% Preamble additions, included by tools/paper/build.sh (pandoc -H). Every package used here is in this TeX Live
+% (basic scheme): longtable, booktabs, float, caption. placeins, authblk and multirow are not installed; do not add them.
+% longtable is loaded here too, so a paper without tables still builds (pandoc loads it only for tables).
+\usepackage{longtable}
+\usepackage{booktabs}
+\usepackage{float}
+\floatplacement{figure}{tbp}
+\floatplacement{table}{tbp}
+\usepackage{caption}
+\captionsetup{font=small,labelfont=bf,labelsep=period,justification=justified,singlelinecheck=false}
+\captionsetup[table]{position=top,skip=4pt}
+% Pandoc writes pipe tables as longtable with booktabs rules; a little more row height and smaller text.
+\renewcommand{\arraystretch}{1.15}
+\setlength{\LTpre}{8pt}
+\setlength{\LTpost}{8pt}
+\AtBeginEnvironment{longtable}{\small}
+% Let floats fill more of a page before being pushed back.
+\renewcommand{\topfraction}{0.9}
+\renewcommand{\bottomfraction}{0.8}
+\renewcommand{\textfraction}{0.1}
+\renewcommand{\floatpagefraction}{0.75}

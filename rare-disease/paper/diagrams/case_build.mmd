@@ -1,0 +1,6 @@
+%% How one case is built and scored. Rendered by ../make_figures.sh.
+flowchart LR
+  person["One 1000 Genomes person:<br/>variants in the panel's MANE<br/>exons plus 20 bp, 1000 Genomes<br/>AF below 1%, ClinVar P/LP removed"] --> case["One case:<br/>background plus<br/>one diagnostic variant"]
+  clinvar["One ClinVar P/LP variant,<br/>2+ review stars, drawn to a<br/>quota per consequence;<br/>inserted, not observed"] --> case
+  case --> rank["Each score ranks every variant.<br/>Competitors: background variants<br/>at or above the diagnostic<br/>(ties and missing scores count against)"]
+  rank --> top["Top 1, 5 and 10:<br/>share of cases with fewer<br/>than 1, 5 or 10 competitors"]

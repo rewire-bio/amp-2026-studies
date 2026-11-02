@@ -1,0 +1,248 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Evo 2 case pipeline: visual companion</title>
+<meta name="description" content="Diagrams, charts and findings of the Evo 2 case pipeline study, with a link to its paper.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #fbfaf7; --surface: #ffffff; --ink: #1f2430; --muted: #5e6874; --line: #e4e2dc;
+  --accent: #df007d; --accent-soft: #fde2ef; --blue: #005eb8; --blue-soft: #e3eefa;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #14161b; --surface: #1c1f26; --ink: #e8e9ec; --muted: #a3a9b3; --line: #2e323b;
+    --accent: #ff4fa8; --accent-soft: #3a1830; --blue: #6aa8ff; --blue-soft: #16263d;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #14161b; --surface: #1c1f26; --ink: #e8e9ec; --muted: #a3a9b3; --line: #2e323b;
+  --accent: #ff4fa8; --accent-soft: #3a1830; --blue: #6aa8ff; --blue-soft: #16263d;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { margin: 0; background: var(--bg); color: var(--ink); font: 16px/1.65 Inter, system-ui, sans-serif; }
+header.hero { background: linear-gradient(135deg, #2b2f3b 0%, #3d2240 100%); color: #fff; padding: 56px 16px 48px; }
+header.hero .inner { max-width: 1080px; margin: 0 auto; }
+header.hero .kicker { text-transform: uppercase; letter-spacing: .12em; font-size: 13px; color: #f29ccb; font-weight: 600; }
+header.hero h1 { font-size: clamp(30px, 5vw, 46px); line-height: 1.15; margin: 10px 0 14px; }
+header.hero p { max-width: 720px; color: #d9dbe2; font-size: 18px; margin: 0 0 18px; }
+header.hero a.btn { display: inline-block; color: #fff; border: 1px solid #ffffff55; border-radius: 999px; padding: 6px 16px;
+  text-decoration: none; font-size: 14px; margin-right: 8px; }
+header.hero a.btn:hover { background: #ffffff1a; }
+.layout { max-width: 1080px; margin: 0 auto; padding: 0 16px; display: grid; grid-template-columns: 220px minmax(0, 1fr); gap: 40px; }
+nav.toc { position: sticky; top: 24px; align-self: start; padding-top: 40px; font-size: 14px; }
+nav.toc a { display: block; color: var(--muted); text-decoration: none; padding: 4px 0 4px 12px; border-left: 2px solid var(--line); }
+nav.toc a:hover { color: var(--accent); border-left-color: var(--accent); }
+main { padding: 24px 0 80px; min-width: 0; }
+main img { max-width: 100%; height: auto; }
+main h1:first-child { display: none; }
+main h2 { font-size: 28px; margin: 56px 0 12px; padding-top: 8px; border-top: 1px solid var(--line); }
+main h3 { font-size: 21px; margin: 36px 0 8px; color: var(--accent); }
+main a { color: var(--blue); }
+main blockquote { margin: 16px 0; padding: 16px 20px; background: var(--surface); border: 1px solid var(--line);
+  border-left: 4px solid var(--accent); border-radius: 10px; }
+main blockquote p { margin: 6px 0; }
+pre.mermaid { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 18px; margin: 18px 0;
+  overflow-x: auto; text-align: center; }
+pre.mermaid code { font: inherit; white-space: pre; }
+table { border-collapse: collapse; width: 100%; font-size: 14.5px; margin: 14px 0; display: block; overflow-x: auto; }
+th, td { border-bottom: 1px solid var(--line); padding: 8px 10px; text-align: left; vertical-align: top; }
+th { color: var(--muted); font-weight: 600; }
+code { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: .9em; background: var(--blue-soft);
+  padding: 1px 5px; border-radius: 4px; }
+ul li, ol li { margin: 4px 0; }
+footer { border-top: 1px solid var(--line); color: var(--muted); font-size: 14px; padding: 24px 16px 48px; text-align: center; }
+@media (max-width: 860px) { .layout { grid-template-columns: 1fr; gap: 0; } nav.toc { display: none; } }
+</style>
+</head>
+<body>
+<header class="hero"><div class="inner">
+  <div class="kicker">AMP 2026 · Visual companion · evo2-pipeline/</div>
+  <h1>Evo 2 case pipeline</h1>
+  <p>The study's diagrams, charts and findings on one page. The paper has the full method and every number.</p>
+  <a class="btn" href="../">Back to the guide</a>
+  <a class="btn" href="https://github.com/rewire-bio/amp-2026-studies/blob/main/evo2-pipeline/paper/paper.pdf">Paper (PDF)</a>
+  <a class="btn" href="https://github.com/rewire-bio/amp-2026-studies/raw/main/evo2-pipeline/paper/paper.pdf">Paper (raw PDF)</a>
+  <a class="btn" href="https://github.com/rewire-bio/amp-2026-studies/tree/main/evo2-pipeline">Code, data and results on GitHub</a>
+</div></header>
+<div class="layout">
+<nav class="toc"><a href="#the-pipeline">The pipeline</a><a href="#how-the-test-case-works">How the test case works</a><a href="#charts">Charts</a><a href="#findings">Findings</a><a href="#what-it-means">What it means</a><a href="#limits">Limits</a></nav>
+<main>
+<h1 id="evo-2-case-pipeline">Evo 2 case pipeline</h1>
+<p><strong>Answer.</strong> Adding an Evo 2 7B score to a variant pipeline takes little code: this Nextflow pipeline does it in about 350 lines, next to CADD v1.7 and SpliceAI. Its replay profile, which reads scores recorded on an H100, ran a simulated 100-variant BRCA1 case end to end on a laptop in about 3 seconds, gave identical output when rerun, and failed safely on bad input. The diagnostic missense variant ranked 8th by Evo 2, 9th by CADD and 96th by SpliceAI (tied with 54 others at zero). The open problem is the GPU: scores from a second H100 were identical, but scores from an L40S changed the Evo 2 rank of 80 of the 100 variants, by a median of 3 places (the top five did not change; the diagnostic moved from 8th to 10th). Scoring a case this size takes about a minute of H100 time. The gpu profile has not been run end to end through Nextflow. One case only: no finding here is a test of which score is better.</p>
+<p>Paper: <a href="https://github.com/rewire-bio/amp-2026-studies/blob/main/evo2-pipeline/paper/paper.pdf">paper/paper.pdf</a>. Method and file list: <a href="https://github.com/rewire-bio/amp-2026-studies/blob/main/evo2-pipeline/README.md">README.md</a>. Code: <a href="https://github.com/rewire-bio/amp-2026-studies/blob/main/evo2-pipeline/main.nf">main.nf</a>, <a href="https://github.com/rewire-bio/amp-2026-studies/blob/main/evo2-pipeline/nextflow.config">nextflow.config</a>, <a href="https://github.com/rewire-bio/amp-2026-studies/tree/main/evo2-pipeline/bin/">bin/</a>. Every number: <a href="https://github.com/rewire-bio/amp-2026-studies/blob/main/evo2-pipeline/paper/run/summary.json">paper/run/summary.json</a>, written by <a href="https://github.com/rewire-bio/amp-2026-studies/blob/main/evo2-pipeline/paper/record_run.sh">paper/record_run.sh</a>.</p>
+<h2 id="the-pipeline">The pipeline</h2>
+<p>Six processes run per case. The profile picks whether Evo 2 is computed on a GPU or replayed from a recorded run.</p>
+<pre class="mermaid">flowchart TB
+    vcf[&quot;Case VCF, GRCh37&quot;] --&gt; norm[&quot;NORMALISE&lt;br/&gt;bcftools norm: split multiallelics,&lt;br/&gt;drop records whose REF does not match&quot;]
+    norm --&gt; pre[&quot;ANNOTATE_PRECOMPUTED&lt;br/&gt;CADD v1.7 raw,&lt;br/&gt;largest SpliceAI masked delta&quot;]
+    pre --&gt; win[&quot;MAKE_WINDOWS&lt;br/&gt;8,192 bp reference and variant window per SNV&quot;]
+    win --&gt; prof{&quot;profile&quot;}
+    prof --&gt;|gpu| s2[&quot;SCORE_EVO2&lt;br/&gt;pinned image, weights checked&lt;br/&gt;by SHA-256, one GPU&quot;]
+    prof --&gt;|replay| r2[&quot;REPLAY_EVO2&lt;br/&gt;recorded H100 scores;&lt;br/&gt;a missing score stops the run&quot;]
+    s2 --&gt; ann[&quot;ANNOTATE_EVO2&lt;br/&gt;INFO/EVO2_LOF&quot;]
+    r2 --&gt; ann
+    pre --&gt; ann
+    ann --&gt; rank[&quot;RANK_CASE&lt;br/&gt;rank by each score;&lt;br/&gt;a missing score is ranked last, never zero&quot;]</pre>
+<h2 id="how-the-test-case-works">How the test case works</h2>
+<pre class="mermaid">flowchart TB
+    a[&quot;3,893 BRCA1 SNVs with saturation&lt;br/&gt;genome editing classes&quot;] --&gt; b[&quot;Seed 20261016: one&lt;br/&gt;loss-of-function variant&quot;]
+    a --&gt; c[&quot;99 variants not classed loss&lt;br/&gt;of function, at other positions&quot;]
+    b --&gt; d[&quot;test/case_brca1.vcf&lt;br/&gt;and truth file&quot;]
+    c --&gt; d
+    d --&gt; e[&quot;Run the replay profile&quot;] --&gt; f[&quot;Rank of the diagnostic&lt;br/&gt;variant under each score&quot;]
+    e --&gt; g[&quot;Checks: rebuilt windows, rerun, -resume,&lt;br/&gt;second H100, L40S scores, REF mismatch,&lt;br/&gt;unscored SNV&quot;]</pre>
+<h2 id="charts">Charts</h2>
+<img src="figures/case_ranks.png" alt="Rank of the diagnostic variant under each score, out of 100" style="width:100%;height:auto">
+
+<img src="figures/h100_vs_l40s.png" alt="Evo 2 rank of each case variant from H100 scores against L40S scores" style="width:60%;height:auto">
+
+<img src="figures/cloud_runs.png" alt="Time and cost of the recorded GPU runs" style="width:100%;height:auto">
+
+<h2 id="findings">Findings</h2>
+<p>One simulated case. No finding is tested for significance: a single case cannot show one score ranks better than another, and the checks are pass or fail. The L40S comparison is exploratory. Intervals are given only where the source study computed them.</p>
+<table>
+<thead>
+<tr>
+<th>Finding</th>
+<th style="text-align: right;">Estimate</th>
+<th style="text-align: right;">Interval</th>
+<th>Significant</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Diagnostic variant's rank, Evo 2 7B (H100)</td>
+<td style="text-align: right;">8 of 100</td>
+<td style="text-align: right;">none (one case)</td>
+<td>Not tested</td>
+</tr>
+<tr>
+<td>Diagnostic variant's rank, CADD v1.7</td>
+<td style="text-align: right;">9 of 100</td>
+<td style="text-align: right;">none (one case)</td>
+<td>Not tested</td>
+</tr>
+<tr>
+<td>Diagnostic variant's rank, SpliceAI</td>
+<td style="text-align: right;">96 of 100</td>
+<td style="text-align: right;">ties allow 46 to 100</td>
+<td>Not tested</td>
+</tr>
+<tr>
+<td>Variants with all three scores</td>
+<td style="text-align: right;">100 of 100</td>
+<td style="text-align: right;"></td>
+<td>Check passed</td>
+</tr>
+<tr>
+<td>Pipeline windows equal the source study's windows</td>
+<td style="text-align: right;">198 of 198, same SHA-256</td>
+<td style="text-align: right;"></td>
+<td>Check passed</td>
+</tr>
+<tr>
+<td>Two fresh runs give the same ranked table</td>
+<td style="text-align: right;">Yes, byte for byte</td>
+<td style="text-align: right;"></td>
+<td>Check passed</td>
+</tr>
+<tr>
+<td><code>-resume</code> reuses finished tasks</td>
+<td style="text-align: right;">6 of 6 cached</td>
+<td style="text-align: right;"></td>
+<td>Check passed</td>
+</tr>
+<tr>
+<td>REF mismatch</td>
+<td style="text-align: right;">1 of 101 records dropped, run continues</td>
+<td style="text-align: right;"></td>
+<td>Check passed</td>
+</tr>
+<tr>
+<td>SNV with no recorded score</td>
+<td style="text-align: right;">Run stops, exit 1</td>
+<td style="text-align: right;"></td>
+<td>Check passed</td>
+</tr>
+<tr>
+<td>Second H100 (Runpod) scores</td>
+<td style="text-align: right;">Identical ranked table</td>
+<td style="text-align: right;"></td>
+<td>Check passed</td>
+</tr>
+<tr>
+<td>L40S against H100 scores, median difference</td>
+<td style="text-align: right;">1.01e-4 (largest 5.21e-4)</td>
+<td style="text-align: right;">none</td>
+<td>Exploratory</td>
+</tr>
+<tr>
+<td>Evo 2 ranks changed by L40S scores</td>
+<td style="text-align: right;">80 of 100 (median move 3, largest 30; top five unchanged; diagnostic 8th to 10th)</td>
+<td style="text-align: right;">none</td>
+<td>Exploratory</td>
+</tr>
+<tr>
+<td>H100 scoring rate (replayed run)</td>
+<td style="text-align: right;">2.93 windows per second</td>
+<td style="text-align: right;">none</td>
+<td>Descriptive</td>
+</tr>
+<tr>
+<td>GPU time to score this case (198 windows)</td>
+<td style="text-align: right;">about 68 s, about USD 0.08 on Runpod</td>
+<td style="text-align: right;">estimate</td>
+<td>Descriptive</td>
+</tr>
+<tr>
+<td>Recorded cloud runs, 3,893 BRCA1 variants plus other workloads (completed attempts)</td>
+<td style="text-align: right;">USD 2.82 to 4.78; a failed first L40S attempt cost USD 0.82 more</td>
+<td style="text-align: right;">none</td>
+<td>Descriptive</td>
+</tr>
+<tr>
+<td>Context: Evo 2 7B minus CADD v1.7 AUROC, 3,893 BRCA1 SNVs (evo2-cloud-operations)</td>
+<td style="text-align: right;">-0.006</td>
+<td style="text-align: right;">-0.025 to +0.014</td>
+<td>No</td>
+</tr>
+</tbody>
+</table>
+<h2 id="what-it-means">What it means</h2>
+<ul>
+<li>The engineering is small. Apart from the GPU step, the pipeline is bcftools and two short Python scripts.</li>
+<li>Replaying recorded GPU scores lets the rest of the pipeline be tested on a laptop in seconds against the exact scores the GPU produced.</li>
+<li>The Evo 2 score depends on the GPU type. A lab should fix the GPU type and validate on it, or pay for full 32-bit precision, and record the GPU, image digest and weights with every score.</li>
+<li>Cost is not the obstacle for one case. Most of a single-case job is starting the machine and loading the model, so batching cases on a running GPU is cheaper.</li>
+</ul>
+<h2 id="limits">Limits</h2>
+<ul>
+<li>The gpu profile has not been run end to end through Nextflow.</li>
+<li>One simulated case, in one gene, built from assay variants, on GRCh37 chromosome 17 only.</li>
+<li>SNVs only: indels get no Evo 2 score.</li>
+<li>Ties are broken by VCF order, so SpliceAI ranks for zero scores are close to arbitrary.</li>
+<li>The pipeline does not yet write the image digest or GPU into the VCF.</li>
+<li>Only the Evo 2 step runs in a pinned container. The CPU steps use the host's bcftools and python3, and <code>resources/</code> and the recorded scores are not checksummed.</li>
+<li>The L40S was about five times slower than the H100 on the recorded host, but 3.2 times slower on another host in the source study's follow-up, so speed depends on the host.</li>
+<li>Costs are from one day's runs at prices recorded at launch; per-case figures are estimates.</li>
+</ul>
+
+</main>
+</div>
+<footer>Tim Richardson · Built from <a href="https://github.com/rewire-bio/amp-2026-studies/blob/main/evo2-pipeline/COMPANION.md">evo2-pipeline/COMPANION.md</a> · Code under the MIT licence</footer>
+<script src="https://cdn.jsdelivr.net/npm/mermaid@11.4.1/dist/mermaid.min.js"></script>
+<script>
+  // Draw after the web font has loaded, so labels are measured in the font they are shown in.
+  const dark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+  mermaid.initialize({ startOnLoad: false, theme: dark ? "dark" : "default", securityLevel: "strict",
+    fontFamily: "Inter, system-ui, sans-serif",
+    flowchart: { htmlLabels: true, curve: "basis", wrappingWidth: 260, subGraphTitleMargin: { top: 8, bottom: 16 } } });
+  document.fonts.ready.then(() => mermaid.run());
+</script>
+</body>
+</html>

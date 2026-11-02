@@ -1,0 +1,16 @@
+%% How one call flips: a cut-off fitted on one GPU, applied to another. Rendered by ../make_figures.sh.
+flowchart TB
+  V["One BRCA1 SNV<br/>chr17:41276094:C>A"]
+  S["Score = reference window<br/>minus variant window,<br/>mean log-likelihood"]
+  H["H100 score 0.002101"]
+  L["L40S score 0.001625"]
+  T{"Cut-off 0.001698<br/>fitted on H100"}
+  CH["Above: loss of function"]
+  CL["Below: functional"]
+  V --> S
+  S --> H
+  S --> L
+  H --> T
+  L --> T
+  T -->|"H100: above"| CH
+  T -->|"L40S: below"| CL

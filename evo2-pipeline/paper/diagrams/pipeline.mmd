@@ -1,0 +1,16 @@
+%% The workflow in main.nf: six processes run per case; the profile picks SCORE_EVO2 or REPLAY_EVO2. Rendered by ../make_figures.sh.
+flowchart TB
+  vcf["Case VCF, GRCh37"] --> norm["NORMALISE<br/>bcftools norm: split multiallelics,<br/>drop records whose REF does not match"]
+  norm --> pre["ANNOTATE_PRECOMPUTED<br/>bcftools annotate: CADD v1.7 raw,<br/>largest SpliceAI masked delta"]
+  pre --> win["MAKE_WINDOWS<br/>8,192 bp reference and variant window per SNV,<br/>REF checked again"]
+  win --> prof{"profile"}
+  prof -->|gpu| s2["SCORE_EVO2<br/>pinned image, pinned weights<br/>checked by SHA-256, one GPU"]
+  prof -->|replay| r2["REPLAY_EVO2<br/>recorded H100 scores;<br/>a missing score stops the run"]
+  s2 --> ann["ANNOTATE_EVO2<br/>INFO/EVO2_LOF"]
+  r2 --> ann
+  pre --> ann
+  ann --> rank["RANK_CASE<br/>rank by each score;<br/>a missing score is ranked last"]
+  ann --> o1[("results/annotated.vcf.gz")]
+  rank --> o2[("results/ranked.tsv")]
+  classDef gpu fill:#eef4fb,stroke:#2a78d6,color:#0b0b0b;
+  class s2,r2 gpu;
