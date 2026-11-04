@@ -20,12 +20,17 @@ HERE = Path(__file__).resolve().parent
 OPS = HERE.parents[1] / "evo2-cloud-operations" / "evidence"
 RUN = OPS / "runs" / "recorded-b75c67aa" / "platforms"
 OUT = HERE / "out"
+# strong: the flipped call and the L40S; mid: the H100; rest: calls that do not flip. One chart style for the whole
+# talk: Arial at slide sizes, the section's colours, a key row instead of a legend box, no grid, a light baseline.
 BRANDS = {
-    "rewire": {"dark": "#16233A", "muted": "#5E6874", "line": "#7A8591", "surface": "#FDFCFA", "dot": "#2A6CB0",
-               "flip": "#B4530F", "suffix": ""},
-    "gel": {"dark": "#2B2F3B", "muted": "#60636C", "line": "#80828A", "surface": "#FFFFFF", "dot": "#005EB8",
-            "flip": "#DF007D", "suffix": "_gel"},
+    "rewire": {"dark": "#16233A", "muted": "#5E6874", "light": "#C9CED4", "surface": "#FDFCFA",
+               "strong": "#2E8B7A", "mid": "#8CC9BC", "rest": "#C9CED4", "suffix": ""},
+    "gel": {"dark": "#2B2F3B", "muted": "#60636C", "light": "#C3C3BF", "surface": "#FFFFFF",
+            "strong": "#26913C", "mid": "#97E4A7", "rest": "#C3C3BF", "suffix": "_gel"},
 }
+# Charts are drawn at the size they are shown on a 1920 x 1080 slide: SLOT px per inch on screen, saved at twice
+# that for sharpness. PX converts on-screen pixels to points, so text sizes below read as slide pixels.
+SLOT, PX = 128, 72 / 128
 
 
 def scores() -> tuple[pd.DataFrame, float]:
@@ -39,49 +44,61 @@ def scores() -> tuple[pd.DataFrame, float]:
 
 
 def number_line(c: dict, path: Path, v, cut: float, with_l40s: bool) -> None:
-    fig, ax = plt.subplots(figsize=(14, 3.6))
+    fig, ax = plt.subplots(figsize=(1616 / SLOT, 430 / SLOT))
     lo, hi = cut - 0.0006, cut + 0.0006
-    ax.axhline(0, color=c["line"], lw=2, zorder=1)
-    ax.axvline(cut, color=c["dark"], lw=2.5, ls="--", zorder=1)
-    ax.text(cut + 0.00002, 0.82, "cut-off", ha="left", va="bottom", fontsize=20, color=c["dark"])
-    ax.text(lo + 0.00003, -0.62, "functional", ha="left", fontsize=22, color=c["muted"])
-    ax.text(hi - 0.00003, -0.62, "loss of function", ha="right", fontsize=22, color=c["muted"])
-    ax.scatter([v.h100], [0], s=420, color=c["dot"], zorder=3)
-    ax.text(v.h100, 0.32, "H100", ha="center", fontsize=20, color=c["dot"], fontweight="bold")
+    ax.axhline(0, color=c["light"], lw=4 * PX, zorder=1)
+    ax.plot([cut, cut], [-0.55, 0.75], color=c["dark"], lw=3 * PX, ls=(0, (4, 3)), zorder=1)
+    ax.text(cut, 0.82, "cut-off", ha="center", va="bottom", fontsize=28 * PX, color=c["dark"])
+    ax.text(lo + 0.00002, -0.62, "functional", ha="left", va="top", fontsize=30 * PX, color=c["muted"])
+    ax.text(hi - 0.00002, -0.62, "loss of function", ha="right", va="top", fontsize=30 * PX, color=c["muted"])
+    ax.plot([v.h100], [0], "o", ms=34 * PX, color=c["mid"], mew=0, zorder=3)
+    ax.text(v.h100, 0.3, "H100", ha="center", va="bottom", fontsize=30 * PX, color=c["dark"], fontweight="bold")
     if with_l40s:
-        ax.scatter([v.l40s], [0], s=420, color=c["flip"], zorder=3)
-        ax.text(v.l40s, 0.32, "L40S", ha="center", fontsize=20, color=c["flip"], fontweight="bold")
-        ax.annotate("", xy=(v.l40s, -0.18), xytext=(v.h100, -0.18),
-                    arrowprops=dict(arrowstyle="->", color=c["flip"], lw=2.5))
+        ax.plot([v.l40s], [0], "o", ms=34 * PX, color=c["strong"], mew=0, zorder=3)
+        ax.text(v.l40s, 0.3, "L40S", ha="center", va="bottom", fontsize=30 * PX, color=c["dark"],
+                fontweight="bold")
+        ax.annotate("", xy=(v.l40s + 0.00003, -0.25), xytext=(v.h100 - 0.00003, -0.25),
+                    arrowprops=dict(arrowstyle="-|>", color=c["strong"], lw=4 * PX, mutation_scale=30 * PX))
     ax.set_xlim(lo, hi)
-    ax.set_ylim(-0.9, 1.25)
+    ax.set_ylim(-1.05, 1.25)
     ax.axis("off")
-    fig.tight_layout()
-    fig.savefig(path, dpi=150, facecolor=c["surface"])
+    fig.subplots_adjust(0.01, 0.01, 0.99, 0.99)
+    fig.savefig(path, dpi=SLOT * 2, facecolor=c["surface"])
     plt.close(fig)
 
 
 def scatter(c: dict, path: Path, d: pd.DataFrame, cut: float) -> None:
-    fig, ax = plt.subplots(figsize=(8.4, 7.2))
+    w, h = 740, 634
+    fig, ax = plt.subplots(figsize=(w / SLOT, h / SLOT))
     lo, hi = cut - 0.0025, cut + 0.0035
-    k = d[~d.flip]
-    ax.scatter(k.h100, k.l40s, s=14, color=c["dot"], alpha=0.45, linewidths=0)
-    f = d[d.flip]
-    ax.scatter(f.h100, f.l40s, s=46, color=c["flip"], linewidths=0)
-    ax.axvline(cut, color=c["dark"], lw=1.6, ls="--")
-    ax.axhline(cut, color=c["dark"], lw=1.6, ls="--")
-    ax.text(hi, cut + 0.00006, "cut-off", ha="right", va="bottom", fontsize=15, color=c["dark"])
-    ax.text(lo + 0.0001, hi - 0.0001, f"{len(f)} of {len(d):,} calls flip", ha="left", va="top", fontsize=19,
-            color=c["flip"], fontweight="bold")
+    k, f = d[~d.flip], d[d.flip]
+    ax.scatter(k.h100, k.l40s, s=(7 * PX) ** 2, color=c["rest"], linewidths=0, zorder=2)
+    ax.scatter(f.h100, f.l40s, s=(12 * PX) ** 2, color=c["strong"], linewidths=0, zorder=3)
+    ax.axvline(cut, color=c["dark"], lw=2.5 * PX, ls=(0, (4, 3)), zorder=1)
+    ax.axhline(cut, color=c["dark"], lw=2.5 * PX, ls=(0, (4, 3)), zorder=1)
+    ax.text(hi, cut + 0.00008, "cut-off", ha="right", va="bottom", fontsize=24 * PX, color=c["dark"])
     ax.set_xlim(lo, hi)
     ax.set_ylim(lo, hi)
-    ax.set_xlabel("Score on the H100", fontsize=17, color=c["dark"])
-    ax.set_ylabel("Score on the L40S", fontsize=17, color=c["dark"])
-    ax.tick_params(labelsize=12, colors=c["muted"])
+    ticks = [0, 0.002, 0.004]
+    ax.set_xticks(ticks, [f"{t:.3f}" for t in ticks])
+    ax.set_yticks(ticks, [f"{t:.3f}" for t in ticks])
+    ax.set_xlabel("Score on the H100", fontsize=26 * PX, color=c["dark"])
+    ax.set_ylabel("Score on the L40S", fontsize=26 * PX, color=c["dark"])
+    ax.tick_params(labelsize=22 * PX, colors=c["muted"], color=c["light"])
     ax.spines[["top", "right"]].set_visible(False)
+    ax.spines[["left", "bottom"]].set_color(c["light"])
     ax.set_facecolor(c["surface"])
-    fig.tight_layout()
-    fig.savefig(path, dpi=150, facecolor=c["surface"])
+    key_h = 92
+    fig.tight_layout(pad=0.3, rect=(0, 0, 1, 1 - key_h / h))
+    # Key row: one round mark and name per group, two lines, from the left edge of the plotting area.
+    x = ax.get_position().x0
+    for i, (colour, name) in enumerate([("strong", f"Call flips: {len(f)} of {len(d):,}"),
+                                        ("rest", "Same call on both GPUs")]):
+        y = 1 - (22 + 40 * i) / h
+        fig.text(x, y, "\u25cf", color=c[colour], fontsize=30 * PX, va="center", ha="left")
+        fig.text(x + 34 / w, y, name, color=c["dark"], fontsize=26 * PX, va="center", ha="left",
+                 fontweight="bold" if colour == "strong" else "normal")
+    fig.savefig(path, dpi=SLOT * 2, facecolor=c["surface"])
     plt.close(fig)
 
 
