@@ -296,10 +296,13 @@ def spread(ys: list[float], gap: float) -> list[float]:
     return out
 
 
+SWEEP_LABELLED = ("AVI", "SpliceAI", "CADD")  # named on the chart; the other single scores are grey lines
+
+
 def af_sweep(c: dict, out: Path) -> None:
     rows = load("replication_sweep.json")["rows"]
     afs = [r["max_af"] for r in rows.values()]
-    fig, ax = figure(1664, 760)
+    fig, ax = figure(1664, 576)
     ends = []  # (y at the last threshold, label, colour, bold)
     for name, key in SWEEP_BASELINES:
         xs = [r["max_af"] for r in rows.values() if key in r["strata"]["all"]["scores"]]
@@ -324,9 +327,11 @@ def af_sweep(c: dict, out: Path) -> None:
                     ax.text(x, hi + 1.5, num(v, False), ha="center", va="bottom", fontsize=VALUE, color=c["dark"],
                             fontweight="bold", zorder=5,
                             bbox={"facecolor": c["surface"], "edgecolor": "none", "pad": 1})
+        if score not in SWEEP_LABELLED:
+            continue
         label = score + (f"  {num(ys[-1], False)}" if top else "") + (" (to 1%)" if xs[-1] < afs[-1] else "")
         ends.append((xs[-1], ys[-1], label, c["strong"] if top else c["grey"], top))
-    heights = spread([e[1] for e in ends], 4.8)
+    heights = spread([e[1] for e in ends], 7.0)
     for (x, y, label, colour, bold), h in zip(ends, heights):
         ax.annotate(label, (x, y), xytext=(afs[-1] * 1.35, h), textcoords="data", va="center", ha="left",
                     fontsize=TICK, color=colour, fontweight="bold" if bold else "normal",
@@ -349,27 +354,51 @@ def af_sweep(c: dict, out: Path) -> None:
     ax.set_xlabel("Background kept if its highest group frequency in gnomAD is below (log scale)", fontsize=TICK,
                   color=c["grey"], labelpad=8)
     ax.set_ylabel("Spiked-in variant ranked first,\n500 new cases (%)", fontsize=TICK, color=c["grey"])
-    save(fig, out, "af_sweep", c, [("strong", "AVI (thin line: 95% interval)"), ("rest", "Other single scores"),
+    save(fig, out, "af_sweep", c, [("strong", "AVI (thin line: 95% interval)"), ("rest", "Other single scores (REVEL, AlphaMissense, GPN, Evo 2 to 1%)"),
                                    ("dark", "Baselines")], marker="●", svg=True)
 
 
 def af_sweep_gain(c: dict, out: Path) -> None:
+    """Gain from adding AVI to each baseline against the filter: one line per baseline, a dot and its paired 95%
+    interval at each filter (the two series nudged apart), the too-small-to-count band from -5 to +5."""
     rows = load("replication_sweep.json")["rows"]
-    marks = dict(SWEEP_MARKS)
-    data, pairs = [], []
-    for r in rows.values():
-        con = r["strata"]["all"]["contrasts"]
-        af = r["max_af"]
-        pairs.append(f"Below {threshold_text(af)}" + (f" ({marks[af]})" if af in marks else "")
-                     + f"\n{r['cases']} cases, median list {r['median_variants_per_case']:g}")
-        data += [("", pct(con[key]), colour) for key, colour in SWEEP_GAINS]
-    fig, ax = figure(1664, 960)
-    ys = dots(ax, data, c, pairs=pairs)
-    lo = min(-8, min(v[1][1] for v in data) - 2)
-    hi = max(16, max(v[1][2] for v in data) + 14)
-    gain_axes(ax, c, 5 * (lo // 5), 5 * -(-hi // 5), "Gain at top 1 from adding AVI, 500 new cases (percentage points)",
-              ys)
-    save(fig, out, "af_sweep_gain", c, [("strong", TO_COMBINED), ("mid", TO_RULE)], marker="●", svg=True)
+    afs = [r["max_af"] for r in rows.values()]
+    fig, ax = figure(1664, 576)
+    ax.axhspan(-5, 5, color=c["band"], lw=0, zorder=0)
+    ax.axhline(0, color=c["dark"], lw=3 * PX, zorder=1)
+    ax.annotate("too small to count", (0.0022, -4.6), ha="center", va="bottom", fontsize=TICK, color=c["grey"])
+    names = {PRIMARY: TO_COMBINED, SECONDARY: TO_RULE}
+    for (key, colour), nudge in zip(SWEEP_GAINS, (0.93, 1.075)):
+        pts = [(r["max_af"] * nudge, *pct(r["strata"]["all"]["contrasts"][key])) for r in rows.values()]
+        xs, vs = [p[0] for p in pts], [p[1] for p in pts]
+        ax.plot(xs, vs, color=c[colour], lw=4 * PX, zorder=3)
+        for x, v, lo, hi in pts:
+            ax.plot([x, x], [lo, hi], color=c["grey"], lw=3 * PX, solid_capstyle="round", zorder=2)
+        ax.plot(xs, vs, "o", ms=22 * PX, color=c[colour], mew=0, zorder=4)
+        for x, v, lo, hi in pts:
+            above = colour == "mid"
+            ax.text(x, (hi + 0.8) if above else (lo - 0.8), num(v, True), ha="center",
+                    va="bottom" if above else "top", fontsize=VALUE, color=c["dark"], fontweight="bold", zorder=5)
+    for x, label in SWEEP_MARKS:
+        ax.axvline(x, color=c["light"], lw=2 * PX, zorder=1)
+        ax.annotate(label, (x, 1), xycoords=ax.get_xaxis_transform(), xytext=(0, 6 * PX), textcoords="offset points",
+                    ha="center", va="bottom", fontsize=TICK, color=c["dark"])
+    ax.set_xscale("log")
+    ax.set_xlim(afs[0] / 1.6, afs[-1] * 1.6)
+    ax.set_xticks(afs, [threshold_text(a) for a in afs])
+    ax.minorticks_off()
+    lo = min(pct(r["strata"]["all"]["contrasts"][k])[1] for r in rows.values() for k, _ in SWEEP_GAINS)
+    hi = max(pct(r["strata"]["all"]["contrasts"][k])[2] for r in rows.values() for k, _ in SWEEP_GAINS)
+    ax.set_ylim(5 * ((lo - 3) // 5), 5 * -(-(hi + 3) // 5))
+    ax.set_yticks(range(int(5 * ((lo - 3) // 5)), int(5 * -(-(hi + 3) // 5)) + 1, 5))
+    ax.set_yticklabels([num(t, True).replace(".0", "") for t in ax.get_yticks()])
+    style(ax, c)
+    ax.tick_params(axis="y", labelsize=TICK, labelcolor=c["grey"])
+    ax.set_xlabel("Background kept if its highest group frequency in gnomAD is below (log scale)", fontsize=TICK,
+                  color=c["grey"], labelpad=8)
+    ax.set_ylabel("Gain at top 1 from adding AVI,\n500 new cases (percentage points)", fontsize=TICK, color=c["grey"])
+    save(fig, out, "af_sweep_gain", c, [("strong", names[PRIMARY]), ("mid", names[SECONDARY]),
+                                        ("grey", "thin line: 95% interval")], marker="●", svg=True)
 
 
 CHARTS = (top1_scores, indel_top1, by_group, gains_avi, gains_by_group, gains_added, first_vs_second, checks)
