@@ -1,0 +1,26 @@
+18340 variants (15641 SNVs) from data/af5/replication/case_variants.tsv
+cadd: 1332 found by this run, 0 looked up by the first run (0 found); 17008 to look up
+  CADD: 16983 of 17008 looked up found; 18315 rows in all, 0 with no MANE row (all-transcript consequence used), 156 where the MANE consequence differs from the all-transcript one
+cadd: 18315 of 18340 variants scored, wrote data/af5/replication/scores_cadd.tsv
+  (cadd: 4240 s)
+revel: 122 found by this run, 5182 looked up by the first run (813 found), 0 of 122 in both differ (this run's kept); 10989 to look up
+revel: 2882 of 18340 variants scored, wrote data/af5/replication/scores_revel.tsv
+  (revel: 24 s)
+am: 108 found by this run, 5182 looked up by the first run (695 found), 0 of 108 in both differ (this run's kept); 10989 to look up
+am: 2482 of 18340 variants scored, wrote data/af5/replication/scores_am.tsv
+  (am: 28 s)
+avi: 689 found by this run, 4660 looked up by the first run (4652 found), 0 of 689 in both differ (this run's kept); 10989 to look up
+  AVI: 10989 of 10989 SNVs found
+avi: 15641 of 18340 variants scored, wrote data/af5/replication/scores_avi.tsv
+  (avi: 23 s)
+gpnmsa: 689 found by this run, 5182 looked up by the first run (4652 found), 0 of 689 in both differ (this run's kept); 10989 to look up
+gpnmsa: 15641 of 18340 variants scored, wrote data/af5/replication/scores_gpnmsa.tsv
+  (gpnmsa: 566 s)
+gpnstar_v: 689 found by this run, 5182 looked up by the first run (4652 found), 0 of 689 in both differ (this run's kept); 10989 to look up
+  gpnstar_v chr4: retry after SerializationException
+gpnstar_v: 15641 of 18340 variants scored, wrote data/af5/replication/scores_gpnstar_v.tsv
+gpnstar_m: 689 found by this run, 5182 looked up by the first run (4652 found), 0 of 689 in both differ (this run's kept); 10989 to look up
+  gpnstar_m chr17: retry after SerializationException
+  gpnstar_m chr17: retry after HTTPException
+gpnstar_m: 15641 of 18340 variants scored, wrote data/af5/replication/scores_gpnstar_m.tsv
+  (gpnstar: 811 s)

@@ -201,6 +201,10 @@ footer { border-top: 1px solid var(--line); color: var(--muted); font-size: 14px
 <p>Evo 2 by group in each study, with the first run's indel gains (+15.8, +5.0 to +26.8, unfiltered; +8.3, +0.9 to +16.3, with an AF filter) at the bottom. The "all" rows have 98.75% intervals.</p>
 <p><img src="figures/gains_gnomad.png" alt="Gain from AVI by whether the diagnostic is in full gnomAD" /></p>
 <p>AVI's gain in cases whose diagnostic is in gnomAD and in cases where it is not. Nothing is flagged on the 500.</p>
+<p><img src="figures/af_sweep.png" alt="AVI and the other scores across frequency filters" /></p>
+<p>Frequency sweep on the 500 (exploratory): AVI alone is the best single score at every filter from 0.01% to 5%, but its lead over the next best score shrinks from 0.5% up (23.8 points at 0.5%, 16.0 at 5%).</p>
+<p><img src="figures/af_sweep_gain.png" alt="Gain from adding AVI across frequency filters" /></p>
+<p>Adding AVI to the lookups gives no gain of 5 points or more at any filter. Added to the rule it gives +5.2 to +6.4 from 0.5% up on the 500, but not on the 200.</p>
 <h2 id="findings">Findings</h2>
 <table>
 <thead>
@@ -290,15 +294,30 @@ footer { border-top: 1px solid var(--line); color: var(--muted); font-size: 14px
 <td>Not tested</td>
 <td>Agreement with ClinVar labels, not performance</td>
 </tr>
+<tr>
+<td>Sweep: AVI added to the lookups, 500, background below 5%</td>
+<td>-1.2 (-7.0 to +4.2), p = 0.784</td>
+<td>95%, exploratory (1 of 28)</td>
+<td>No</td>
+<td>Inconclusive</td>
+</tr>
+<tr>
+<td>Sweep: AVI added to the rule, 500, background below 5%</td>
+<td>+6.4 (+2.8 to +10.4), p = 0.001</td>
+<td>95%, exploratory (1 of 28)</td>
+<td>Yes</td>
+<td>Exploratory: estimate at least 5 with interval above 0 at this filter; not seen on the 200</td>
+</tr>
 </tbody>
 </table>
-<p>"Significant": the interval at the stated level excludes zero. "Matters": Yes if significant and the estimate is at least 5 points; No if the interval lies inside -5 to +5; otherwise Inconclusive. Only the primary has a verdict. "1 of 141": one of 141 paired top-1 contrasts in the 500's main result file; the 16 result files hold 944, so some descriptive intervals will exclude zero by chance.</p>
+<p>"Significant": the interval at the stated level excludes zero. "Matters": Yes if significant and the estimate is at least 5 points; No if the interval lies inside -5 to +5; otherwise Inconclusive. Only the primary has a verdict. "1 of 141": one of 141 paired top-1 contrasts in the 500's main result file; the 16 result files hold 944, so some descriptive intervals will exclude zero by chance. "1 of 28": one of the frequency sweep's 28 gains (7 filters, 2 gains, 2 studies), unadjusted.</p>
 <h2 id="what-it-means">What it means</h2>
 <ul>
 <li>With a realistic pipeline the established lookups rank the diagnostic first in about 9 cases in 10.</li>
 <li>A rule-based ranking from ClinGen thresholds does nearly as well; it is weaker only on non-coding diagnostics.</li>
 <li>AVI helps a little with non-coding diagnostics, and not by a gain that matters overall.</li>
 <li>GPN-MSA and GPN-Star add nothing on SNVs. Evo 2 adds no gain that matters on the 500 SNV cases, and its top-1 result on indels is inconclusive. Evo 2 alone ranks indels well (81.7% top 1, 73.7 to 89.2), close to the lookups combined (84.2%, 75.4 to 92.4), so adding it gains little.</li>
+<li>Across frequency filters from 0.01% to 5% (exploratory), AVI alone is the best single score, but adding it to the lookups gives no gain of 5 points or more at any filter on the 500, and it does not push down common variants more than CADD does.</li>
 <li>The first run's headline gains for AVI (+6.2, 0.0 to +13.0) and for Evo 2 on indels (+15.8, +5.0 to +26.8) do not hold under this design: +1.8 (-0.4 to +4.0) and +1.7 (95%: -5.9 to +9.9) here.</li>
 </ul>
 <h2 id="limits">Limits</h2>

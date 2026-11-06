@@ -4,8 +4,7 @@ Every file in `results/`. All are committed. Charts are not here: `figures/rd_ch
 files into `figures/out/` (not committed), and with `--readme` copies the README's charts into `figures/` as PNG and
 SVG (committed).
 
-Every value that does not involve Evo 2 is identical to tag `amp-2026-v5` (the results before Evo 2); this version is
-released as `amp-2026-v6`.
+Every value that does not involve Evo 2 is identical to tag `amp-2026-v5` (the results before Evo 2); `amp-2026-v6` adds Evo 2, and `amp-2026-v7` adds the frequency sweep files below and changes none of the 16 result files.
 
 ## Write-ups
 
@@ -13,6 +12,8 @@ released as `amp-2026-v6`.
 |---|---|
 | [`analysis_replication.md`](analysis_replication.md) | The 500 replication cases with locked models: the primary result and verdict, the key secondary, the GPN family, Evo 2 (exploratory), groups, every section 9 check, EVEE, list lengths, ties, coverage, with p-values |
 | [`analysis_snv_indel.md`](analysis_snv_indel.md) | The 200 SNV and 120 indel cases, cross-validated (descriptive), Evo 2 on both and against the first run |
+| [`analysis_sweep.md`](analysis_sweep.md) | The frequency sweep (exploratory, PROTOCOL.md section 13) on the 200 and the 500, with its reproduction check against the main and 1% results |
+| [`af5_identity.md`](af5_identity.md) | `check_af5.py`: the 5%-cap rebuild against v6, case by case and score by score below the 1% caps |
 
 ## Result files (`case_benchmark.py`)
 
@@ -62,6 +63,17 @@ Levels: the primary is read at 95% by the rule in PROTOCOL.md section 8; the GPN
 exploratory (section 12); everything else at 95%, descriptive. The 16 files hold 944 paired top-1 contrasts
 (`strata`, `gnomad_split` and `heldout` together), 175 of them with p below 0.05.
 
+## Frequency sweep files
+
+`<study>_sweep.json` (snv and replication), written by `case_benchmark.py --study <study> --analysis sweep` from the
+5%-cap build in `../data/af5/`. `rows` holds one entry per threshold (`max_af` 0.0001 to 0.05) with the fields of a
+main result file (`cases`, `median_variants_per_case`, `filter`, `coverage`, `strata`, `gnomad_split`), plus `why`
+(Spearman of AVI and CADD with background grpmax, and background variants per case ranked at or above the
+diagnostic by grpmax band). `reproduction` compares the 0.1% and 1% rows with `<study>_main.json` and
+`<study>_bg1pct.json` value for value. Exploratory: 95% intervals, unadjusted.
+
+`af5/build_snv.md` and `af5/build_replication.md` are the build reports of the 5%-cap rebuild.
+
 ## Build and check reports
 
 | File | Made by | What it holds |
@@ -76,4 +88,4 @@ exploratory (section 12); everything else at 95%, descriptive. The 16 files hold
 
 Run logs are in `../logs/`: `bench_<study>_<analysis>.log` for each result file, `cb_invariance.log` for
 `tests/test_invariance.py` (run before Evo 2 was added), `evo2_launch.log` for the Evo 2 run, and one log per build
-and lookup step.
+and lookup step. The sweep's are `af5_*.log`, `bench_<study>_sweep.log` and `af_sweep_progress.log`.

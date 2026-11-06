@@ -1,0 +1,23 @@
+19294 variants (16420 SNVs) from data/af5/snv/case_variants.tsv
+cadd: 8726 found by this run, 0 looked up by the first run (0 found); 10568 to look up
+  CADD: 10540 of 10568 looked up found; 19266 rows in all, 0 with no MANE row (all-transcript consequence used), 159 where the MANE consequence differs from the all-transcript one
+cadd: 19266 of 19294 variants scored, wrote data/af5/snv/scores_cadd.tsv
+  (cadd: 2400 s)
+revel: 1634 found by this run, 15133 looked up by the first run (2528 found), 0 of 1569 in both differ (this run's kept); 3232 to look up
+revel: 3050 of 19294 variants scored, wrote data/af5/snv/scores_revel.tsv
+  (revel: 25 s)
+am: 1396 found by this run, 15133 looked up by the first run (2173 found), 0 of 1341 in both differ (this run's kept); 3242 to look up
+am: 2619 of 19294 variants scored, wrote data/af5/snv/scores_am.tsv
+  (am: 29 s)
+avi: 7697 found by this run, 13166 looked up by the first run (13123 found), 0 of 7533 in both differ (this run's kept); 3133 to look up
+  AVI: 3133 of 3133 SNVs found
+avi: 16420 of 19294 variants scored, wrote data/af5/snv/scores_avi.tsv
+  (avi: 9 s)
+gpnmsa: 7697 found by this run, 15133 looked up by the first run (13123 found), 0 of 7533 in both differ (this run's kept); 3133 to look up
+gpnmsa: 16420 of 19294 variants scored, wrote data/af5/snv/scores_gpnmsa.tsv
+  (gpnmsa: 399 s)
+gpnstar_v: 7697 found by this run, 15133 looked up by the first run (13123 found), 0 of 7533 in both differ (this run's kept); 3133 to look up
+gpnstar_v: 16420 of 19294 variants scored, wrote data/af5/snv/scores_gpnstar_v.tsv
+gpnstar_m: 7697 found by this run, 15133 looked up by the first run (13123 found), 0 of 7533 in both differ (this run's kept); 3133 to look up
+gpnstar_m: 16420 of 19294 variants scored, wrote data/af5/snv/scores_gpnstar_m.tsv
+  (gpnstar: 584 s)

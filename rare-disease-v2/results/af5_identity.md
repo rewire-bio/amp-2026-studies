@@ -1,0 +1,33 @@
+# The 5%-cap build against v6
+
+Made by `check_af5.py`. Rows of `data/af5/<study>/cases.tsv` with grpmax and 1000 Genomes AF below 1% (and every diagnostic), compared as text with `data/<study>/cases.tsv`, case by case and in order; then the scores of every v6 case variant in both builds.
+
+## snv
+
+200 of 200 cases identical below the 1% caps. The af5 build has 99488 rows, 62980 of them background variants at or above a 1% cap.
+
+Scores of the v6 case variants:
+
+- cadd: 8726 v6 case variants scored in both, 0 scored in one build only, 0 values differ
+- revel: 1634 v6 case variants scored in both, 0 scored in one build only, 0 values differ
+- am: 1396 v6 case variants scored in both, 0 scored in one build only, 0 values differ
+- avi: 7697 v6 case variants scored in both, 0 scored in one build only, 0 values differ
+- gpnmsa: 7697 v6 case variants scored in both, 0 scored in one build only, 0 values differ
+- gpnstar_v: 7697 v6 case variants scored in both, 0 scored in one build only, 0 values differ
+- gpnstar_m: 7697 v6 case variants scored in both, 0 scored in one build only, 0 values differ
+
+## replication
+
+500 of 500 cases identical below the 1% caps. The af5 build has 229630 rows, 148760 of them background variants at or above a 1% cap.
+
+Scores of the v6 case variants:
+
+- cadd: 8128 v6 case variants scored in both, 0 scored in one build only, 0 values differ
+- revel: 1521 v6 case variants scored in both, 0 scored in one build only, 0 values differ
+- am: 1326 v6 case variants scored in both, 0 scored in one build only, 0 values differ
+- avi: 7221 v6 case variants scored in both, 0 scored in one build only, 0 values differ
+- gpnmsa: 7221 v6 case variants scored in both, 0 scored in one build only, 0 values differ
+- gpnstar_v: 7221 v6 case variants scored in both, 0 scored in one build only, 0 values differ
+- gpnstar_m: 7221 v6 case variants scored in both, 0 scored in one build only, 0 values differ
+
+Result: every case and every score identical.

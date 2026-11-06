@@ -1,0 +1,7468 @@
+{
+  "study": "snv",
+  "analysis": "sweep",
+  "exploratory": "Added on 6 November 2026 after every other result had been seen (PROTOCOL.md section 13); not confirmatory. Evo 2 is reported at 1% and below only.",
+  "build": "data/af5/snv",
+  "build_max_af": 0.05,
+  "thresholds": [
+    0.0001,
+    0.0005,
+    0.001,
+    0.005,
+    0.01,
+    0.02,
+    0.05
+  ],
+  "load_notes": {
+    "case_variants_without_mane_cadd_row": 0,
+    "diagnostic_class_differs_from_cases_tsv": 0
+  },
+  "dropped_scores": [],
+  "fits": "cross-validated (5-fold by person)",
+  "intervals": "1000 resamples of people per stratum, seed sha256('snv/<label>/<stratum>'), label main at 0.1%, bg1pct at 1%, sweep<threshold> otherwise",
+  "package_versions": {
+    "python": "3.12.14",
+    "numpy": "2.5.4",
+    "pandas": "3.1.0",
+    "scikit-learn": "1.9.1",
+    "scipy": "1.18.1",
+    "joblib": "1.6.0",
+    "threadpoolctl": "3.7.0"
+  },
+  "rows": {
+    "0.0001": {
+      "max_af": 0.0001,
+      "seed_label_analysis": "sweep0.0001",
+      "filter": {
+        "max_af": 0.0001,
+        "background_frequency": "grpmax",
+        "diagnostic_frequency": "grpmax",
+        "inheritance_filter": true,
+        "cases_before": 200,
+        "variants_before": 99488,
+        "kgp_max_af": 0.01,
+        "cases_lost_diagnostic": 12,
+        "variants_after_frequency": 3354,
+        "unrecognised_moi_values_kept": [],
+        "rows_without_gene": 0,
+        "variants_after_inheritance": 1915,
+        "background_indels_in_inheritance_count": 213,
+        "variants_after_dropping_other_type": 1702,
+        "description": "background grpmax below 0.0001 and 1000 Genomes AF below 0.01, diagnostics full gnomAD grpmax below 0.0001; background inheritance filter; background indels dropped after filtering"
+      },
+      "cases": 188,
+      "people": 50,
+      "median_variants_per_case": 8.0,
+      "coverage": {
+        "CADD": {
+          "variants": 1702,
+          "diagnostics": 188
+        },
+        "SpliceAI": {
+          "variants": 1459,
+          "diagnostics": 183
+        },
+        "REVEL": {
+          "variants": 416,
+          "diagnostics": 62
+        },
+        "AlphaMissense": {
+          "variants": 362,
+          "diagnostics": 52
+        },
+        "AVI": {
+          "variants": 1702,
+          "diagnostics": 188
+        },
+        "GPN-MSA": {
+          "variants": 1702,
+          "diagnostics": 188
+        },
+        "GPN-Star-V": {
+          "variants": 1702,
+          "diagnostics": 188
+        },
+        "GPN-Star-M": {
+          "variants": 1702,
+          "diagnostics": 188
+        },
+        "Evo 2": {
+          "variants": 1702,
+          "diagnostics": 188
+        }
+      },
+      "scores_without_coverage": [],
+      "model_classes": {
+        "training_diagnostics_per_class": {
+          "canonical_splice": 39,
+          "intronic": 34,
+          "missense": 55,
+          "nonsense": 29,
+          "splice_region": 22,
+          "synonymous": 6,
+          "utr": 3
+        },
+        "merged_into_other": [
+          "synonymous",
+          "utr"
+        ],
+        "model_classes": [
+          "canonical_splice",
+          "intronic",
+          "missense",
+          "nonsense",
+          "other",
+          "splice_region"
+        ],
+        "training_set": "the 200 SNV cases"
+      },
+      "rule_ties": {
+        "Rule-based": 0.0,
+        "Rule + AVI": 0.0
+      },
+      "strata": {
+        "all": {
+          "cases": 188,
+          "people": 50,
+          "small": false,
+          "scores": {
+            "CADD": {
+              "median_competitors": 0.0,
+              "top_1": 0.7447,
+              "top_1_ci95": [
+                0.6575,
+                0.8334
+              ],
+              "top_5": 0.9362,
+              "top_5_ci95": [
+                0.8817,
+                0.9737
+              ],
+              "top_10": 0.984,
+              "top_10_ci95": [
+                0.9677,
+                1.0
+              ]
+            },
+            "SpliceAI": {
+              "median_competitors": 0.0,
+              "top_1": 0.633,
+              "top_1_ci95": [
+                0.5503,
+                0.715
+              ],
+              "top_5": 0.8191,
+              "top_5_ci95": [
+                0.7622,
+                0.8717
+              ],
+              "top_10": 0.9043,
+              "top_10_ci95": [
+                0.8534,
+                0.9497
+              ]
+            },
+            "REVEL": {
+              "median_competitors": 2.0,
+              "top_1": 0.3883,
+              "top_1_ci95": [
+                0.3011,
+                0.4815
+              ],
+              "top_5": 0.6064,
+              "top_5_ci95": [
+                0.508,
+                0.7059
+              ],
+              "top_10": 0.7766,
+              "top_10_ci95": [
+                0.6808,
+                0.866
+              ]
+            },
+            "AlphaMissense": {
+              "median_competitors": 2.0,
+              "top_1": 0.367,
+              "top_1_ci95": [
+                0.2766,
+                0.4608
+              ],
+              "top_5": 0.5745,
+              "top_5_ci95": [
+                0.4757,
+                0.6811
+              ],
+              "top_10": 0.7553,
+              "top_10_ci95": [
+                0.6528,
+                0.8511
+              ]
+            },
+            "AVI": {
+              "median_competitors": 0.0,
+              "top_1": 0.867,
+              "top_1_ci95": [
+                0.7967,
+                0.9251
+              ],
+              "top_5": 0.984,
+              "top_5_ci95": [
+                0.9577,
+                1.0
+              ],
+              "top_10": 1.0,
+              "top_10_ci95": [
+                1.0,
+                1.0
+              ]
+            },
+            "GPN-MSA": {
+              "median_competitors": 0.0,
+              "top_1": 0.6968,
+              "top_1_ci95": [
+                0.5969,
+                0.7924
+              ],
+              "top_5": 0.9255,
+              "top_5_ci95": [
+                0.867,
+                0.9683
+              ],
+              "top_10": 0.9734,
+              "top_10_ci95": [
+                0.9418,
+                0.9948
+              ]
+            },
+            "GPN-Star-V": {
+              "median_competitors": 0.0,
+              "top_1": 0.7394,
+              "top_1_ci95": [
+                0.6505,
+                0.8236
+              ],
+              "top_5": 0.9415,
+              "top_5_ci95": [
+                0.8978,
+                0.9784
+              ],
+              "top_10": 0.9787,
+              "top_10_ci95": [
+                0.9568,
+                0.9948
+              ]
+            },
+            "GPN-Star-M": {
+              "median_competitors": 0.0,
+              "top_1": 0.7074,
+              "top_1_ci95": [
+                0.6094,
+                0.7989
+              ],
+              "top_5": 0.9149,
+              "top_5_ci95": [
+                0.8513,
+                0.9626
+              ],
+              "top_10": 0.9681,
+              "top_10_ci95": [
+                0.9412,
+                0.9896
+              ]
+            },
+            "Evo 2": {
+              "median_competitors": 0.0,
+              "top_1": 0.7234,
+              "top_1_ci95": [
+                0.6344,
+                0.8065
+              ],
+              "top_5": 0.9309,
+              "top_5_ci95": [
+                0.8798,
+                0.9735
+              ],
+              "top_10": 0.9787,
+              "top_10_ci95": [
+                0.9577,
+                0.9948
+              ]
+            },
+            "Rule-based": {
+              "median_competitors": 0.0,
+              "top_1": 0.867,
+              "top_1_ci95": [
+                0.7814,
+                0.934
+              ],
+              "top_5": 0.9787,
+              "top_5_ci95": [
+                0.9476,
+                1.0
+              ],
+              "top_10": 0.984,
+              "top_10_ci95": [
+                0.9579,
+                1.0
+              ]
+            },
+            "Rule + AVI": {
+              "median_competitors": 0.0,
+              "top_1": 0.9043,
+              "top_1_ci95": [
+                0.8333,
+                0.9574
+              ],
+              "top_5": 0.984,
+              "top_5_ci95": [
+                0.9579,
+                1.0
+              ],
+              "top_10": 0.984,
+              "top_10_ci95": [
+                0.9579,
+                1.0
+              ]
+            },
+            "Lookups combined": {
+              "median_competitors": 0.0,
+              "top_1": 0.9096,
+              "top_1_ci95": [
+                0.8453,
+                0.9626
+              ],
+              "top_5": 0.9947,
+              "top_5_ci95": [
+                0.9838,
+                1.0
+              ],
+              "top_10": 1.0,
+              "top_10_ci95": [
+                1.0,
+                1.0
+              ]
+            },
+            "Lookups + AVI": {
+              "median_competitors": 0.0,
+              "top_1": 0.9096,
+              "top_1_ci95": [
+                0.8555,
+                0.9529
+              ],
+              "top_5": 0.9894,
+              "top_5_ci95": [
+                0.9674,
+                1.0
+              ],
+              "top_10": 0.9894,
+              "top_10_ci95": [
+                0.9674,
+                1.0
+              ]
+            }
+          },
+          "rule_ties": {
+            "Rule-based": 0.0,
+            "Rule + AVI": 0.0
+          },
+          "contrasts": {
+            "Lookups + AVI minus Lookups combined": {
+              "role": "primary contrast, cross-validated (descriptive)",
+              "top_1": 0.0,
+              "top_1_ci95": [
+                -0.0217,
+                0.0269
+              ],
+              "top_1_p": 1.0,
+              "top_5": -0.0053,
+              "top_5_ci95": [
+                -0.0317,
+                0.0159
+              ],
+              "top_5_p": 0.94,
+              "top_10": -0.0106,
+              "top_10_ci95": [
+                -0.0326,
+                0.0
+              ],
+              "top_10_p": 0.736,
+              "confirmatory": false
+            },
+            "Lookups combined minus Rule-based": {
+              "role": "descriptive",
+              "top_1": 0.0426,
+              "top_1_ci95": [
+                0.0105,
+                0.0802
+              ],
+              "top_1_p": 0.012,
+              "top_5": 0.016,
+              "top_5_ci95": [
+                -0.0054,
+                0.0481
+              ],
+              "top_5_p": 0.31,
+              "top_10": 0.016,
+              "top_10_ci95": [
+                0.0,
+                0.0421
+              ],
+              "top_10_p": 0.258
+            },
+            "Lookups + AVI minus Rule-based": {
+              "role": "descriptive",
+              "top_1": 0.0426,
+              "top_1_ci95": [
+                0.0052,
+                0.0829
+              ],
+              "top_1_p": 0.046,
+              "top_5": 0.0106,
+              "top_5_ci95": [
+                0.0,
+                0.027
+              ],
+              "top_5_p": 0.246,
+              "top_10": 0.0053,
+              "top_10_ci95": [
+                0.0,
+                0.0162
+              ],
+              "top_10_p": 0.746
+            },
+            "Rule + AVI minus Rule-based": {
+              "role": "key secondary",
+              "top_1": 0.0372,
+              "top_1_ci95": [
+                0.0052,
+                0.0753
+              ],
+              "top_1_p": 0.048,
+              "top_5": 0.0053,
+              "top_5_ci95": [
+                0.0,
+                0.0164
+              ],
+              "top_5_p": 0.718,
+              "top_10": 0.0,
+              "top_10_ci95": [
+                0.0,
+                0.0
+              ],
+              "top_10_p": 1.0
+            }
+          },
+          "seed_label": "snv/sweep0.0001/all"
+        },
+        "gnomad: found": {
+          "cases": 40,
+          "people": 29,
+          "small": false,
+          "scores": {
+            "CADD": {
+              "median_competitors": 0.0,
+              "top_1": 0.725,
+              "top_1_ci95": [
+                0.5853,
+                0.86
+              ],
+              "top_5": 0.9,
+              "top_5_ci95": [
+                0.7949,
+                0.9768
+              ],
+              "top_10": 1.0,
+              "top_10_ci95": [
+                1.0,
+                1.0
+              ]
+            },
+            "SpliceAI": {
+              "median_competitors": 0.0,
+              "top_1": 0.675,
+              "top_1_ci95": [
+                0.525,
+                0.8125
+              ],
+              "top_5": 0.85,
+              "top_5_ci95": [
+                0.7143,
+                0.9535
+              ],
+              "top_10": 0.85,
+              "top_10_ci95": [
+                0.7143,
+                0.9535
+              ]
+            },
+            "REVEL": {
+              "median_competitors": 2.0,
+              "top_1": 0.45,
+              "top_1_ci95": [
+                0.2927,
+                0.6098
+              ],
+              "top_5": 0.675,
+              "top_5_ci95": [
+                0.525,
+                0.8205
+              ],
+              "top_10": 0.825,
+              "top_10_ci95": [
+                0.6923,
+                0.9375
+              ]
+            },
+            "AlphaMissense": {
+              "median_competitors": 2.0,
+              "top_1": 0.45,
+              "top_1_ci95": [
+                0.2927,
+                0.6098
+              ],
+              "top_5": 0.65,
+              "top_5_ci95": [
+                0.4872,
+                0.8049
+              ],
+              "top_10": 0.8,
+              "top_10_ci95": [
+                0.6499,
+                0.9251
+              ]
+            },
+            "AVI": {
+              "median_competitors": 0.0,
+              "top_1": 0.85,
+              "top_1_ci95": [
+                0.7436,
+                0.9474
+              ],
+              "top_5": 1.0,
+              "top_5_ci95": [
+                1.0,
+                1.0
+              ],
+              "top_10": 1.0,
+              "top_10_ci95": [
+                1.0,
+                1.0
+              ]
+            },
+            "GPN-MSA": {
+              "median_competitors": 0.0,
+              "top_1": 0.625,
+              "top_1_ci95": [
+                0.4749,
+                0.7632
+              ],
+              "top_5": 0.95,
+              "top_5_ci95": [
+                0.875,
+                1.0
+              ],
+              "top_10": 0.975,
+              "top_10_ci95": [
+                0.9189,
+                1.0
+              ]
+            },
+            "GPN-Star-V": {
+              "median_competitors": 0.0,
+              "top_1": 0.65,
+              "top_1_ci95": [
+                0.4997,
+                0.7956
+              ],
+              "top_5": 0.95,
+              "top_5_ci95": [
+                0.8718,
+                1.0
+              ],
+              "top_10": 0.975,
+              "top_10_ci95": [
+                0.9189,
+                1.0
+              ]
+            },
+            "GPN-Star-M": {
+              "median_competitors": 0.0,
+              "top_1": 0.625,
+              "top_1_ci95": [
+                0.4634,
+                0.7858
+              ],
+              "top_5": 0.95,
+              "top_5_ci95": [
+                0.875,
+                1.0
+              ],
+              "top_10": 0.975,
+              "top_10_ci95": [
+                0.9189,
+                1.0
+              ]
+            },
+            "Evo 2": {
+              "median_competitors": 0.0,
+              "top_1": 0.625,
+              "top_1_ci95": [
+                0.457,
+                0.7838
+              ],
+              "top_5": 0.875,
+              "top_5_ci95": [
+                0.75,
+                0.9744
+              ],
+              "top_10": 1.0,
+              "top_10_ci95": [
+                1.0,
+                1.0
+              ]
+            },
+            "Rule-based": {
+              "median_competitors": 0.0,
+              "top_1": 0.85,
+              "top_1_ci95": [
+                0.7111,
+                0.9512
+              ],
+              "top_5": 0.925,
+              "top_5_ci95": [
+                0.8055,
+                1.0
+              ],
+              "top_10": 0.925,
+              "top_10_ci95": [
+                0.8055,
+                1.0
+              ]
+            },
+            "Rule + AVI": {
+              "median_competitors": 0.0,
+              "top_1": 0.85,
+              "top_1_ci95": [
+                0.7111,
+                0.9512
+              ],
+              "top_5": 0.925,
+              "top_5_ci95": [
+                0.8055,
+                1.0
+              ],
+              "top_10": 0.925,
+              "top_10_ci95": [
+                0.8055,
+                1.0
+              ]
+            },
+            "Lookups combined": {
+              "median_competitors": 0.0,
+              "top_1": 0.875,
+              "top_1_ci95": [
+                0.7381,
+                0.9756
+              ],
+              "top_5": 1.0,
+              "top_5_ci95": [
+                1.0,
+                1.0
+              ],
+              "top_10": 1.0,
+              "top_10_ci95": [
+                1.0,
+                1.0
+              ]
+            },
+            "Lookups + AVI": {
+              "median_competitors": 0.0,
+              "top_1": 0.875,
+              "top_1_ci95": [
+                0.7442,
+                0.9756
+              ],
+              "top_5": 0.95,
+              "top_5_ci95": [
+                0.8421,
+                1.0
+              ],
+              "top_10": 0.95,
+              "top_10_ci95": [
+                0.8421,
+                1.0
+              ]
+            }
+          },
+          "rule_ties": {
+            "Rule-based": 0.0,
+            "Rule + AVI": 0.0
+          },
+          "seed_label": "snv/sweep0.0001/gnomad: found"
+        },
+        "gnomad: absent": {
+          "cases": 148,
+          "people": 48,
+          "small": false,
+          "scores": {
+            "CADD": {
+              "median_competitors": 0.0,
+              "top_1": 0.75,
+              "top_1_ci95": [
+                0.6519,
+                0.8429
+              ],
+              "top_5": 0.9459,
+              "top_5_ci95": [
+                0.8933,
+                0.9859
+              ],
+              "top_10": 0.9797,
+              "top_10_ci95": [
+                0.9545,
+                1.0
+              ]
+            },
+            "SpliceAI": {
+              "median_competitors": 0.0,
+              "top_1": 0.6216,
+              "top_1_ci95": [
+                0.5294,
+                0.702
+              ],
+              "top_5": 0.8108,
+              "top_5_ci95": [
+                0.7483,
+                0.8671
+              ],
+              "top_10": 0.9189,
+              "top_10_ci95": [
+                0.8667,
+                0.963
+              ]
+            },
+            "REVEL": {
+              "median_competitors": 2.0,
+              "top_1": 0.3716,
+              "top_1_ci95": [
+                0.2922,
+                0.4578
+              ],
+              "top_5": 0.5878,
+              "top_5_ci95": [
+                0.4817,
+                0.6902
+              ],
+              "top_10": 0.7635,
+              "top_10_ci95": [
+                0.6556,
+                0.863
+              ]
+            },
+            "AlphaMissense": {
+              "median_competitors": 2.0,
+              "top_1": 0.3446,
+              "top_1_ci95": [
+                0.2708,
+                0.4276
+              ],
+              "top_5": 0.5541,
+              "top_5_ci95": [
+                0.4493,
+                0.6594
+              ],
+              "top_10": 0.7432,
+              "top_10_ci95": [
+                0.6291,
+                0.8516
+              ]
+            },
+            "AVI": {
+              "median_competitors": 0.0,
+              "top_1": 0.8716,
+              "top_1_ci95": [
+                0.781,
+                0.9384
+              ],
+              "top_5": 0.9797,
+              "top_5_ci95": [
+                0.9444,
+                1.0
+              ],
+              "top_10": 1.0,
+              "top_10_ci95": [
+                1.0,
+                1.0
+              ]
+            },
+            "GPN-MSA": {
+              "median_competitors": 0.0,
+              "top_1": 0.7162,
+              "top_1_ci95": [
+                0.6076,
+                0.8176
+              ],
+              "top_5": 0.9189,
+              "top_5_ci95": [
+                0.859,
+                0.9726
+              ],
+              "top_10": 0.973,
+              "top_10_ci95": [
+                0.9346,
+                1.0
+              ]
+            },
+            "GPN-Star-V": {
+              "median_competitors": 0.0,
+              "top_1": 0.7635,
+              "top_1_ci95": [
+                0.6727,
+                0.8492
+              ],
+              "top_5": 0.9392,
+              "top_5_ci95": [
+                0.8874,
+                0.9815
+              ],
+              "top_10": 0.9797,
+              "top_10_ci95": [
+                0.9545,
+                1.0
+              ]
+            },
+            "GPN-Star-M": {
+              "median_competitors": 0.0,
+              "top_1": 0.7297,
+              "top_1_ci95": [
+                0.6241,
+                0.8252
+              ],
+              "top_5": 0.9054,
+              "top_5_ci95": [
+                0.8382,
+                0.9616
+              ],
+              "top_10": 0.9662,
+              "top_10_ci95": [
+                0.9246,
+                0.9935
+              ]
+            },
+            "Evo 2": {
+              "median_competitors": 0.0,
+              "top_1": 0.75,
+              "top_1_ci95": [
+                0.6597,
+                0.8298
+              ],
+              "top_5": 0.9459,
+              "top_5_ci95": [
+                0.8968,
+                0.9855
+              ],
+              "top_10": 0.973,
+              "top_10_ci95": [
+                0.9452,
+                0.9936
+              ]
+            },
+            "Rule-based": {
+              "median_competitors": 0.0,
+              "top_1": 0.8716,
+              "top_1_ci95": [
+                0.7928,
+                0.9388
+              ],
+              "top_5": 0.9932,
+              "top_5_ci95": [
+                0.9781,
+                1.0
+              ],
+              "top_10": 1.0,
+              "top_10_ci95": [
+                1.0,
+                1.0
+              ]
+            },
+            "Rule + AVI": {
+              "median_competitors": 0.0,
+              "top_1": 0.9189,
+              "top_1_ci95": [
+                0.84,
+                0.973
+              ],
+              "top_5": 1.0,
+              "top_5_ci95": [
+                1.0,
+                1.0
+              ],
+              "top_10": 1.0,
+              "top_10_ci95": [
+                1.0,
+                1.0
+              ]
+            },
+            "Lookups combined": {
+              "median_competitors": 0.0,
+              "top_1": 0.9189,
+              "top_1_ci95": [
+                0.8531,
+                0.971
+              ],
+              "top_5": 0.9932,
+              "top_5_ci95": [
+                0.9799,
+                1.0
+              ],
+              "top_10": 1.0,
+              "top_10_ci95": [
+                1.0,
+                1.0
+              ]
+            },
+            "Lookups + AVI": {
+              "median_competitors": 0.0,
+              "top_1": 0.9189,
+              "top_1_ci95": [
+                0.8633,
+                0.9671
+              ],
+              "top_5": 1.0,
+              "top_5_ci95": [
+                1.0,
+                1.0
+              ],
+              "top_10": 1.0,
+              "top_10_ci95": [
+                1.0,
+                1.0
+              ]
+            }
+          },
+          "rule_ties": {
+            "Rule-based": 0.0,
+            "Rule + AVI": 0.0
+          },
+          "seed_label": "snv/sweep0.0001/gnomad: absent"
+        }
+      },
+      "gnomad_split": {
+        "sources": [
+          "data/gnomad_full.tsv",
+          "pool/gnomad_full.tsv"
+        ],
+        "diagnostics_found": 40,
+        "diagnostics_absent": 148,
+        "diagnostics_without_status": 0,
+        "seed_label": "snv/sweep0.0001/gnomad split",
+        "gnomad: found": {
+          "cases": 40,
+          "people": 29,
+          "contrasts": {
+            "Lookups + AVI minus Lookups combined": {
+              "role": "primary",
+              "top_1": 0.0,
+              "top_1_ci95": [
+                -0.0811,
+                0.0732
+              ],
+              "top_1_p": 1.0,
+              "top_5": -0.05,
+              "top_5_ci95": [
+                -0.1501,
+                0.0
+              ],
+              "top_5_p": 0.742,
+              "top_10": -0.05,
+              "top_10_ci95": [
+                -0.1501,
+                0.0
+              ],
+              "top_10_p": 0.742
+            },
+            "Rule + AVI minus Rule-based": {
+              "role": "key secondary",
+              "top_1": 0.0,
+              "top_1_ci95": [
+                0.0,
+                0.0
+              ],
+              "top_1_p": 1.0,
+              "top_5": 0.0,
+              "top_5_ci95": [
+                0.0,
+                0.0
+              ],
+              "top_5_p": 1.0,
+              "top_10": 0.0,
+              "top_10_ci95": [
+                0.0,
+                0.0
+              ],
+              "top_10_p": 1.0
+            }
+          }
+        },
+        "gnomad: absent": {
+          "cases": 148,
+          "people": 48,
+          "contrasts": {
+            "Lookups + AVI minus Lookups combined": {
+              "role": "primary",
+              "top_1": 0.0,
+              "top_1_ci95": [
+                -0.0192,
+                0.0204
+              ],
+              "top_1_p": 1.0,
+              "top_5": 0.0068,
+              "top_5_ci95": [
+                0.0,
+                0.0236
+              ],
+              "top_5_p": 0.734,
+              "top_10": 0.0,
+              "top_10_ci95": [
+                0.0,
+                0.0
+              ],
+              "top_10_p": 1.0
+            },
+            "Rule + AVI minus Rule-based": {
+              "role": "key secondary",
+              "top_1": 0.0473,
+              "top_1_ci95": [
+                0.0068,
+                0.0966
+              ],
+              "top_1_p": 0.03,
+              "top_5": 0.0068,
+              "top_5_ci95": [
+                0.0,
+                0.0204
+              ],
+              "top_5_p": 0.688,
+              "top_10": 0.0,
+              "top_10_ci95": [
+                0.0,
+                0.0
+              ],
+              "top_10_p": 1.0
+            }
+          }
+        },
+        "difference": {
+          "Lookups + AVI minus Lookups combined": {
+            "role": "primary",
+            "top_1_absent_minus_found": 0.0,
+            "top_1_ci95": [
+              -0.0615,
+              0.0792
+            ],
+            "top_1_p": 1.0,
+            "possibly_gnomad_presence": false
+          },
+          "Rule + AVI minus Rule-based": {
+            "role": "key secondary",
+            "top_1_absent_minus_found": 0.0473,
+            "top_1_ci95": [
+              0.0068,
+              0.0966
+            ],
+            "top_1_p": 0.03,
+            "possibly_gnomad_presence": true
+          }
+        }
+      },
+      "why": {
+        "background_variants": 405,
+        "spearman_with_grpmax": {
+          "AVI": {
+            "rho": -0.0748,
+            "variants": 405
+          },
+          "CADD": {
+            "rho": -0.03,
+            "variants": 405
+          }
+        },
+        "background_by_band": {
+          "below 0.1%": 8.053,
+          "0.1 to 1%": 0.0,
+          "1 to 5%": 0.0
+        },
+        "above_by_band": {
+          "AVI": {
+            "below 0.1%": 0.293,
+            "0.1 to 1%": 0.0,
+            "1 to 5%": 0.0
+          },
+          "CADD": {
+            "below 0.1%": 0.83,
+            "0.1 to 1%": 0.0,
+            "1 to 5%": 0.0
+          }
+        }
+      }
+    },
+    "0.0005": {
+      "max_af": 0.0005,
+      "seed_label_analysis": "sweep0.0005",
+      "filter": {
+        "max_af": 0.0005,
+        "background_frequency": "grpmax",
+        "diagnostic_frequency": "grpmax",
+        "inheritance_filter": true,
+        "cases_before": 200,
+        "variants_before": 99488,
+        "kgp_max_af": 0.01,
+        "cases_lost_diagnostic": 2,
+        "variants_after_frequency": 7604,
+        "unrecognised_moi_values_kept": [],
+        "rows_without_gene": 0,
+        "variants_after_inheritance": 4231,
+        "background_indels_in_inheritance_count": 534,
+        "variants_after_dropping_other_type": 3697,
+        "description": "background grpmax below 0.0005 and 1000 Genomes AF below 0.01, diagnostics full gnomAD grpmax below 0.0005; background inheritance filter; background indels dropped after filtering"
+      },
+      "cases": 198,
+      "people": 50,
+      "median_variants_per_case": 17.0,
+      "coverage": {
+        "CADD": {
+          "variants": 3697,
+          "diagnostics": 198
+        },
+        "SpliceAI": {
+          "variants": 3071,
+          "diagnostics": 190
+        },
+        "REVEL": {
+          "variants": 850,
+          "diagnostics": 68
+        },
+        "AlphaMissense": {
+          "variants": 725,
+          "diagnostics": 57
+        },
+        "AVI": {
+          "variants": 3697,
+          "diagnostics": 198
+        },
+        "GPN-MSA": {
+          "variants": 3697,
+          "diagnostics": 198
+        },
+        "GPN-Star-V": {
+          "variants": 3697,
+          "diagnostics": 198
+        },
+        "GPN-Star-M": {
+          "variants": 3697,
+          "diagnostics": 198
+        },
+        "Evo 2": {
+          "variants": 3697,
+          "diagnostics": 198
+        }
+      },
+      "scores_without_coverage": [],
+      "model_classes": {
+        "training_diagnostics_per_class": {
+          "canonical_splice": 40,
+          "intronic": 37,
+          "missense": 60,
+          "nonsense": 30,
+          "splice_region": 22,
+          "synonymous": 6,
+          "utr": 3
+        },
+        "merged_into_other": [
+          "synonymous",
+          "utr"
+        ],
+        "model_classes": [
+          "canonical_splice",
+          "intronic",
+          "missense",
+          "nonsense",
+          "other",
+          "splice_region"
+        ],
+        "training_set": "the 200 SNV cases"
+      },
+      "rule_ties": {
+        "Rule-based": 0.0,
+        "Rule + AVI": 0.0
+      },
+      "strata": {
+        "all": {
+          "cases": 198,
+          "people": 50,
+          "small": false,
+          "scores": {
+            "CADD": {
+              "median_competitors": 0.0,
+              "top_1": 0.5707,
+              "top_1_ci95": [
+                0.4872,
+                0.6566
+              ],
+              "top_5": 0.899,
+              "top_5_ci95": [
+                0.8426,
+                0.9447
+              ],
+              "top_10": 0.9646,
+              "top_10_ci95": [
+                0.9394,
+                0.985
+              ]
+            },
+            "SpliceAI": {
+              "median_competitors": 0.0,
+              "top_1": 0.5606,
+              "top_1_ci95": [
+                0.4797,
+                0.6295
+              ],
+              "top_5": 0.702,
+              "top_5_ci95": [
+                0.6382,
+                0.76
+              ],
+              "top_10": 0.7828,
+              "top_10_ci95": [
+                0.7172,
+                0.8442
+              ]
+            },
+            "REVEL": {
+              "median_competitors": 7.5,
+              "top_1": 0.2879,
+              "top_1_ci95": [
+                0.235,
+                0.3384
+              ],
+              "top_5": 0.3737,
+              "top_5_ci95": [
+                0.3081,
+                0.4416
+              ],
+              "top_10": 0.5657,
+              "top_10_ci95": [
+                0.4718,
+                0.6599
+              ]
+            },
+            "AlphaMissense": {
+              "median_competitors": 8.5,
+              "top_1": 0.2576,
+              "top_1_ci95": [
+                0.215,
+                0.301
+              ],
+              "top_5": 0.3283,
+              "top_5_ci95": [
+                0.2626,
+                0.397
+              ],
+              "top_10": 0.5202,
+              "top_10_ci95": [
+                0.42,
+                0.6131
+              ]
+            },
+            "AVI": {
+              "median_competitors": 0.0,
+              "top_1": 0.8283,
+              "top_1_ci95": [
+                0.7588,
+                0.8934
+              ],
+              "top_5": 0.9697,
+              "top_5_ci95": [
+                0.9391,
+                0.9899
+              ],
+              "top_10": 0.9949,
+              "top_10_ci95": [
+                0.9848,
+                1.0
+              ]
+            },
+            "GPN-MSA": {
+              "median_competitors": 0.0,
+              "top_1": 0.5202,
+              "top_1_ci95": [
+                0.4213,
+                0.6131
+              ],
+              "top_5": 0.8333,
+              "top_5_ci95": [
+                0.7739,
+                0.8844
+              ],
+              "top_10": 0.9394,
+              "top_10_ci95": [
+                0.9036,
+                0.97
+              ]
+            },
+            "GPN-Star-V": {
+              "median_competitors": 0.0,
+              "top_1": 0.5859,
+              "top_1_ci95": [
+                0.5076,
+                0.6617
+              ],
+              "top_5": 0.8889,
+              "top_5_ci95": [
+                0.8426,
+                0.93
+              ],
+              "top_10": 0.9596,
+              "top_10_ci95": [
+                0.9293,
+                0.9899
+              ]
+            },
+            "GPN-Star-M": {
+              "median_competitors": 0.0,
+              "top_1": 0.5758,
+              "top_1_ci95": [
+                0.4923,
+                0.66
+              ],
+              "top_5": 0.8586,
+              "top_5_ci95": [
+                0.7889,
+                0.9133
+              ],
+              "top_10": 0.9545,
+              "top_10_ci95": [
+                0.9183,
+                0.9849
+              ]
+            },
+            "Evo 2": {
+              "median_competitors": 0.0,
+              "top_1": 0.6111,
+              "top_1_ci95": [
+                0.5306,
+                0.6919
+              ],
+              "top_5": 0.8737,
+              "top_5_ci95": [
+                0.8182,
+                0.9246
+              ],
+              "top_10": 0.9596,
+              "top_10_ci95": [
+                0.9293,
+                0.985
+              ]
+            },
+            "Rule-based": {
+              "median_competitors": 0.0,
+              "top_1": 0.8485,
+              "top_1_ci95": [
+                0.7739,
+                0.9147
+              ],
+              "top_5": 0.9646,
+              "top_5_ci95": [
+                0.9347,
+                0.9899
+              ],
+              "top_10": 0.9798,
+              "top_10_ci95": [
+                0.9545,
+                1.0
+              ]
+            },
+            "Rule + AVI": {
+              "median_competitors": 0.0,
+              "top_1": 0.8939,
+              "top_1_ci95": [
+                0.8333,
+                0.9447
+              ],
+              "top_5": 0.9646,
+              "top_5_ci95": [
+                0.9347,
+                0.9899
+              ],
+              "top_10": 0.9798,
+              "top_10_ci95": [
+                0.9545,
+                1.0
+              ]
+            },
+            "Lookups combined": {
+              "median_competitors": 0.0,
+              "top_1": 0.8333,
+              "top_1_ci95": [
+                0.7437,
+                0.9096
+              ],
+              "top_5": 0.9747,
+              "top_5_ci95": [
+                0.9541,
+                0.9949
+              ],
+              "top_10": 0.9848,
+              "top_10_ci95": [
+                0.965,
+                1.0
+              ]
+            },
+            "Lookups + AVI": {
+              "median_competitors": 0.0,
+              "top_1": 0.8687,
+              "top_1_ci95": [
+                0.802,
+                0.9293
+              ],
+              "top_5": 0.9495,
+              "top_5_ci95": [
+                0.9141,
+                0.98
+              ],
+              "top_10": 0.9798,
+              "top_10_ci95": [
+                0.9545,
+                1.0
+              ]
+            }
+          },
+          "rule_ties": {
+            "Rule-based": 0.0,
+            "Rule + AVI": 0.0
+          },
+          "contrasts": {
+            "Lookups + AVI minus Lookups combined": {
+              "role": "primary contrast, cross-validated (descriptive)",
+              "top_1": 0.0354,
+              "top_1_ci95": [
+                -0.0155,
+                0.0817
+              ],
+              "top_1_p": 0.236,
+              "top_5": -0.0253,
+              "top_5_ci95": [
+                -0.0558,
+                0.0051
+              ],
+              "top_5_p": 0.14,
+              "top_10": -0.0051,
+              "top_10_ci95": [
+                -0.0354,
+                0.0203
+              ],
+              "top_10_p": 0.874,
+              "confirmatory": false
+            },
+            "Lookups combined minus Rule-based": {
+              "role": "descriptive",
+              "top_1": -0.0152,
+              "top_1_ci95": [
+                -0.0754,
+                0.0406
+              ],
+              "top_1_p": 0.696,
+              "top_5": 0.0101,
+              "top_5_ci95": [
+                -0.0152,
+                0.0402
+              ],
+              "top_5_p": 0.614,
+              "top_10": 0.0051,
+              "top_10_ci95": [
+                -0.0201,
+                0.0352
+              ],
+              "top_10_p": 0.882
+            },
+            "Lookups + AVI minus Rule-based": {
+              "role": "descriptive",
+              "top_1": 0.0202,
+              "top_1_ci95": [
+                -0.0455,
+                0.0766
+              ],
+              "top_1_p": 0.536,
+              "top_5": -0.0152,
+              "top_5_ci95": [
+                -0.05,
+                0.0153
+              ],
+              "top_5_p": 0.486,
+              "top_10": 0.0,
+              "top_10_ci95": [
+                -0.0202,
+                0.0202
+              ],
+              "top_10_p": 1.0
+            },
+            "Rule + AVI minus Rule-based": {
+              "role": "key secondary",
+              "top_1": 0.0455,
+              "top_1_ci95": [
+                0.0102,
+                0.0808
+              ],
+              "top_1_p": 0.01,
+              "top_5": 0.0,
+              "top_5_ci95": [
+                -0.0151,
+                0.0151
+              ],
+              "top_5_p": 1.0,
+              "top_10": 0.0,
+              "top_10_ci95": [
+                0.0,
+                0.0
+              ],
+              "top_10_p": 1.0
+            }
+          },
+          "seed_label": "snv/sweep0.0005/all"
+        },
+        "gnomad: found": {
+          "cases": 50,
+          "people": 31,
+          "small": false,
+          "scores": {
+            "CADD": {
+              "median_competitors": 0.0,
+              "top_1": 0.58,
+              "top_1_ci95": [
+                0.4467,
+                0.7059
+              ],
+              "top_5": 0.86,
+              "top_5_ci95": [
+                0.7647,
+                0.9556
+              ],
+              "top_10": 0.94,
+              "top_10_ci95": [
+                0.8723,
+                1.0
+              ]
+            },
+            "SpliceAI": {
+              "median_competitors": 0.0,
+              "top_1": 0.56,
+              "top_1_ci95": [
+                0.4255,
+                0.6977
+              ],
+              "top_5": 0.68,
+              "top_5_ci95": [
+                0.5434,
+                0.8114
+              ],
+              "top_10": 0.78,
+              "top_10_ci95": [
+                0.6538,
+                0.9001
+              ]
+            },
+            "REVEL": {
+              "median_competitors": 7.0,
+              "top_1": 0.3,
+              "top_1_ci95": [
+                0.1836,
+                0.4167
+              ],
+              "top_5": 0.38,
+              "top_5_ci95": [
+                0.2449,
+                0.5102
+              ],
+              "top_10": 0.64,
+              "top_10_ci95": [
+                0.5,
+                0.7907
+              ]
+            },
+            "AlphaMissense": {
+              "median_competitors": 7.0,
+              "top_1": 0.24,
+              "top_1_ci95": [
+                0.1489,
+                0.3396
+              ],
+              "top_5": 0.32,
+              "top_5_ci95": [
+                0.1961,
+                0.4444
+              ],
+              "top_10": 0.6,
+              "top_10_ci95": [
+                0.4528,
+                0.7501
+              ]
+            },
+            "AVI": {
+              "median_competitors": 0.0,
+              "top_1": 0.76,
+              "top_1_ci95": [
+                0.6296,
+                0.8781
+              ],
+              "top_5": 0.94,
+              "top_5_ci95": [
+                0.8571,
+                1.0
+              ],
+              "top_10": 0.98,
+              "top_10_ci95": [
+                0.9362,
+                1.0
+              ]
+            },
+            "GPN-MSA": {
+              "median_competitors": 1.5,
+              "top_1": 0.34,
+              "top_1_ci95": [
+                0.2075,
+                0.5
+              ],
+              "top_5": 0.74,
+              "top_5_ci95": [
+                0.6538,
+                0.8367
+              ],
+              "top_10": 0.92,
+              "top_10_ci95": [
+                0.8541,
+                0.9787
+              ]
+            },
+            "GPN-Star-V": {
+              "median_competitors": 1.0,
+              "top_1": 0.4,
+              "top_1_ci95": [
+                0.2553,
+                0.5333
+              ],
+              "top_5": 0.82,
+              "top_5_ci95": [
+                0.7209,
+                0.9091
+              ],
+              "top_10": 0.94,
+              "top_10_ci95": [
+                0.875,
+                1.0
+              ]
+            },
+            "GPN-Star-M": {
+              "median_competitors": 1.0,
+              "top_1": 0.42,
+              "top_1_ci95": [
+                0.2765,
+                0.5533
+              ],
+              "top_5": 0.82,
+              "top_5_ci95": [
+                0.6923,
+                0.9216
+              ],
+              "top_10": 0.96,
+              "top_10_ci95": [
+                0.9019,
+                1.0
+              ]
+            },
+            "Evo 2": {
+              "median_competitors": 0.0,
+              "top_1": 0.54,
+              "top_1_ci95": [
+                0.3673,
+                0.6852
+              ],
+              "top_5": 0.78,
+              "top_5_ci95": [
+                0.6428,
+                0.9048
+              ],
+              "top_10": 0.94,
+              "top_10_ci95": [
+                0.8478,
+                1.0
+              ]
+            },
+            "Rule-based": {
+              "median_competitors": 0.0,
+              "top_1": 0.84,
+              "top_1_ci95": [
+                0.7059,
+                0.9388
+              ],
+              "top_5": 0.88,
+              "top_5_ci95": [
+                0.7678,
+                0.963
+              ],
+              "top_10": 0.92,
+              "top_10_ci95": [
+                0.8162,
+                1.0
+              ]
+            },
+            "Rule + AVI": {
+              "median_competitors": 0.0,
+              "top_1": 0.84,
+              "top_1_ci95": [
+                0.7059,
+                0.9388
+              ],
+              "top_5": 0.86,
+              "top_5_ci95": [
+                0.7451,
+                0.9583
+              ],
+              "top_10": 0.92,
+              "top_10_ci95": [
+                0.8162,
+                1.0
+              ]
+            },
+            "Lookups combined": {
+              "median_competitors": 0.0,
+              "top_1": 0.84,
+              "top_1_ci95": [
+                0.7143,
+                0.9444
+              ],
+              "top_5": 0.96,
+              "top_5_ci95": [
+                0.898,
+                1.0
+              ],
+              "top_10": 0.98,
+              "top_10_ci95": [
+                0.9362,
+                1.0
+              ]
+            },
+            "Lookups + AVI": {
+              "median_competitors": 0.0,
+              "top_1": 0.88,
+              "top_1_ci95": [
+                0.7608,
+                0.9678
+              ],
+              "top_5": 0.9,
+              "top_5_ci95": [
+                0.7916,
+                0.9811
+              ],
+              "top_10": 0.96,
+              "top_10_ci95": [
+                0.8723,
+                1.0
+              ]
+            }
+          },
+          "rule_ties": {
+            "Rule-based": 0.0,
+            "Rule + AVI": 0.0
+          },
+          "seed_label": "snv/sweep0.0005/gnomad: found"
+        },
+        "gnomad: absent": {
+          "cases": 148,
+          "people": 48,
+          "small": false,
+          "scores": {
+            "CADD": {
+              "median_competitors": 0.0,
+              "top_1": 0.5676,
+              "top_1_ci95": [
+                0.4671,
+                0.6596
+              ],
+              "top_5": 0.9122,
+              "top_5_ci95": [
+                0.8533,
+                0.9628
+              ],
+              "top_10": 0.973,
+              "top_10_ci95": [
+                0.9459,
+                0.9936
+              ]
+            },
+            "SpliceAI": {
+              "median_competitors": 0.0,
+              "top_1": 0.5608,
+              "top_1_ci95": [
+                0.4802,
+                0.6424
+              ],
+              "top_5": 0.7095,
+              "top_5_ci95": [
+                0.6424,
+                0.7813
+              ],
+              "top_10": 0.7838,
+              "top_10_ci95": [
+                0.7094,
+                0.8521
+              ]
+            },
+            "REVEL": {
+              "median_competitors": 8.0,
+              "top_1": 0.2838,
+              "top_1_ci95": [
+                0.2251,
+                0.3408
+              ],
+              "top_5": 0.3716,
+              "top_5_ci95": [
+                0.2993,
+                0.4481
+              ],
+              "top_10": 0.5405,
+              "top_10_ci95": [
+                0.4323,
+                0.6383
+              ]
+            },
+            "AlphaMissense": {
+              "median_competitors": 10.0,
+              "top_1": 0.2635,
+              "top_1_ci95": [
+                0.2095,
+                0.3172
+              ],
+              "top_5": 0.3311,
+              "top_5_ci95": [
+                0.2639,
+                0.4053
+              ],
+              "top_10": 0.4932,
+              "top_10_ci95": [
+                0.3831,
+                0.5922
+              ]
+            },
+            "AVI": {
+              "median_competitors": 0.0,
+              "top_1": 0.8514,
+              "top_1_ci95": [
+                0.773,
+                0.9243
+              ],
+              "top_5": 0.9797,
+              "top_5_ci95": [
+                0.9452,
+                1.0
+              ],
+              "top_10": 1.0,
+              "top_10_ci95": [
+                1.0,
+                1.0
+              ]
+            },
+            "GPN-MSA": {
+              "median_competitors": 0.0,
+              "top_1": 0.5811,
+              "top_1_ci95": [
+                0.4855,
+                0.6831
+              ],
+              "top_5": 0.8649,
+              "top_5_ci95": [
+                0.8013,
+                0.9267
+              ],
+              "top_10": 0.9459,
+              "top_10_ci95": [
+                0.9021,
+                0.9858
+              ]
+            },
+            "GPN-Star-V": {
+              "median_competitors": 0.0,
+              "top_1": 0.6486,
+              "top_1_ci95": [
+                0.5533,
+                0.7418
+              ],
+              "top_5": 0.9122,
+              "top_5_ci95": [
+                0.8599,
+                0.965
+              ],
+              "top_10": 0.9662,
+              "top_10_ci95": [
+                0.9308,
+                0.9933
+              ]
+            },
+            "GPN-Star-M": {
+              "median_competitors": 0.0,
+              "top_1": 0.6284,
+              "top_1_ci95": [
+                0.5273,
+                0.7273
+              ],
+              "top_5": 0.8716,
+              "top_5_ci95": [
+                0.8039,
+                0.9359
+              ],
+              "top_10": 0.9527,
+              "top_10_ci95": [
+                0.9044,
+                0.9927
+              ]
+            },
+            "Evo 2": {
+              "median_competitors": 0.0,
+              "top_1": 0.6351,
+              "top_1_ci95": [
+                0.5467,
+                0.7163
+              ],
+              "top_5": 0.9054,
+              "top_5_ci95": [
+                0.8466,
+                0.9543
+              ],
+              "top_10": 0.9662,
+              "top_10_ci95": [
+                0.9351,
+                0.9932
+              ]
+            },
+            "Rule-based": {
+              "median_competitors": 0.0,
+              "top_1": 0.8514,
+              "top_1_ci95": [
+                0.7755,
+                0.9214
+              ],
+              "top_5": 0.9932,
+              "top_5_ci95": [
+                0.9794,
+                1.0
+              ],
+              "top_10": 1.0,
+              "top_10_ci95": [
+                1.0,
+                1.0
+              ]
+            },
+            "Rule + AVI": {
+              "median_competitors": 0.0,
+              "top_1": 0.9122,
+              "top_1_ci95": [
+                0.8431,
+                0.9675
+              ],
+              "top_5": 1.0,
+              "top_5_ci95": [
+                1.0,
+                1.0
+              ],
+              "top_10": 1.0,
+              "top_10_ci95": [
+                1.0,
+                1.0
+              ]
+            },
+            "Lookups combined": {
+              "median_competitors": 0.0,
+              "top_1": 0.8311,
+              "top_1_ci95": [
+                0.7397,
+                0.9139
+              ],
+              "top_5": 0.9797,
+              "top_5_ci95": [
+                0.9542,
+                1.0
+              ],
+              "top_10": 0.9865,
+              "top_10_ci95": [
+                0.9662,
+                1.0
+              ]
+            },
+            "Lookups + AVI": {
+              "median_competitors": 0.0,
+              "top_1": 0.8649,
+              "top_1_ci95": [
+                0.7887,
+                0.9371
+              ],
+              "top_5": 0.9662,
+              "top_5_ci95": [
+                0.9362,
+                0.9925
+              ],
+              "top_10": 0.9865,
+              "top_10_ci95": [
+                0.9653,
+                1.0
+              ]
+            }
+          },
+          "rule_ties": {
+            "Rule-based": 0.0,
+            "Rule + AVI": 0.0
+          },
+          "seed_label": "snv/sweep0.0005/gnomad: absent"
+        }
+      },
+      "gnomad_split": {
+        "sources": [
+          "data/gnomad_full.tsv",
+          "pool/gnomad_full.tsv"
+        ],
+        "diagnostics_found": 50,
+        "diagnostics_absent": 148,
+        "diagnostics_without_status": 0,
+        "seed_label": "snv/sweep0.0005/gnomad split",
+        "gnomad: found": {
+          "cases": 50,
+          "people": 31,
+          "contrasts": {
+            "Lookups + AVI minus Lookups combined": {
+              "role": "primary",
+              "top_1": 0.04,
+              "top_1_ci95": [
+                -0.0513,
+                0.1522
+              ],
+              "top_1_p": 0.524,
+              "top_5": -0.06,
+              "top_5_ci95": [
+                -0.1702,
+                0.0271
+              ],
+              "top_5_p": 0.316,
+              "top_10": -0.02,
+              "top_10_ci95": [
+                -0.1177,
+                0.0517
+              ],
+              "top_10_p": 0.94
+            },
+            "Rule + AVI minus Rule-based": {
+              "role": "key secondary",
+              "top_1": 0.0,
+              "top_1_ci95": [
+                0.0,
+                0.0
+              ],
+              "top_1_p": 1.0,
+              "top_5": -0.02,
+              "top_5_ci95": [
+                -0.0755,
+                0.0
+              ],
+              "top_5_p": 0.714,
+              "top_10": 0.0,
+              "top_10_ci95": [
+                0.0,
+                0.0
+              ],
+              "top_10_p": 1.0
+            }
+          }
+        },
+        "gnomad: absent": {
+          "cases": 148,
+          "people": 48,
+          "contrasts": {
+            "Lookups + AVI minus Lookups combined": {
+              "role": "primary",
+              "top_1": 0.0338,
+              "top_1_ci95": [
+                -0.022,
+                0.089
+              ],
+              "top_1_p": 0.29,
+              "top_5": -0.0135,
+              "top_5_ci95": [
+                -0.0357,
+                0.0
+              ],
+              "top_5_p": 0.292,
+              "top_10": 0.0,
+              "top_10_ci95": [
+                -0.0274,
+                0.0274
+              ],
+              "top_10_p": 1.0
+            },
+            "Rule + AVI minus Rule-based": {
+              "role": "key secondary",
+              "top_1": 0.0608,
+              "top_1_ci95": [
+                0.0141,
+                0.1088
+              ],
+              "top_1_p": 0.014,
+              "top_5": 0.0068,
+              "top_5_ci95": [
+                0.0,
+                0.0208
+              ],
+              "top_5_p": 0.738,
+              "top_10": 0.0,
+              "top_10_ci95": [
+                0.0,
+                0.0
+              ],
+              "top_10_p": 1.0
+            }
+          }
+        },
+        "difference": {
+          "Lookups + AVI minus Lookups combined": {
+            "role": "primary",
+            "top_1_absent_minus_found": -0.0062,
+            "top_1_ci95": [
+              -0.1334,
+              0.0938
+            ],
+            "top_1_p": 0.964,
+            "possibly_gnomad_presence": false
+          },
+          "Rule + AVI minus Rule-based": {
+            "role": "key secondary",
+            "top_1_absent_minus_found": 0.0608,
+            "top_1_ci95": [
+              0.0141,
+              0.1088
+            ],
+            "top_1_p": 0.014,
+            "possibly_gnomad_presence": true
+          }
+        }
+      },
+      "why": {
+        "background_variants": 884,
+        "spearman_with_grpmax": {
+          "AVI": {
+            "rho": -0.1034,
+            "variants": 884
+          },
+          "CADD": {
+            "rho": -0.0542,
+            "variants": 884
+          }
+        },
+        "background_by_band": {
+          "below 0.1%": 17.672,
+          "0.1 to 1%": 0.0,
+          "1 to 5%": 0.0
+        },
+        "above_by_band": {
+          "AVI": {
+            "below 0.1%": 0.485,
+            "0.1 to 1%": 0.0,
+            "1 to 5%": 0.0
+          },
+          "CADD": {
+            "below 0.1%": 1.551,
+            "0.1 to 1%": 0.0,
+            "1 to 5%": 0.0
+          }
+        }
+      }
+    },
+    "0.001": {
+      "max_af": 0.001,
+      "seed_label_analysis": "main",
+      "filter": {
+        "max_af": 0.001,
+        "background_frequency": "grpmax",
+        "diagnostic_frequency": "grpmax",
+        "inheritance_filter": true,
+        "cases_before": 200,
+        "variants_before": 99488,
+        "kgp_max_af": 0.01,
+        "cases_lost_diagnostic": 0,
+        "variants_after_frequency": 10956,
+        "unrecognised_moi_values_kept": [],
+        "rows_without_gene": 0,
+        "variants_after_inheritance": 6189,
+        "background_indels_in_inheritance_count": 788,
+        "variants_after_dropping_other_type": 5401,
+        "description": "background grpmax below 0.001 and 1000 Genomes AF below 0.01, diagnostics full gnomAD grpmax below 0.001; background inheritance filter; background indels dropped after filtering"
+      },
+      "cases": 200,
+      "people": 50,
+      "median_variants_per_case": 26.0,
+      "coverage": {
+        "CADD": {
+          "variants": 5401,
+          "diagnostics": 200
+        },
+        "SpliceAI": {
+          "variants": 4485,
+          "diagnostics": 192
+        },
+        "REVEL": {
+          "variants": 1244,
+          "diagnostics": 68
+        },
+        "AlphaMissense": {
+          "variants": 1025,
+          "diagnostics": 57
+        },
+        "AVI": {
+          "variants": 5401,
+          "diagnostics": 200
+        },
+        "GPN-MSA": {
+          "variants": 5401,
+          "diagnostics": 200
+        },
+        "GPN-Star-V": {
+          "variants": 5401,
+          "diagnostics": 200
+        },
+        "GPN-Star-M": {
+          "variants": 5401,
+          "diagnostics": 200
+        },
+        "Evo 2": {
+          "variants": 5401,
+          "diagnostics": 200
+        }
+      },
+      "scores_without_coverage": [],
+      "model_classes": {
+        "training_diagnostics_per_class": {
+          "canonical_splice": 40,
+          "intronic": 38,
+          "missense": 60,
+          "nonsense": 30,
+          "splice_region": 23,
+          "synonymous": 6,
+          "utr": 3
+        },
+        "merged_into_other": [
+          "synonymous",
+          "utr"
+        ],
+        "model_classes": [
+          "canonical_splice",
+          "intronic",
+          "missense",
+          "nonsense",
+          "other",
+          "splice_region"
+        ],
+        "training_set": "the 200 SNV cases"
+      },
+      "rule_ties": {
+        "Rule-based": 0.0,
+        "Rule + AVI": 0.0
+      },
+      "strata": {
+        "all": {
+          "cases": 200,
+          "people": 50,
+          "small": false,
+          "scores": {
+            "CADD": {
+              "median_competitors": 0.0,
+              "top_1": 0.51,
+              "top_1_ci95": [
+                0.43,
+                0.595
+              ],
+              "top_5": 0.82,
+              "top_5_ci95": [
+                0.76,
+                0.875
+              ],
+              "top_10": 0.93,
+              "top_10_ci95": [
+                0.9,
+                0.96
+              ]
+            },
+            "SpliceAI": {
+              "median_competitors": 0.0,
+              "top_1": 0.535,
+              "top_1_ci95": [
+                0.46,
+                0.595
+              ],
+              "top_5": 0.67,
+              "top_5_ci95": [
+                0.61,
+                0.72
+              ],
+              "top_10": 0.705,
+              "top_10_ci95": [
+                0.64,
+                0.765
+              ]
+            },
+            "REVEL": {
+              "median_competitors": 14.0,
+              "top_1": 0.275,
+              "top_1_ci95": [
+                0.23,
+                0.325
+              ],
+              "top_5": 0.325,
+              "top_5_ci95": [
+                0.275,
+                0.375
+              ],
+              "top_10": 0.38,
+              "top_10_ci95": [
+                0.315,
+                0.455
+              ]
+            },
+            "AlphaMissense": {
+              "median_competitors": 15.0,
+              "top_1": 0.235,
+              "top_1_ci95": [
+                0.19,
+                0.28
+              ],
+              "top_5": 0.285,
+              "top_5_ci95": [
+                0.245,
+                0.335
+              ],
+              "top_10": 0.325,
+              "top_10_ci95": [
+                0.265,
+                0.395
+              ]
+            },
+            "AVI": {
+              "median_competitors": 0.0,
+              "top_1": 0.79,
+              "top_1_ci95": [
+                0.71,
+                0.8601
+              ],
+              "top_5": 0.95,
+              "top_5_ci95": [
+                0.9199,
+                0.98
+              ],
+              "top_10": 0.99,
+              "top_10_ci95": [
+                0.975,
+                1.0
+              ]
+            },
+            "GPN-MSA": {
+              "median_competitors": 1.0,
+              "top_1": 0.455,
+              "top_1_ci95": [
+                0.36,
+                0.55
+              ],
+              "top_5": 0.765,
+              "top_5_ci95": [
+                0.705,
+                0.825
+              ],
+              "top_10": 0.885,
+              "top_10_ci95": [
+                0.835,
+                0.93
+              ]
+            },
+            "GPN-Star-V": {
+              "median_competitors": 0.0,
+              "top_1": 0.525,
+              "top_1_ci95": [
+                0.44,
+                0.6051
+              ],
+              "top_5": 0.855,
+              "top_5_ci95": [
+                0.8,
+                0.9
+              ],
+              "top_10": 0.92,
+              "top_10_ci95": [
+                0.8799,
+                0.96
+              ]
+            },
+            "GPN-Star-M": {
+              "median_competitors": 0.0,
+              "top_1": 0.505,
+              "top_1_ci95": [
+                0.425,
+                0.58
+              ],
+              "top_5": 0.805,
+              "top_5_ci95": [
+                0.74,
+                0.865
+              ],
+              "top_10": 0.935,
+              "top_10_ci95": [
+                0.895,
+                0.965
+              ]
+            },
+            "Evo 2": {
+              "median_competitors": 0.0,
+              "top_1": 0.515,
+              "top_1_ci95": [
+                0.435,
+                0.595
+              ],
+              "top_5": 0.82,
+              "top_5_ci95": [
+                0.76,
+                0.88
+              ],
+              "top_10": 0.945,
+              "top_10_ci95": [
+                0.905,
+                0.975
+              ]
+            },
+            "Rule-based": {
+              "median_competitors": 0.0,
+              "top_1": 0.81,
+              "top_1_ci95": [
+                0.735,
+                0.88
+              ],
+              "top_5": 0.96,
+              "top_5_ci95": [
+                0.925,
+                0.99
+              ],
+              "top_10": 0.975,
+              "top_10_ci95": [
+                0.945,
+                0.995
+              ]
+            },
+            "Rule + AVI": {
+              "median_competitors": 0.0,
+              "top_1": 0.855,
+              "top_1_ci95": [
+                0.79,
+                0.91
+              ],
+              "top_5": 0.965,
+              "top_5_ci95": [
+                0.935,
+                0.99
+              ],
+              "top_10": 0.975,
+              "top_10_ci95": [
+                0.945,
+                0.995
+              ]
+            },
+            "Lookups combined": {
+              "median_competitors": 0.0,
+              "top_1": 0.84,
+              "top_1_ci95": [
+                0.755,
+                0.915
+              ],
+              "top_5": 0.97,
+              "top_5_ci95": [
+                0.945,
+                0.995
+              ],
+              "top_10": 0.985,
+              "top_10_ci95": [
+                0.96,
+                1.0
+              ]
+            },
+            "Lookups + AVI": {
+              "median_competitors": 0.0,
+              "top_1": 0.88,
+              "top_1_ci95": [
+                0.81,
+                0.9401
+              ],
+              "top_5": 0.98,
+              "top_5_ci95": [
+                0.955,
+                1.0
+              ],
+              "top_10": 0.98,
+              "top_10_ci95": [
+                0.955,
+                1.0
+              ]
+            }
+          },
+          "rule_ties": {
+            "Rule-based": 0.0,
+            "Rule + AVI": 0.0
+          },
+          "contrasts": {
+            "Lookups + AVI minus Lookups combined": {
+              "role": "primary contrast, cross-validated (descriptive)",
+              "top_1": 0.04,
+              "top_1_ci95": [
+                -0.02,
+                0.095
+              ],
+              "top_1_p": 0.178,
+              "top_5": 0.01,
+              "top_5_ci95": [
+                -0.01,
+                0.0251
+              ],
+              "top_5_p": 0.454,
+              "top_10": -0.005,
+              "top_10_ci95": [
+                -0.015,
+                0.0
+              ],
+              "top_10_p": 0.726,
+              "confirmatory": false
+            },
+            "Lookups combined minus Rule-based": {
+              "role": "descriptive",
+              "top_1": 0.03,
+              "top_1_ci95": [
+                -0.045,
+                0.095
+              ],
+              "top_1_p": 0.434,
+              "top_5": 0.01,
+              "top_5_ci95": [
+                -0.015,
+                0.04
+              ],
+              "top_5_p": 0.568,
+              "top_10": 0.01,
+              "top_10_ci95": [
+                0.0,
+                0.025
+              ],
+              "top_10_p": 0.29
+            },
+            "Lookups + AVI minus Rule-based": {
+              "role": "descriptive",
+              "top_1": 0.07,
+              "top_1_ci95": [
+                0.0,
+                0.13
+              ],
+              "top_1_p": 0.052,
+              "top_5": 0.02,
+              "top_5_ci95": [
+                -0.005,
+                0.05
+              ],
+              "top_5_p": 0.206,
+              "top_10": 0.005,
+              "top_10_ci95": [
+                -0.01,
+                0.0201
+              ],
+              "top_10_p": 0.802
+            },
+            "Rule + AVI minus Rule-based": {
+              "role": "key secondary",
+              "top_1": 0.045,
+              "top_1_ci95": [
+                0.005,
+                0.08
+              ],
+              "top_1_p": 0.028,
+              "top_5": 0.005,
+              "top_5_ci95": [
+                -0.01,
+                0.025
+              ],
+              "top_5_p": 0.754,
+              "top_10": 0.0,
+              "top_10_ci95": [
+                0.0,
+                0.0
+              ],
+              "top_10_p": 1.0
+            }
+          },
+          "seed_label": "snv/main/all"
+        },
+        "gnomad: found": {
+          "cases": 52,
+          "people": 31,
+          "small": false,
+          "scores": {
+            "CADD": {
+              "median_competitors": 0.0,
+              "top_1": 0.5192,
+              "top_1_ci95": [
+                0.3999,
+                0.6379
+              ],
+              "top_5": 0.75,
+              "top_5_ci95": [
+                0.6316,
+                0.8601
+              ],
+              "top_10": 0.9038,
+              "top_10_ci95": [
+                0.8269,
+                0.9778
+              ]
+            },
+            "SpliceAI": {
+              "median_competitors": 0.0,
+              "top_1": 0.5577,
+              "top_1_ci95": [
+                0.4444,
+                0.68
+              ],
+              "top_5": 0.6538,
+              "top_5_ci95": [
+                0.54,
+                0.7593
+              ],
+              "top_10": 0.6923,
+              "top_10_ci95": [
+                0.5689,
+                0.8078
+              ]
+            },
+            "REVEL": {
+              "median_competitors": 13.0,
+              "top_1": 0.2885,
+              "top_1_ci95": [
+                0.1778,
+                0.4091
+              ],
+              "top_5": 0.3077,
+              "top_5_ci95": [
+                0.1951,
+                0.431
+              ],
+              "top_10": 0.3654,
+              "top_10_ci95": [
+                0.24,
+                0.5
+              ]
+            },
+            "AlphaMissense": {
+              "median_competitors": 14.0,
+              "top_1": 0.2115,
+              "top_1_ci95": [
+                0.1224,
+                0.3149
+              ],
+              "top_5": 0.2692,
+              "top_5_ci95": [
+                0.1697,
+                0.3726
+              ],
+              "top_10": 0.3077,
+              "top_10_ci95": [
+                0.1923,
+                0.426
+              ]
+            },
+            "AVI": {
+              "median_competitors": 0.0,
+              "top_1": 0.7308,
+              "top_1_ci95": [
+                0.6031,
+                0.8601
+              ],
+              "top_5": 0.8846,
+              "top_5_ci95": [
+                0.7857,
+                0.9608
+              ],
+              "top_10": 0.9615,
+              "top_10_ci95": [
+                0.898,
+                1.0
+              ]
+            },
+            "GPN-MSA": {
+              "median_competitors": 2.0,
+              "top_1": 0.25,
+              "top_1_ci95": [
+                0.1273,
+                0.3963
+              ],
+              "top_5": 0.6346,
+              "top_5_ci95": [
+                0.5294,
+                0.75
+              ],
+              "top_10": 0.7692,
+              "top_10_ci95": [
+                0.6786,
+                0.875
+              ]
+            },
+            "GPN-Star-V": {
+              "median_competitors": 1.0,
+              "top_1": 0.3462,
+              "top_1_ci95": [
+                0.2203,
+                0.4815
+              ],
+              "top_5": 0.7308,
+              "top_5_ci95": [
+                0.6274,
+                0.84
+              ],
+              "top_10": 0.8269,
+              "top_10_ci95": [
+                0.7291,
+                0.9334
+              ]
+            },
+            "GPN-Star-M": {
+              "median_competitors": 2.0,
+              "top_1": 0.3269,
+              "top_1_ci95": [
+                0.2127,
+                0.434
+              ],
+              "top_5": 0.7115,
+              "top_5_ci95": [
+                0.5902,
+                0.8302
+              ],
+              "top_10": 0.9038,
+              "top_10_ci95": [
+                0.8301,
+                0.9783
+              ]
+            },
+            "Evo 2": {
+              "median_competitors": 1.0,
+              "top_1": 0.4231,
+              "top_1_ci95": [
+                0.2679,
+                0.5862
+              ],
+              "top_5": 0.7308,
+              "top_5_ci95": [
+                0.5926,
+                0.8637
+              ],
+              "top_10": 0.9038,
+              "top_10_ci95": [
+                0.78,
+                1.0
+              ]
+            },
+            "Rule-based": {
+              "median_competitors": 0.0,
+              "top_1": 0.7885,
+              "top_1_ci95": [
+                0.6731,
+                0.9057
+              ],
+              "top_5": 0.8846,
+              "top_5_ci95": [
+                0.78,
+                0.9649
+              ],
+              "top_10": 0.9038,
+              "top_10_ci95": [
+                0.7999,
+                0.9815
+              ]
+            },
+            "Rule + AVI": {
+              "median_competitors": 0.0,
+              "top_1": 0.7885,
+              "top_1_ci95": [
+                0.6596,
+                0.8909
+              ],
+              "top_5": 0.8654,
+              "top_5_ci95": [
+                0.7581,
+                0.9583
+              ],
+              "top_10": 0.9038,
+              "top_10_ci95": [
+                0.7999,
+                0.9815
+              ]
+            },
+            "Lookups combined": {
+              "median_competitors": 0.0,
+              "top_1": 0.8077,
+              "top_1_ci95": [
+                0.68,
+                0.9091
+              ],
+              "top_5": 0.9231,
+              "top_5_ci95": [
+                0.8147,
+                1.0
+              ],
+              "top_10": 0.9423,
+              "top_10_ci95": [
+                0.8409,
+                1.0
+              ]
+            },
+            "Lookups + AVI": {
+              "median_competitors": 0.0,
+              "top_1": 0.8654,
+              "top_1_ci95": [
+                0.7547,
+                0.9565
+              ],
+              "top_5": 0.9231,
+              "top_5_ci95": [
+                0.82,
+                1.0
+              ],
+              "top_10": 0.9231,
+              "top_10_ci95": [
+                0.82,
+                1.0
+              ]
+            }
+          },
+          "rule_ties": {
+            "Rule-based": 0.0,
+            "Rule + AVI": 0.0
+          },
+          "seed_label": "snv/main/gnomad: found"
+        },
+        "gnomad: absent": {
+          "cases": 148,
+          "people": 48,
+          "small": false,
+          "scores": {
+            "CADD": {
+              "median_competitors": 0.0,
+              "top_1": 0.5068,
+              "top_1_ci95": [
+                0.416,
+                0.6014
+              ],
+              "top_5": 0.8446,
+              "top_5_ci95": [
+                0.78,
+                0.9091
+              ],
+              "top_10": 0.9392,
+              "top_10_ci95": [
+                0.8986,
+                0.9726
+              ]
+            },
+            "SpliceAI": {
+              "median_competitors": 0.0,
+              "top_1": 0.527,
+              "top_1_ci95": [
+                0.4429,
+                0.6056
+              ],
+              "top_5": 0.6757,
+              "top_5_ci95": [
+                0.6054,
+                0.7389
+              ],
+              "top_10": 0.7095,
+              "top_10_ci95": [
+                0.6304,
+                0.777
+              ]
+            },
+            "REVEL": {
+              "median_competitors": 15.0,
+              "top_1": 0.2703,
+              "top_1_ci95": [
+                0.2143,
+                0.3333
+              ],
+              "top_5": 0.3311,
+              "top_5_ci95": [
+                0.2653,
+                0.396
+              ],
+              "top_10": 0.3851,
+              "top_10_ci95": [
+                0.3014,
+                0.4638
+              ]
+            },
+            "AlphaMissense": {
+              "median_competitors": 15.0,
+              "top_1": 0.2432,
+              "top_1_ci95": [
+                0.1835,
+                0.3022
+              ],
+              "top_5": 0.2905,
+              "top_5_ci95": [
+                0.2345,
+                0.3472
+              ],
+              "top_10": 0.3311,
+              "top_10_ci95": [
+                0.2564,
+                0.404
+              ]
+            },
+            "AVI": {
+              "median_competitors": 0.0,
+              "top_1": 0.8108,
+              "top_1_ci95": [
+                0.7161,
+                0.898
+              ],
+              "top_5": 0.973,
+              "top_5_ci95": [
+                0.9366,
+                1.0
+              ],
+              "top_10": 1.0,
+              "top_10_ci95": [
+                1.0,
+                1.0
+              ]
+            },
+            "GPN-MSA": {
+              "median_competitors": 0.0,
+              "top_1": 0.527,
+              "top_1_ci95": [
+                0.4265,
+                0.6316
+              ],
+              "top_5": 0.8108,
+              "top_5_ci95": [
+                0.7379,
+                0.8816
+              ],
+              "top_10": 0.9257,
+              "top_10_ci95": [
+                0.8719,
+                0.9718
+              ]
+            },
+            "GPN-Star-V": {
+              "median_competitors": 0.0,
+              "top_1": 0.5878,
+              "top_1_ci95": [
+                0.4935,
+                0.6803
+              ],
+              "top_5": 0.8986,
+              "top_5_ci95": [
+                0.8392,
+                0.9507
+              ],
+              "top_10": 0.9527,
+              "top_10_ci95": [
+                0.906,
+                0.9871
+              ]
+            },
+            "GPN-Star-M": {
+              "median_competitors": 0.0,
+              "top_1": 0.5676,
+              "top_1_ci95": [
+                0.4802,
+                0.6711
+              ],
+              "top_5": 0.8378,
+              "top_5_ci95": [
+                0.7708,
+                0.9007
+              ],
+              "top_10": 0.9459,
+              "top_10_ci95": [
+                0.8993,
+                0.9863
+              ]
+            },
+            "Evo 2": {
+              "median_competitors": 0.0,
+              "top_1": 0.5473,
+              "top_1_ci95": [
+                0.451,
+                0.6331
+              ],
+              "top_5": 0.8514,
+              "top_5_ci95": [
+                0.7927,
+                0.9104
+              ],
+              "top_10": 0.9595,
+              "top_10_ci95": [
+                0.9272,
+                0.9864
+              ]
+            },
+            "Rule-based": {
+              "median_competitors": 0.0,
+              "top_1": 0.8176,
+              "top_1_ci95": [
+                0.7388,
+                0.8927
+              ],
+              "top_5": 0.9865,
+              "top_5_ci95": [
+                0.965,
+                1.0
+              ],
+              "top_10": 1.0,
+              "top_10_ci95": [
+                1.0,
+                1.0
+              ]
+            },
+            "Rule + AVI": {
+              "median_competitors": 0.0,
+              "top_1": 0.8784,
+              "top_1_ci95": [
+                0.8071,
+                0.9423
+              ],
+              "top_5": 1.0,
+              "top_5_ci95": [
+                1.0,
+                1.0
+              ],
+              "top_10": 1.0,
+              "top_10_ci95": [
+                1.0,
+                1.0
+              ]
+            },
+            "Lookups combined": {
+              "median_competitors": 0.0,
+              "top_1": 0.8514,
+              "top_1_ci95": [
+                0.7639,
+                0.9334
+              ],
+              "top_5": 0.9865,
+              "top_5_ci95": [
+                0.9657,
+                1.0
+              ],
+              "top_10": 1.0,
+              "top_10_ci95": [
+                1.0,
+                1.0
+              ]
+            },
+            "Lookups + AVI": {
+              "median_competitors": 0.0,
+              "top_1": 0.8851,
+              "top_1_ci95": [
+                0.8043,
+                0.9574
+              ],
+              "top_5": 1.0,
+              "top_5_ci95": [
+                1.0,
+                1.0
+              ],
+              "top_10": 1.0,
+              "top_10_ci95": [
+                1.0,
+                1.0
+              ]
+            }
+          },
+          "rule_ties": {
+            "Rule-based": 0.0,
+            "Rule + AVI": 0.0
+          },
+          "seed_label": "snv/main/gnomad: absent"
+        }
+      },
+      "gnomad_split": {
+        "sources": [
+          "data/gnomad_full.tsv",
+          "pool/gnomad_full.tsv"
+        ],
+        "diagnostics_found": 52,
+        "diagnostics_absent": 148,
+        "diagnostics_without_status": 0,
+        "seed_label": "snv/main/gnomad split",
+        "gnomad: found": {
+          "cases": 52,
+          "people": 31,
+          "contrasts": {
+            "Lookups + AVI minus Lookups combined": {
+              "role": "primary",
+              "top_1": 0.0577,
+              "top_1_ci95": [
+                -0.0208,
+                0.1509
+              ],
+              "top_1_p": 0.236,
+              "top_5": 0.0,
+              "top_5_ci95": [
+                -0.0541,
+                0.0588
+              ],
+              "top_5_p": 1.0,
+              "top_10": -0.0192,
+              "top_10_ci95": [
+                -0.0635,
+                0.0
+              ],
+              "top_10_p": 0.738
+            },
+            "Rule + AVI minus Rule-based": {
+              "role": "key secondary",
+              "top_1": 0.0,
+              "top_1_ci95": [
+                -0.0667,
+                0.05
+              ],
+              "top_1_p": 1.0,
+              "top_5": -0.0192,
+              "top_5_ci95": [
+                -0.0698,
+                0.0
+              ],
+              "top_5_p": 0.744,
+              "top_10": 0.0,
+              "top_10_ci95": [
+                0.0,
+                0.0
+              ],
+              "top_10_p": 1.0
+            }
+          }
+        },
+        "gnomad: absent": {
+          "cases": 148,
+          "people": 48,
+          "contrasts": {
+            "Lookups + AVI minus Lookups combined": {
+              "role": "primary",
+              "top_1": 0.0338,
+              "top_1_ci95": [
+                -0.028,
+                0.1
+              ],
+              "top_1_p": 0.348,
+              "top_5": 0.0135,
+              "top_5_ci95": [
+                0.0,
+                0.0345
+              ],
+              "top_5_p": 0.268,
+              "top_10": 0.0,
+              "top_10_ci95": [
+                0.0,
+                0.0
+              ],
+              "top_10_p": 1.0
+            },
+            "Rule + AVI minus Rule-based": {
+              "role": "key secondary",
+              "top_1": 0.0608,
+              "top_1_ci95": [
+                0.0195,
+                0.1149
+              ],
+              "top_1_p": 0.01,
+              "top_5": 0.0135,
+              "top_5_ci95": [
+                0.0,
+                0.0352
+              ],
+              "top_5_p": 0.28,
+              "top_10": 0.0,
+              "top_10_ci95": [
+                0.0,
+                0.0
+              ],
+              "top_10_p": 1.0
+            }
+          }
+        },
+        "difference": {
+          "Lookups + AVI minus Lookups combined": {
+            "role": "primary",
+            "top_1_absent_minus_found": -0.0239,
+            "top_1_ci95": [
+              -0.1224,
+              0.0598
+            ],
+            "top_1_p": 0.598,
+            "possibly_gnomad_presence": false
+          },
+          "Rule + AVI minus Rule-based": {
+            "role": "key secondary",
+            "top_1_absent_minus_found": 0.0608,
+            "top_1_ci95": [
+              -0.0063,
+              0.1377
+            ],
+            "top_1_p": 0.082,
+            "possibly_gnomad_presence": false
+          }
+        }
+      },
+      "why": {
+        "background_variants": 1301,
+        "spearman_with_grpmax": {
+          "AVI": {
+            "rho": -0.0406,
+            "variants": 1301
+          },
+          "CADD": {
+            "rho": -0.0192,
+            "variants": 1301
+          }
+        },
+        "background_by_band": {
+          "below 0.1%": 26.005,
+          "0.1 to 1%": 0.0,
+          "1 to 5%": 0.0
+        },
+        "above_by_band": {
+          "AVI": {
+            "below 0.1%": 0.735,
+            "0.1 to 1%": 0.0,
+            "1 to 5%": 0.0
+          },
+          "CADD": {
+            "below 0.1%": 2.31,
+            "0.1 to 1%": 0.0,
+            "1 to 5%": 0.0
+          }
+        }
+      }
+    },
+    "0.005": {
+      "max_af": 0.005,
+      "seed_label_analysis": "sweep0.005",
+      "filter": {
+        "max_af": 0.005,
+        "background_frequency": "grpmax",
+        "diagnostic_frequency": "grpmax",
+        "inheritance_filter": true,
+        "cases_before": 200,
+        "variants_before": 99488,
+        "kgp_max_af": 0.01,
+        "cases_lost_diagnostic": 0,
+        "variants_after_frequency": 24544,
+        "unrecognised_moi_values_kept": [],
+        "rows_without_gene": 0,
+        "variants_after_inheritance": 14629,
+        "background_indels_in_inheritance_count": 1952,
+        "variants_after_dropping_other_type": 12677,
+        "description": "background grpmax below 0.005 and 1000 Genomes AF below 0.01, diagnostics full gnomAD grpmax below 0.005; background inheritance filter; background indels dropped after filtering"
+      },
+      "cases": 200,
+      "people": 50,
+      "median_variants_per_case": 58.5,
+      "coverage": {
+        "CADD": {
+          "variants": 12677,
+          "diagnostics": 200
+        },
+        "SpliceAI": {
+          "variants": 10537,
+          "diagnostics": 192
+        },
+        "REVEL": {
+          "variants": 2347,
+          "diagnostics": 68
+        },
+        "AlphaMissense": {
+          "variants": 1916,
+          "diagnostics": 57
+        },
+        "AVI": {
+          "variants": 12677,
+          "diagnostics": 200
+        },
+        "GPN-MSA": {
+          "variants": 12677,
+          "diagnostics": 200
+        },
+        "GPN-Star-V": {
+          "variants": 12677,
+          "diagnostics": 200
+        },
+        "GPN-Star-M": {
+          "variants": 12677,
+          "diagnostics": 200
+        },
+        "Evo 2": {
+          "variants": 12677,
+          "diagnostics": 200
+        }
+      },
+      "scores_without_coverage": [],
+      "model_classes": {
+        "training_diagnostics_per_class": {
+          "canonical_splice": 40,
+          "intronic": 38,
+          "missense": 60,
+          "nonsense": 30,
+          "splice_region": 23,
+          "synonymous": 6,
+          "utr": 3
+        },
+        "merged_into_other": [
+          "synonymous",
+          "utr"
+        ],
+        "model_classes": [
+          "canonical_splice",
+          "intronic",
+          "missense",
+          "nonsense",
+          "other",
+          "splice_region"
+        ],
+        "training_set": "the 200 SNV cases"
+      },
+      "rule_ties": {
+        "Rule-based": 0.0,
+        "Rule + AVI": 0.0
+      },
+      "strata": {
+        "all": {
+          "cases": 200,
+          "people": 50,
+          "small": false,
+          "scores": {
+            "CADD": {
+              "median_competitors": 1.0,
+              "top_1": 0.415,
+              "top_1_ci95": [
+                0.3399,
+                0.495
+              ],
+              "top_5": 0.725,
+              "top_5_ci95": [
+                0.66,
+                0.79
+              ],
+              "top_10": 0.835,
+              "top_10_ci95": [
+                0.775,
+                0.885
+              ]
+            },
+            "SpliceAI": {
+              "median_competitors": 1.0,
+              "top_1": 0.485,
+              "top_1_ci95": [
+                0.42,
+                0.55
+              ],
+              "top_5": 0.64,
+              "top_5_ci95": [
+                0.585,
+                0.69
+              ],
+              "top_10": 0.66,
+              "top_10_ci95": [
+                0.605,
+                0.71
+              ]
+            },
+            "REVEL": {
+              "median_competitors": 44.0,
+              "top_1": 0.26,
+              "top_1_ci95": [
+                0.21,
+                0.31
+              ],
+              "top_5": 0.31,
+              "top_5_ci95": [
+                0.2599,
+                0.36
+              ],
+              "top_10": 0.33,
+              "top_10_ci95": [
+                0.28,
+                0.38
+              ]
+            },
+            "AlphaMissense": {
+              "median_competitors": 50.0,
+              "top_1": 0.225,
+              "top_1_ci95": [
+                0.18,
+                0.27
+              ],
+              "top_5": 0.285,
+              "top_5_ci95": [
+                0.235,
+                0.325
+              ],
+              "top_10": 0.285,
+              "top_10_ci95": [
+                0.235,
+                0.325
+              ]
+            },
+            "AVI": {
+              "median_competitors": 0.0,
+              "top_1": 0.72,
+              "top_1_ci95": [
+                0.6349,
+                0.8001
+              ],
+              "top_5": 0.94,
+              "top_5_ci95": [
+                0.9,
+                0.97
+              ],
+              "top_10": 0.96,
+              "top_10_ci95": [
+                0.93,
+                0.985
+              ]
+            },
+            "GPN-MSA": {
+              "median_competitors": 1.0,
+              "top_1": 0.37,
+              "top_1_ci95": [
+                0.28,
+                0.46
+              ],
+              "top_5": 0.645,
+              "top_5_ci95": [
+                0.575,
+                0.71
+              ],
+              "top_10": 0.815,
+              "top_10_ci95": [
+                0.77,
+                0.86
+              ]
+            },
+            "GPN-Star-V": {
+              "median_competitors": 1.0,
+              "top_1": 0.46,
+              "top_1_ci95": [
+                0.39,
+                0.53
+              ],
+              "top_5": 0.765,
+              "top_5_ci95": [
+                0.71,
+                0.82
+              ],
+              "top_10": 0.88,
+              "top_10_ci95": [
+                0.835,
+                0.925
+              ]
+            },
+            "GPN-Star-M": {
+              "median_competitors": 1.0,
+              "top_1": 0.41,
+              "top_1_ci95": [
+                0.34,
+                0.485
+              ],
+              "top_5": 0.71,
+              "top_5_ci95": [
+                0.65,
+                0.77
+              ],
+              "top_10": 0.865,
+              "top_10_ci95": [
+                0.815,
+                0.915
+              ]
+            },
+            "Evo 2": {
+              "median_competitors": 1.0,
+              "top_1": 0.44,
+              "top_1_ci95": [
+                0.365,
+                0.5151
+              ],
+              "top_5": 0.71,
+              "top_5_ci95": [
+                0.6449,
+                0.78
+              ],
+              "top_10": 0.845,
+              "top_10_ci95": [
+                0.795,
+                0.9
+              ]
+            },
+            "Rule-based": {
+              "median_competitors": 0.0,
+              "top_1": 0.745,
+              "top_1_ci95": [
+                0.66,
+                0.825
+              ],
+              "top_5": 0.95,
+              "top_5_ci95": [
+                0.915,
+                0.98
+              ],
+              "top_10": 0.97,
+              "top_10_ci95": [
+                0.945,
+                0.995
+              ]
+            },
+            "Rule + AVI": {
+              "median_competitors": 0.0,
+              "top_1": 0.78,
+              "top_1_ci95": [
+                0.71,
+                0.85
+              ],
+              "top_5": 0.965,
+              "top_5_ci95": [
+                0.9399,
+                0.99
+              ],
+              "top_10": 0.965,
+              "top_10_ci95": [
+                0.9399,
+                0.99
+              ]
+            },
+            "Lookups combined": {
+              "median_competitors": 0.0,
+              "top_1": 0.755,
+              "top_1_ci95": [
+                0.6649,
+                0.845
+              ],
+              "top_5": 0.965,
+              "top_5_ci95": [
+                0.935,
+                0.99
+              ],
+              "top_10": 0.965,
+              "top_10_ci95": [
+                0.935,
+                0.99
+              ]
+            },
+            "Lookups + AVI": {
+              "median_competitors": 0.0,
+              "top_1": 0.825,
+              "top_1_ci95": [
+                0.755,
+                0.885
+              ],
+              "top_5": 0.97,
+              "top_5_ci95": [
+                0.94,
+                0.995
+              ],
+              "top_10": 0.975,
+              "top_10_ci95": [
+                0.945,
+                0.995
+              ]
+            }
+          },
+          "rule_ties": {
+            "Rule-based": 0.0,
+            "Rule + AVI": 0.0
+          },
+          "contrasts": {
+            "Lookups + AVI minus Lookups combined": {
+              "role": "primary contrast, cross-validated (descriptive)",
+              "top_1": 0.07,
+              "top_1_ci95": [
+                -0.015,
+                0.15
+              ],
+              "top_1_p": 0.12,
+              "top_5": 0.005,
+              "top_5_ci95": [
+                -0.01,
+                0.025
+              ],
+              "top_5_p": 0.784,
+              "top_10": 0.01,
+              "top_10_ci95": [
+                -0.01,
+                0.03
+              ],
+              "top_10_p": 0.48,
+              "confirmatory": false
+            },
+            "Lookups combined minus Rule-based": {
+              "role": "descriptive",
+              "top_1": 0.01,
+              "top_1_ci95": [
+                -0.065,
+                0.085
+              ],
+              "top_1_p": 0.834,
+              "top_5": 0.015,
+              "top_5_ci95": [
+                -0.01,
+                0.045
+              ],
+              "top_5_p": 0.424,
+              "top_10": -0.005,
+              "top_10_ci95": [
+                -0.025,
+                0.01
+              ],
+              "top_10_p": 0.796
+            },
+            "Lookups + AVI minus Rule-based": {
+              "role": "descriptive",
+              "top_1": 0.08,
+              "top_1_ci95": [
+                0.005,
+                0.15
+              ],
+              "top_1_p": 0.046,
+              "top_5": 0.02,
+              "top_5_ci95": [
+                -0.01,
+                0.05
+              ],
+              "top_5_p": 0.288,
+              "top_10": 0.005,
+              "top_10_ci95": [
+                -0.01,
+                0.02
+              ],
+              "top_10_p": 0.828
+            },
+            "Rule + AVI minus Rule-based": {
+              "role": "key secondary",
+              "top_1": 0.035,
+              "top_1_ci95": [
+                -0.005,
+                0.075
+              ],
+              "top_1_p": 0.082,
+              "top_5": 0.015,
+              "top_5_ci95": [
+                0.0,
+                0.035
+              ],
+              "top_5_p": 0.118,
+              "top_10": -0.005,
+              "top_10_ci95": [
+                -0.015,
+                0.0
+              ],
+              "top_10_p": 0.722
+            }
+          },
+          "seed_label": "snv/sweep0.005/all"
+        },
+        "gnomad: found": {
+          "cases": 52,
+          "people": 31,
+          "small": false,
+          "scores": {
+            "CADD": {
+              "median_competitors": 1.0,
+              "top_1": 0.4231,
+              "top_1_ci95": [
+                0.3265,
+                0.5294
+              ],
+              "top_5": 0.6731,
+              "top_5_ci95": [
+                0.549,
+                0.7963
+              ],
+              "top_10": 0.75,
+              "top_10_ci95": [
+                0.6363,
+                0.8689
+              ]
+            },
+            "SpliceAI": {
+              "median_competitors": 0.5,
+              "top_1": 0.5,
+              "top_1_ci95": [
+                0.3928,
+                0.6222
+              ],
+              "top_5": 0.6346,
+              "top_5_ci95": [
+                0.5155,
+                0.7547
+              ],
+              "top_10": 0.6538,
+              "top_10_ci95": [
+                0.5385,
+                0.7727
+              ]
+            },
+            "REVEL": {
+              "median_competitors": 40.0,
+              "top_1": 0.2692,
+              "top_1_ci95": [
+                0.1667,
+                0.3721
+              ],
+              "top_5": 0.2885,
+              "top_5_ci95": [
+                0.1764,
+                0.4074
+              ],
+              "top_10": 0.3077,
+              "top_10_ci95": [
+                0.1915,
+                0.4238
+              ]
+            },
+            "AlphaMissense": {
+              "median_competitors": 47.0,
+              "top_1": 0.2115,
+              "top_1_ci95": [
+                0.125,
+                0.3077
+              ],
+              "top_5": 0.2692,
+              "top_5_ci95": [
+                0.1667,
+                0.3721
+              ],
+              "top_10": 0.2692,
+              "top_10_ci95": [
+                0.1667,
+                0.3721
+              ]
+            },
+            "AVI": {
+              "median_competitors": 0.0,
+              "top_1": 0.6346,
+              "top_1_ci95": [
+                0.5,
+                0.7709
+              ],
+              "top_5": 0.8846,
+              "top_5_ci95": [
+                0.8,
+                0.9592
+              ],
+              "top_10": 0.9038,
+              "top_10_ci95": [
+                0.8222,
+                0.9783
+              ]
+            },
+            "GPN-MSA": {
+              "median_competitors": 3.5,
+              "top_1": 0.1731,
+              "top_1_ci95": [
+                0.0702,
+                0.2858
+              ],
+              "top_5": 0.5192,
+              "top_5_ci95": [
+                0.3922,
+                0.6364
+              ],
+              "top_10": 0.6538,
+              "top_10_ci95": [
+                0.5573,
+                0.75
+              ]
+            },
+            "GPN-Star-V": {
+              "median_competitors": 3.0,
+              "top_1": 0.2692,
+              "top_1_ci95": [
+                0.1538,
+                0.4038
+              ],
+              "top_5": 0.6154,
+              "top_5_ci95": [
+                0.5185,
+                0.7091
+              ],
+              "top_10": 0.7308,
+              "top_10_ci95": [
+                0.6364,
+                0.8298
+              ]
+            },
+            "GPN-Star-M": {
+              "median_competitors": 4.0,
+              "top_1": 0.2308,
+              "top_1_ci95": [
+                0.1042,
+                0.3479
+              ],
+              "top_5": 0.5577,
+              "top_5_ci95": [
+                0.4444,
+                0.6792
+              ],
+              "top_10": 0.75,
+              "top_10_ci95": [
+                0.6363,
+                0.8596
+              ]
+            },
+            "Evo 2": {
+              "median_competitors": 2.0,
+              "top_1": 0.3462,
+              "top_1_ci95": [
+                0.1874,
+                0.5102
+              ],
+              "top_5": 0.6538,
+              "top_5_ci95": [
+                0.5106,
+                0.7843
+              ],
+              "top_10": 0.75,
+              "top_10_ci95": [
+                0.6122,
+                0.8667
+              ]
+            },
+            "Rule-based": {
+              "median_competitors": 0.0,
+              "top_1": 0.7308,
+              "top_1_ci95": [
+                0.5999,
+                0.85
+              ],
+              "top_5": 0.8654,
+              "top_5_ci95": [
+                0.766,
+                0.9575
+              ],
+              "top_10": 0.8846,
+              "top_10_ci95": [
+                0.7708,
+                0.9643
+              ]
+            },
+            "Rule + AVI": {
+              "median_competitors": 0.0,
+              "top_1": 0.7115,
+              "top_1_ci95": [
+                0.5908,
+                0.8236
+              ],
+              "top_5": 0.8654,
+              "top_5_ci95": [
+                0.766,
+                0.9575
+              ],
+              "top_10": 0.8654,
+              "top_10_ci95": [
+                0.766,
+                0.9575
+              ]
+            },
+            "Lookups combined": {
+              "median_competitors": 0.0,
+              "top_1": 0.7308,
+              "top_1_ci95": [
+                0.5909,
+                0.8491
+              ],
+              "top_5": 0.9231,
+              "top_5_ci95": [
+                0.8125,
+                1.0
+              ],
+              "top_10": 0.9231,
+              "top_10_ci95": [
+                0.8125,
+                1.0
+              ]
+            },
+            "Lookups + AVI": {
+              "median_competitors": 0.0,
+              "top_1": 0.7308,
+              "top_1_ci95": [
+                0.6071,
+                0.86
+              ],
+              "top_5": 0.9231,
+              "top_5_ci95": [
+                0.8182,
+                1.0
+              ],
+              "top_10": 0.9231,
+              "top_10_ci95": [
+                0.8182,
+                1.0
+              ]
+            }
+          },
+          "rule_ties": {
+            "Rule-based": 0.0,
+            "Rule + AVI": 0.0
+          },
+          "seed_label": "snv/sweep0.005/gnomad: found"
+        },
+        "gnomad: absent": {
+          "cases": 148,
+          "people": 48,
+          "small": false,
+          "scores": {
+            "CADD": {
+              "median_competitors": 1.0,
+              "top_1": 0.4122,
+              "top_1_ci95": [
+                0.3265,
+                0.5
+              ],
+              "top_5": 0.7432,
+              "top_5_ci95": [
+                0.6622,
+                0.831
+              ],
+              "top_10": 0.8649,
+              "top_10_ci95": [
+                0.8029,
+                0.9209
+              ]
+            },
+            "SpliceAI": {
+              "median_competitors": 1.0,
+              "top_1": 0.4797,
+              "top_1_ci95": [
+                0.3888,
+                0.5613
+              ],
+              "top_5": 0.6419,
+              "top_5_ci95": [
+                0.5755,
+                0.7034
+              ],
+              "top_10": 0.6622,
+              "top_10_ci95": [
+                0.5931,
+                0.725
+              ]
+            },
+            "REVEL": {
+              "median_competitors": 45.0,
+              "top_1": 0.2568,
+              "top_1_ci95": [
+                0.2,
+                0.3169
+              ],
+              "top_5": 0.3176,
+              "top_5_ci95": [
+                0.2567,
+                0.3836
+              ],
+              "top_10": 0.3378,
+              "top_10_ci95": [
+                0.2786,
+                0.4001
+              ]
+            },
+            "AlphaMissense": {
+              "median_competitors": 51.0,
+              "top_1": 0.2297,
+              "top_1_ci95": [
+                0.1701,
+                0.2897
+              ],
+              "top_5": 0.2905,
+              "top_5_ci95": [
+                0.2357,
+                0.3478
+              ],
+              "top_10": 0.2905,
+              "top_10_ci95": [
+                0.2357,
+                0.3478
+              ]
+            },
+            "AVI": {
+              "median_competitors": 0.0,
+              "top_1": 0.75,
+              "top_1_ci95": [
+                0.6562,
+                0.8425
+              ],
+              "top_5": 0.9595,
+              "top_5_ci95": [
+                0.9195,
+                0.993
+              ],
+              "top_10": 0.9797,
+              "top_10_ci95": [
+                0.9444,
+                1.0
+              ]
+            },
+            "GPN-MSA": {
+              "median_competitors": 1.0,
+              "top_1": 0.4392,
+              "top_1_ci95": [
+                0.349,
+                0.5379
+              ],
+              "top_5": 0.6892,
+              "top_5_ci95": [
+                0.6,
+                0.7778
+              ],
+              "top_10": 0.8716,
+              "top_10_ci95": [
+                0.8067,
+                0.9247
+              ]
+            },
+            "GPN-Star-V": {
+              "median_competitors": 0.0,
+              "top_1": 0.527,
+              "top_1_ci95": [
+                0.4392,
+                0.6235
+              ],
+              "top_5": 0.8176,
+              "top_5_ci95": [
+                0.742,
+                0.8854
+              ],
+              "top_10": 0.9324,
+              "top_10_ci95": [
+                0.8766,
+                0.974
+              ]
+            },
+            "GPN-Star-M": {
+              "median_competitors": 1.0,
+              "top_1": 0.473,
+              "top_1_ci95": [
+                0.3758,
+                0.5667
+              ],
+              "top_5": 0.7635,
+              "top_5_ci95": [
+                0.6879,
+                0.8356
+              ],
+              "top_10": 0.9054,
+              "top_10_ci95": [
+                0.8493,
+                0.9533
+              ]
+            },
+            "Evo 2": {
+              "median_competitors": 1.0,
+              "top_1": 0.473,
+              "top_1_ci95": [
+                0.3885,
+                0.5643
+              ],
+              "top_5": 0.7297,
+              "top_5_ci95": [
+                0.6533,
+                0.8096
+              ],
+              "top_10": 0.8784,
+              "top_10_ci95": [
+                0.8205,
+                0.932
+              ]
+            },
+            "Rule-based": {
+              "median_competitors": 0.0,
+              "top_1": 0.75,
+              "top_1_ci95": [
+                0.6577,
+                0.8334
+              ],
+              "top_5": 0.9797,
+              "top_5_ci95": [
+                0.953,
+                1.0
+              ],
+              "top_10": 1.0,
+              "top_10_ci95": [
+                1.0,
+                1.0
+              ]
+            },
+            "Rule + AVI": {
+              "median_competitors": 0.0,
+              "top_1": 0.8041,
+              "top_1_ci95": [
+                0.7211,
+                0.8784
+              ],
+              "top_5": 1.0,
+              "top_5_ci95": [
+                1.0,
+                1.0
+              ],
+              "top_10": 1.0,
+              "top_10_ci95": [
+                1.0,
+                1.0
+              ]
+            },
+            "Lookups combined": {
+              "median_competitors": 0.0,
+              "top_1": 0.7635,
+              "top_1_ci95": [
+                0.6599,
+                0.8516
+              ],
+              "top_5": 0.9797,
+              "top_5_ci95": [
+                0.9562,
+                1.0
+              ],
+              "top_10": 0.9797,
+              "top_10_ci95": [
+                0.9562,
+                1.0
+              ]
+            },
+            "Lookups + AVI": {
+              "median_competitors": 0.0,
+              "top_1": 0.8581,
+              "top_1_ci95": [
+                0.7891,
+                0.9214
+              ],
+              "top_5": 0.9865,
+              "top_5_ci95": [
+                0.966,
+                1.0
+              ],
+              "top_10": 0.9932,
+              "top_10_ci95": [
+                0.974,
+                1.0
+              ]
+            }
+          },
+          "rule_ties": {
+            "Rule-based": 0.0,
+            "Rule + AVI": 0.0
+          },
+          "seed_label": "snv/sweep0.005/gnomad: absent"
+        }
+      },
+      "gnomad_split": {
+        "sources": [
+          "data/gnomad_full.tsv",
+          "pool/gnomad_full.tsv"
+        ],
+        "diagnostics_found": 52,
+        "diagnostics_absent": 148,
+        "diagnostics_without_status": 0,
+        "seed_label": "snv/sweep0.005/gnomad split",
+        "gnomad: found": {
+          "cases": 52,
+          "people": 31,
+          "contrasts": {
+            "Lookups + AVI minus Lookups combined": {
+              "role": "primary",
+              "top_1": 0.0,
+              "top_1_ci95": [
+                -0.1429,
+                0.1698
+              ],
+              "top_1_p": 1.0,
+              "top_5": 0.0,
+              "top_5_ci95": [
+                -0.0577,
+                0.0625
+              ],
+              "top_5_p": 1.0,
+              "top_10": 0.0,
+              "top_10_ci95": [
+                -0.0577,
+                0.0625
+              ],
+              "top_10_p": 1.0
+            },
+            "Rule + AVI minus Rule-based": {
+              "role": "key secondary",
+              "top_1": -0.0192,
+              "top_1_ci95": [
+                -0.0909,
+                0.0392
+              ],
+              "top_1_p": 0.76,
+              "top_5": 0.0,
+              "top_5_ci95": [
+                0.0,
+                0.0
+              ],
+              "top_5_p": 1.0,
+              "top_10": -0.0192,
+              "top_10_ci95": [
+                -0.0566,
+                0.0
+              ],
+              "top_10_p": 0.74
+            }
+          }
+        },
+        "gnomad: absent": {
+          "cases": 148,
+          "people": 48,
+          "contrasts": {
+            "Lookups + AVI minus Lookups combined": {
+              "role": "primary",
+              "top_1": 0.0946,
+              "top_1_ci95": [
+                0.0067,
+                0.1824
+              ],
+              "top_1_p": 0.042,
+              "top_5": 0.0068,
+              "top_5_ci95": [
+                0.0,
+                0.021
+              ],
+              "top_5_p": 0.738,
+              "top_10": 0.0135,
+              "top_10_ci95": [
+                0.0,
+                0.0343
+              ],
+              "top_10_p": 0.242
+            },
+            "Rule + AVI minus Rule-based": {
+              "role": "key secondary",
+              "top_1": 0.0541,
+              "top_1_ci95": [
+                0.0071,
+                0.1035
+              ],
+              "top_1_p": 0.022,
+              "top_5": 0.0203,
+              "top_5_ci95": [
+                0.0,
+                0.047
+              ],
+              "top_5_p": 0.114,
+              "top_10": 0.0,
+              "top_10_ci95": [
+                0.0,
+                0.0
+              ],
+              "top_10_p": 1.0
+            }
+          }
+        },
+        "difference": {
+          "Lookups + AVI minus Lookups combined": {
+            "role": "primary",
+            "top_1_absent_minus_found": 0.0946,
+            "top_1_ci95": [
+              -0.0766,
+              0.2438
+            ],
+            "top_1_p": 0.314,
+            "possibly_gnomad_presence": false
+          },
+          "Rule + AVI minus Rule-based": {
+            "role": "key secondary",
+            "top_1_absent_minus_found": 0.0733,
+            "top_1_ci95": [
+              -0.0036,
+              0.1506
+            ],
+            "top_1_p": 0.062,
+            "possibly_gnomad_presence": false
+          }
+        }
+      },
+      "why": {
+        "background_variants": 3123,
+        "spearman_with_grpmax": {
+          "AVI": {
+            "rho": -0.087,
+            "variants": 3123
+          },
+          "CADD": {
+            "rho": -0.0991,
+            "variants": 3123
+          }
+        },
+        "background_by_band": {
+          "below 0.1%": 27.405,
+          "0.1 to 1%": 34.98,
+          "1 to 5%": 0.0
+        },
+        "above_by_band": {
+          "AVI": {
+            "below 0.1%": 0.8,
+            "0.1 to 1%": 0.995,
+            "1 to 5%": 0.0
+          },
+          "CADD": {
+            "below 0.1%": 2.405,
+            "0.1 to 1%": 2.165,
+            "1 to 5%": 0.0
+          }
+        }
+      }
+    },
+    "0.01": {
+      "max_af": 0.01,
+      "seed_label_analysis": "bg1pct",
+      "filter": {
+        "max_af": 0.01,
+        "background_frequency": "grpmax",
+        "diagnostic_frequency": "grpmax",
+        "inheritance_filter": true,
+        "cases_before": 200,
+        "variants_before": 99488,
+        "kgp_max_af": 0.01,
+        "cases_lost_diagnostic": 0,
+        "variants_after_frequency": 36508,
+        "unrecognised_moi_values_kept": [],
+        "rows_without_gene": 0,
+        "variants_after_inheritance": 22774,
+        "background_indels_in_inheritance_count": 3213,
+        "variants_after_dropping_other_type": 19561,
+        "description": "background grpmax below 0.01 and 1000 Genomes AF below 0.01, diagnostics full gnomAD grpmax below 0.01; background inheritance filter; background indels dropped after filtering"
+      },
+      "cases": 200,
+      "people": 50,
+      "median_variants_per_case": 78.5,
+      "coverage": {
+        "CADD": {
+          "variants": 19561,
+          "diagnostics": 200
+        },
+        "SpliceAI": {
+          "variants": 16265,
+          "diagnostics": 192
+        },
+        "REVEL": {
+          "variants": 3439,
+          "diagnostics": 68
+        },
+        "AlphaMissense": {
+          "variants": 2808,
+          "diagnostics": 57
+        },
+        "AVI": {
+          "variants": 19561,
+          "diagnostics": 200
+        },
+        "GPN-MSA": {
+          "variants": 19561,
+          "diagnostics": 200
+        },
+        "GPN-Star-V": {
+          "variants": 19561,
+          "diagnostics": 200
+        },
+        "GPN-Star-M": {
+          "variants": 19561,
+          "diagnostics": 200
+        },
+        "Evo 2": {
+          "variants": 19561,
+          "diagnostics": 200
+        }
+      },
+      "scores_without_coverage": [],
+      "model_classes": {
+        "training_diagnostics_per_class": {
+          "canonical_splice": 40,
+          "intronic": 38,
+          "missense": 60,
+          "nonsense": 30,
+          "splice_region": 23,
+          "synonymous": 6,
+          "utr": 3
+        },
+        "merged_into_other": [
+          "synonymous",
+          "utr"
+        ],
+        "model_classes": [
+          "canonical_splice",
+          "intronic",
+          "missense",
+          "nonsense",
+          "other",
+          "splice_region"
+        ],
+        "training_set": "the 200 SNV cases"
+      },
+      "rule_ties": {
+        "Rule-based": 0.0,
+        "Rule + AVI": 0.0
+      },
+      "strata": {
+        "all": {
+          "cases": 200,
+          "people": 50,
+          "small": false,
+          "scores": {
+            "CADD": {
+              "median_competitors": 1.0,
+              "top_1": 0.41,
+              "top_1_ci95": [
+                0.335,
+                0.485
+              ],
+              "top_5": 0.67,
+              "top_5_ci95": [
+                0.6,
+                0.74
+              ],
+              "top_10": 0.8,
+              "top_10_ci95": [
+                0.73,
+                0.865
+              ]
+            },
+            "SpliceAI": {
+              "median_competitors": 1.0,
+              "top_1": 0.47,
+              "top_1_ci95": [
+                0.4,
+                0.545
+              ],
+              "top_5": 0.615,
+              "top_5_ci95": [
+                0.56,
+                0.6701
+              ],
+              "top_10": 0.64,
+              "top_10_ci95": [
+                0.585,
+                0.695
+              ]
+            },
+            "REVEL": {
+              "median_competitors": 63.5,
+              "top_1": 0.255,
+              "top_1_ci95": [
+                0.205,
+                0.305
+              ],
+              "top_5": 0.305,
+              "top_5_ci95": [
+                0.2549,
+                0.36
+              ],
+              "top_10": 0.32,
+              "top_10_ci95": [
+                0.27,
+                0.375
+              ]
+            },
+            "AlphaMissense": {
+              "median_competitors": 67.0,
+              "top_1": 0.225,
+              "top_1_ci95": [
+                0.18,
+                0.275
+              ],
+              "top_5": 0.28,
+              "top_5_ci95": [
+                0.235,
+                0.33
+              ],
+              "top_10": 0.285,
+              "top_10_ci95": [
+                0.24,
+                0.335
+              ]
+            },
+            "AVI": {
+              "median_competitors": 0.0,
+              "top_1": 0.7,
+              "top_1_ci95": [
+                0.615,
+                0.78
+              ],
+              "top_5": 0.93,
+              "top_5_ci95": [
+                0.89,
+                0.965
+              ],
+              "top_10": 0.955,
+              "top_10_ci95": [
+                0.92,
+                0.985
+              ]
+            },
+            "GPN-MSA": {
+              "median_competitors": 2.0,
+              "top_1": 0.345,
+              "top_1_ci95": [
+                0.275,
+                0.425
+              ],
+              "top_5": 0.62,
+              "top_5_ci95": [
+                0.555,
+                0.68
+              ],
+              "top_10": 0.76,
+              "top_10_ci95": [
+                0.72,
+                0.8
+              ]
+            },
+            "GPN-Star-V": {
+              "median_competitors": 1.0,
+              "top_1": 0.45,
+              "top_1_ci95": [
+                0.38,
+                0.52
+              ],
+              "top_5": 0.71,
+              "top_5_ci95": [
+                0.65,
+                0.77
+              ],
+              "top_10": 0.845,
+              "top_10_ci95": [
+                0.7999,
+                0.89
+              ]
+            },
+            "GPN-Star-M": {
+              "median_competitors": 1.0,
+              "top_1": 0.38,
+              "top_1_ci95": [
+                0.3,
+                0.46
+              ],
+              "top_5": 0.68,
+              "top_5_ci95": [
+                0.62,
+                0.735
+              ],
+              "top_10": 0.835,
+              "top_10_ci95": [
+                0.79,
+                0.88
+              ]
+            },
+            "Evo 2": {
+              "median_competitors": 1.0,
+              "top_1": 0.39,
+              "top_1_ci95": [
+                0.325,
+                0.4601
+              ],
+              "top_5": 0.655,
+              "top_5_ci95": [
+                0.59,
+                0.72
+              ],
+              "top_10": 0.805,
+              "top_10_ci95": [
+                0.74,
+                0.865
+              ]
+            },
+            "Rule-based": {
+              "median_competitors": 0.0,
+              "top_1": 0.715,
+              "top_1_ci95": [
+                0.625,
+                0.795
+              ],
+              "top_5": 0.935,
+              "top_5_ci95": [
+                0.895,
+                0.97
+              ],
+              "top_10": 0.965,
+              "top_10_ci95": [
+                0.935,
+                0.99
+              ]
+            },
+            "Rule + AVI": {
+              "median_competitors": 0.0,
+              "top_1": 0.755,
+              "top_1_ci95": [
+                0.68,
+                0.825
+              ],
+              "top_5": 0.955,
+              "top_5_ci95": [
+                0.92,
+                0.98
+              ],
+              "top_10": 0.96,
+              "top_10_ci95": [
+                0.9299,
+                0.985
+              ]
+            },
+            "Lookups combined": {
+              "median_competitors": 0.0,
+              "top_1": 0.77,
+              "top_1_ci95": [
+                0.68,
+                0.8501
+              ],
+              "top_5": 0.955,
+              "top_5_ci95": [
+                0.92,
+                0.985
+              ],
+              "top_10": 0.965,
+              "top_10_ci95": [
+                0.935,
+                0.99
+              ]
+            },
+            "Lookups + AVI": {
+              "median_competitors": 0.0,
+              "top_1": 0.78,
+              "top_1_ci95": [
+                0.695,
+                0.855
+              ],
+              "top_5": 0.955,
+              "top_5_ci95": [
+                0.92,
+                0.98
+              ],
+              "top_10": 0.96,
+              "top_10_ci95": [
+                0.925,
+                0.985
+              ]
+            }
+          },
+          "rule_ties": {
+            "Rule-based": 0.0,
+            "Rule + AVI": 0.0
+          },
+          "contrasts": {
+            "Lookups + AVI minus Lookups combined": {
+              "role": "primary contrast, cross-validated (descriptive)",
+              "top_1": 0.01,
+              "top_1_ci95": [
+                -0.075,
+                0.095
+              ],
+              "top_1_p": 0.85,
+              "top_5": 0.0,
+              "top_5_ci95": [
+                -0.02,
+                0.02
+              ],
+              "top_5_p": 1.0,
+              "top_10": -0.005,
+              "top_10_ci95": [
+                -0.03,
+                0.015
+              ],
+              "top_10_p": 0.844,
+              "confirmatory": false
+            },
+            "Lookups combined minus Rule-based": {
+              "role": "descriptive",
+              "top_1": 0.055,
+              "top_1_ci95": [
+                -0.025,
+                0.135
+              ],
+              "top_1_p": 0.212,
+              "top_5": 0.02,
+              "top_5_ci95": [
+                -0.01,
+                0.055
+              ],
+              "top_5_p": 0.3,
+              "top_10": 0.0,
+              "top_10_ci95": [
+                -0.02,
+                0.02
+              ],
+              "top_10_p": 1.0
+            },
+            "Lookups + AVI minus Rule-based": {
+              "role": "descriptive",
+              "top_1": 0.065,
+              "top_1_ci95": [
+                -0.025,
+                0.155
+              ],
+              "top_1_p": 0.168,
+              "top_5": 0.02,
+              "top_5_ci95": [
+                -0.01,
+                0.055
+              ],
+              "top_5_p": 0.24,
+              "top_10": -0.005,
+              "top_10_ci95": [
+                -0.02,
+                0.01
+              ],
+              "top_10_p": 0.774
+            },
+            "Rule + AVI minus Rule-based": {
+              "role": "key secondary",
+              "top_1": 0.04,
+              "top_1_ci95": [
+                0.005,
+                0.08
+              ],
+              "top_1_p": 0.038,
+              "top_5": 0.02,
+              "top_5_ci95": [
+                0.0,
+                0.045
+              ],
+              "top_5_p": 0.124,
+              "top_10": -0.005,
+              "top_10_ci95": [
+                -0.015,
+                0.0
+              ],
+              "top_10_p": 0.734
+            }
+          },
+          "seed_label": "snv/bg1pct/all"
+        },
+        "gnomad: found": {
+          "cases": 52,
+          "people": 31,
+          "small": false,
+          "scores": {
+            "CADD": {
+              "median_competitors": 1.0,
+              "top_1": 0.4038,
+              "top_1_ci95": [
+                0.3,
+                0.5
+              ],
+              "top_5": 0.5962,
+              "top_5_ci95": [
+                0.4808,
+                0.7091
+              ],
+              "top_10": 0.75,
+              "top_10_ci95": [
+                0.6363,
+                0.8601
+              ]
+            },
+            "SpliceAI": {
+              "median_competitors": 1.0,
+              "top_1": 0.4808,
+              "top_1_ci95": [
+                0.3725,
+                0.5882
+              ],
+              "top_5": 0.6154,
+              "top_5_ci95": [
+                0.5,
+                0.7358
+              ],
+              "top_10": 0.6346,
+              "top_10_ci95": [
+                0.5106,
+                0.75
+              ]
+            },
+            "REVEL": {
+              "median_competitors": 61.5,
+              "top_1": 0.2692,
+              "top_1_ci95": [
+                0.1724,
+                0.3684
+              ],
+              "top_5": 0.2885,
+              "top_5_ci95": [
+                0.1836,
+                0.4
+              ],
+              "top_10": 0.3077,
+              "top_10_ci95": [
+                0.1875,
+                0.4182
+              ]
+            },
+            "AlphaMissense": {
+              "median_competitors": 64.5,
+              "top_1": 0.2115,
+              "top_1_ci95": [
+                0.125,
+                0.2963
+              ],
+              "top_5": 0.2692,
+              "top_5_ci95": [
+                0.1724,
+                0.3684
+              ],
+              "top_10": 0.2692,
+              "top_10_ci95": [
+                0.1724,
+                0.3684
+              ]
+            },
+            "AVI": {
+              "median_competitors": 0.0,
+              "top_1": 0.6154,
+              "top_1_ci95": [
+                0.4791,
+                0.74
+              ],
+              "top_5": 0.8654,
+              "top_5_ci95": [
+                0.7708,
+                0.9444
+              ],
+              "top_10": 0.9038,
+              "top_10_ci95": [
+                0.8197,
+                0.9694
+              ]
+            },
+            "GPN-MSA": {
+              "median_competitors": 4.5,
+              "top_1": 0.1346,
+              "top_1_ci95": [
+                0.0444,
+                0.2364
+              ],
+              "top_5": 0.5,
+              "top_5_ci95": [
+                0.3799,
+                0.6227
+              ],
+              "top_10": 0.6346,
+              "top_10_ci95": [
+                0.54,
+                0.7321
+              ]
+            },
+            "GPN-Star-V": {
+              "median_competitors": 3.5,
+              "top_1": 0.25,
+              "top_1_ci95": [
+                0.1333,
+                0.3774
+              ],
+              "top_5": 0.5385,
+              "top_5_ci95": [
+                0.4363,
+                0.6444
+              ],
+              "top_10": 0.6923,
+              "top_10_ci95": [
+                0.5918,
+                0.7885
+              ]
+            },
+            "GPN-Star-M": {
+              "median_competitors": 4.5,
+              "top_1": 0.2115,
+              "top_1_ci95": [
+                0.102,
+                0.3277
+              ],
+              "top_5": 0.5,
+              "top_5_ci95": [
+                0.3913,
+                0.6
+              ],
+              "top_10": 0.6923,
+              "top_10_ci95": [
+                0.5778,
+                0.7895
+              ]
+            },
+            "Evo 2": {
+              "median_competitors": 2.5,
+              "top_1": 0.3077,
+              "top_1_ci95": [
+                0.1731,
+                0.4528
+              ],
+              "top_5": 0.6154,
+              "top_5_ci95": [
+                0.4894,
+                0.7369
+              ],
+              "top_10": 0.7308,
+              "top_10_ci95": [
+                0.6,
+                0.8475
+              ]
+            },
+            "Rule-based": {
+              "median_competitors": 0.0,
+              "top_1": 0.7115,
+              "top_1_ci95": [
+                0.5685,
+                0.8387
+              ],
+              "top_5": 0.8462,
+              "top_5_ci95": [
+                0.74,
+                0.9375
+              ],
+              "top_10": 0.8654,
+              "top_10_ci95": [
+                0.7551,
+                0.9556
+              ]
+            },
+            "Rule + AVI": {
+              "median_competitors": 0.0,
+              "top_1": 0.7115,
+              "top_1_ci95": [
+                0.5818,
+                0.8298
+              ],
+              "top_5": 0.8462,
+              "top_5_ci95": [
+                0.74,
+                0.9375
+              ],
+              "top_10": 0.8462,
+              "top_10_ci95": [
+                0.74,
+                0.9375
+              ]
+            },
+            "Lookups combined": {
+              "median_competitors": 0.0,
+              "top_1": 0.7692,
+              "top_1_ci95": [
+                0.6471,
+                0.8793
+              ],
+              "top_5": 0.9038,
+              "top_5_ci95": [
+                0.8039,
+                0.9808
+              ],
+              "top_10": 0.9231,
+              "top_10_ci95": [
+                0.82,
+                1.0
+              ]
+            },
+            "Lookups + AVI": {
+              "median_competitors": 0.0,
+              "top_1": 0.8077,
+              "top_1_ci95": [
+                0.6731,
+                0.9273
+              ],
+              "top_5": 0.8654,
+              "top_5_ci95": [
+                0.754,
+                0.9493
+              ],
+              "top_10": 0.8654,
+              "top_10_ci95": [
+                0.754,
+                0.9493
+              ]
+            }
+          },
+          "rule_ties": {
+            "Rule-based": 0.0,
+            "Rule + AVI": 0.0
+          },
+          "seed_label": "snv/bg1pct/gnomad: found"
+        },
+        "gnomad: absent": {
+          "cases": 148,
+          "people": 48,
+          "small": false,
+          "scores": {
+            "CADD": {
+              "median_competitors": 1.0,
+              "top_1": 0.4122,
+              "top_1_ci95": [
+                0.3289,
+                0.5035
+              ],
+              "top_5": 0.6959,
+              "top_5_ci95": [
+                0.6154,
+                0.7778
+              ],
+              "top_10": 0.8176,
+              "top_10_ci95": [
+                0.7415,
+                0.8836
+              ]
+            },
+            "SpliceAI": {
+              "median_competitors": 1.0,
+              "top_1": 0.4662,
+              "top_1_ci95": [
+                0.3809,
+                0.5461
+              ],
+              "top_5": 0.6149,
+              "top_5_ci95": [
+                0.5414,
+                0.6806
+              ],
+              "top_10": 0.6419,
+              "top_10_ci95": [
+                0.5804,
+                0.7029
+              ]
+            },
+            "REVEL": {
+              "median_competitors": 66.5,
+              "top_1": 0.25,
+              "top_1_ci95": [
+                0.1957,
+                0.305
+              ],
+              "top_5": 0.3108,
+              "top_5_ci95": [
+                0.2452,
+                0.3724
+              ],
+              "top_10": 0.3243,
+              "top_10_ci95": [
+                0.2614,
+                0.3873
+              ]
+            },
+            "AlphaMissense": {
+              "median_competitors": 68.0,
+              "top_1": 0.2297,
+              "top_1_ci95": [
+                0.1722,
+                0.2905
+              ],
+              "top_5": 0.2838,
+              "top_5_ci95": [
+                0.2286,
+                0.3421
+              ],
+              "top_10": 0.2905,
+              "top_10_ci95": [
+                0.2353,
+                0.3469
+              ]
+            },
+            "AVI": {
+              "median_competitors": 0.0,
+              "top_1": 0.7297,
+              "top_1_ci95": [
+                0.6346,
+                0.8117
+              ],
+              "top_5": 0.9527,
+              "top_5_ci95": [
+                0.9116,
+                0.9863
+              ],
+              "top_10": 0.973,
+              "top_10_ci95": [
+                0.9366,
+                1.0
+              ]
+            },
+            "GPN-MSA": {
+              "median_competitors": 1.0,
+              "top_1": 0.4189,
+              "top_1_ci95": [
+                0.32,
+                0.5102
+              ],
+              "top_5": 0.6622,
+              "top_5_ci95": [
+                0.5782,
+                0.7467
+              ],
+              "top_10": 0.8041,
+              "top_10_ci95": [
+                0.7428,
+                0.8611
+              ]
+            },
+            "GPN-Star-V": {
+              "median_competitors": 0.0,
+              "top_1": 0.5203,
+              "top_1_ci95": [
+                0.4359,
+                0.6026
+              ],
+              "top_5": 0.7703,
+              "top_5_ci95": [
+                0.6908,
+                0.8414
+              ],
+              "top_10": 0.8986,
+              "top_10_ci95": [
+                0.8421,
+                0.9467
+              ]
+            },
+            "GPN-Star-M": {
+              "median_competitors": 1.0,
+              "top_1": 0.4392,
+              "top_1_ci95": [
+                0.3469,
+                0.5315
+              ],
+              "top_5": 0.7432,
+              "top_5_ci95": [
+                0.6689,
+                0.8112
+              ],
+              "top_10": 0.8851,
+              "top_10_ci95": [
+                0.8289,
+                0.9355
+              ]
+            },
+            "Evo 2": {
+              "median_competitors": 1.0,
+              "top_1": 0.4189,
+              "top_1_ci95": [
+                0.3481,
+                0.4903
+              ],
+              "top_5": 0.6689,
+              "top_5_ci95": [
+                0.5931,
+                0.7406
+              ],
+              "top_10": 0.8311,
+              "top_10_ci95": [
+                0.764,
+                0.8933
+              ]
+            },
+            "Rule-based": {
+              "median_competitors": 0.0,
+              "top_1": 0.7162,
+              "top_1_ci95": [
+                0.625,
+                0.7973
+              ],
+              "top_5": 0.9662,
+              "top_5_ci95": [
+                0.9355,
+                0.9929
+              ],
+              "top_10": 1.0,
+              "top_10_ci95": [
+                1.0,
+                1.0
+              ]
+            },
+            "Rule + AVI": {
+              "median_competitors": 0.0,
+              "top_1": 0.7703,
+              "top_1_ci95": [
+                0.6918,
+                0.8483
+              ],
+              "top_5": 0.9932,
+              "top_5_ci95": [
+                0.9787,
+                1.0
+              ],
+              "top_10": 1.0,
+              "top_10_ci95": [
+                1.0,
+                1.0
+              ]
+            },
+            "Lookups combined": {
+              "median_competitors": 0.0,
+              "top_1": 0.7703,
+              "top_1_ci95": [
+                0.6687,
+                0.8621
+              ],
+              "top_5": 0.973,
+              "top_5_ci95": [
+                0.9456,
+                0.9934
+              ],
+              "top_10": 0.9797,
+              "top_10_ci95": [
+                0.9563,
+                1.0
+              ]
+            },
+            "Lookups + AVI": {
+              "median_competitors": 0.0,
+              "top_1": 0.7703,
+              "top_1_ci95": [
+                0.6736,
+                0.855
+              ],
+              "top_5": 0.9865,
+              "top_5_ci95": [
+                0.9662,
+                1.0
+              ],
+              "top_10": 0.9932,
+              "top_10_ci95": [
+                0.9786,
+                1.0
+              ]
+            }
+          },
+          "rule_ties": {
+            "Rule-based": 0.0,
+            "Rule + AVI": 0.0
+          },
+          "seed_label": "snv/bg1pct/gnomad: absent"
+        }
+      },
+      "gnomad_split": {
+        "sources": [
+          "data/gnomad_full.tsv",
+          "pool/gnomad_full.tsv"
+        ],
+        "diagnostics_found": 52,
+        "diagnostics_absent": 148,
+        "diagnostics_without_status": 0,
+        "seed_label": "snv/bg1pct/gnomad split",
+        "gnomad: found": {
+          "cases": 52,
+          "people": 31,
+          "contrasts": {
+            "Lookups + AVI minus Lookups combined": {
+              "role": "primary",
+              "top_1": 0.0385,
+              "top_1_ci95": [
+                -0.1305,
+                0.1875
+              ],
+              "top_1_p": 0.68,
+              "top_5": -0.0385,
+              "top_5_ci95": [
+                -0.102,
+                0.0
+              ],
+              "top_5_p": 0.262,
+              "top_10": -0.0577,
+              "top_10_ci95": [
+                -0.125,
+                0.0
+              ],
+              "top_10_p": 0.09
+            },
+            "Rule + AVI minus Rule-based": {
+              "role": "key secondary",
+              "top_1": 0.0,
+              "top_1_ci95": [
+                -0.0465,
+                0.0526
+              ],
+              "top_1_p": 1.0,
+              "top_5": 0.0,
+              "top_5_ci95": [
+                0.0,
+                0.0
+              ],
+              "top_5_p": 1.0,
+              "top_10": -0.0192,
+              "top_10_ci95": [
+                -0.0566,
+                0.0
+              ],
+              "top_10_p": 0.71
+            }
+          }
+        },
+        "gnomad: absent": {
+          "cases": 148,
+          "people": 48,
+          "contrasts": {
+            "Lookups + AVI minus Lookups combined": {
+              "role": "primary",
+              "top_1": 0.0,
+              "top_1_ci95": [
+                -0.094,
+                0.0934
+              ],
+              "top_1_p": 1.0,
+              "top_5": 0.0135,
+              "top_5_ci95": [
+                0.0,
+                0.0347
+              ],
+              "top_5_p": 0.24,
+              "top_10": 0.0135,
+              "top_10_ci95": [
+                0.0,
+                0.0347
+              ],
+              "top_10_p": 0.278
+            },
+            "Rule + AVI minus Rule-based": {
+              "role": "key secondary",
+              "top_1": 0.0541,
+              "top_1_ci95": [
+                0.0072,
+                0.1039
+              ],
+              "top_1_p": 0.026,
+              "top_5": 0.027,
+              "top_5_ci95": [
+                0.0,
+                0.0604
+              ],
+              "top_5_p": 0.126,
+              "top_10": 0.0,
+              "top_10_ci95": [
+                0.0,
+                0.0
+              ],
+              "top_10_p": 1.0
+            }
+          }
+        },
+        "difference": {
+          "Lookups + AVI minus Lookups combined": {
+            "role": "primary",
+            "top_1_absent_minus_found": -0.0385,
+            "top_1_ci95": [
+              -0.1903,
+              0.1356
+            ],
+            "top_1_p": 0.596,
+            "possibly_gnomad_presence": false
+          },
+          "Rule + AVI minus Rule-based": {
+            "role": "key secondary",
+            "top_1_absent_minus_found": 0.0541,
+            "top_1_ci95": [
+              -0.0124,
+              0.1274
+            ],
+            "top_1_p": 0.12,
+            "possibly_gnomad_presence": false
+          }
+        }
+      },
+      "why": {
+        "background_variants": 4844,
+        "spearman_with_grpmax": {
+          "AVI": {
+            "rho": -0.0779,
+            "variants": 4844
+          },
+          "CADD": {
+            "rho": -0.1104,
+            "variants": 4844
+          }
+        },
+        "background_by_band": {
+          "below 0.1%": 28.385,
+          "0.1 to 1%": 68.42,
+          "1 to 5%": 0.0
+        },
+        "above_by_band": {
+          "AVI": {
+            "below 0.1%": 0.85,
+            "0.1 to 1%": 2.125,
+            "1 to 5%": 0.0
+          },
+          "CADD": {
+            "below 0.1%": 2.475,
+            "0.1 to 1%": 3.89,
+            "1 to 5%": 0.0
+          }
+        }
+      }
+    },
+    "0.02": {
+      "max_af": 0.02,
+      "seed_label_analysis": "sweep0.02",
+      "filter": {
+        "max_af": 0.02,
+        "background_frequency": "grpmax",
+        "diagnostic_frequency": "grpmax",
+        "inheritance_filter": true,
+        "cases_before": 200,
+        "variants_before": 99488,
+        "kgp_max_af": 0.02,
+        "cases_lost_diagnostic": 0,
+        "variants_after_frequency": 55576,
+        "unrecognised_moi_values_kept": [],
+        "rows_without_gene": 0,
+        "variants_after_inheritance": 36646,
+        "background_indels_in_inheritance_count": 5553,
+        "variants_after_dropping_other_type": 31093,
+        "description": "background grpmax below 0.02 and 1000 Genomes AF below 0.02, diagnostics full gnomAD grpmax below 0.02; background inheritance filter; background indels dropped after filtering"
+      },
+      "cases": 200,
+      "people": 50,
+      "median_variants_per_case": 114.0,
+      "coverage": {
+        "CADD": {
+          "variants": 31093,
+          "diagnostics": 200
+        },
+        "SpliceAI": {
+          "variants": 25615,
+          "diagnostics": 192
+        },
+        "REVEL": {
+          "variants": 5200,
+          "diagnostics": 68
+        },
+        "AlphaMissense": {
+          "variants": 4249,
+          "diagnostics": 57
+        },
+        "AVI": {
+          "variants": 31093,
+          "diagnostics": 200
+        },
+        "GPN-MSA": {
+          "variants": 31093,
+          "diagnostics": 200
+        },
+        "GPN-Star-V": {
+          "variants": 31093,
+          "diagnostics": 200
+        },
+        "GPN-Star-M": {
+          "variants": 31093,
+          "diagnostics": 200
+        }
+      },
+      "scores_without_coverage": [],
+      "model_classes": {
+        "training_diagnostics_per_class": {
+          "canonical_splice": 40,
+          "intronic": 38,
+          "missense": 60,
+          "nonsense": 30,
+          "splice_region": 23,
+          "synonymous": 6,
+          "utr": 3
+        },
+        "merged_into_other": [
+          "synonymous",
+          "utr"
+        ],
+        "model_classes": [
+          "canonical_splice",
+          "intronic",
+          "missense",
+          "nonsense",
+          "other",
+          "splice_region"
+        ],
+        "training_set": "the 200 SNV cases"
+      },
+      "rule_ties": {
+        "Rule-based": 0.0,
+        "Rule + AVI": 0.0
+      },
+      "strata": {
+        "all": {
+          "cases": 200,
+          "people": 50,
+          "small": false,
+          "scores": {
+            "CADD": {
+              "median_competitors": 2.0,
+              "top_1": 0.38,
+              "top_1_ci95": [
+                0.29,
+                0.465
+              ],
+              "top_5": 0.625,
+              "top_5_ci95": [
+                0.55,
+                0.7
+              ],
+              "top_10": 0.755,
+              "top_10_ci95": [
+                0.685,
+                0.825
+              ]
+            },
+            "SpliceAI": {
+              "median_competitors": 1.0,
+              "top_1": 0.45,
+              "top_1_ci95": [
+                0.375,
+                0.525
+              ],
+              "top_5": 0.6,
+              "top_5_ci95": [
+                0.545,
+                0.655
+              ],
+              "top_10": 0.625,
+              "top_10_ci95": [
+                0.57,
+                0.675
+              ]
+            },
+            "REVEL": {
+              "median_competitors": 94.5,
+              "top_1": 0.24,
+              "top_1_ci95": [
+                0.19,
+                0.29
+              ],
+              "top_5": 0.295,
+              "top_5_ci95": [
+                0.24,
+                0.35
+              ],
+              "top_10": 0.32,
+              "top_10_ci95": [
+                0.265,
+                0.375
+              ]
+            },
+            "AlphaMissense": {
+              "median_competitors": 99.5,
+              "top_1": 0.215,
+              "top_1_ci95": [
+                0.165,
+                0.2601
+              ],
+              "top_5": 0.28,
+              "top_5_ci95": [
+                0.235,
+                0.33
+              ],
+              "top_10": 0.28,
+              "top_10_ci95": [
+                0.235,
+                0.33
+              ]
+            },
+            "AVI": {
+              "median_competitors": 0.0,
+              "top_1": 0.65,
+              "top_1_ci95": [
+                0.565,
+                0.7251
+              ],
+              "top_5": 0.92,
+              "top_5_ci95": [
+                0.875,
+                0.96
+              ],
+              "top_10": 0.945,
+              "top_10_ci95": [
+                0.91,
+                0.975
+              ]
+            },
+            "GPN-MSA": {
+              "median_competitors": 3.0,
+              "top_1": 0.285,
+              "top_1_ci95": [
+                0.215,
+                0.365
+              ],
+              "top_5": 0.57,
+              "top_5_ci95": [
+                0.495,
+                0.64
+              ],
+              "top_10": 0.695,
+              "top_10_ci95": [
+                0.645,
+                0.745
+              ]
+            },
+            "GPN-Star-V": {
+              "median_competitors": 1.0,
+              "top_1": 0.42,
+              "top_1_ci95": [
+                0.3449,
+                0.4951
+              ],
+              "top_5": 0.69,
+              "top_5_ci95": [
+                0.625,
+                0.75
+              ],
+              "top_10": 0.77,
+              "top_10_ci95": [
+                0.715,
+                0.825
+              ]
+            },
+            "GPN-Star-M": {
+              "median_competitors": 2.0,
+              "top_1": 0.345,
+              "top_1_ci95": [
+                0.26,
+                0.425
+              ],
+              "top_5": 0.655,
+              "top_5_ci95": [
+                0.595,
+                0.715
+              ],
+              "top_10": 0.785,
+              "top_10_ci95": [
+                0.73,
+                0.84
+              ]
+            },
+            "Rule-based": {
+              "median_competitors": 0.0,
+              "top_1": 0.67,
+              "top_1_ci95": [
+                0.585,
+                0.755
+              ],
+              "top_5": 0.925,
+              "top_5_ci95": [
+                0.88,
+                0.965
+              ],
+              "top_10": 0.955,
+              "top_10_ci95": [
+                0.92,
+                0.985
+              ]
+            },
+            "Rule + AVI": {
+              "median_competitors": 0.0,
+              "top_1": 0.705,
+              "top_1_ci95": [
+                0.625,
+                0.775
+              ],
+              "top_5": 0.94,
+              "top_5_ci95": [
+                0.9,
+                0.975
+              ],
+              "top_10": 0.955,
+              "top_10_ci95": [
+                0.925,
+                0.98
+              ]
+            },
+            "Lookups combined": {
+              "median_competitors": 0.0,
+              "top_1": 0.72,
+              "top_1_ci95": [
+                0.63,
+                0.805
+              ],
+              "top_5": 0.955,
+              "top_5_ci95": [
+                0.92,
+                0.985
+              ],
+              "top_10": 0.965,
+              "top_10_ci95": [
+                0.935,
+                0.99
+              ]
+            },
+            "Lookups + AVI": {
+              "median_competitors": 0.0,
+              "top_1": 0.78,
+              "top_1_ci95": [
+                0.705,
+                0.8451
+              ],
+              "top_5": 0.96,
+              "top_5_ci95": [
+                0.925,
+                0.99
+              ],
+              "top_10": 0.97,
+              "top_10_ci95": [
+                0.94,
+                0.995
+              ]
+            }
+          },
+          "rule_ties": {
+            "Rule-based": 0.0,
+            "Rule + AVI": 0.0
+          },
+          "contrasts": {
+            "Lookups + AVI minus Lookups combined": {
+              "role": "primary contrast, cross-validated (descriptive)",
+              "top_1": 0.06,
+              "top_1_ci95": [
+                -0.03,
+                0.145
+              ],
+              "top_1_p": 0.21,
+              "top_5": 0.005,
+              "top_5_ci95": [
+                -0.01,
+                0.025
+              ],
+              "top_5_p": 0.738,
+              "top_10": 0.005,
+              "top_10_ci95": [
+                -0.01,
+                0.02
+              ],
+              "top_10_p": 0.756,
+              "confirmatory": false
+            },
+            "Lookups combined minus Rule-based": {
+              "role": "descriptive",
+              "top_1": 0.05,
+              "top_1_ci95": [
+                -0.03,
+                0.135
+              ],
+              "top_1_p": 0.256,
+              "top_5": 0.03,
+              "top_5_ci95": [
+                0.005,
+                0.06
+              ],
+              "top_5_p": 0.008,
+              "top_10": 0.01,
+              "top_10_ci95": [
+                -0.015,
+                0.04
+              ],
+              "top_10_p": 0.634
+            },
+            "Lookups + AVI minus Rule-based": {
+              "role": "descriptive",
+              "top_1": 0.11,
+              "top_1_ci95": [
+                0.03,
+                0.19
+              ],
+              "top_1_p": 0.008,
+              "top_5": 0.035,
+              "top_5_ci95": [
+                0.01,
+                0.065
+              ],
+              "top_5_p": 0.004,
+              "top_10": 0.015,
+              "top_10_ci95": [
+                -0.005,
+                0.0401
+              ],
+              "top_10_p": 0.316
+            },
+            "Rule + AVI minus Rule-based": {
+              "role": "key secondary",
+              "top_1": 0.035,
+              "top_1_ci95": [
+                -0.015,
+                0.08
+              ],
+              "top_1_p": 0.2,
+              "top_5": 0.015,
+              "top_5_ci95": [
+                0.0,
+                0.035
+              ],
+              "top_5_p": 0.092,
+              "top_10": 0.0,
+              "top_10_ci95": [
+                -0.015,
+                0.015
+              ],
+              "top_10_p": 1.0
+            }
+          },
+          "seed_label": "snv/sweep0.02/all"
+        },
+        "gnomad: found": {
+          "cases": 52,
+          "people": 31,
+          "small": false,
+          "scores": {
+            "CADD": {
+              "median_competitors": 2.0,
+              "top_1": 0.3846,
+              "top_1_ci95": [
+                0.2758,
+                0.5
+              ],
+              "top_5": 0.5769,
+              "top_5_ci95": [
+                0.46,
+                0.6809
+              ],
+              "top_10": 0.6731,
+              "top_10_ci95": [
+                0.5471,
+                0.7963
+              ]
+            },
+            "SpliceAI": {
+              "median_competitors": 1.0,
+              "top_1": 0.4808,
+              "top_1_ci95": [
+                0.3774,
+                0.5918
+              ],
+              "top_5": 0.5962,
+              "top_5_ci95": [
+                0.4716,
+                0.7273
+              ],
+              "top_10": 0.6154,
+              "top_10_ci95": [
+                0.5,
+                0.7308
+              ]
+            },
+            "REVEL": {
+              "median_competitors": 86.0,
+              "top_1": 0.2692,
+              "top_1_ci95": [
+                0.1724,
+                0.3654
+              ],
+              "top_5": 0.2885,
+              "top_5_ci95": [
+                0.1851,
+                0.4038
+              ],
+              "top_10": 0.3077,
+              "top_10_ci95": [
+                0.1961,
+                0.4211
+              ]
+            },
+            "AlphaMissense": {
+              "median_competitors": 96.0,
+              "top_1": 0.2115,
+              "top_1_ci95": [
+                0.1272,
+                0.3019
+              ],
+              "top_5": 0.2692,
+              "top_5_ci95": [
+                0.1724,
+                0.3654
+              ],
+              "top_10": 0.2692,
+              "top_10_ci95": [
+                0.1724,
+                0.3654
+              ]
+            },
+            "AVI": {
+              "median_competitors": 0.0,
+              "top_1": 0.5769,
+              "top_1_ci95": [
+                0.4444,
+                0.717
+              ],
+              "top_5": 0.8462,
+              "top_5_ci95": [
+                0.7551,
+                0.926
+              ],
+              "top_10": 0.8654,
+              "top_10_ci95": [
+                0.7636,
+                0.9412
+              ]
+            },
+            "GPN-MSA": {
+              "median_competitors": 6.5,
+              "top_1": 0.0962,
+              "top_1_ci95": [
+                0.0175,
+                0.1923
+              ],
+              "top_5": 0.3846,
+              "top_5_ci95": [
+                0.26,
+                0.5098
+              ],
+              "top_10": 0.5577,
+              "top_10_ci95": [
+                0.4423,
+                0.6792
+              ]
+            },
+            "GPN-Star-V": {
+              "median_competitors": 4.5,
+              "top_1": 0.2308,
+              "top_1_ci95": [
+                0.1132,
+                0.3509
+              ],
+              "top_5": 0.5,
+              "top_5_ci95": [
+                0.3818,
+                0.625
+              ],
+              "top_10": 0.5962,
+              "top_10_ci95": [
+                0.5,
+                0.7059
+              ]
+            },
+            "GPN-Star-M": {
+              "median_competitors": 6.0,
+              "top_1": 0.2115,
+              "top_1_ci95": [
+                0.093,
+                0.3214
+              ],
+              "top_5": 0.4423,
+              "top_5_ci95": [
+                0.34,
+                0.5439
+              ],
+              "top_10": 0.6154,
+              "top_10_ci95": [
+                0.5,
+                0.7322
+              ]
+            },
+            "Rule-based": {
+              "median_competitors": 0.0,
+              "top_1": 0.7115,
+              "top_1_ci95": [
+                0.5833,
+                0.8334
+              ],
+              "top_5": 0.8462,
+              "top_5_ci95": [
+                0.7273,
+                0.9423
+              ],
+              "top_10": 0.8462,
+              "top_10_ci95": [
+                0.7273,
+                0.9423
+              ]
+            },
+            "Rule + AVI": {
+              "median_competitors": 0.0,
+              "top_1": 0.6731,
+              "top_1_ci95": [
+                0.5531,
+                0.7885
+              ],
+              "top_5": 0.8462,
+              "top_5_ci95": [
+                0.7273,
+                0.9423
+              ],
+              "top_10": 0.8462,
+              "top_10_ci95": [
+                0.7273,
+                0.9423
+              ]
+            },
+            "Lookups combined": {
+              "median_competitors": 0.0,
+              "top_1": 0.7115,
+              "top_1_ci95": [
+                0.5849,
+                0.8235
+              ],
+              "top_5": 0.9038,
+              "top_5_ci95": [
+                0.7907,
+                0.9811
+              ],
+              "top_10": 0.9231,
+              "top_10_ci95": [
+                0.8245,
+                1.0
+              ]
+            },
+            "Lookups + AVI": {
+              "median_competitors": 0.0,
+              "top_1": 0.6731,
+              "top_1_ci95": [
+                0.5246,
+                0.8114
+              ],
+              "top_5": 0.9038,
+              "top_5_ci95": [
+                0.8,
+                0.9804
+              ],
+              "top_10": 0.9231,
+              "top_10_ci95": [
+                0.8222,
+                1.0
+              ]
+            }
+          },
+          "rule_ties": {
+            "Rule-based": 0.0,
+            "Rule + AVI": 0.0
+          },
+          "seed_label": "snv/sweep0.02/gnomad: found"
+        },
+        "gnomad: absent": {
+          "cases": 148,
+          "people": 48,
+          "small": false,
+          "scores": {
+            "CADD": {
+              "median_competitors": 1.5,
+              "top_1": 0.3784,
+              "top_1_ci95": [
+                0.2905,
+                0.4671
+              ],
+              "top_5": 0.6419,
+              "top_5_ci95": [
+                0.5493,
+                0.7273
+              ],
+              "top_10": 0.7838,
+              "top_10_ci95": [
+                0.7092,
+                0.8477
+              ]
+            },
+            "SpliceAI": {
+              "median_competitors": 1.0,
+              "top_1": 0.4392,
+              "top_1_ci95": [
+                0.3533,
+                0.519
+              ],
+              "top_5": 0.6014,
+              "top_5_ci95": [
+                0.5306,
+                0.6691
+              ],
+              "top_10": 0.6284,
+              "top_10_ci95": [
+                0.557,
+                0.6902
+              ]
+            },
+            "REVEL": {
+              "median_competitors": 99.0,
+              "top_1": 0.2297,
+              "top_1_ci95": [
+                0.1714,
+                0.2886
+              ],
+              "top_5": 0.2973,
+              "top_5_ci95": [
+                0.2333,
+                0.365
+              ],
+              "top_10": 0.3243,
+              "top_10_ci95": [
+                0.262,
+                0.3919
+              ]
+            },
+            "AlphaMissense": {
+              "median_competitors": 102.0,
+              "top_1": 0.2162,
+              "top_1_ci95": [
+                0.1625,
+                0.2789
+              ],
+              "top_5": 0.2838,
+              "top_5_ci95": [
+                0.2282,
+                0.3425
+              ],
+              "top_10": 0.2838,
+              "top_10_ci95": [
+                0.2282,
+                0.3425
+              ]
+            },
+            "AVI": {
+              "median_competitors": 0.0,
+              "top_1": 0.6757,
+              "top_1_ci95": [
+                0.5874,
+                0.7635
+              ],
+              "top_5": 0.9459,
+              "top_5_ci95": [
+                0.8972,
+                0.9805
+              ],
+              "top_10": 0.973,
+              "top_10_ci95": [
+                0.9338,
+                1.0
+              ]
+            },
+            "GPN-MSA": {
+              "median_competitors": 1.0,
+              "top_1": 0.3514,
+              "top_1_ci95": [
+                0.268,
+                0.4395
+              ],
+              "top_5": 0.6351,
+              "top_5_ci95": [
+                0.5479,
+                0.7171
+              ],
+              "top_10": 0.7432,
+              "top_10_ci95": [
+                0.6741,
+                0.8067
+              ]
+            },
+            "GPN-Star-V": {
+              "median_competitors": 1.0,
+              "top_1": 0.4865,
+              "top_1_ci95": [
+                0.4,
+                0.5747
+              ],
+              "top_5": 0.7568,
+              "top_5_ci95": [
+                0.6797,
+                0.83
+              ],
+              "top_10": 0.8311,
+              "top_10_ci95": [
+                0.7633,
+                0.8937
+              ]
+            },
+            "GPN-Star-M": {
+              "median_competitors": 1.0,
+              "top_1": 0.3919,
+              "top_1_ci95": [
+                0.2987,
+                0.4863
+              ],
+              "top_5": 0.7297,
+              "top_5_ci95": [
+                0.651,
+                0.8072
+              ],
+              "top_10": 0.8446,
+              "top_10_ci95": [
+                0.7718,
+                0.9045
+              ]
+            },
+            "Rule-based": {
+              "median_competitors": 0.0,
+              "top_1": 0.6554,
+              "top_1_ci95": [
+                0.5606,
+                0.7413
+              ],
+              "top_5": 0.9527,
+              "top_5_ci95": [
+                0.9167,
+                0.9858
+              ],
+              "top_10": 0.9932,
+              "top_10_ci95": [
+                0.9786,
+                1.0
+              ]
+            },
+            "Rule + AVI": {
+              "median_competitors": 0.0,
+              "top_1": 0.7162,
+              "top_1_ci95": [
+                0.6283,
+                0.796
+              ],
+              "top_5": 0.973,
+              "top_5_ci95": [
+                0.9429,
+                0.9938
+              ],
+              "top_10": 0.9932,
+              "top_10_ci95": [
+                0.9789,
+                1.0
+              ]
+            },
+            "Lookups combined": {
+              "median_competitors": 0.0,
+              "top_1": 0.723,
+              "top_1_ci95": [
+                0.6241,
+                0.8143
+              ],
+              "top_5": 0.973,
+              "top_5_ci95": [
+                0.9354,
+                1.0
+              ],
+              "top_10": 0.9797,
+              "top_10_ci95": [
+                0.9533,
+                1.0
+              ]
+            },
+            "Lookups + AVI": {
+              "median_competitors": 0.0,
+              "top_1": 0.8176,
+              "top_1_ci95": [
+                0.7482,
+                0.8836
+              ],
+              "top_5": 0.9797,
+              "top_5_ci95": [
+                0.944,
+                1.0
+              ],
+              "top_10": 0.9865,
+              "top_10_ci95": [
+                0.9653,
+                1.0
+              ]
+            }
+          },
+          "rule_ties": {
+            "Rule-based": 0.0,
+            "Rule + AVI": 0.0
+          },
+          "seed_label": "snv/sweep0.02/gnomad: absent"
+        }
+      },
+      "gnomad_split": {
+        "sources": [
+          "data/gnomad_full.tsv",
+          "pool/gnomad_full.tsv"
+        ],
+        "diagnostics_found": 52,
+        "diagnostics_absent": 148,
+        "diagnostics_without_status": 0,
+        "seed_label": "snv/sweep0.02/gnomad split",
+        "gnomad: found": {
+          "cases": 52,
+          "people": 31,
+          "contrasts": {
+            "Lookups + AVI minus Lookups combined": {
+              "role": "primary",
+              "top_1": -0.0385,
+              "top_1_ci95": [
+                -0.22,
+                0.1251
+              ],
+              "top_1_p": 0.75,
+              "top_5": 0.0,
+              "top_5_ci95": [
+                -0.0465,
+                0.0546
+              ],
+              "top_5_p": 1.0,
+              "top_10": 0.0,
+              "top_10_ci95": [
+                -0.0526,
+                0.0536
+              ],
+              "top_10_p": 1.0
+            },
+            "Rule + AVI minus Rule-based": {
+              "role": "key secondary",
+              "top_1": -0.0385,
+              "top_1_ci95": [
+                -0.1112,
+                0.0328
+              ],
+              "top_1_p": 0.436,
+              "top_5": 0.0,
+              "top_5_ci95": [
+                0.0,
+                0.0
+              ],
+              "top_5_p": 1.0,
+              "top_10": 0.0,
+              "top_10_ci95": [
+                0.0,
+                0.0
+              ],
+              "top_10_p": 1.0
+            }
+          }
+        },
+        "gnomad: absent": {
+          "cases": 148,
+          "people": 48,
+          "contrasts": {
+            "Lookups + AVI minus Lookups combined": {
+              "role": "primary",
+              "top_1": 0.0946,
+              "top_1_ci95": [
+                0.006,
+                0.1934
+              ],
+              "top_1_p": 0.05,
+              "top_5": 0.0068,
+              "top_5_ci95": [
+                0.0,
+                0.021
+              ],
+              "top_5_p": 0.752,
+              "top_10": 0.0068,
+              "top_10_ci95": [
+                0.0,
+                0.021
+              ],
+              "top_10_p": 0.752
+            },
+            "Rule + AVI minus Rule-based": {
+              "role": "key secondary",
+              "top_1": 0.0608,
+              "top_1_ci95": [
+                0.0119,
+                0.1168
+              ],
+              "top_1_p": 0.024,
+              "top_5": 0.0203,
+              "top_5_ci95": [
+                0.0,
+                0.0461
+              ],
+              "top_5_p": 0.08,
+              "top_10": 0.0,
+              "top_10_ci95": [
+                -0.0194,
+                0.0206
+              ],
+              "top_10_p": 1.0
+            }
+          }
+        },
+        "difference": {
+          "Lookups + AVI minus Lookups combined": {
+            "role": "primary",
+            "top_1_absent_minus_found": 0.1331,
+            "top_1_ci95": [
+              -0.0332,
+              0.3124
+            ],
+            "top_1_p": 0.13,
+            "possibly_gnomad_presence": false
+          },
+          "Rule + AVI minus Rule-based": {
+            "role": "key secondary",
+            "top_1_absent_minus_found": 0.0993,
+            "top_1_ci95": [
+              0.0155,
+              0.1812
+            ],
+            "top_1_p": 0.02,
+            "possibly_gnomad_presence": true
+          }
+        }
+      },
+      "why": {
+        "background_variants": 7730,
+        "spearman_with_grpmax": {
+          "AVI": {
+            "rho": -0.0787,
+            "variants": 7730
+          },
+          "CADD": {
+            "rho": -0.0887,
+            "variants": 7730
+          }
+        },
+        "background_by_band": {
+          "below 0.1%": 29.865,
+          "0.1 to 1%": 72.06,
+          "1 to 5%": 52.54
+        },
+        "above_by_band": {
+          "AVI": {
+            "below 0.1%": 0.895,
+            "0.1 to 1%": 2.23,
+            "1 to 5%": 1.625
+          },
+          "CADD": {
+            "below 0.1%": 2.585,
+            "0.1 to 1%": 4.075,
+            "1 to 5%": 2.87
+          }
+        }
+      }
+    },
+    "0.05": {
+      "max_af": 0.05,
+      "seed_label_analysis": "sweep0.05",
+      "filter": {
+        "max_af": 0.05,
+        "background_frequency": "grpmax",
+        "diagnostic_frequency": "grpmax",
+        "inheritance_filter": true,
+        "cases_before": 200,
+        "variants_before": 99488,
+        "kgp_max_af": 0.05,
+        "cases_lost_diagnostic": 0,
+        "variants_after_frequency": 99488,
+        "unrecognised_moi_values_kept": [],
+        "rows_without_gene": 0,
+        "variants_after_inheritance": 73004,
+        "background_indels_in_inheritance_count": 12920,
+        "variants_after_dropping_other_type": 60084,
+        "description": "background grpmax below 0.05 and 1000 Genomes AF below 0.05, diagnostics full gnomAD grpmax below 0.05; background inheritance filter; background indels dropped after filtering"
+      },
+      "cases": 200,
+      "people": 50,
+      "median_variants_per_case": 199.5,
+      "coverage": {
+        "CADD": {
+          "variants": 60084,
+          "diagnostics": 200
+        },
+        "SpliceAI": {
+          "variants": 49283,
+          "diagnostics": 192
+        },
+        "REVEL": {
+          "variants": 9144,
+          "diagnostics": 68
+        },
+        "AlphaMissense": {
+          "variants": 7741,
+          "diagnostics": 57
+        },
+        "AVI": {
+          "variants": 60084,
+          "diagnostics": 200
+        },
+        "GPN-MSA": {
+          "variants": 60084,
+          "diagnostics": 200
+        },
+        "GPN-Star-V": {
+          "variants": 60084,
+          "diagnostics": 200
+        },
+        "GPN-Star-M": {
+          "variants": 60084,
+          "diagnostics": 200
+        }
+      },
+      "scores_without_coverage": [],
+      "model_classes": {
+        "training_diagnostics_per_class": {
+          "canonical_splice": 40,
+          "intronic": 38,
+          "missense": 60,
+          "nonsense": 30,
+          "splice_region": 23,
+          "synonymous": 6,
+          "utr": 3
+        },
+        "merged_into_other": [
+          "synonymous",
+          "utr"
+        ],
+        "model_classes": [
+          "canonical_splice",
+          "intronic",
+          "missense",
+          "nonsense",
+          "other",
+          "splice_region"
+        ],
+        "training_set": "the 200 SNV cases"
+      },
+      "rule_ties": {
+        "Rule-based": 0.005,
+        "Rule + AVI": 0.0
+      },
+      "strata": {
+        "all": {
+          "cases": 200,
+          "people": 50,
+          "small": false,
+          "scores": {
+            "CADD": {
+              "median_competitors": 2.0,
+              "top_1": 0.38,
+              "top_1_ci95": [
+                0.305,
+                0.465
+              ],
+              "top_5": 0.59,
+              "top_5_ci95": [
+                0.515,
+                0.66
+              ],
+              "top_10": 0.685,
+              "top_10_ci95": [
+                0.615,
+                0.76
+              ]
+            },
+            "SpliceAI": {
+              "median_competitors": 1.0,
+              "top_1": 0.44,
+              "top_1_ci95": [
+                0.365,
+                0.515
+              ],
+              "top_5": 0.555,
+              "top_5_ci95": [
+                0.485,
+                0.615
+              ],
+              "top_10": 0.6,
+              "top_10_ci95": [
+                0.54,
+                0.655
+              ]
+            },
+            "REVEL": {
+              "median_competitors": 165.5,
+              "top_1": 0.23,
+              "top_1_ci95": [
+                0.18,
+                0.285
+              ],
+              "top_5": 0.295,
+              "top_5_ci95": [
+                0.245,
+                0.35
+              ],
+              "top_10": 0.315,
+              "top_10_ci95": [
+                0.265,
+                0.37
+              ]
+            },
+            "AlphaMissense": {
+              "median_competitors": 174.0,
+              "top_1": 0.215,
+              "top_1_ci95": [
+                0.17,
+                0.26
+              ],
+              "top_5": 0.28,
+              "top_5_ci95": [
+                0.235,
+                0.33
+              ],
+              "top_10": 0.28,
+              "top_10_ci95": [
+                0.235,
+                0.33
+              ]
+            },
+            "AVI": {
+              "median_competitors": 0.0,
+              "top_1": 0.62,
+              "top_1_ci95": [
+                0.54,
+                0.7
+              ],
+              "top_5": 0.895,
+              "top_5_ci95": [
+                0.84,
+                0.94
+              ],
+              "top_10": 0.94,
+              "top_10_ci95": [
+                0.905,
+                0.97
+              ]
+            },
+            "GPN-MSA": {
+              "median_competitors": 4.0,
+              "top_1": 0.265,
+              "top_1_ci95": [
+                0.19,
+                0.34
+              ],
+              "top_5": 0.515,
+              "top_5_ci95": [
+                0.44,
+                0.59
+              ],
+              "top_10": 0.655,
+              "top_10_ci95": [
+                0.59,
+                0.72
+              ]
+            },
+            "GPN-Star-V": {
+              "median_competitors": 1.0,
+              "top_1": 0.36,
+              "top_1_ci95": [
+                0.29,
+                0.435
+              ],
+              "top_5": 0.66,
+              "top_5_ci95": [
+                0.6,
+                0.725
+              ],
+              "top_10": 0.72,
+              "top_10_ci95": [
+                0.66,
+                0.7801
+              ]
+            },
+            "GPN-Star-M": {
+              "median_competitors": 3.0,
+              "top_1": 0.285,
+              "top_1_ci95": [
+                0.205,
+                0.365
+              ],
+              "top_5": 0.6,
+              "top_5_ci95": [
+                0.535,
+                0.665
+              ],
+              "top_10": 0.69,
+              "top_10_ci95": [
+                0.63,
+                0.745
+              ]
+            },
+            "Rule-based": {
+              "median_competitors": 0.0,
+              "top_1": 0.65,
+              "top_1_ci95": [
+                0.565,
+                0.74
+              ],
+              "top_5": 0.905,
+              "top_5_ci95": [
+                0.86,
+                0.95
+              ],
+              "top_10": 0.94,
+              "top_10_ci95": [
+                0.905,
+                0.97
+              ]
+            },
+            "Rule + AVI": {
+              "median_competitors": 0.0,
+              "top_1": 0.675,
+              "top_1_ci95": [
+                0.595,
+                0.755
+              ],
+              "top_5": 0.94,
+              "top_5_ci95": [
+                0.9,
+                0.975
+              ],
+              "top_10": 0.95,
+              "top_10_ci95": [
+                0.915,
+                0.98
+              ]
+            },
+            "Lookups combined": {
+              "median_competitors": 0.0,
+              "top_1": 0.665,
+              "top_1_ci95": [
+                0.5749,
+                0.765
+              ],
+              "top_5": 0.945,
+              "top_5_ci95": [
+                0.905,
+                0.975
+              ],
+              "top_10": 0.96,
+              "top_10_ci95": [
+                0.93,
+                0.985
+              ]
+            },
+            "Lookups + AVI": {
+              "median_competitors": 0.0,
+              "top_1": 0.705,
+              "top_1_ci95": [
+                0.615,
+                0.79
+              ],
+              "top_5": 0.945,
+              "top_5_ci95": [
+                0.905,
+                0.98
+              ],
+              "top_10": 0.96,
+              "top_10_ci95": [
+                0.93,
+                0.985
+              ]
+            }
+          },
+          "rule_ties": {
+            "Rule-based": 0.005,
+            "Rule + AVI": 0.0
+          },
+          "contrasts": {
+            "Lookups + AVI minus Lookups combined": {
+              "role": "primary contrast, cross-validated (descriptive)",
+              "top_1": 0.04,
+              "top_1_ci95": [
+                -0.06,
+                0.135
+              ],
+              "top_1_p": 0.46,
+              "top_5": 0.0,
+              "top_5_ci95": [
+                -0.02,
+                0.02
+              ],
+              "top_5_p": 1.0,
+              "top_10": 0.0,
+              "top_10_ci95": [
+                -0.02,
+                0.02
+              ],
+              "top_10_p": 1.0,
+              "confirmatory": false
+            },
+            "Lookups combined minus Rule-based": {
+              "role": "descriptive",
+              "top_1": 0.015,
+              "top_1_ci95": [
+                -0.085,
+                0.12
+              ],
+              "top_1_p": 0.818,
+              "top_5": 0.04,
+              "top_5_ci95": [
+                0.015,
+                0.065
+              ],
+              "top_5_p": 0.001,
+              "top_10": 0.02,
+              "top_10_ci95": [
+                0.005,
+                0.04
+              ],
+              "top_10_p": 0.03
+            },
+            "Lookups + AVI minus Rule-based": {
+              "role": "descriptive",
+              "top_1": 0.055,
+              "top_1_ci95": [
+                -0.05,
+                0.155
+              ],
+              "top_1_p": 0.352,
+              "top_5": 0.04,
+              "top_5_ci95": [
+                0.01,
+                0.075
+              ],
+              "top_5_p": 0.012,
+              "top_10": 0.02,
+              "top_10_ci95": [
+                -0.005,
+                0.05
+              ],
+              "top_10_p": 0.174
+            },
+            "Rule + AVI minus Rule-based": {
+              "role": "key secondary",
+              "top_1": 0.025,
+              "top_1_ci95": [
+                -0.02,
+                0.07
+              ],
+              "top_1_p": 0.298,
+              "top_5": 0.035,
+              "top_5_ci95": [
+                0.015,
+                0.06
+              ],
+              "top_5_p": 0.002,
+              "top_10": 0.01,
+              "top_10_ci95": [
+                0.0,
+                0.025
+              ],
+              "top_10_p": 0.274
+            }
+          },
+          "seed_label": "snv/sweep0.05/all"
+        },
+        "gnomad: found": {
+          "cases": 52,
+          "people": 31,
+          "small": false,
+          "scores": {
+            "CADD": {
+              "median_competitors": 2.0,
+              "top_1": 0.3846,
+              "top_1_ci95": [
+                0.2679,
+                0.4902
+              ],
+              "top_5": 0.5385,
+              "top_5_ci95": [
+                0.42,
+                0.6471
+              ],
+              "top_10": 0.6154,
+              "top_10_ci95": [
+                0.4889,
+                0.7292
+              ]
+            },
+            "SpliceAI": {
+              "median_competitors": 1.0,
+              "top_1": 0.4615,
+              "top_1_ci95": [
+                0.3454,
+                0.5883
+              ],
+              "top_5": 0.5385,
+              "top_5_ci95": [
+                0.4242,
+                0.6739
+              ],
+              "top_10": 0.5962,
+              "top_10_ci95": [
+                0.4772,
+                0.7174
+              ]
+            },
+            "REVEL": {
+              "median_competitors": 154.5,
+              "top_1": 0.2692,
+              "top_1_ci95": [
+                0.1731,
+                0.3607
+              ],
+              "top_5": 0.2885,
+              "top_5_ci95": [
+                0.1818,
+                0.3954
+              ],
+              "top_10": 0.2885,
+              "top_10_ci95": [
+                0.1818,
+                0.3954
+              ]
+            },
+            "AlphaMissense": {
+              "median_competitors": 159.0,
+              "top_1": 0.2115,
+              "top_1_ci95": [
+                0.1224,
+                0.2909
+              ],
+              "top_5": 0.2692,
+              "top_5_ci95": [
+                0.1731,
+                0.3607
+              ],
+              "top_10": 0.2692,
+              "top_10_ci95": [
+                0.1731,
+                0.3607
+              ]
+            },
+            "AVI": {
+              "median_competitors": 0.0,
+              "top_1": 0.5769,
+              "top_1_ci95": [
+                0.4285,
+                0.7292
+              ],
+              "top_5": 0.8462,
+              "top_5_ci95": [
+                0.7543,
+                0.9247
+              ],
+              "top_10": 0.8654,
+              "top_10_ci95": [
+                0.7736,
+                0.9455
+              ]
+            },
+            "GPN-MSA": {
+              "median_competitors": 10.5,
+              "top_1": 0.0962,
+              "top_1_ci95": [
+                0.0185,
+                0.1957
+              ],
+              "top_5": 0.2692,
+              "top_5_ci95": [
+                0.1551,
+                0.3958
+              ],
+              "top_10": 0.4808,
+              "top_10_ci95": [
+                0.3414,
+                0.6123
+              ]
+            },
+            "GPN-Star-V": {
+              "median_competitors": 6.0,
+              "top_1": 0.1538,
+              "top_1_ci95": [
+                0.0625,
+                0.2593
+              ],
+              "top_5": 0.4423,
+              "top_5_ci95": [
+                0.3061,
+                0.5686
+              ],
+              "top_10": 0.5192,
+              "top_10_ci95": [
+                0.4091,
+                0.64
+              ]
+            },
+            "GPN-Star-M": {
+              "median_competitors": 10.0,
+              "top_1": 0.1346,
+              "top_1_ci95": [
+                0.0426,
+                0.2258
+              ],
+              "top_5": 0.3654,
+              "top_5_ci95": [
+                0.2545,
+                0.4681
+              ],
+              "top_10": 0.4615,
+              "top_10_ci95": [
+                0.3333,
+                0.5741
+              ]
+            },
+            "Rule-based": {
+              "median_competitors": 0.0,
+              "top_1": 0.7115,
+              "top_1_ci95": [
+                0.574,
+                0.8302
+              ],
+              "top_5": 0.8462,
+              "top_5_ci95": [
+                0.7292,
+                0.9455
+              ],
+              "top_10": 0.8462,
+              "top_10_ci95": [
+                0.7292,
+                0.9455
+              ]
+            },
+            "Rule + AVI": {
+              "median_competitors": 0.0,
+              "top_1": 0.6731,
+              "top_1_ci95": [
+                0.54,
+                0.7885
+              ],
+              "top_5": 0.8462,
+              "top_5_ci95": [
+                0.7292,
+                0.9455
+              ],
+              "top_10": 0.8462,
+              "top_10_ci95": [
+                0.7292,
+                0.9455
+              ]
+            },
+            "Lookups combined": {
+              "median_competitors": 0.0,
+              "top_1": 0.6538,
+              "top_1_ci95": [
+                0.5111,
+                0.7959
+              ],
+              "top_5": 0.9038,
+              "top_5_ci95": [
+                0.7963,
+                0.9821
+              ],
+              "top_10": 0.9231,
+              "top_10_ci95": [
+                0.8181,
+                1.0
+              ]
+            },
+            "Lookups + AVI": {
+              "median_competitors": 0.0,
+              "top_1": 0.6346,
+              "top_1_ci95": [
+                0.4912,
+                0.78
+              ],
+              "top_5": 0.8846,
+              "top_5_ci95": [
+                0.7674,
+                0.9796
+              ],
+              "top_10": 0.8846,
+              "top_10_ci95": [
+                0.7674,
+                0.9796
+              ]
+            }
+          },
+          "rule_ties": {
+            "Rule-based": 0.0,
+            "Rule + AVI": 0.0
+          },
+          "seed_label": "snv/sweep0.05/gnomad: found"
+        },
+        "gnomad: absent": {
+          "cases": 148,
+          "people": 48,
+          "small": false,
+          "scores": {
+            "CADD": {
+              "median_competitors": 2.0,
+              "top_1": 0.3784,
+              "top_1_ci95": [
+                0.2866,
+                0.4672
+              ],
+              "top_5": 0.6081,
+              "top_5_ci95": [
+                0.5168,
+                0.6913
+              ],
+              "top_10": 0.7095,
+              "top_10_ci95": [
+                0.6274,
+                0.7958
+              ]
+            },
+            "SpliceAI": {
+              "median_competitors": 1.0,
+              "top_1": 0.4324,
+              "top_1_ci95": [
+                0.3504,
+                0.5139
+              ],
+              "top_5": 0.5608,
+              "top_5_ci95": [
+                0.4932,
+                0.6284
+              ],
+              "top_10": 0.6014,
+              "top_10_ci95": [
+                0.5325,
+                0.6688
+              ]
+            },
+            "REVEL": {
+              "median_competitors": 169.0,
+              "top_1": 0.2162,
+              "top_1_ci95": [
+                0.1635,
+                0.2806
+              ],
+              "top_5": 0.2973,
+              "top_5_ci95": [
+                0.2353,
+                0.3597
+              ],
+              "top_10": 0.3243,
+              "top_10_ci95": [
+                0.2667,
+                0.3893
+              ]
+            },
+            "AlphaMissense": {
+              "median_competitors": 179.5,
+              "top_1": 0.2162,
+              "top_1_ci95": [
+                0.1608,
+                0.2754
+              ],
+              "top_5": 0.2838,
+              "top_5_ci95": [
+                0.2313,
+                0.3381
+              ],
+              "top_10": 0.2838,
+              "top_10_ci95": [
+                0.2313,
+                0.3381
+              ]
+            },
+            "AVI": {
+              "median_competitors": 0.0,
+              "top_1": 0.6351,
+              "top_1_ci95": [
+                0.5448,
+                0.7267
+              ],
+              "top_5": 0.9122,
+              "top_5_ci95": [
+                0.8483,
+                0.9655
+              ],
+              "top_10": 0.9662,
+              "top_10_ci95": [
+                0.9246,
+                0.9935
+              ]
+            },
+            "GPN-MSA": {
+              "median_competitors": 2.0,
+              "top_1": 0.3243,
+              "top_1_ci95": [
+                0.243,
+                0.4079
+              ],
+              "top_5": 0.6014,
+              "top_5_ci95": [
+                0.5183,
+                0.6849
+              ],
+              "top_10": 0.7162,
+              "top_10_ci95": [
+                0.6385,
+                0.7833
+              ]
+            },
+            "GPN-Star-V": {
+              "median_competitors": 1.0,
+              "top_1": 0.4324,
+              "top_1_ci95": [
+                0.351,
+                0.5069
+              ],
+              "top_5": 0.7365,
+              "top_5_ci95": [
+                0.6558,
+                0.8056
+              ],
+              "top_10": 0.7905,
+              "top_10_ci95": [
+                0.7055,
+                0.8621
+              ]
+            },
+            "GPN-Star-M": {
+              "median_competitors": 1.0,
+              "top_1": 0.3378,
+              "top_1_ci95": [
+                0.2434,
+                0.4295
+              ],
+              "top_5": 0.6824,
+              "top_5_ci95": [
+                0.6013,
+                0.7554
+              ],
+              "top_10": 0.7703,
+              "top_10_ci95": [
+                0.6987,
+                0.8333
+              ]
+            },
+            "Rule-based": {
+              "median_competitors": 0.0,
+              "top_1": 0.6284,
+              "top_1_ci95": [
+                0.5419,
+                0.7164
+              ],
+              "top_5": 0.9257,
+              "top_5_ci95": [
+                0.8831,
+                0.9589
+              ],
+              "top_10": 0.973,
+              "top_10_ci95": [
+                0.9459,
+                0.9934
+              ]
+            },
+            "Rule + AVI": {
+              "median_competitors": 0.0,
+              "top_1": 0.6757,
+              "top_1_ci95": [
+                0.5849,
+                0.7566
+              ],
+              "top_5": 0.973,
+              "top_5_ci95": [
+                0.9448,
+                0.9935
+              ],
+              "top_10": 0.9865,
+              "top_10_ci95": [
+                0.9645,
+                1.0
+              ]
+            },
+            "Lookups combined": {
+              "median_competitors": 0.0,
+              "top_1": 0.6689,
+              "top_1_ci95": [
+                0.5555,
+                0.7758
+              ],
+              "top_5": 0.9595,
+              "top_5_ci95": [
+                0.9205,
+                0.9872
+              ],
+              "top_10": 0.973,
+              "top_10_ci95": [
+                0.9448,
+                0.9935
+              ]
+            },
+            "Lookups + AVI": {
+              "median_competitors": 0.0,
+              "top_1": 0.7297,
+              "top_1_ci95": [
+                0.6389,
+                0.813
+              ],
+              "top_5": 0.9662,
+              "top_5_ci95": [
+                0.9324,
+                0.9935
+              ],
+              "top_10": 0.9865,
+              "top_10_ci95": [
+                0.9658,
+                1.0
+              ]
+            }
+          },
+          "rule_ties": {
+            "Rule-based": 0.0068,
+            "Rule + AVI": 0.0
+          },
+          "seed_label": "snv/sweep0.05/gnomad: absent"
+        }
+      },
+      "gnomad_split": {
+        "sources": [
+          "data/gnomad_full.tsv",
+          "pool/gnomad_full.tsv"
+        ],
+        "diagnostics_found": 52,
+        "diagnostics_absent": 148,
+        "diagnostics_without_status": 0,
+        "seed_label": "snv/sweep0.05/gnomad split",
+        "gnomad: found": {
+          "cases": 52,
+          "people": 31,
+          "contrasts": {
+            "Lookups + AVI minus Lookups combined": {
+              "role": "primary",
+              "top_1": -0.0192,
+              "top_1_ci95": [
+                -0.2,
+                0.1637
+              ],
+              "top_1_p": 0.972,
+              "top_5": -0.0192,
+              "top_5_ci95": [
+                -0.0625,
+                0.0
+              ],
+              "top_5_p": 0.744,
+              "top_10": -0.0385,
+              "top_10_ci95": [
+                -0.1,
+                0.0
+              ],
+              "top_10_p": 0.258
+            },
+            "Rule + AVI minus Rule-based": {
+              "role": "key secondary",
+              "top_1": -0.0385,
+              "top_1_ci95": [
+                -0.1127,
+                0.0357
+              ],
+              "top_1_p": 0.414,
+              "top_5": 0.0,
+              "top_5_ci95": [
+                0.0,
+                0.0
+              ],
+              "top_5_p": 1.0,
+              "top_10": 0.0,
+              "top_10_ci95": [
+                0.0,
+                0.0
+              ],
+              "top_10_p": 1.0
+            }
+          }
+        },
+        "gnomad: absent": {
+          "cases": 148,
+          "people": 48,
+          "contrasts": {
+            "Lookups + AVI minus Lookups combined": {
+              "role": "primary",
+              "top_1": 0.0608,
+              "top_1_ci95": [
+                -0.0338,
+                0.1646
+              ],
+              "top_1_p": 0.26,
+              "top_5": 0.0068,
+              "top_5_ci95": [
+                -0.0139,
+                0.0333
+              ],
+              "top_5_p": 0.8,
+              "top_10": 0.0135,
+              "top_10_ci95": [
+                0.0,
+                0.0347
+              ],
+              "top_10_p": 0.282
+            },
+            "Rule + AVI minus Rule-based": {
+              "role": "key secondary",
+              "top_1": 0.0473,
+              "top_1_ci95": [
+                0.0,
+                0.0909
+              ],
+              "top_1_p": 0.052,
+              "top_5": 0.0473,
+              "top_5_ci95": [
+                0.0196,
+                0.0811
+              ],
+              "top_5_p": 0.002,
+              "top_10": 0.0135,
+              "top_10_ci95": [
+                0.0,
+                0.0331
+              ],
+              "top_10_p": 0.272
+            }
+          }
+        },
+        "difference": {
+          "Lookups + AVI minus Lookups combined": {
+            "role": "primary",
+            "top_1_absent_minus_found": 0.08,
+            "top_1_ci95": [
+              -0.0999,
+              0.2563
+            ],
+            "top_1_p": 0.434,
+            "possibly_gnomad_presence": false
+          },
+          "Rule + AVI minus Rule-based": {
+            "role": "key secondary",
+            "top_1_absent_minus_found": 0.0858,
+            "top_1_ci95": [
+              0.0076,
+              0.1688
+            ],
+            "top_1_p": 0.03,
+            "possibly_gnomad_presence": true
+          }
+        }
+      },
+      "why": {
+        "background_variants": 14980,
+        "spearman_with_grpmax": {
+          "AVI": {
+            "rho": -0.0937,
+            "variants": 14980
+          },
+          "CADD": {
+            "rho": -0.1049,
+            "variants": 14980
+          }
+        },
+        "background_by_band": {
+          "below 0.1%": 32.025,
+          "0.1 to 1%": 77.535,
+          "1 to 5%": 189.86
+        },
+        "above_by_band": {
+          "AVI": {
+            "below 0.1%": 0.985,
+            "0.1 to 1%": 2.4,
+            "1 to 5%": 6.15
+          },
+          "CADD": {
+            "below 0.1%": 2.755,
+            "0.1 to 1%": 4.415,
+            "1 to 5%": 8.715
+          }
+        }
+      }
+    }
+  },
+  "reproduction": {
+    "0.001": {
+      "reference": "snv_main.json",
+      "compared": 414,
+      "differ": 0,
+      "missing_in_reference": 0,
+      "identical": true,
+      "examples": []
+    },
+    "0.01": {
+      "reference": "snv_bg1pct.json",
+      "compared": 414,
+      "differ": 0,
+      "missing_in_reference": 0,
+      "identical": true,
+      "examples": []
+    }
+  }
+}

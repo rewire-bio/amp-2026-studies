@@ -320,15 +320,18 @@ def af_sweep(c: dict, out: Path) -> None:
         if top:
             for x, v, lo, hi in pts:
                 ax.plot([x, x], [lo, hi], color=c["grey"], lw=3 * PX, solid_capstyle="round", zorder=3)
-                ax.text(x, hi + 1.5, num(v, False), ha="center", va="bottom", fontsize=VALUE, color=c["dark"],
-                        fontweight="bold")
-        label = score + (" (to 1%)" if xs[-1] < afs[-1] else "")
+                if x < afs[-1]:  # the last value is in the end label
+                    ax.text(x, hi + 1.5, num(v, False), ha="center", va="bottom", fontsize=VALUE, color=c["dark"],
+                            fontweight="bold", zorder=5,
+                            bbox={"facecolor": c["surface"], "edgecolor": "none", "pad": 1})
+        label = score + (f"  {num(ys[-1], False)}" if top else "") + (" (to 1%)" if xs[-1] < afs[-1] else "")
         ends.append((xs[-1], ys[-1], label, c["strong"] if top else c["grey"], top))
-    heights = spread([e[1] for e in ends], 4.2)
+    heights = spread([e[1] for e in ends], 4.8)
     for (x, y, label, colour, bold), h in zip(ends, heights):
         ax.annotate(label, (x, y), xytext=(afs[-1] * 1.35, h), textcoords="data", va="center", ha="left",
                     fontsize=TICK, color=colour, fontweight="bold" if bold else "normal",
-                    arrowprops={"arrowstyle": "-", "color": c["light"], "lw": 2 * PX} if abs(h - y) > 1 or x < afs[-1]
+                    arrowprops={"arrowstyle": "-", "color": c["light"], "lw": 2 * PX, "relpos": (0, 0.5), "shrinkA": 4}
+                    if abs(h - y) > 1 or x < afs[-1]
                     else None)
     for x, label in SWEEP_MARKS:
         ax.axvline(x, color=c["light"], lw=2 * PX, zorder=1)

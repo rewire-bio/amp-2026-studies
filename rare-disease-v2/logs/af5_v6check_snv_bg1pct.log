@@ -1,0 +1,31 @@
+snv bg1pct: 200 cases, median 78 variants per case; background grpmax below 0.01, diagnostics full gnomAD grpmax below 0.01; background inheritance filter; background indels dropped after filtering
+model classes merged into other: ['synonymous', 'utr']
+diagnostics tied with a background variant: {'Rule-based': 0.0, 'Rule + AVI': 0.0}
+  gnomAD absent minus found, Lookups + AVI minus Lookups combined: -0.038 [-0.1903, 0.1356]
+  gnomAD absent minus found, Rule + AVI minus Rule-based: +0.054 [-0.0124, 0.1274]
+  CADD                           top1 0.410 [0.335, 0.485]  top5 0.670  top10 0.800
+  SpliceAI                       top1 0.470 [0.4, 0.545]  top5 0.615  top10 0.640
+  REVEL                          top1 0.255 [0.205, 0.305]  top5 0.305  top10 0.320
+  AlphaMissense                  top1 0.225 [0.18, 0.275]  top5 0.280  top10 0.285
+  AVI                            top1 0.700 [0.615, 0.78]  top5 0.930  top10 0.955
+  GPN-MSA                        top1 0.345 [0.275, 0.425]  top5 0.620  top10 0.760
+  GPN-Star-V                     top1 0.450 [0.38, 0.52]  top5 0.710  top10 0.845
+  GPN-Star-M                     top1 0.380 [0.3, 0.46]  top5 0.680  top10 0.835
+  Evo 2                          top1 0.390 [0.325, 0.4601]  top5 0.655  top10 0.805
+  Rule-based                     top1 0.715 [0.625, 0.795]  top5 0.935  top10 0.965
+  Rule + AVI                     top1 0.755 [0.68, 0.825]  top5 0.955  top10 0.960
+  Lookups combined               top1 0.770 [0.68, 0.8501]  top5 0.955  top10 0.965
+  Lookups + AVI                  top1 0.780 [0.695, 0.855]  top5 0.955  top10 0.960
+  Lookups + GPN-MSA              top1 0.765 [0.685, 0.84]  top5 0.955  top10 0.960
+  Lookups + GPN-Star-V           top1 0.770 [0.6949, 0.8401]  top5 0.950  top10 0.950
+  Lookups + GPN-Star-M           top1 0.775 [0.705, 0.84]  top5 0.945  top10 0.955
+  Lookups + Evo 2                top1 0.775 [0.7, 0.85]  top5 0.950  top10 0.955
+  Lookups + AVI minus Lookups combined: top1 +0.010 [-0.075, 0.095] (primary contrast, cross-validated (descriptive))
+  Lookups combined minus Rule-based: top1 +0.055 [-0.025, 0.135] (descriptive)
+  Lookups + AVI minus Rule-based: top1 +0.065 [-0.025, 0.155] (descriptive)
+  Lookups + GPN-MSA minus Lookups combined: top1 -0.005 [-0.05, 0.04] (secondary, cross-validated (descriptive))
+  Lookups + GPN-Star-V minus Lookups combined: top1 +0.000 [-0.06, 0.06] (secondary, cross-validated (descriptive))
+  Lookups + GPN-Star-M minus Lookups combined: top1 +0.005 [-0.045, 0.0601] (secondary, cross-validated (descriptive))
+  Lookups + Evo 2 minus Lookups combined: top1 +0.005 [-0.0351, 0.055] (exploratory, Bonferroni-adjusted over four scores)
+  Rule + AVI minus Rule-based: top1 +0.040 [0.005, 0.08] (key secondary)
+wrote results/af5/v6check/snv_bg1pct.json

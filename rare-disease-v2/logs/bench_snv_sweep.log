@@ -1,0 +1,13 @@
+WARNING: 12 diagnostics fail the frequency filter; those cases are dropped
+sweep 0.0001: 188 cases, median list 8; AVI 0.867; CADD 0.745; Rule-based 0.867
+WARNING: 2 diagnostics fail the frequency filter; those cases are dropped
+sweep 0.0005: 198 cases, median list 17; AVI 0.828; CADD 0.571; Rule-based 0.849
+sweep 0.001: 200 cases, median list 26; AVI 0.790; CADD 0.510; Rule-based 0.810
+  reproduces snv_main.json: True (414 values, 0 differ, 0 missing)
+sweep 0.005: 200 cases, median list 58.5; AVI 0.720; CADD 0.415; Rule-based 0.745
+sweep 0.01: 200 cases, median list 78.5; AVI 0.700; CADD 0.410; Rule-based 0.715
+  reproduces snv_bg1pct.json: True (414 values, 0 differ, 0 missing)
+sweep 0.02: 200 cases, median list 114; AVI 0.650; CADD 0.380; Rule-based 0.670
+sweep 0.05: 200 cases, median list 199.5; AVI 0.620; CADD 0.380; Rule-based 0.650
+wrote /Users/timrichardson/Documents/projects/personal/blog/amp-2026-studies/rare-disease-v2/results/snv_sweep.json
+wrote /Users/timrichardson/Documents/projects/personal/blog/amp-2026-studies/rare-disease-v2/results/analysis_sweep.md

@@ -5,7 +5,8 @@ AlphaGenome AVI to the established lookups does not raise top 1 by a gain that m
 (-0.4 to +4.0). The lookups alone rank the diagnostic variant first in 90.6% of cases (87.8 to 93.4), and a simple
 rule-based ranking from ClinGen thresholds reaches 87.2% (82.8 to 91.0). AVI helps a little with non-coding
 diagnostics. GPN-MSA and GPN-Star add nothing on SNVs. Evo 2 adds no gain that matters on the 500 SNV cases, and
-its top-1 result on indels is inconclusive. The first
+its top-1 result on indels is inconclusive. AVI alone is the best single score at every frequency filter from
+0.01% to 5% (exploratory sweep), but adding it to the lookups gives no gain of 5 points or more at any of them on the 500 (no interval reaches +5). The first
 run's AVI gain (+6.2, 0.0 to +13.0) and its Evo 2 indel gain (+15.8, +5.0 to +26.8) do not hold under this design.
 
 This is a second run of the rare-disease case tests in [`../rare-disease/`](../rare-disease/), on the intellectual
@@ -17,13 +18,14 @@ gnomAD, the realistic grpmax filter was only a side check, about half the diagno
 model was a weak baseline within each variant type, two consequence annotations were mixed, and not every gain had a
 paired interval.
 
-Status: done, 2 November 2026, including Evo 2 on every case.
+Status: done, 2 November 2026, including Evo 2 on every case; frequency sweep added 6 November 2026.
 
 - Paper: [`paper/paper.pdf`](paper/paper.pdf)
 - Visual companion: <https://rewire-bio.github.io/amp-2026-studies/rare-disease-v2/> (source
   [`COMPANION.md`](COMPANION.md))
-- Release tags: `amp-2026-v5` holds every result without Evo 2. This version, with Evo 2, will be released as
-  `amp-2026-v6`. Every value not involving Evo 2 is identical between the two (checked on all 16 result files).
+- Release tags: `amp-2026-v5` holds every result without Evo 2, `amp-2026-v6` adds Evo 2, and `amp-2026-v7` adds
+  the frequency sweep. Every value not involving Evo 2 is identical between v5 and v6 (checked on all 16 result
+  files); v7 changes none of the 16.
 
 | Document | What it holds |
 |---|---|
@@ -32,6 +34,8 @@ Status: done, 2 November 2026, including Evo 2 on every case.
 | [`PLAN.md`](PLAN.md) | The work, as phases and tasks |
 | [`results/analysis_replication.md`](results/analysis_replication.md) | The 500 replication cases, locked: the primary result and every check |
 | [`results/analysis_snv_indel.md`](results/analysis_snv_indel.md) | The 200 SNV and 120 indel cases, cross-validated (descriptive) |
+| [`results/analysis_sweep.md`](results/analysis_sweep.md) | The frequency sweep, 0.01% to 5% (exploratory) |
+| [`AF_SWEEP_RUN.md`](AF_SWEEP_RUN.md) | How to run the frequency sweep |
 | [`results/README.md`](results/README.md) | Every result file and field |
 | [`data/README.md`](data/README.md) | Every data file, the Evo 2 files, and what is not committed |
 
@@ -49,6 +53,8 @@ How to read the level of each finding:
 - GPN-MSA, GPN-Star-V and GPN-Star-M: Bonferroni-adjusted 98.33% interval (a family of three, pre-specified).
 - Evo 2: Bonferroni-adjusted 98.75% interval (over four added scores). Exploratory, because it was added after
   every other result had been seen.
+- Frequency sweep: unadjusted 95% intervals, exploratory, because it was added after every other result had been
+  seen; "1 of 28" counts its gains (7 filters, 2 gains, 2 studies).
 - Everything else: unadjusted 95% intervals, descriptive. There are many of them: `replication_main.json` holds 141
   paired top-1 contrasts (groups and the gnomAD split included; the filter checks are in their own files), `snv_main.json` 78 and `indel_main.json` 14. The
   16 result files hold 944, of which 175 have p below 0.05. If there were no real differences, at most about 47 would
@@ -78,6 +84,8 @@ for other rows it describes the estimate.
 | Primary gain, diagnostic absent from gnomAD minus found | +3.5 (-2.2 to +8.8), p = 0.234 | 95%, descriptive check (1 of 141) | No | Not flagged |
 | Key secondary on the 200, absent minus found, all of 1000 Genomes left out | +8.7 (+3.2 to +15.5), p = 0.001 | 95%, descriptive check (1 of 78) | Yes | Flagged: possibly gnomAD presence |
 | EVEE alone against the locked lookups, ClinVar-covered lists (492) | 87.0 (82.5 to 90.9) against 87.0 (82.2 to 91.0) | 95%, descriptive only | Not tested | Agreement with ClinVar labels, not performance |
+| Sweep: AVI added to the lookups, 500 locked, background below 5% | -1.2 (-7.0 to +4.2), p = 0.784 | 95%, exploratory (1 of 28) | No | Inconclusive |
+| Sweep: AVI added to the rule, 500, background below 5% | +6.4 (+2.8 to +10.4), p = 0.001 | 95%, exploratory (1 of 28) | Yes | Exploratory: estimate at least 5 with interval above 0 at this filter; not seen on the 200 |
 
 ## Charts
 
@@ -340,6 +348,53 @@ AVI columns: 95% paired intervals. The reading rule applies to the main analysis
 Details: [`results/analysis_replication.md`](results/analysis_replication.md) and
 [`results/analysis_snv_indel.md`](results/analysis_snv_indel.md).
 
+## Frequency sweep (exploratory)
+
+AVI alone is the best single score at every frequency filter from 0.01% to 5%, but adding it to the lookups gives no gain of 5 points or more at any filter on the 500 (no interval reaches +5). Its gain over the rule-based ranking is larger with looser filters on the 500,
+but not on the 200. AVI does not push down common background variants more than CADD does. The sweep was added on 6
+November 2026, after every other result had been seen (PROTOCOL.md section 13), so it is exploratory: 95% intervals,
+unadjusted over seven filters, two gains and two studies.
+
+The 200 and the 500 were rebuilt with background variants below 5% (`data/af5/`), with the same people,
+diagnostics and seeds. Below 1% the rebuilt cases and their scores are identical to v6 (`results/af5_identity.md`),
+and the sweep's 0.1% and 1% rows reproduce `<study>_main.json` and `<study>_bg1pct.json` value for value. Evo 2 was
+not scored on the new background variants, so it stops at 1%.
+
+| Filter (500, locked) | Median list | AVI alone | Best other single score | Lookups combined | Rule-based | AVI added to the lookups | AVI added to the rule |
+|---|---|---|---|---|---|---|---|
+| 0.01% (464 cases) | 4 | 92.7 (87.8 to 96.7) | CADD 84.0 | 97.4 | 95.9 | 0.0 (-1.1 to +1.3), p = 1 | +1.7 (+0.2 to +4.0), p = 0.032 |
+| 0.05% (493 cases) | 11 | 84.6 (79.0 to 89.4) | CADD 65.3 | 92.1 | 89.2 | +1.8 (+0.2 to +3.5), p = 0.04 | +2.2 (0.0 to +4.9), p = 0.08 |
+| 0.1% (main) | 19 | 83.6 (78.2 to 88.8) | CADD 61.0 | 90.6 | 87.2 | +1.8 (-0.4 to +4.0), p = 0.162 | +2.6 (+0.4 to +5.6), p = 0.034 |
+| 0.5% | 50.5 | 76.2 (70.6 to 81.8) | SpliceAI 52.4 | 86.8 | 77.8 | -3.0 (-9.0 to +1.6), p = 0.236 | +6.0 (+2.2 to +10.4), p = 0.001 |
+| 1% (check) | 69.5 | 71.4 (65.2 to 77.4) | SpliceAI 49.6 | 82.0 | 74.8 | -1.2 (-6.6 to +3.2), p = 0.724 | +5.2 (+1.4 to +9.6), p = 0.002 |
+| 2% | 101 | 68.6 (62.0 to 75.0) | SpliceAI 49.0 | 82.8 | 69.8 | -4.4 (-10.0 to 0.0), p = 0.054 | +6.0 (+2.0 to +10.4), p = 0.001 |
+| 5% (BA1) | 177 | 63.2 (56.2 to 69.6) | SpliceAI 47.2 | 73.6 | 61.4 | -1.2 (-7.0 to +4.2), p = 0.784 | +6.4 (+2.8 to +10.4), p = 0.001 |
+
+Top 1 in percent, gains in points with 95% paired intervals. At 0.01% and 0.05%, 36 and 7 cases drop out because
+their diagnostic is above the filter.
+
+- **AVI alone.** First at every filter. Its lead over the next best single score is 8.7 points at 0.01%, 22.6 at
+  0.1%, 23.8 at 0.5%, 21.8 at 1% and 16.0 at 5%: it grows up to 0.5% and shrinks after that. From 0.1% to 5% SpliceAI
+  falls 10.6 points, AVI 20.4 and CADD 24.8.
+- **Added to the lookups.** No filter gives a gain of 5 points or more; above 0.1% the estimates are negative.
+- **Added to the rule.** About +2 points at 0.1% and below, and +5.2 to +6.4 from 0.5% up; every interval is above zero except at 0.05% (0.0 to +4.9). On
+  the 200 the same gain is +2.5 to +4.5 at every filter, with no trend
+  ([`results/analysis_sweep.md`](results/analysis_sweep.md)). Even at 5%, Rule + AVI (67.8%) stays below the lookups
+  combined (73.6%).
+- **Why.** The idea was that AVI, trained on gnomAD rare against common variants, does part of the frequency filter's
+  job, so it helps more when the filter leaves common variants in. The data do not show that. AVI's correlation with
+  background grpmax is weak (Spearman -0.07 to -0.14 on the 500) and similar to CADD's (-0.09 to -0.11). At 5%,
+  AVI ranks fewer background variants at or above the diagnostic than CADD in every frequency band, by a similar
+  factor: 0.55 against 1.76 per case below 0.1%, 0.90 against 3.24 from 0.1 to 1%, and 1.67 against 6.11 from 1 to
+  5%. AVI ranks better than CADD overall, not specifically against common variants.
+
+![AVI and the other scores across frequency filters, 500 replication cases](figures/af_sweep.png)
+
+![Gain from adding AVI across frequency filters, 500 replication cases](figures/af_sweep_gain.png)
+
+Details: [`results/analysis_sweep.md`](results/analysis_sweep.md), `results/<study>_sweep.json`; how to rerun:
+[`AF_SWEEP_RUN.md`](AF_SWEEP_RUN.md).
+
 ## What this means for the talk
 
 The first run reported that AVI's gain held on the 500 new cases: +6.2 points locked (0.0 to +13.0), and +7.4 (+1.2
@@ -359,7 +414,10 @@ So the talk should not say that AVI's gain holds on new cases, or that Evo 2 hel
 - Evo 2 alone is a good indel ranker (81.7% top 1, 73.7 to 89.2), close to the lookups combined (84.2%, 75.4 to
   92.4), but it adds little to them.
 
-The talk should cite this version at tag `amp-2026-v6`.
+- AVI alone is the strongest single score at every frequency filter, but in combination it adds little at any
+  filter, and it does not push down common variants more than CADD does.
+
+The talk should cite this version at tag `amp-2026-v7`.
 
 ## Limits
 

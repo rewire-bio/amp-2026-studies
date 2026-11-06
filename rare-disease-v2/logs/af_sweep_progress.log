@@ -1,0 +1,28 @@
+2026-11-06 13:00:16 python: Python 3.12.14
+2026-11-06 13:00:20 step 2: snv main identical
+2026-11-06 13:00:22 step 2: snv bg1pct identical
+2026-11-06 13:00:24 step 2: replication main identical
+2026-11-06 13:00:27 step 2: replication bg1pct identical
+2026-11-06 13:00:27 step 3: af5 set up
+2026-11-06 13:00:28 step 4: backgrounds done
+2026-11-06 13:04:43 step 4: gnomad_af.py full done
+2026-11-06 13:10:24 step 4: gnomad_af.py fetch done
+2026-11-06 13:10:46 step 4: gnomad_af.py counts done
+2026-11-06 13:10:49 step 4: gnomad_af.py af done
+2026-11-06 13:11:02 step 4: af5 cases built
+2026-11-06 14:08:26 step 5: snv scored
+2026-11-06 15:43:17 step 5: replication scored
+2026-11-06 15:43:19 step 6: af5 identical to v6
+2026-11-06 15:43:23 step 7: snv sweep done
+2026-11-06 15:43:31 step 7: replication sweep done
+logs/bench_replication_sweep.log:  reproduces replication_main.json: True (487 values, 0 differ, 0 missing)
+logs/bench_replication_sweep.log:  reproduces replication_bg1pct.json: True (487 values, 0 differ, 0 missing)
+logs/bench_snv_sweep.log:  reproduces snv_main.json: True (414 values, 0 differ, 0 missing)
+logs/bench_snv_sweep.log:  reproduces snv_bg1pct.json: True (414 values, 0 differ, 0 missing)
+- 0.1% against `replication_main.json`: identical, 487 values compared, 0 differ, 0 missing from the reference.
+- 1% against `replication_bg1pct.json`: identical, 487 values compared, 0 differ, 0 missing from the reference.
+
+--
+- 0.1% against `snv_main.json`: identical, 414 values compared, 0 differ, 0 missing from the reference.
+- 1% against `snv_bg1pct.json`: identical, 414 values compared, 0 differ, 0 missing from the reference.
+2026-11-06 15:43:31 ALL DONE

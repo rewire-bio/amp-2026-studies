@@ -1,0 +1,2 @@
+main: 42980 person variants, 25520 distinct; per person median SNVs 478.5 (range 357 to 1558), indels 107.5; zygosity {'het': 41245, 'hom': 1157, 'hemi': 578}; hemi calls by chromosome {'chrX': 578}
+rep: 39870 person variants, 24155 distinct; per person median SNVs 445.5 (range 330 to 1596), indels 105.5; zygosity {'hom': 1163, 'het': 38201, 'hemi': 506}; hemi calls by chromosome {'chrX': 506}

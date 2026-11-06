@@ -139,6 +139,15 @@ Evo 2 by group in each study, with the first run's indel gains (+15.8, +5.0 to +
 
 AVI's gain in cases whose diagnostic is in gnomAD and in cases where it is not. Nothing is flagged on the 500.
 
+![AVI and the other scores across frequency filters](figures/af_sweep.png)
+
+Frequency sweep on the 500 (exploratory): AVI alone is the best single score at every filter from 0.01% to 5%, but
+its lead over the next best score shrinks from 0.5% up (23.8 points at 0.5%, 16.0 at 5%).
+
+![Gain from adding AVI across frequency filters](figures/af_sweep_gain.png)
+
+Adding AVI to the lookups gives no gain of 5 points or more at any filter. Added to the rule it gives +5.2 to +6.4 from 0.5% up on the 500, but not on the 200.
+
 ## Findings
 
 | Finding | Result | Level | Significant | Matters |
@@ -154,10 +163,13 @@ AVI's gain in cases whose diagnostic is in gnomAD and in cases where it is not. 
 | Evo 2 added, 120 indel, top 1 | +1.7, 98.75% (-9.0 to +12.8), p = 0.746 | 98.75%, exploratory | No | Inconclusive |
 | Evo 2 added, 120 indel, top 5 | +4.2, 98.75% (+0.8 to +9.5), p = 0.012 | 98.75%, exploratory, top 5 descriptive | Yes | Inconclusive |
 | EVEE alone against the lookups, ClinVar-covered lists | 87.0 (82.5 to 90.9) against 87.0 (82.2 to 91.0) | 95%, descriptive only | Not tested | Agreement with ClinVar labels, not performance |
+| Sweep: AVI added to the lookups, 500, background below 5% | -1.2 (-7.0 to +4.2), p = 0.784 | 95%, exploratory (1 of 28) | No | Inconclusive |
+| Sweep: AVI added to the rule, 500, background below 5% | +6.4 (+2.8 to +10.4), p = 0.001 | 95%, exploratory (1 of 28) | Yes | Exploratory: estimate at least 5 with interval above 0 at this filter; not seen on the 200 |
 
 "Significant": the interval at the stated level excludes zero. "Matters": Yes if significant and the estimate is at
 least 5 points; No if the interval lies inside -5 to +5; otherwise Inconclusive. Only the primary has a verdict. "1 of 141": one of 141 paired top-1 contrasts in the 500's main result file; the 16 result files
-hold 944, so some descriptive intervals will exclude zero by chance.
+hold 944, so some descriptive intervals will exclude zero by chance. "1 of 28": one of the frequency sweep's 28 gains (7
+filters, 2 gains, 2 studies), unadjusted.
 
 ## What it means
 
@@ -167,6 +179,7 @@ hold 944, so some descriptive intervals will exclude zero by chance.
 - GPN-MSA and GPN-Star add nothing on SNVs. Evo 2 adds no gain that matters on the 500 SNV cases, and its top-1
   result on indels is inconclusive. Evo 2 alone ranks indels well (81.7% top 1, 73.7 to 89.2), close to the lookups
   combined (84.2%, 75.4 to 92.4), so adding it gains little.
+- Across frequency filters from 0.01% to 5% (exploratory), AVI alone is the best single score, but adding it to the lookups gives no gain of 5 points or more at any filter on the 500, and it does not push down common variants more than CADD does.
 - The first run's headline gains for AVI (+6.2, 0.0 to +13.0) and for Evo 2 on indels (+15.8, +5.0 to +26.8) do not
   hold under this design: +1.8 (-0.4 to +4.0) and +1.7 (95%: -5.9 to +9.9) here.
 

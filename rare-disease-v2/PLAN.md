@@ -101,6 +101,17 @@ Widened from the indel cases to every case in all three studies (PROTOCOL.md sec
   analysis files, `results/README.md`, `data/README.md`.
 - [ ] Release tag `amp-2026-v6`: this version, the results with Evo 2 (Tim's call).
 
+## Phase 7: frequency sweep (Tim's call, after every result)
+
+PROTOCOL.md section 13; commands in [`AF_SWEEP_RUN.md`](AF_SWEEP_RUN.md).
+
+- [x] `--cap` in `backgrounds.py` and `build_cases.py`; `check_af5.py`; `case_benchmark.py --analysis sweep`; tests.
+- [x] The four v6 analyses rerun on the run machine: identical to the committed results.
+- [x] Rebuild of the 200 and the 500 at a 5% cap in `data/af5/`, scored; identical to v6 below the 1% caps.
+- [x] Sweep on both studies; the 0.1% and 1% rows reproduce the main and 1% results on every value.
+- [x] Charts `af_sweep` and `af_sweep_gain`; README, paper, companion, `results/README.md`, `data/README.md`.
+- [x] Release tag `amp-2026-v7`.
+
 ## Done when
 
 - `results/` holds one result per study with the main filter, both baselines and paired intervals for every gain.

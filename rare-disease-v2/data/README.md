@@ -44,6 +44,16 @@ Three studies: `snv` (200 SNV cases from the main set), `indel` (120 indel cases
 | `<study>/case_variants.tsv` | `build_cases.py` | The distinct keys across the study's cases |
 | `snv/consequence_indels.tsv`, `indel/consequence_indels.tsv` | `annotate_indels.py --study <study>` | key, `indel_class`, for the indels in the study's cases (in the snv study, the background indels) |
 
+### Frequency sweep rebuild (`af5/`)
+
+The 200 SNV cases and the 500 built again with background variants below 5% (1000 Genomes AF and grpmax), for the
+frequency sweep (PROTOCOL.md section 13), by `backgrounds.py --cap 0.05` and `build_cases.py --cap 0.05` with
+`RDV2_DATA=data/af5`. The same people, diagnostics and seeds as v6. Files as above: `af5/main/` and `af5/rep/`
+(`person_variants.tsv`, `person_variant_af.tsv`), `af5/gnomad_full.tsv`, and `af5/<study>/cases.tsv` (with a
+`kgp_af` column), `case_variants.tsv` and the scores. Below the 1% caps every case and score equals v6
+(`../results/af5_identity.md`). The copies of `people.tsv`, `gene_moi.tsv`, `pool/`, `rep/samples50.txt`, the
+`rep/kgp` link, the gnomAD cache and the CADD and REVEL scores are not committed.
+
 ### Scores
 
 One file per source per study, written by `lookup_scores.py --study <study>`, one row per key found. A key with no row
