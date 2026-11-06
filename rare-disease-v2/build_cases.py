@@ -31,7 +31,11 @@ the person does not carry them. Background class is left empty: it is assigned f
 case_variants.tsv holds the distinct keys across the study's cases.
 
   cd rare-disease-v2 && uv run -q --python 3.12 --with-requirements requirements.txt python build_cases.py \\
-      --study snv|indel|replication
+      --study snv|indel|replication [--cap AF]
+
+--cap replaces the 1% background grpmax cap and adds a kgp_af column (the background variant's 1000 Genomes AF,
+empty for diagnostics), which the frequency sweep needs (PROTOCOL.md section 13). The sweep runs it with --cap 0.05
+and RDV2_DATA=data/af5, RDV2_RESULTS=results/af5, so the v6 files are not touched (AF_SWEEP_RUN.md).
 
 Writes data/<study>/cases.tsv, data/<study>/case_variants.tsv and results/build_<study>.md.
 
@@ -141,7 +145,7 @@ def summary_stats(values: list[int]) -> str:
     return f"median {statistics.median(values):g} ({min(values)} to {max(values)})"
 
 
-def main(study: str) -> None:
+def main(study: str, cap: float = common.LOOSE_AF) -> None:
     rng = random.Random(common.SEEDS[study])
     people_set = common.STUDIES[study]
     out_dir = common.study_dir(study)
@@ -212,7 +216,7 @@ def main(study: str) -> None:
             if a is None:
                 stats["unjoined"] += 1
                 continue
-            if float(a["grpmax_fam"]) >= common.LOOSE_AF:
+            if float(a["grpmax_fam"]) >= cap:
                 continue
             if key in plp:
                 stats["plp_removed"] += 1
@@ -226,14 +230,15 @@ def main(study: str) -> None:
             rows.append({"case": case, "sample": sample, "chrom": key[0], "pos": key[1], "ref": key[2],
                          "alt": key[3], "diagnostic": 0, "group": "", "class": "", "gene": gene, "moi": moi,
                          "zygosity": v["zygosity"], "af": a["af_fam"], "grpmax": a["grpmax_fam"],
-                         "grpmax_no1kg": a["grpmax_no1kg"], "clinvar_id": ""})
+                         "grpmax_no1kg": a["grpmax_no1kg"], "clinvar_id": "", "kgp_af": v["kgp_af"]})
             before += 1
             after += float(a["grpmax_fam"]) < common.MAIN_AF
         stats["bg_before"].append(before)
         stats["bg_after"].append(after)
 
     with (out_dir / "cases.tsv").open("w", newline="") as h:
-        w = csv.DictWriter(h, HEADER, delimiter="\t", extrasaction="ignore", lineterminator="\n")
+        w = csv.DictWriter(h, HEADER + (["kgp_af"] if cap != common.LOOSE_AF else []), delimiter="\t",
+                           extrasaction="ignore", lineterminator="\n")
         w.writeheader()
         w.writerows(rows)
     variants = sorted({(r["chrom"], r["pos"], r["ref"], r["alt"]) for r in rows})
@@ -242,10 +247,10 @@ def main(study: str) -> None:
         w.writerow(common.KEY)
         w.writerows(variants)
 
-    report(study, rows, samples, stats, missing_moi, log, len(variants), capacity)
+    report(study, rows, samples, stats, missing_moi, log, len(variants), capacity, cap)
 
 
-def report(study, rows, samples, stats, missing_moi, log, n_variants, capacity) -> None:
+def report(study, rows, samples, stats, missing_moi, log, n_variants, capacity, cap=common.LOOSE_AF) -> None:
     diag = [r for r in rows if r["diagnostic"] == 1]
     bg = [r for r in rows if r["diagnostic"] == 0]
     per_person = Counter(r["sample"] for r in diag)
@@ -255,7 +260,7 @@ def report(study, rows, samples, stats, missing_moi, log, n_variants, capacity) 
     # Checks.
     checks = {
         "every diagnostic grpmax below 0.1%": all(float(r["grpmax"]) < common.MAIN_AF for r in diag),
-        "every background grpmax below 1%": all(float(r["grpmax"]) < common.LOOSE_AF for r in bg),
+        f"every background grpmax below {cap * 100:g}%": all(float(r["grpmax"]) < cap for r in bg),
         "every diagnostic's pool grpmax equals full gnomAD grpmax": all(
             float(r["grpmax"]) == float(r["_full_grpmax"]) for r in diag),
         "no gene over 10 in a group": max(gene_counts.values()) <= GENE_CAP,
@@ -289,7 +294,7 @@ def report(study, rows, samples, stats, missing_moi, log, n_variants, capacity) 
              "Background per case, SNVs and indels counted apart. Both are kept for the inheritance filter; only the "
              f"study's type ({'indels' if study == 'indel' else 'SNVs'}) is ranked. The inheritance filter is applied "
              "at analysis time and is not counted here.", "",
-             "| Type | Build filter (grpmax below 1%) | Main filter (grpmax below 0.1%) | Total rows |",
+             f"| Type | Build filter (grpmax below {cap * 100:g}%) | Main filter (grpmax below 0.1%) | Total rows |",
              "|---|---|---|---|"]
     cases = [r["case"] for r in diag]
     for name, want_snv in (("SNVs", True), ("Indels", False)):
@@ -343,4 +348,7 @@ def report(study, rows, samples, stats, missing_moi, log, n_variants, capacity) 
 if __name__ == "__main__":
     ap = argparse.ArgumentParser(description=__doc__.splitlines()[0])
     ap.add_argument("--study", required=True, choices=list(QUOTAS))
-    main(ap.parse_args().study)
+    ap.add_argument("--cap", type=float, default=common.LOOSE_AF,
+                    help="background grpmax cap (default 1%%); another cap adds the kgp_af column")
+    a = ap.parse_args()
+    main(a.study, a.cap)

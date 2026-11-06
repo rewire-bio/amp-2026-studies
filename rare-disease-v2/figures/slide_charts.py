@@ -16,6 +16,12 @@ gain inside it is too small to count.
   v2_gains_added      the GPN family and Evo 2 added to the combined-score baseline on the 500, top 1
   v2_first_vs_second  AVI added to the combined-score baseline: the first run's three results against this run's
   v2_checks           AVI added to each baseline on the 500 under the main filters and each check
+  af_sweep            top 1 on the 500 against the grpmax threshold (frequency sweep, exploratory), every single
+                      score and both baselines; PNG and SVG
+  af_sweep_gain       AVI added to each baseline at each threshold of the sweep; PNG and SVG
+
+The two sweep charts are drawn only when results/replication_sweep.json exists (case_benchmark.py --analysis sweep).
+RDV2_RESULTS points the script at another results folder, for tests.
 
   cd rare-disease-v2 && uv run -q --with matplotlib python figures/slide_charts.py [--brand gel] [--out figures/out]
 """
@@ -23,6 +29,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import os
 from pathlib import Path
 
 import matplotlib
@@ -31,7 +38,7 @@ matplotlib.use("Agg")
 import matplotlib.pyplot as plt  # noqa: E402
 
 HERE = Path(__file__).resolve().parents[1]
-RESULTS = HERE / "results"
+RESULTS = Path(os.environ.get("RDV2_RESULTS", HERE / "results"))
 FIRST = HERE.parent / "rare-disease" / "results"
 # strong: the highlighted group; mid: the second group; rest: everything else; band: the too-small-to-count band
 BRANDS = {
@@ -79,9 +86,9 @@ def style(ax, c: dict) -> None:
     ax.tick_params(axis="x", labelsize=TICK, colors=c["grey"], color=c["light"])
 
 
-def save(fig, out: Path, name: str, c: dict, key: list[tuple[str, str]], marker: str = "■") -> None:
+def save(fig, out: Path, name: str, c: dict, key: list[tuple[str, str]], marker: str = "■", svg: bool = False) -> None:
     """Lay the chart out below a key row, then draw the key: one coloured mark and name per group, from the left
-    edge of the plotting area."""
+    edge of the plotting area. svg: also save an SVG."""
     h_px = fig.get_figheight() * SLOT
     fig.tight_layout(pad=0.3, rect=(0, 0, 1, 1 - KEY_H / h_px))
     fig.canvas.draw()
@@ -93,6 +100,8 @@ def save(fig, out: Path, name: str, c: dict, key: list[tuple[str, str]], marker:
         t = fig.text(x, y, group, color=c["dark"], fontsize=KEY, va="center", ha="left")
         x = t.get_window_extent(r).transformed(fig.transFigure.inverted()).x1 + 44 / (fig.get_figwidth() * SLOT)
     fig.savefig(out / f"{name}{c['suffix']}.png", dpi=SLOT * 2, facecolor=c["surface"])
+    if svg:
+        fig.savefig(out / f"{name}{c['suffix']}.svg", facecolor=c["surface"])
     plt.close(fig)
 
 
@@ -264,21 +273,122 @@ def checks(c: dict, out: Path) -> None:
     save(fig, out, "v2_checks", c, [("strong", TO_COMBINED), ("mid", TO_RULE)], marker="●")
 
 
+# Frequency sweep (PROTOCOL.md section 13, exploratory)
+
+SWEEP_SCORES = ["AVI", "CADD", "SpliceAI", "REVEL", "AlphaMissense", "GPN-MSA", "GPN-Star-V", "GPN-Star-M", "Evo 2"]
+SWEEP_BASELINES = [("Combined-score baseline", "Lookups combined (locked)"), ("Rule baseline", "Rule-based")]
+SWEEP_MARKS = [(0.001, "dominant"), (0.01, "recessive"), (0.05, "BA1")]
+SWEEP_GAINS = [(PRIMARY, "strong"), (SECONDARY, "mid")]
+
+
+def threshold_text(af: float) -> str:
+    return f"{af * 100:g}%"
+
+
+def spread(ys: list[float], gap: float) -> list[float]:
+    """Label heights at least gap apart, in the order of ys, moved as little as possible."""
+    order = sorted(range(len(ys)), key=lambda i: ys[i])
+    out = [0.0] * len(ys)
+    last = -1e9
+    for i in order:
+        out[i] = max(ys[i], last + gap)
+        last = out[i]
+    return out
+
+
+def af_sweep(c: dict, out: Path) -> None:
+    rows = load("replication_sweep.json")["rows"]
+    afs = [r["max_af"] for r in rows.values()]
+    fig, ax = figure(1664, 760)
+    ends = []  # (y at the last threshold, label, colour, bold)
+    for name, key in SWEEP_BASELINES:
+        xs = [r["max_af"] for r in rows.values() if key in r["strata"]["all"]["scores"]]
+        ys = [r["strata"]["all"]["scores"][key]["top_1"] * 100 for r in rows.values()
+              if key in r["strata"]["all"]["scores"]]
+        ax.plot(xs, ys, color=c["dark"], lw=3 * PX, zorder=2)
+        ends.append((xs[-1], ys[-1], f"{name}  {num(ys[-1], False)}", c["dark"], True))
+    for score in reversed(SWEEP_SCORES):  # AVI drawn last, on top
+        pts = [(r["max_af"], *pct(r["strata"]["all"]["scores"][score])) for r in rows.values()
+               if score in r["strata"]["all"]["scores"]]
+        if not pts:
+            continue
+        xs, ys = [p[0] for p in pts], [p[1] for p in pts]
+        colour = c["strong"] if score == "AVI" else c["rest"]
+        top = score == "AVI"
+        ax.plot(xs, ys, color=colour, lw=(5 if top else 3) * PX, zorder=4 if top else 3)
+        ax.plot(xs, ys, "o", ms=(22 if top else 14) * PX, color=colour, mew=0, zorder=4 if top else 3)
+        if top:
+            for x, v, lo, hi in pts:
+                ax.plot([x, x], [lo, hi], color=c["grey"], lw=3 * PX, solid_capstyle="round", zorder=3)
+                ax.text(x, hi + 1.5, num(v, False), ha="center", va="bottom", fontsize=VALUE, color=c["dark"],
+                        fontweight="bold")
+        label = score + (" (to 1%)" if xs[-1] < afs[-1] else "")
+        ends.append((xs[-1], ys[-1], label, c["strong"] if top else c["grey"], top))
+    heights = spread([e[1] for e in ends], 4.2)
+    for (x, y, label, colour, bold), h in zip(ends, heights):
+        ax.annotate(label, (x, y), xytext=(afs[-1] * 1.35, h), textcoords="data", va="center", ha="left",
+                    fontsize=TICK, color=colour, fontweight="bold" if bold else "normal",
+                    arrowprops={"arrowstyle": "-", "color": c["light"], "lw": 2 * PX} if abs(h - y) > 1 or x < afs[-1]
+                    else None)
+    for x, label in SWEEP_MARKS:
+        ax.axvline(x, color=c["light"], lw=2 * PX, zorder=1)
+        ax.annotate(label, (x, 1), xycoords=ax.get_xaxis_transform(), xytext=(0, 6 * PX), textcoords="offset points",
+                    ha="center", va="bottom", fontsize=TICK, color=c["dark"])
+    ax.set_xscale("log")
+    ax.set_xlim(afs[0] / 1.6, afs[-1] * 6)
+    ax.set_xticks(afs, [threshold_text(a) for a in afs])
+    ax.minorticks_off()
+    ax.set_ylim(0, 105)
+    ax.set_yticks([0, 25, 50, 75, 100])
+    style(ax, c)
+    ax.tick_params(axis="y", labelsize=TICK, labelcolor=c["grey"])
+    ax.spines["right"].set_visible(False)
+    ax.set_xlabel("Background kept if its highest group frequency in gnomAD is below (log scale)", fontsize=TICK,
+                  color=c["grey"], labelpad=8)
+    ax.set_ylabel("Spiked-in variant ranked first,\n500 new cases (%)", fontsize=TICK, color=c["grey"])
+    save(fig, out, "af_sweep", c, [("strong", "AVI (thin line: 95% interval)"), ("rest", "Other single scores"),
+                                   ("dark", "Baselines")], marker="●", svg=True)
+
+
+def af_sweep_gain(c: dict, out: Path) -> None:
+    rows = load("replication_sweep.json")["rows"]
+    marks = dict(SWEEP_MARKS)
+    data, pairs = [], []
+    for r in rows.values():
+        con = r["strata"]["all"]["contrasts"]
+        af = r["max_af"]
+        pairs.append(f"Below {threshold_text(af)}" + (f" ({marks[af]})" if af in marks else "")
+                     + f"\n{r['cases']} cases, median list {r['median_variants_per_case']:g}")
+        data += [("", pct(con[key]), colour) for key, colour in SWEEP_GAINS]
+    fig, ax = figure(1664, 960)
+    ys = dots(ax, data, c, pairs=pairs)
+    lo = min(-8, min(v[1][1] for v in data) - 2)
+    hi = max(16, max(v[1][2] for v in data) + 14)
+    gain_axes(ax, c, 5 * (lo // 5), 5 * -(-hi // 5), "Gain at top 1 from adding AVI, 500 new cases (percentage points)",
+              ys)
+    save(fig, out, "af_sweep_gain", c, [("strong", TO_COMBINED), ("mid", TO_RULE)], marker="●", svg=True)
+
+
 CHARTS = (top1_scores, indel_top1, by_group, gains_avi, gains_by_group, gains_added, first_vs_second, checks)
+SWEEP_CHARTS = (af_sweep, af_sweep_gain)
 
 
 def main() -> None:
     p = argparse.ArgumentParser()
     p.add_argument("--brand", default="rewire", choices=BRANDS)
     p.add_argument("--out", type=Path, default=HERE / "figures" / "out")
+    p.add_argument("--only", nargs="+", metavar="CHART", help="draw these charts only (function names)")
     a = p.parse_args()
     c = BRANDS[a.brand]
     a.out.mkdir(parents=True, exist_ok=True)
     plt.rcParams.update({"font.family": "Arial", "font.size": 22, "axes.labelcolor": c["dark"],
                          "figure.facecolor": c["surface"], "axes.facecolor": c["surface"]})
-    for chart in CHARTS:
+    charts = CHARTS + (SWEEP_CHARTS if (RESULTS / "replication_sweep.json").exists() else ())
+    if a.only:
+        charts = [ch for ch in CHARTS + SWEEP_CHARTS if ch.__name__ in a.only]
+    for chart in charts:
         chart(c, a.out)
-    print(f"wrote {len(CHARTS)} charts to {a.out} ({a.brand})")
+    print(f"wrote {len(charts)} charts to {a.out} ({a.brand})")
 
 
 if __name__ == "__main__":

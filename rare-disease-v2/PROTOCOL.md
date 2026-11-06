@@ -1,7 +1,7 @@
 # Protocol: rare-disease case tests, second run
 
 Status: revised 2 November 2026 after design and code reviews. Any change to the design goes in the deviation log
-(section 13) with its date and reason. The scripts and this protocol are the record of how to reproduce the run.
+(section 14) with its date and reason. The scripts and this protocol are the record of how to reproduce the run.
 
 Why this run exists and what it asks: [`PROPOSAL.md`](PROPOSAL.md). Work plan: [`PLAN.md`](PLAN.md).
 
@@ -293,7 +293,49 @@ variants, not as diagnostic performance, and is not compared with the main analy
 - Adding it changes no other result row, because bootstrap draws are shared per stratum (section 11;
   `tests/test_invariance.py`), and every other value is checked against tag `amp-2026-v5`.
 
-## 13. Deviation log
+## 13. Frequency sweep (exploratory)
+
+Added on 6 November 2026, after every other result had been seen, as Evo 2 was (section 12). It is exploratory, not
+confirmatory: no reading rule applies to it, and nothing in sections 8 and 9 changes.
+
+The question is how AVI performs across frequency filters, and why. AVI is trained on gnomAD rare (label 1) against
+common (label 0) variants, so it may partly do the frequency filter's job: a looser filter leaves common background
+variants that AVI scores low and frequency-blind scores do not.
+
+- **Thresholds.** Grpmax AF with the family left out (section 1) below 0.01%, 0.05%, 0.1%, 0.5%, 1%, 2% and 5%.
+  0.1% is the usual dominant filter (section 2) and about 1% the usual recessive one. 5% is the ACMG/AMP BA1
+  criterion, stand-alone benign (Richards et al. 2015), so a variant above it is not a plausible candidate.
+- **Diagnostics.** Full gnomAD grpmax below the same threshold, as in the main and 1% analyses; a case whose
+  diagnostic fails is dropped. Every diagnostic is below 0.1% (section 2). At 0.01%, 12 of the 200 and 36 of the 500
+  drop out; at 0.05%, 2 and 7 (counted on the v6 `cases.tsv`; the rebuild keeps the same diagnostics).
+- **Inheritance filter** on (section 3), counted after each threshold's frequency filter.
+- **Rebuild.** The 200 SNV cases and the 500 are built again with background variants below 5% (1000 Genomes AF and
+  grpmax): the same people, diagnostics and seeds, written to `data/af5/<study>/` with each variant's 1000 Genomes AF
+  (`kgp_af`). The v6 files and results stay as they are. At each threshold a background variant also needs 1000
+  Genomes AF below the larger of the threshold and 1%, the cap a build at that threshold would use. So at 1% and
+  below the lists are the v6 lists: a variant with 1000 Genomes AF from 1% to 5% but grpmax below 1% was never in a
+  v6 case. Before the sweep is run, each rebuilt case's rows under the 1% caps must equal the v6 case's, and every
+  v6 case variant must keep its scores (`check_af5.py`). The commands, in order, are in
+  [`AF_SWEEP_RUN.md`](AF_SWEEP_RUN.md).
+- **Scores.** The new background variants are scored from the sources of section 6, SNV SpliceAI from CADD as
+  before. Evo 2 is not run on them (it needs a paid GPU), so it is reported at 1% and below only.
+- **Models.** At each threshold, Lookups combined and Lookups + AVI: on the 500 locked, fitted on the 200 under the
+  same threshold (as for the 1% check, section 8); on the 200 cross-validated. Rule-based and Rule + AVI as in
+  section 7.
+- **Reported at each threshold.** Cases kept, median list length, each single score's top 1 with its 95% interval,
+  both baselines, Rule + AVI minus Rule-based and Lookups + AVI minus Lookups combined with paired intervals and
+  p-values, and AVI in cases whose diagnostic is found in gnomAD and in cases where it is absent (section 9), with
+  the gnomAD split of both gains.
+- **Why.** The Spearman correlation of AVI, and of CADD for contrast, with background grpmax over the distinct
+  background SNVs of the ranked lists; and the mean number of background variants per case ranked at or above the
+  diagnostic by AVI and by CADD, split by background grpmax band (below 0.1%, 0.1 to 1%, 1 to 5%).
+- **Intervals** as in section 11. The 0.1% and 1% rows use the seed labels of the main and 1% analyses, so they must
+  reproduce `<study>_main.json` and `<study>_bg1pct.json` value for value; `case_benchmark.py --analysis sweep`
+  checks this and records it in the result. The other thresholds use the label `sweep<threshold>`.
+- **Output.** `results/<study>_sweep.json` and `results/analysis_sweep.md`; slide figures `af_sweep` and
+  `af_sweep_gain` (`figures/slide_charts.py`).
+
+## 14. Deviation log
 
 | Date | Section | Change | Reason |
 |---|---|---|---|
@@ -318,3 +360,4 @@ variants, not as diagnostic performance, and is not compared with the main analy
 | 2026-11-02 | 12 | Evo 2 scored on all cases, not only the indel cases; reported as exploratory with a 98.75% adjusted interval; first-run scores reused | Tim's decision after the results without Evo 2 (tag `amp-2026-v5`) |
 | 2026-11-02 | 8, 11 | Two-sided bootstrap p-values added next to every paired interval | So each finding can be stated at its significance level; no interval changes |
 | 2026-11-02 | 13 (former) | The freeze (tag `rd-v2-protocol` and case-file checksums before the 500 were built) dropped; the scripts and this protocol are the record | Tim's decision. The 500 were built and scored after the code-review fixes above; after their results were seen, the only analysis changes are the Evo 2 and p-value entries |
+| 2026-11-06 | 13 | Frequency sweep added (section 13), exploratory, with the 200 and the 500 rebuilt to a 5% background cap in `data/af5/`; v6 files and results unchanged | Tim's decision after every result had been seen: to show how AVI performs across frequency filters, and why |

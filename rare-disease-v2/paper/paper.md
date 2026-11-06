@@ -473,7 +473,7 @@ history (commits 6624e6a, d14fc58, b71d33b).
 | 2.5, 2.9 | Evo 2 scored on all cases, exploratory, 98.75% interval (after the results without Evo 2) | The author's decision after tag `amp-2026-v5` |
 | 2.9 | Two-sided bootstrap p-values added (after the results without Evo 2) | To state each finding at its significance level; no interval changes |
 
-Table: Deviation log entries that change the design or the numbers. The full log, with dates, is section 13 of
+Table: Deviation log entries that change the design or the numbers. The full log, with dates, is section 14 of
 `PROTOCOL.md`.
 
 The protocol also drops the first run's inherited cancer panel and keeps GPN-Star as a secondary score, both

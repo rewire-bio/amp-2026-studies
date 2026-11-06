@@ -44,3 +44,11 @@ rare-disease-v2/evo2/run*/var_scores.tsv
 rare-disease-v2/evo2/run*/score.log
 rare-disease-v2/evo2/run*/.known_hosts
 rare-disease-v2/evo2/run*/.ssh-key*
+# rare-disease-v2 frequency sweep: local copies of committed inputs and the gnomAD cache clone (AF_SWEEP_RUN.md)
+rare-disease-v2/data/af5/gnomad_subset/
+rare-disease-v2/data/af5/pool/
+rare-disease-v2/data/af5/people.tsv
+rare-disease-v2/data/af5/gene_moi.tsv
+rare-disease-v2/data/af5/rep/kgp
+rare-disease-v2/data/af5/rep/samples50.txt
+rare-disease-v2/results/af5/v6check/

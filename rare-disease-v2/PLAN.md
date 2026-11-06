@@ -36,7 +36,7 @@ full list, with every column and what is not committed, is in [`data/README.md`]
 
 - [x] `PROPOSAL.md`, `PROTOCOL.md`, `PLAN.md`, `README.md`; links from the top-level README, GUIDE and the first run
 - [x] Design review: feasibility probes (gnomAD, PP3 thresholds, EVEE, ClinVar pool) and three critics; corrections
-  folded into the protocol (deviation log, section 13)
+  folded into the protocol (deviation log, section 14)
 
 ## Phase 1: people and frequencies (issue #1)
 

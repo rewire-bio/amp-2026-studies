@@ -12,9 +12,10 @@ from collections import defaultdict
 from pathlib import Path
 
 HERE = Path(__file__).resolve().parent
-# RDV2_DATA and RDV2_RESULTS point the scripts at another copy, for tests.
+# RDV2_DATA, RDV2_RESULTS and RDV2_EVO2 point the scripts at another copy, for tests.
 DATA = Path(os.environ.get("RDV2_DATA", HERE / "data"))
 RESULTS = Path(os.environ.get("RDV2_RESULTS", HERE / "results"))
+EVO2_DIR = Path(os.environ.get("RDV2_EVO2", HERE / "evo2"))
 V1 = HERE.parent / "rare-disease"           # the first run, read only
 V1_DATA = V1 / "data"
 BLOG = HERE.parents[1]                      # sibling repositories
@@ -30,6 +31,11 @@ MAIN_AF = 0.001    # main filter: grpmax AF below 0.1% (PROTOCOL.md section 2)
 LOOSE_AF = 0.01    # looser background filter, and the build-time background filter
 KGP_MAX_AF = 0.01  # 1000 Genomes AF below 1%, as in the first run
 MAX_INDEL = 51     # 50 bp change plus the VCF anchor base
+# Frequency sweep (PROTOCOL.md section 13, exploratory): cases rebuilt with background variants below 5% (1000
+# Genomes AF and grpmax) under data/af5/, then filtered at each threshold at analysis time.
+SWEEP_BUILD_AF = 0.05
+SWEEP_AF = [0.0001, 0.0005, 0.001, 0.005, 0.01, 0.02, 0.05]
+SWEEP_DATA = "af5"
 
 # Studies: which people they use and where their files live.
 STUDIES = {"snv": "main", "indel": "main", "replication": "rep"}
@@ -44,6 +50,11 @@ def study_dir(study: str) -> Path:
 
 def set_dir(people_set: str) -> Path:
     return DATA / people_set
+
+
+def sweep_dir(study: str) -> Path:
+    """The study's 5%-cap build for the frequency sweep; the v6 build in study_dir is left as it is."""
+    return DATA / SWEEP_DATA / study
 
 
 def is_snv(ref: str, alt: str) -> bool:

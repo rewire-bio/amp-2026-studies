@@ -10,7 +10,11 @@ Inputs: the main set's genotypes from ../rare-disease/data/kgp/*.bcf and the rep
 data/rep/kgp/*.bcf (both made by ../rare-disease/fetch_kgp.sh). Writes data/main/person_variants.tsv and
 data/rep/person_variants.tsv with columns sample, chrom, pos, ref, alt, zygosity, kgp_af.
 
-  uv run -q --python 3.12 --with-requirements requirements.txt python backgrounds.py [main] [rep]
+  uv run -q --python 3.12 --with-requirements requirements.txt python backgrounds.py [main] [rep] [--cap AF]
+
+--cap replaces the 1% 1000 Genomes cap; the frequency sweep (PROTOCOL.md section 13) runs it with --cap 0.05 and
+RDV2_DATA=data/af5, so the v6 files are not touched (AF_SWEEP_RUN.md). The comparison with the first run is made at
+the 1% cap only.
 
 Derived from rare-disease/build_cases.py (background) at amp-2026-v4.
 """
@@ -36,14 +40,14 @@ def zygosity(gt: str) -> str:
     return "hom" if all(a == "1" for a in alleles) else "het"
 
 
-def background(kgp: Path) -> list[tuple]:
+def background(kgp: Path, cap: float = KGP_MAX_AF) -> list[tuple]:
     rows, seen = [], set()
     bcfs = sorted(kgp.glob("chr*.bcf"))
     assert len(bcfs) == 23, f"{kgp}: {len(bcfs)} chromosome files, expected 23"
     for bcf in bcfs:
         samples = subprocess.run(["bcftools", "query", "-l", str(bcf)], capture_output=True, text=True,
                                  check=True).stdout.split()
-        out = subprocess.run(["bcftools", "query", "-i", f"{TYPES} && AF<{KGP_MAX_AF}",
+        out = subprocess.run(["bcftools", "query", "-i", f"{TYPES} && AF<{cap}",
                               "-f", "%CHROM\t%POS\t%REF\t%ALT\t%AF[\t%GT]\n", str(bcf)],
                              capture_output=True, text=True, check=True).stdout
         for line in out.splitlines():
@@ -58,10 +62,16 @@ def background(kgp: Path) -> list[tuple]:
 
 
 def main() -> None:
+    args = sys.argv[1:]
+    cap = KGP_MAX_AF
+    if "--cap" in args:
+        i = args.index("--cap")
+        cap = float(args[i + 1])
+        args = args[:i] + args[i + 2:]
     for set_name, kgp in SETS.items():
-        if len(sys.argv) > 1 and set_name not in sys.argv[1:]:
+        if args and set_name not in args:
             continue
-        rows = background(kgp)
+        rows = background(kgp, cap)
         expected = set((DATA / set_name / "samples50.txt").read_text().split()) if set_name == "rep" else \
             set((V1_DATA / "samples50.txt").read_text().split())
         assert {r[0] for r in rows} == expected, f"{set_name}: samples differ from samples50.txt"
@@ -83,7 +93,7 @@ def main() -> None:
               f"indels {statistics.median(indel.values())}; zygosity {dict(zyg)}; hemi calls by chromosome "
               f"{dict(hemi_where)}")
 
-        if set_name == "main":
+        if set_name == "main" and cap == KGP_MAX_AF:
             compare_first_run(rows)
 
 

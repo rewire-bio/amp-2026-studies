@@ -28,7 +28,7 @@ Status: done, 2 November 2026, including Evo 2 on every case.
 | Document | What it holds |
 |---|---|
 | [`PROPOSAL.md`](PROPOSAL.md) | Why the rerun, the questions, scope, smallest gain of interest, cost and risks |
-| [`PROTOCOL.md`](PROTOCOL.md) | The design, Evo 2 (section 12) and the deviation log (section 13) |
+| [`PROTOCOL.md`](PROTOCOL.md) | The design, Evo 2 (section 12), the frequency sweep (section 13) and the deviation log (section 14) |
 | [`PLAN.md`](PLAN.md) | The work, as phases and tasks |
 | [`results/analysis_replication.md`](results/analysis_replication.md) | The 500 replication cases, locked: the primary result and every check |
 | [`results/analysis_snv_indel.md`](results/analysis_snv_indel.md) | The 200 SNV and 120 indel cases, cross-validated (descriptive) |

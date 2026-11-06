@@ -22,6 +22,9 @@ Analyses (--analysis):
            (AVI training chromosomes or the others); snv and replication only
   evee     bg1pct filters; lists restricted to variants with an EVEE row, cases whose diagnostic has none dropped;
            descriptive; snv and replication only
+  sweep    exploratory frequency sweep (section 13) on the 5%-cap build in data/af5/<study>: background and
+           diagnostic grpmax below each of common.SWEEP_AF, then the inheritance filter; snv and replication only.
+           Writes results/<study>_sweep.json and results/analysis_sweep.md (sweep() below)
 
 Scores: the single scores; Lookups combined (logistic regression on CADD, SpliceAI, REVEL and AlphaMissense with
 model class and score-by-class terms, as in the first run); Lookups + X for each added score; Rule-based and
@@ -63,8 +66,8 @@ import common
 from common import KEY
 
 STUDY_CHOICES = ["snv", "indel", "replication"]
-ANALYSES = ["main", "bg1pct", "nomoi", "all1kg", "heldout", "evee"]
-SNV_ONLY_ANALYSES = {"heldout", "evee"}
+ANALYSES = ["main", "bg1pct", "nomoi", "all1kg", "heldout", "evee", "sweep"]
+SNV_ONLY_ANALYSES = {"heldout", "evee", "sweep"}
 BOOTSTRAP = 1000
 TOP = [1, 5, 10]
 SMALL_STRATUM = 20      # groups with fewer cases are flagged as small (section 8)
@@ -107,12 +110,15 @@ GNOMAD_INDEL_TABLES = ["CADD", "SpliceAI"]
 
 
 def evo2_files() -> list:
-    return sorted((common.HERE / "evo2").glob("run*/scores*.tsv"))
+    return sorted(common.EVO2_DIR.glob("run*/scores*.tsv"))
 
 
-def load(study: str, drop: set[str]) -> tuple[pd.DataFrame, list[str], dict]:
-    """Case variants with their scores and consequence class; returns (cases, single score names, load notes)."""
-    d = common.study_dir(study)
+def load(study: str, drop: set[str], folder=None) -> tuple[pd.DataFrame, list[str], dict]:
+    """Case variants with their scores and consequence class; returns (cases, single score names, load notes).
+
+    folder: the study's files, common.study_dir(study) by default (the sweep reads common.sweep_dir(study)).
+    """
+    d = folder or common.study_dir(study)
     cases = pd.read_csv(d / "cases.tsv", sep="\t", dtype={"gene": str, "moi": str, "group": str, "class": str,
                                                           "zygosity": str, "clinvar_id": str})
     for c in ("gene", "moi", "group", "class", "zygosity"):
@@ -242,13 +248,15 @@ def inheritance_keep(cases: pd.DataFrame, sex: dict[str, str]) -> tuple[np.ndarr
     return keep, {"unrecognised_moi_values_kept": unknown, "rows_without_gene": int((~has_gene).sum())}
 
 
-def apply_filters(cases: pd.DataFrame, analysis: str, study: str, sex: dict[str, str]) -> tuple[pd.DataFrame, dict]:
+def apply_filters(cases: pd.DataFrame, analysis: str, study: str, sex: dict[str, str],
+                  spec: dict | None = None) -> tuple[pd.DataFrame, dict]:
     """Frequency filter, then inheritance filter, then drop the other variant type; cases keep their diagnostic.
 
     The inheritance filter counts the person's SNVs and indels together (section 3); then the snv and replication
-    studies keep SNVs only and the indel study indels only.
+    studies keep SNVs only and the indel study indels only. spec, in the layout of FILTERS, replaces the analysis's
+    filters (the sweep's thresholds).
     """
-    f = FILTERS[analysis]
+    f = spec or FILTERS[analysis]
     diag = cases["diagnostic"].to_numpy() == 1
     bg_af = cases[f["background_column"]].to_numpy(float)
     dx_af = cases["grpmax"].to_numpy(float)
@@ -258,7 +266,15 @@ def apply_filters(cases: pd.DataFrame, analysis: str, study: str, sex: dict[str,
     info = {"max_af": f["max_af"], "background_frequency": f["background_column"],
             "diagnostic_frequency": "grpmax", "inheritance_filter": f["inheritance"],
             "cases_before": int(cases["case"].nunique()), "variants_before": len(cases)}
-    out = cases[af < f["max_af"]]
+    keep = af < f["max_af"]
+    if "kgp_max_af" in f:
+        # The sweep's 1000 Genomes cap on background variants (section 13); diagnostics are not carried, so pass.
+        if "kgp_af" not in cases:
+            raise SystemExit("cases.tsv has no kgp_af column; the sweep needs the 5%-cap build (section 13)")
+        kgp = cases["kgp_af"].to_numpy(float)
+        keep &= diag | (kgp < f["kgp_max_af"])
+        info["kgp_max_af"] = f["kgp_max_af"]
+    out = cases[keep]
     solved = out.loc[out["diagnostic"] == 1, "case"]
     info["cases_lost_diagnostic"] = int(info["cases_before"] - solved.nunique())
     if info["cases_lost_diagnostic"]:
@@ -279,8 +295,10 @@ def apply_filters(cases: pd.DataFrame, analysis: str, study: str, sex: dict[str,
     out = out[own_type].reset_index(drop=True)
     info["variants_after_dropping_other_type"] = len(out)
     info["description"] = (
-        f"background {f['background_column']} below {f['max_af']:g}, diagnostics full gnomAD grpmax below "
-        f"{f['max_af']:g}" + ("; background inheritance filter" if f["inheritance"] else "; no inheritance filter")
+        f"background {f['background_column']} below {f['max_af']:g}"
+        + (f" and 1000 Genomes AF below {f['kgp_max_af']:g}" if "kgp_max_af" in f else "")
+        + f", diagnostics full gnomAD grpmax below {f['max_af']:g}"
+        + ("; background inheritance filter" if f["inheritance"] else "; no inheritance filter")
         + f"; background {other} dropped after filtering")
     return out, info
 
@@ -716,6 +734,10 @@ def main() -> None:
     if bad := set(sex.values()) - {"male", "female"}:
         raise SystemExit(f"people.tsv sex values not male or female: {bad}")
 
+    if analysis == "sweep":
+        sweep(study, drop, sex)
+        return
+
     cases, singles, notes = load(study, drop)
     cases, filt = apply_filters(cases, analysis, study, sex)
     train, train_filters = None, None
@@ -918,6 +940,328 @@ def heldout(cases: pd.DataFrame, scores: list[str], study: str, draws: Draws) ->
     out["note"] = ("Each split's resamples are the same draws of people (seed label '<study>/heldout/splits'), so "
                    "the difference between splits is paired by person.")
     return out
+
+
+# ---------------------------------------------------------------------------------------------------------------
+# Frequency sweep (section 13, exploratory)
+
+SWEEP_LABELS = {common.MAIN_AF: "main", common.LOOSE_AF: "bg1pct"}  # these rows reuse those analyses' draws
+AF_BANDS = [("below 0.1%", 0.0, common.MAIN_AF), ("0.1 to 1%", common.MAIN_AF, common.LOOSE_AF),
+            ("1 to 5%", common.LOOSE_AF, common.SWEEP_BUILD_AF)]
+WHY_SCORES = ["AVI", "CADD"]
+SWEEP_TABLE = ["AVI", "CADD", "SpliceAI", "GPN-Star-V", EVO2]
+SWEEP_OTHERS = ["REVEL", "AlphaMissense", "GPN-MSA", "GPN-Star-M"]
+# The parts of a sweep row that must equal the main or bg1pct result at 0.1% and 1% (section 13).
+REPRODUCED = ["cases", "people", "median_variants_per_case", "coverage", "rule_ties", "strata", "gnomad_split"]
+NOT_REPRODUCED = {"verdict"}  # the sweep reads no verdict: it is exploratory
+
+
+def sweep_label(af: float) -> str:
+    """Seed label of a threshold: main and bg1pct at 0.1% and 1%, so those rows reproduce them, else sweep<af>."""
+    return SWEEP_LABELS.get(af, f"sweep{af:g}")
+
+
+def sweep_filter(af: float) -> dict:
+    """Grpmax below af for background and diagnostic, 1000 Genomes AF below the larger of af and 1%, inheritance on.
+
+    The 1000 Genomes cap is the one a build at that threshold would use (the v6 build used 1% for both), so at 1%
+    and below the lists are the v6 lists.
+    """
+    return {"max_af": af, "background_column": "grpmax", "inheritance": True,
+            "kgp_max_af": max(af, common.KGP_MAX_AF)}
+
+
+def competitors_by_band(cases: pd.DataFrame, score: str) -> pd.DataFrame:
+    """Competitors (as competitors(): at or above the diagnostic, all if it has no score), per case and grpmax band."""
+    diag = cases["diagnostic"].to_numpy() == 1
+    case = cases["case"].to_numpy()
+    s = cases[score].to_numpy(float)
+    d = pd.Series(s[diag], index=case[diag]).reindex(case).to_numpy()
+    with np.errstate(invalid="ignore"):
+        beats = ~diag & ((s >= d) | np.isnan(d))
+    af = cases["grpmax"].to_numpy(float)
+    return pd.DataFrame({band: pd.Series(beats & (af >= lo) & (af < hi)).groupby(case).sum()
+                         for band, lo, hi in AF_BANDS})
+
+
+def why(cases: pd.DataFrame) -> dict:
+    """Spearman correlation of each WHY_SCORES score with background grpmax, and competitors by grpmax band.
+
+    The correlation is over the distinct background variants of the ranked lists (each person's variant once, as a
+    person's cases share a background); variants without the score are left out. Competitors by band are means per
+    case, next to the mean number of background variants in each band.
+    """
+    from scipy.stats import spearmanr
+
+    bg = cases[cases["diagnostic"] == 0].drop_duplicates(["sample"] + KEY)
+    case = cases["case"].to_numpy()
+    af = cases["grpmax"].to_numpy(float)
+    background = cases["diagnostic"].to_numpy() == 0
+    out = {"background_variants": len(bg), "spearman_with_grpmax": {}, "background_by_band": {}, "above_by_band": {}}
+    for band, lo, hi in AF_BANDS:
+        n = pd.Series(background & (af >= lo) & (af < hi)).groupby(case).sum()
+        out["background_by_band"][band] = round(float(n.mean()), 3)
+    for s in WHY_SCORES:
+        if s not in cases:
+            continue
+        x = bg[[s, "grpmax"]].dropna()
+        rho = spearmanr(x[s], x["grpmax"]).statistic if len(x) > 2 else np.nan
+        out["spearman_with_grpmax"][s] = {"rho": round(float(rho), 4), "variants": len(x)}
+        by = competitors_by_band(cases, s)
+        out["above_by_band"][s] = {b: round(float(by[b].mean()), 3) for b in by}
+    return out
+
+
+def sweep_row(study: str, af: float, cases_all: pd.DataFrame, singles_all: list[str], train_all, sex: dict,
+              drop: set[str]) -> dict:
+    """One threshold: single scores, both baselines and AVI added to each, the gnomAD split, and the why columns.
+
+    As main() for that filter, with only Lookups combined and Lookups + AVI fitted (adding a model changes no other
+    row, section 11). Locked models (replication) are fitted on the 200 under the same threshold. Evo 2 is left out
+    above 1%, where its scores do not cover the lists (section 13).
+    """
+    label = sweep_label(af)
+    spec = sweep_filter(af)
+    cases, filt = apply_filters(cases_all, label, study, sex, spec)
+    train = None
+    if train_all is not None:
+        train, train_filt = apply_filters(train_all, label, "snv", sex, spec)
+        filt["training_cases"] = train_filt["cases_before"] - train_filt["cases_lost_diagnostic"]
+    mapping, merges = model_class_map(train if train is not None else cases, "snv")
+    merges["training_set"] = "the 200 SNV cases"
+    cases["model_class"] = cases["var_class"].map(mapping)
+    if train is not None:
+        train["model_class"] = train["var_class"].map(mapping)
+    singles = [s for s in singles_all if s != "EVEE" and (s != EVO2 or af <= common.LOOSE_AF)]
+    no_coverage = [s for s in singles if cases[s].notna().sum() == 0]
+    singles = [s for s in singles if s not in no_coverage]
+
+    diag = cases[cases["diagnostic"] == 1].set_index("case").sort_index()
+    strata = {"all": diag.index}
+    found, found_notes = gnomad_status(diag)
+    for name, flag in GNOMAD_STRATA.items():
+        if (found == flag).any():
+            strata[name] = diag.index[(found == flag).to_numpy()]
+    draws = {name: Draws(study, label, name, diag.loc[ids, "sample"]) for name, ids in strata.items()}
+
+    lookups = [s for s in LOOKUPS if s in singles]
+    combos = {"Lookups combined": lookups}
+    if "AVI" in singles:
+        combos["Lookups + AVI"] = lookups + ["AVI"]
+    for name, cols in combos.items():
+        cases[name] = cross_validated(cases, cols)
+        if train is not None:
+            cases[name + LOCKED] = locked(train, cases, cols)
+    rules = [n for n in RULE_SCORES if not set(RULE_INPUTS[n]) & drop and (n != RULE_AVI or "AVI" in singles)]
+    for n in rules:
+        cases[outcome_column(n)] = rule_outcomes(cases, with_avi=n == RULE_AVI)
+    scores = singles + rules + list(combos) + ([c + LOCKED for c in combos] if train is not None else [])
+
+    comp = {s: competitors(cases, s) for s in scores}
+    diag = cases[cases["diagnostic"] == 1].set_index("case").sort_index()
+    ties = {n: tied(cases, n) for n in rules}
+    specs = contrast_specs(scores, study)
+    row = {"max_af": af, "seed_label_analysis": label, "filter": filt,
+           "cases": len(diag), "people": int(diag["sample"].nunique()),
+           "median_variants_per_case": float(cases.groupby("case").size().median()),
+           "coverage": {s: {"variants": int(cases[s].notna().sum()), "diagnostics": int(diag[s].notna().sum())}
+                        for s in singles},
+           "scores_without_coverage": no_coverage, "model_classes": merges,
+           "rule_ties": {n: round(float(t.mean()), 4) for n, t in ties.items()},
+           "strata": {name: evaluate_stratum(ids, diag, comp, specs, draws[name], name not in GNOMAD_STRATA, ties)
+                      for name, ids in strata.items()}}
+    for name, s in row["strata"].items():
+        s["seed_label"] = draws[name].label
+    row["gnomad_split"] = found_notes | gnomad_split(comp, diag, found, study, label)
+    row["why"] = why(cases)
+    return row
+
+
+def leaves(x, path=()) -> dict[tuple, object]:
+    """Leaves of a JSON value keyed by their path; lists are leaves (intervals)."""
+    if isinstance(x, dict):
+        out = {}
+        for k, v in x.items():
+            out |= leaves(v, path + (k,))
+        return out
+    return {path: x}
+
+
+def reproduction(row: dict, reference: dict) -> dict:
+    """Compare a sweep row with the main or bg1pct result: every REPRODUCED leaf the sweep row has must be equal.
+
+    The reference has more rows (diagnostic groups, the GPN and Evo 2 models); those the sweep does not compute are
+    not compared. A sweep leaf the reference lacks is a problem.
+    """
+    mine = leaves(clean({k: row[k] for k in REPRODUCED if k in row}))
+    ref = leaves(clean({k: reference[k] for k in REPRODUCED if k in reference}))
+    mine = {p: v for p, v in mine.items() if not set(p) & NOT_REPRODUCED}
+    differ = [f"{' / '.join(map(str, p))}: {v} vs {ref[p]}" for p, v in mine.items()
+              if p in ref and json.dumps(v) != json.dumps(ref[p])]
+    missing = [" / ".join(map(str, p)) for p in mine if p not in ref]
+    return {"compared": len(mine) - len(missing), "differ": len(differ), "missing_in_reference": len(missing),
+            "identical": not differ and not missing, "examples": (differ + missing)[:20]}
+
+
+def sweep(study: str, drop: set[str], sex: dict) -> None:
+    """Section 13: every threshold of common.SWEEP_AF on the 5%-cap build; results/<study>_sweep.json.
+
+    The 0.1% and 1% rows are compared with results/<study>_main.json and <study>_bg1pct.json (the v6 results), and
+    the comparison is stored in the result. Then results/analysis_sweep.md is written from every sweep result.
+    """
+    folder = common.sweep_dir(study)
+    cases_all, singles_all, notes = load(study, drop, folder)
+    bg = cases_all["diagnostic"] == 0
+    if (cases_all.loc[bg, "grpmax"] >= common.SWEEP_BUILD_AF).any():
+        raise SystemExit(f"{folder}/cases.tsv has background variants at or above {common.SWEEP_BUILD_AF:g}")
+    train_all = load("snv", drop, common.sweep_dir("snv"))[0] if study == "replication" else None
+    result = {"study": study, "analysis": "sweep", "exploratory": (
+                  "Added on 6 November 2026 after every other result had been seen (PROTOCOL.md section 13); not "
+                  "confirmatory. Evo 2 is reported at 1% and below only."),
+              "build": str(folder.relative_to(common.DATA.parent)) if folder.is_relative_to(common.DATA.parent)
+              else str(folder), "build_max_af": common.SWEEP_BUILD_AF, "thresholds": common.SWEEP_AF,
+              "load_notes": notes, "dropped_scores": sorted(drop),
+              "fits": "cross-validated (5-fold by person)" + (
+                  "; locked: fitted on the 200 SNV cases under the same threshold" if study == "replication" else ""),
+              "intervals": f"{BOOTSTRAP} resamples of people per stratum, seed sha256('{study}/<label>/<stratum>'), "
+                           "label main at 0.1%, bg1pct at 1%, sweep<threshold> otherwise",
+              "package_versions": package_versions(), "rows": {}, "reproduction": {}}
+    for af in common.SWEEP_AF:
+        row = sweep_row(study, af, cases_all, singles_all, train_all, sex, drop)
+        result["rows"][f"{af:g}"] = row
+        print(sweep_line(row), flush=True)
+        if af in SWEEP_LABELS:
+            path = common.RESULTS / f"{study}_{SWEEP_LABELS[af]}.json"
+            if path.exists():
+                check = {"reference": path.name} | reproduction(row, json.loads(path.read_text()))
+            else:
+                check = {"reference": path.name, "identical": None, "note": "reference result not found"}
+            result["reproduction"][f"{af:g}"] = check
+            print(f"  reproduces {path.name}: {check.get('identical')} ({check.get('compared', 0)} values, "
+                  f"{check.get('differ', 0)} differ, {check.get('missing_in_reference', 0)} missing)")
+    common.RESULTS.mkdir(parents=True, exist_ok=True)
+    suffix = "".join(f"_without_{re.sub('[^A-Za-z0-9]+', '_', d)}" for d in sorted(drop))
+    out = common.RESULTS / f"{study}_sweep{suffix}.json"
+    out.write_text(json.dumps(clean(result), indent=2) + "\n")
+    print(f"wrote {out}")
+    if not drop:
+        write_sweep_report()
+
+
+def sweep_line(row: dict) -> str:
+    s = row["strata"]["all"]["scores"]
+    return (f"sweep {row['max_af']:g}: {row['cases']} cases, median list {row['median_variants_per_case']:g}; "
+            + "; ".join(f"{n} {s[n]['top_1']:.3f}" for n in ["AVI", "CADD", RULE] if n in s))
+
+
+# Report: results/analysis_sweep.md, from results/<study>_sweep.json
+
+def fmt_pct(x: float, signed: bool = False) -> str:
+    x = round(x * 100, 1) + 0.0
+    return f"{x:+.1f}" if signed and x != 0 else f"{x:.1f}"
+
+
+def fmt_ci(r: dict, key: str = "top_1", signed: bool = False) -> str:
+    lo, hi = r[f"{key}_ci95"]
+    return f"{fmt_pct(r[key], signed)} ({fmt_pct(lo, signed)} to {fmt_pct(hi, signed)})"
+
+
+def af_text(af: float) -> str:
+    return f"{af * 100:g}%"
+
+
+def sweep_tables(res: dict) -> list[str]:
+    study = res["study"]
+    fit = LOCKED if study == "replication" else ""
+    combined, plus_avi = f"Lookups combined{fit}", f"Lookups + AVI{fit}"
+    gain_combined, gain_rule = f"{plus_avi} minus {combined}", f"{RULE_AVI} minus {RULE}"
+    built = next(iter(res["rows"].values()))["filter"]["cases_before"]
+    fits = "locked, fitted on the 200 under the same threshold" if fit else "cross-validated"
+    lines = [f"## {'Replication' if study == 'replication' else 'SNV'} study, {built} cases built", "",
+             f"Top 1, % (95% interval). Combined: lookups combined ({fits}). Gains in percentage points with paired "
+             "95% intervals. Evo 2: not scored above 1%.", "",
+             "| Threshold | Cases | Median list | " + " | ".join(SWEEP_TABLE) + " | Rule-based | Combined | "
+             "Rule + AVI minus Rule | Combined + AVI minus combined |", "|---" * (len(SWEEP_TABLE) + 7) + "|"]
+    for key, row in res["rows"].items():
+        st = row["strata"]["all"]
+        s, con = st["scores"], st.get("contrasts", {})
+        lost = row["filter"]["cases_lost_diagnostic"]
+        cells = [af_text(row["max_af"]), f"{row['cases']}" + (f" ({lost} lost)" if lost else ""),
+                 f"{row['median_variants_per_case']:g}"]
+        cells += [fmt_ci(s[x]) if x in s else "not scored" for x in SWEEP_TABLE]
+        cells += [fmt_ci(s[x]) if x in s else "" for x in (RULE, combined)]
+        cells += [fmt_ci(con[g], signed=True) + f", p = {con[g]['top_1_p']:g}" if g in con else ""
+                  for g in (gain_rule, gain_combined)]
+        lines.append("| " + " | ".join(cells) + " |")
+    lines += ["", "Other single scores, top 1 %:", "", "| Threshold | " + " | ".join(SWEEP_OTHERS) + " |",
+              "|---" * (len(SWEEP_OTHERS) + 1) + "|"]
+    for row in res["rows"].values():
+        s = row["strata"]["all"]["scores"]
+        lines.append(f"| {af_text(row['max_af'])} | " + " | ".join(fmt_ci(s[x]) if x in s else "" for x in SWEEP_OTHERS)
+                     + " |")
+    lines += ["", "AVI alone by whether the diagnostic is in full gnomAD (AC above 0), top 1 %, and the gains in each "
+              "(paired; absent minus found on shared draws):", "",
+              "| Threshold | Found: cases | Found: AVI | Absent: cases | Absent: AVI | Rule + AVI gain, found | "
+              "Rule + AVI gain, absent | Absent minus found |", "|---" * 8 + "|"]
+    for row in res["rows"].values():
+        st, gs = row["strata"], row["gnomad_split"]
+        f, a = st.get("gnomad: found"), st.get("gnomad: absent")
+        g = lambda name: gs.get(name, {}).get("contrasts", {}).get(gain_rule)  # noqa: E731
+        d = gs.get("difference", {}).get(gain_rule)
+        lines.append(f"| {af_text(row['max_af'])} | {f['cases'] if f else 0} | "
+                     f"{fmt_ci(f['scores']['AVI']) if f and 'AVI' in f['scores'] else ''} | {a['cases'] if a else 0} | "
+                     f"{fmt_ci(a['scores']['AVI']) if a and 'AVI' in a['scores'] else ''} | "
+                     f"{fmt_ci(g('gnomad: found'), signed=True) if g('gnomad: found') else ''} | "
+                     f"{fmt_ci(g('gnomad: absent'), signed=True) if g('gnomad: absent') else ''} | "
+                     + (f"{fmt_pct(d['top_1_absent_minus_found'], True)} ({fmt_pct(d['top_1_ci95'][0], True)} to "
+                        f"{fmt_pct(d['top_1_ci95'][1], True)})" if d else "") + " |")
+    bands = [b for b, _, _ in AF_BANDS]
+    lines += ["", "Why: Spearman correlation of each score with background grpmax (distinct background SNVs of the "
+              "ranked lists), and the mean number of background variants per case ranked at or above the spiked-in "
+              "variant, by background grpmax band, next to the mean number in each band:", "",
+              "| Threshold | Background SNVs | AVI rho | CADD rho | " + " | ".join(f"In list, {b}" for b in bands)
+              + " | " + " | ".join(f"Above by AVI, {b}" for b in bands) + " | "
+              + " | ".join(f"Above by CADD, {b}" for b in bands) + " |", "|---" * (4 + 3 * len(bands)) + "|"]
+    for row in res["rows"].values():
+        w = row["why"]
+        rho = lambda s: f"{w['spearman_with_grpmax'][s]['rho']:.3f}" if s in w["spearman_with_grpmax"] else ""  # noqa: E731
+        above = lambda s: [f"{w['above_by_band'].get(s, {}).get(b, float('nan')):.2f}" for b in bands]  # noqa: E731
+        lines.append(f"| {af_text(row['max_af'])} | {w['background_variants']} | {rho('AVI')} | {rho('CADD')} | "
+                     + " | ".join(f"{w['background_by_band'][b]:.2f}" for b in bands) + " | "
+                     + " | ".join(above("AVI")) + " | " + " | ".join(above("CADD")) + " |")
+    lines += ["", "Reproduction of the v6 results by the 0.1% and 1% rows (every value both compute: cases, list "
+              "length, coverage, ties, every score and contrast in all cases and in the gnomAD strata, and the gnomAD "
+              "split):", ""]
+    for key, check in res["reproduction"].items():
+        if check.get("identical") is None:
+            lines.append(f"- {af_text(float(key))}: {check['reference']} not found, not checked.")
+        else:
+            lines.append(f"- {af_text(float(key))} against `{check['reference']}`: "
+                         + ("identical" if check["identical"] else "NOT identical")
+                         + f", {check['compared']} values compared, {check['differ']} differ, "
+                         f"{check['missing_in_reference']} missing from the reference.")
+            lines += [f"  - {e}" for e in check["examples"]]
+    return lines + [""]
+
+
+def write_sweep_report() -> None:
+    results = [json.loads(p.read_text()) for s in ("replication", "snv")
+               if (p := common.RESULTS / f"{s}_sweep.json").exists()]
+    if not results:
+        return
+    lines = ["# Frequency sweep (exploratory)", "",
+             "PROTOCOL.md section 13. Added on 6 November 2026 after every other result had been seen, so it is "
+             "exploratory, not confirmatory. Made by `case_benchmark.py --study <study> --analysis sweep` from the "
+             f"5%-cap build in `data/{common.SWEEP_DATA}/`: `results/<study>_sweep.json`.", "",
+             "At each threshold: background grpmax (family left out) below it, diagnostics full gnomAD grpmax below "
+             "it (a case whose diagnostic fails is dropped), 1000 Genomes AF below the larger of the threshold and 1%, "
+             "then the inheritance filter. Intervals are 1,000 resamples of people; the 0.1% and 1% rows use the "
+             "main and bg1pct draws, so they reproduce those results.", ""]
+    for res in results:
+        lines += sweep_tables(res)
+    text = "\n".join(lines)
+    (common.RESULTS / "analysis_sweep.md").write_text(text)
+    print(f"wrote {common.RESULTS / 'analysis_sweep.md'}")
 
 
 def clean(x):
