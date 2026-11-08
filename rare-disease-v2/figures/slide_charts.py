@@ -163,9 +163,9 @@ def top1_scores(c: dict, out: Path) -> None:
             ("SpliceAI", s["SpliceAI"], "rest"), ("GPN-MSA", s["GPN-MSA"], "mid"),
             ("REVEL", s["REVEL"], "rest"), ("AlphaMissense", s["AlphaMissense"], "mid")]
     fig, ax = figure(1664, 600)
-    bars(ax, rows, c, "Spiked-in variant ranked first, 500 new cases (%); thin line: 95% interval")
+    bars(ax, rows, c, "Spiked-in variant ranked first, 500 test cases (%); thin line: 95% interval")
     save(fig, out, "v2_top1_scores", c,
-         [("strong", "Baseline"), ("mid", "Foundation-model score"), ("rest", "Existing score alone")])
+         [("strong", "Baseline"), ("mid", "Foundation model predictor"), ("rest", "Existing predictor alone")])
 
 
 def indel_top1(c: dict, out: Path) -> None:
@@ -177,13 +177,13 @@ def indel_top1(c: dict, out: Path) -> None:
     fig, ax = figure(1728, 560)
     bars(ax, rows, c, "Spiked-in indel ranked first, 120 indel cases (%); thin line: 95% interval")
     save(fig, out, "v2_indel_top1", c,
-         [("strong", "Baseline"), ("mid", "With Evo 2, alone or added"), ("rest", "Existing score alone")])
+         [("strong", "Baseline"), ("mid", "With Evo 2, alone or added"), ("rest", "Existing predictor alone")])
 
 
 def by_group(c: dict, out: Path) -> None:
     st = load("replication_main.json")["strata"]
     fig, axes = figure(1664, 560, ncols=len(GROUPS))
-    labels = ["Combined-score baseline", "Rule baseline", "Its existing score alone"]
+    labels = ["Combined-score baseline", "Rule baseline", "Its existing predictor alone"]
     for ax, (key, title, tool) in zip(axes, GROUPS):
         s = st[key]["scores"]
         rows = [(pct(s["Lookups combined (locked)"]), "strong"), (pct(s["Rule-based"]), "mid"),
@@ -201,7 +201,7 @@ def by_group(c: dict, out: Path) -> None:
         style(ax, c)
     axes[0].set_xlabel("Ranked first (%)", fontsize=TICK, color=c["grey"])
     save(fig, out, "v2_by_group", c, [("strong", "Combined-score baseline"), ("mid", "Rule baseline"),
-                                      ("rest", "The group's existing score alone")])
+                                      ("rest", "The group's existing predictor alone")])
 
 
 def gains_avi(c: dict, out: Path) -> None:
@@ -209,7 +209,7 @@ def gains_avi(c: dict, out: Path) -> None:
     rows = [("", pct(rep[PRIMARY]), "strong"), ("", pct(rep[SECONDARY]), "mid"),
             ("", pct(snv["Lookups + AVI minus Lookups combined"]), "strong"), ("", pct(snv[SECONDARY]), "mid")]
     fig, ax = figure(1664, 547)
-    ys = dots(ax, rows, c, pairs=["500 new cases", "First 200 cases\n(cross-validated)"])
+    ys = dots(ax, rows, c, pairs=["500 test cases", "First 200 cases\n(cross-validated)"])
     gain_axes(ax, c, -8, 16, "Gain at top 1 from adding AVI (percentage points)", ys)
     save(fig, out, "v2_gains_avi", c, [("strong", TO_COMBINED), ("mid", TO_RULE)], marker="●")
 
@@ -224,7 +224,7 @@ def gains_by_group(c: dict, out: Path) -> None:
         rows.append(("", pct(st[key]["contrasts"][SECONDARY]), "mid"))
     fig, ax = figure(1664, 580)
     ys = dots(ax, rows, c, pairs=pairs)
-    gain_axes(ax, c, -10, 42, "Gain at top 1 from adding AVI, 500 new cases (percentage points)", ys)
+    gain_axes(ax, c, -10, 42, "Gain at top 1 from adding AVI, 500 test cases (percentage points)", ys)
     save(fig, out, "v2_gains_by_group", c, [("strong", TO_COMBINED), ("mid", TO_RULE)], marker="●")
 
 
@@ -237,7 +237,7 @@ def gains_added(c: dict, out: Path) -> None:
     rows.append(("AVI (95% interval)", pct(con[PRIMARY]), "strong"))
     fig, ax = figure(1664, 523)
     ys = dots(ax, rows, c)
-    gain_axes(ax, c, -8, 12, "Gain at top 1, 500 new cases (percentage points); intervals 98.33% for GPN, "
+    gain_axes(ax, c, -8, 12, "Gain at top 1, 500 test cases (percentage points); intervals 98.33% for GPN, "
               "98.75% for Evo 2", ys)
     save(fig, out, "v2_gains_added", c, [("strong", TO_COMBINED)], marker="●")
 
@@ -249,9 +249,9 @@ def first_vs_second(c: dict, out: Path) -> None:
     fgrp = load("results_replication_gnomad0.001_grpmax.json", FIRST)["strata"]["all"]["added_to_locked_lookups"][key]
     v2 = load("replication_main.json")["strata"]["all"]["contrasts"][PRIMARY]
     rows = [("First run, first 200 cases", pct(f200), "rest"),
-            ("First run, 500 new cases", pct(f500), "rest"),
+            ("First run, 500 test cases", pct(f500), "rest"),
             ("First run, 500 new, strict filter", pct(fgrp), "rest"),
-            ("Second run, 500 new cases", pct(v2), "strong")]
+            ("Second run, 500 test cases", pct(v2), "strong")]
     fig, ax = figure(1664, 523)
     ys = dots(ax, rows, c)
     gain_axes(ax, c, -8, 24, "Gain at top 1 from adding AVI to the combined-score baseline (percentage points)", ys)
@@ -269,7 +269,7 @@ def checks(c: dict, out: Path) -> None:
         rows.append(("", pct(con[SECONDARY]), "mid"))
     fig, ax = figure(1664, 500)
     ys = dots(ax, rows, c, pairs=pairs)
-    gain_axes(ax, c, -10, 24, "Gain at top 1 from adding AVI, 500 new cases (percentage points)", ys)
+    gain_axes(ax, c, -10, 24, "Gain at top 1 from adding AVI, 500 test cases (percentage points)", ys)
     save(fig, out, "v2_checks", c, [("strong", TO_COMBINED), ("mid", TO_RULE)], marker="●")
 
 
@@ -353,7 +353,7 @@ def af_sweep(c: dict, out: Path) -> None:
     ax.spines["right"].set_visible(False)
     ax.set_xlabel("Background kept if its highest group frequency in gnomAD is below (log scale)", fontsize=TICK,
                   color=c["grey"], labelpad=8)
-    ax.set_ylabel("Spiked-in variant ranked first,\n500 new cases (%)", fontsize=TICK, color=c["grey"])
+    ax.set_ylabel("Spiked-in variant ranked first,\n500 test cases (%)", fontsize=TICK, color=c["grey"])
     save(fig, out, "af_sweep", c, [("strong", "AVI (thin line: 95% interval)"), ("rest", "Other single scores (REVEL, AlphaMissense, GPN, Evo 2 to 1%)"),
                                    ("dark", "Baselines")], marker="●", svg=True)
 
@@ -396,7 +396,7 @@ def af_sweep_gain(c: dict, out: Path) -> None:
     ax.tick_params(axis="y", labelsize=TICK, labelcolor=c["grey"])
     ax.set_xlabel("Background kept if its highest group frequency in gnomAD is below (log scale)", fontsize=TICK,
                   color=c["grey"], labelpad=8)
-    ax.set_ylabel("Gain at top 1 from adding AVI,\n500 new cases (percentage points)", fontsize=TICK, color=c["grey"])
+    ax.set_ylabel("Gain at top 1 from adding AVI,\n500 test cases (percentage points)", fontsize=TICK, color=c["grey"])
     save(fig, out, "af_sweep_gain", c, [("strong", names[PRIMARY]), ("mid", names[SECONDARY]),
                                         ("grey", "thin line: 95% interval")], marker="●", svg=True)
 
