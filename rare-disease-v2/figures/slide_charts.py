@@ -161,7 +161,7 @@ def top1_scores(c: dict, out: Path) -> None:
             ("AVI", s["AVI"], "mid"), ("CADD", s["CADD"], "rest"),
             ("GPN-Star-V", s["GPN-Star-V"], "mid"), ("Evo 2", s["Evo 2"], "mid"),
             ("SpliceAI", s["SpliceAI"], "rest"), ("GPN-MSA", s["GPN-MSA"], "mid"),
-            ("REVEL", s["REVEL"], "rest"), ("AlphaMissense", s["AlphaMissense"], "mid")]
+            ("REVEL", s["REVEL"], "rest"), ("AlphaMissense", s["AlphaMissense"], "rest")]
     fig, ax = figure(1664, 600)
     bars(ax, rows, c, "Spiked-in variant ranked first, 500 test cases (%); thin line: 95% interval")
     save(fig, out, "v2_top1_scores", c,
