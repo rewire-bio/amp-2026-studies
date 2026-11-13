@@ -8,14 +8,15 @@ in bold at the bar end; an interval as a thin line. A gain is a round dot with i
 98.75% for Evo 2), over a band from -5 to +5 percentage points: the smallest gain worth having, set in advance, so a
 gain inside it is too small to count.
 
-  v2_top1_scores      top 1 on the 500 for every single score and both baselines
-  v2_indel_top1       top 1 on the 120 indel cases, Evo 2 alone and added to the combined-score baseline
-  v2_by_group         top 1 on the 500 by diagnostic group: the group's existing score alone and both baselines
-  v2_gains_avi        AVI added to each baseline, top 1: the 500 (locked) and the 200 (cross-validated)
-  v2_gains_by_group   AVI added to each baseline by diagnostic group, top 1, on the 500
-  v2_gains_added      the GPN family and Evo 2 added to the combined-score baseline on the 500, top 1
+  v2_top1_scores      top 1 on the 500 for every single score and the combined-score baseline
+  v2_indel_top1       top 1 on the 120 indel cases, Evo 2 alone and added to the baseline
+  v2_by_group         top 1 on the 500 by diagnostic group: the group's existing score alone and the baseline
+  v2_gains_avi        AVI added to the combined-score baseline, top 1, on the 500
+  v2_gains_by_group   AVI added to the combined-score baseline by diagnostic group, top 1, on the 500
+  v2_gains_added      AVI, the GPN family and Evo 2 added to the combined-score baseline on the 500, top 1
+                      (plus _step1 focusing AVI and _step2 focusing the GPN family and Evo 2)
   v2_first_vs_second  AVI added to the combined-score baseline: the first run's three results against this run's
-  v2_checks           AVI added to each baseline on the 500 under the main filters and each check
+  v2_checks           AVI added to the combined-score baseline on the 500 under the main filters and each check
   af_sweep            top 1 on the 500 against the grpmax threshold (frequency sweep, exploratory), every single
                       score and both baselines; PNG and SVG
   af_sweep_gain       AVI added to each baseline at each threshold of the sweep; PNG and SVG
@@ -122,22 +123,26 @@ def bars(ax, rows: list[tuple[str, dict, str]], c: dict, xlabel: str) -> None:
     ax.set_xlabel(xlabel, fontsize=TICK, color=c["grey"], labelpad=8)
 
 
-def dots(ax, rows: list[tuple[str, tuple[float, float, float], str]], c: dict, pairs: list[str] | None = None) -> list[float]:
+def dots(ax, rows: list[tuple[str, tuple[float, float, float], str]], c: dict, pairs: list[str] | None = None,
+         alphas: list[float] | None = None) -> list[float]:
     """One row per result, top to bottom: a round dot for the gain, a thin line in its colour for the interval, the
-    value beside it. With pairs, rows come in twos (to the combined-score baseline, to the rule baseline) under one
-    label per pair, with a gap between pairs."""
+    value beside it. With pairs, rows come in twos under one label per pair, with a gap between pairs."""
     step = 2.7 if pairs else 1
     ys = [(i // 2) * step + i % 2 if pairs else i for i in range(len(rows))]
-    for y, (_, (v, lo, hi), colour) in zip(ys, rows):
-        ax.plot([lo, hi], [y, y], color=c[colour], lw=4 * PX, solid_capstyle="round", zorder=3)
-        ax.plot([v], [y], "o", ms=26 * PX, color=c[colour], mew=0, zorder=4)
+    row_alphas = alphas if alphas is not None else [1.0] * len(rows)
+    for y, (_, (v, lo, hi), colour), alpha in zip(ys, rows, row_alphas):
+        ax.plot([lo, hi], [y, y], color=c[colour], lw=4 * PX, solid_capstyle="round", zorder=3, alpha=alpha)
+        ax.plot([v], [y], "o", ms=26 * PX, color=c[colour], mew=0, zorder=4, alpha=alpha)
         ax.text(hi, y, f"   {num(v, True)}  ({num(lo, True)} to {num(hi, True)})", va="center", fontsize=VALUE,
-                color=c["dark"])
+                color=c["dark"], alpha=alpha)
     if pairs:
         ax.set_yticks([k * step + 0.5 for k in range(len(pairs))], pairs)
     else:
         ax.set_yticks(ys, [r[0] for r in rows])
     style(ax, c)
+    if alphas is not None and not pairs:
+        for tick_label, alpha in zip(ax.get_yticklabels(), row_alphas):
+            tick_label.set_alpha(alpha)
     return ys
 
 
@@ -157,11 +162,11 @@ def gain_axes(ax, c: dict, lo: float, hi: float, label: str, ys: list[float]) ->
 def top1_scores(c: dict, out: Path) -> None:
     s = load("replication_main.json")["strata"]["all"]["scores"]
     rows = [("Combined-score baseline", s["Lookups combined (locked)"], "strong"),
-            ("Rule baseline", s["Rule-based"], "strong"),
             ("AVI", s["AVI"], "mid"), ("CADD", s["CADD"], "rest"),
             ("GPN-Star-V", s["GPN-Star-V"], "mid"), ("Evo 2", s["Evo 2"], "mid"),
             ("SpliceAI", s["SpliceAI"], "rest"), ("GPN-MSA", s["GPN-MSA"], "mid"),
-            ("REVEL", s["REVEL"], "rest"), ("AlphaMissense", s["AlphaMissense"], "rest")]
+            ("REVEL (missense only)", s["REVEL"], "rest"),
+            ("AlphaMissense (missense only)", s["AlphaMissense"], "mid")]
     fig, ax = figure(1664, 600)
     bars(ax, rows, c, "Spiked-in variant ranked first, 500 test cases (%); thin line: 95% interval")
     save(fig, out, "v2_top1_scores", c,
@@ -170,9 +175,9 @@ def top1_scores(c: dict, out: Path) -> None:
 
 def indel_top1(c: dict, out: Path) -> None:
     s = load("indel_main.json")["strata"]["all"]["scores"]
-    rows = [("Combined-score baseline + Evo 2", s["Lookups + Evo 2"], "mid"),
-            ("Combined-score baseline", s["Lookups combined"], "strong"),
-            ("Evo 2 alone", s["Evo 2"], "mid"), ("Rule baseline", s["Rule-based"], "strong"),
+    rows = [("Baseline + Evo 2", s["Lookups + Evo 2"], "mid"),
+            ("Baseline (SpliceAI and variant type)", s["Lookups combined"], "strong"),
+            ("Evo 2 alone", s["Evo 2"], "mid"),
             ("SpliceAI", s["SpliceAI"], "rest")]
     fig, ax = figure(1728, 560)
     bars(ax, rows, c, "Spiked-in indel ranked first, 120 indel cases (%); thin line: 95% interval")
@@ -183,11 +188,10 @@ def indel_top1(c: dict, out: Path) -> None:
 def by_group(c: dict, out: Path) -> None:
     st = load("replication_main.json")["strata"]
     fig, axes = figure(1664, 560, ncols=len(GROUPS))
-    labels = ["Combined-score baseline", "Rule baseline", "Its existing predictor alone"]
+    labels = ["Combined-score baseline", "Its existing predictor alone"]
     for ax, (key, title, tool) in zip(axes, GROUPS):
         s = st[key]["scores"]
-        rows = [(pct(s["Lookups combined (locked)"]), "strong"), (pct(s["Rule-based"]), "mid"),
-                (pct(s[tool]), "rest")]
+        rows = [(pct(s["Lookups combined (locked)"]), "strong"), (pct(s[tool]), "rest")]
         for i, ((v, lo, hi), colour) in enumerate(rows):
             ax.barh(i, v, height=0.66, color=c[colour], linewidth=0, zorder=2)
             ax.plot([lo, hi], [i, i], color=c["grey"], lw=3 * PX, solid_capstyle="round", zorder=3)
@@ -200,46 +204,53 @@ def by_group(c: dict, out: Path) -> None:
         ax.set_yticks(range(len(rows)), labels)
         style(ax, c)
     axes[0].set_xlabel("Ranked first (%)", fontsize=TICK, color=c["grey"])
-    save(fig, out, "v2_by_group", c, [("strong", "Combined-score baseline"), ("mid", "Rule baseline"),
+    save(fig, out, "v2_by_group", c, [("strong", "Combined-score baseline"),
                                       ("rest", "The group's existing predictor alone")])
 
 
 def gains_avi(c: dict, out: Path) -> None:
-    rep, snv = load("replication_main.json")["strata"]["all"]["contrasts"], load("snv_main.json")["strata"]["all"]["contrasts"]
-    rows = [("", pct(rep[PRIMARY]), "strong"), ("", pct(rep[SECONDARY]), "mid"),
-            ("", pct(snv["Lookups + AVI minus Lookups combined"]), "strong"), ("", pct(snv[SECONDARY]), "mid")]
+    rep = load("replication_main.json")["strata"]["all"]["contrasts"]
+    rows = [("500 test cases", pct(rep[PRIMARY]), "strong")]
     fig, ax = figure(1664, 547)
-    ys = dots(ax, rows, c, pairs=["500 test cases", "First 200 cases\n(cross-validated)"])
-    gain_axes(ax, c, -8, 16, "Gain at top 1 from adding AVI (percentage points)", ys)
-    save(fig, out, "v2_gains_avi", c, [("strong", TO_COMBINED), ("mid", TO_RULE)], marker="●")
+    ys = dots(ax, rows, c)
+    gain_axes(ax, c, -8, 12, "Gain at top 1 from adding AVI (percentage points)", ys)
+    save(fig, out, "v2_gains_avi", c, [("strong", TO_COMBINED)], marker="●")
 
 
 def gains_by_group(c: dict, out: Path) -> None:
     st = load("replication_main.json")["strata"]
-    rows, pairs = [], []
-    for key, title in [("noncoding", "Non-coding"), ("noncoding: intronic", "Intronic"),
-                       ("noncoding: splice_region", "Splice region"), ("missense", "Missense")]:
-        pairs.append(f"{title}\n{st[key]['cases']} cases")
-        rows.append(("", pct(st[key]["contrasts"][PRIMARY]), "strong"))
-        rows.append(("", pct(st[key]["contrasts"][SECONDARY]), "mid"))
+    rows = [(f"{title}\n{st[key]['cases']} cases", pct(st[key]["contrasts"][PRIMARY]), "strong")
+            for key, title in [("noncoding", "Non-coding"), ("noncoding: intronic", "Intronic"),
+                               ("noncoding: splice_region", "Splice region"), ("missense", "Missense")]]
     fig, ax = figure(1664, 580)
-    ys = dots(ax, rows, c, pairs=pairs)
-    gain_axes(ax, c, -10, 42, "Gain at top 1 from adding AVI, 500 test cases (percentage points)", ys)
-    save(fig, out, "v2_gains_by_group", c, [("strong", TO_COMBINED), ("mid", TO_RULE)], marker="●")
+    ys = dots(ax, rows, c)
+    gain_axes(ax, c, -10, 22, "Gain at top 1 from adding AVI, 500 test cases (percentage points)", ys)
+    save(fig, out, "v2_gains_by_group", c, [("strong", TO_COMBINED)], marker="●")
+
+
+def _draw_gains_added(c: dict, out: Path, name: str, focus: str | None = None) -> None:
+    con = load("replication_main.json")["strata"]["all"]["contrasts"]
+    rows = [("AVI (95% interval)", pct(con[PRIMARY]), "strong")]
+    rows.extend((n, pct(con[f"Lookups + {n} (locked) minus Lookups combined (locked)"], ci="top_1_ci98.33"), "strong")
+                for n in ("GPN-MSA", "GPN-Star-V", "GPN-Star-M"))
+    rows.append(("Evo 2", pct(con["Lookups + Evo 2 (locked) minus Lookups combined (locked)"], ci="top_1_ci98.75"),
+                 "strong"))
+    alphas = None
+    if focus == "avi":
+        alphas = [1.0, 0.3, 0.3, 0.3, 0.3]
+    elif focus == "others":
+        alphas = [0.3, 1.0, 1.0, 1.0, 1.0]
+    fig, ax = figure(1664, 523)
+    ys = dots(ax, rows, c, alphas=alphas)
+    gain_axes(ax, c, -8, 12, "Gain at top 1, 500 test cases (percentage points); intervals 98.33% for GPN, "
+              "98.75% for Evo 2", ys)
+    save(fig, out, name, c, [("strong", TO_COMBINED)], marker="●")
 
 
 def gains_added(c: dict, out: Path) -> None:
-    con = load("replication_main.json")["strata"]["all"]["contrasts"]
-    rows = [(n, pct(con[f"Lookups + {n} (locked) minus Lookups combined (locked)"], ci="top_1_ci98.33"), "strong")
-            for n in ("GPN-MSA", "GPN-Star-V", "GPN-Star-M")]
-    rows.append(("Evo 2", pct(con["Lookups + Evo 2 (locked) minus Lookups combined (locked)"], ci="top_1_ci98.75"),
-                 "strong"))
-    rows.append(("AVI (95% interval)", pct(con[PRIMARY]), "strong"))
-    fig, ax = figure(1664, 523)
-    ys = dots(ax, rows, c)
-    gain_axes(ax, c, -8, 12, "Gain at top 1, 500 test cases (percentage points); intervals 98.33% for GPN, "
-              "98.75% for Evo 2", ys)
-    save(fig, out, "v2_gains_added", c, [("strong", TO_COMBINED)], marker="●")
+    _draw_gains_added(c, out, "v2_gains_added", focus=None)
+    _draw_gains_added(c, out, "v2_gains_added_step1", focus="avi")
+    _draw_gains_added(c, out, "v2_gains_added_step2", focus="others")
 
 
 def first_vs_second(c: dict, out: Path) -> None:
@@ -259,18 +270,16 @@ def first_vs_second(c: dict, out: Path) -> None:
 
 
 def checks(c: dict, out: Path) -> None:
-    rows, pairs = [], []
+    rows = []
     for name, label in [("main", "Main filters"), ("bg1pct", "Looser filter (below 1%)"),
                         ("nomoi", "No inheritance filter"), ("all1kg", "All of 1000 Genomes left out")]:
         d = load(f"replication_{name}.json")
         con = d["strata"]["all"]["contrasts"]
-        pairs.append(f"{label}\nmedian list {d['median_variants_per_case']:g}")
-        rows.append(("", pct(con[PRIMARY]), "strong"))
-        rows.append(("", pct(con[SECONDARY]), "mid"))
+        rows.append((f"{label}\nmedian list {d['median_variants_per_case']:g}", pct(con[PRIMARY]), "strong"))
     fig, ax = figure(1664, 500)
-    ys = dots(ax, rows, c, pairs=pairs)
-    gain_axes(ax, c, -10, 24, "Gain at top 1 from adding AVI, 500 test cases (percentage points)", ys)
-    save(fig, out, "v2_checks", c, [("strong", TO_COMBINED), ("mid", TO_RULE)], marker="●")
+    ys = dots(ax, rows, c)
+    gain_axes(ax, c, -10, 18, "Gain at top 1 from adding AVI, 500 test cases (percentage points)", ys)
+    save(fig, out, "v2_checks", c, [("strong", TO_COMBINED)], marker="●")
 
 
 # Frequency sweep (PROTOCOL.md section 13, exploratory)
